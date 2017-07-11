@@ -10,9 +10,14 @@ import UIKit
 
 class PostViewController: UIViewController {
 
+    @IBOutlet weak var goalTextField: UITextField!
     
     @IBAction func cancelPost(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func setGoal(_ sender: Any) {
+        
     }
     
     
