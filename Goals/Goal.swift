@@ -37,10 +37,24 @@ class Goal: NSObject {
         
         // Add relevant fields to the object
         goal["author"] = PFUser.current()
+        goal["title"] = title
         goal["description"] = description
         goal["updates"] = []
         
         // Save object (following function will save the object in Parse asynchronously)
         goal.saveInBackground()
+    }
+    
+    class func fetchAllGoals(completion: @escaping ([PFObject]?, Error?) -> ()) {
+        let query = PFQuery(className: "Goal")
+        query.order(byDescending: "createdAt")
+        query.includeKey("author")
+        query.findObjectsInBackground { (loadedGoals: [PFObject]?, error:Error?) in
+            if error == nil {
+                completion(loadedGoals, nil)
+            } else {
+                completion(nil, error)
+            }
+        }
     }
 }
