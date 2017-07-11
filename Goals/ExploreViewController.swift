@@ -1,30 +1,19 @@
 //
-//  FeedViewController.swift
+//  ExploreViewController.swift
 //  Goals
 //
-//  Created by Isabella Teng on 7/11/17.
+//  Created by Josh Olumese on 7/11/17.
 //  Copyright © 2017 Isabella Teng. All rights reserved.
 //
 
 import UIKit
 
-class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ExploreViewController: UIViewController {
 
-    var posts: [String] = []
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as! FeedCell
-        
-        return cell
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
