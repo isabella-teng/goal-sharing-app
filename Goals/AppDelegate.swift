@@ -27,6 +27,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         )
         
+        if let currentuser = PFUser.current() {
+            //if there is a logged in user then load the home view controller
+            print("Welcome back!")
+            //load Chat view controller and set as root view controller
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let tabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
+            window?.rootViewController = tabBarController as! UITabBarController
+        } else {
+            print("no logged in user")
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+            window?.rootViewController = loginViewController
+            
+        }
+
+        
         return true
     }
 

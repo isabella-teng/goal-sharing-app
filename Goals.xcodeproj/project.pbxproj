@@ -25,6 +25,7 @@
 		FACF12CD1F154A6C00D505FE /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF12CC1F154A6C00D505FE /* FeedViewController.swift */; };
 		FACF12CF1F154A8700D505FE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF12CE1F154A8700D505FE /* ProfileViewController.swift */; };
 		FACF12D21F156E8C00D505FE /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF12D11F156E8C00D505FE /* ProfileCell.swift */; };
+		FAD3513A1F1597FE00998CCA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD351391F1597FE00998CCA /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		FACF12CC1F154A6C00D505FE /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		FACF12CE1F154A8700D505FE /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		FACF12D11F156E8C00D505FE /* ProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		FAD351391F1597FE00998CCA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FFBA34B6999BBB6E2B553F30 /* Pods_Goals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Goals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -196,9 +198,9 @@
 			isa = PBXGroup;
 			children = (
 				FACF12C91F154A3D00D505FE /* LoginViewController.swift */,
-				7EF1FFD41F158598000DA708 /* ExploreViewController.swift */,
 				FACF12CC1F154A6C00D505FE /* FeedViewController.swift */,
 				FACF12CE1F154A8700D505FE /* ProfileViewController.swift */,
+				7EF1FFD41F158598000DA708 /* ExploreViewController.swift */,
 				B87C87ED1F156E9300F58517 /* PostViewController.swift */,
 				B87C87EF1F159AE100F58517 /* DetailViewController.swift */,
 			);
@@ -209,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				7E38DFDA1F15813400DEF47C /* Goal.swift */,
+				FAD351391F1597FE00998CCA /* User.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 				FACF129C1F15476200D505FE /* AppDelegate.swift in Sources */,
 				B87C87F01F159AE100F58517 /* DetailViewController.swift in Sources */,
 				7E38DFDB1F15813400DEF47C /* Goal.swift in Sources */,
+				FAD3513A1F1597FE00998CCA /* User.swift in Sources */,
 				FACF12D21F156E8C00D505FE /* ProfileCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

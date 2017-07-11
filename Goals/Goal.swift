@@ -37,6 +37,7 @@ class Goal: NSObject {
         
         // Add relevant fields to the object
         goal["author"] = PFUser.current()
+        goal["title"] = title
         goal["description"] = description
         goal["updates"] = []
         
