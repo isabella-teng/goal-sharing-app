@@ -6,6 +6,7 @@ target 'Goals' do
   use_frameworks!
 
   # Pods for Goals
+  pod 'Parse'
 
   target 'GoalsTests' do
     inherit! :search_paths
