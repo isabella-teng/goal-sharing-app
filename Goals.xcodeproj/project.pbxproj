@@ -10,6 +10,8 @@
 		15A2C043446242E87172231A /* Pods_GoalsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E339925FD6B14DCCACECDAC9 /* Pods_GoalsTests.framework */; };
 		55FD199C341B1A7428EE3609 /* Pods_GoalsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A37E25EFEFAC2CCC5DABED /* Pods_GoalsUITests.framework */; };
 		770E9622CD194284E248B22C /* Pods_Goals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFBA34B6999BBB6E2B553F30 /* Pods_Goals.framework */; };
+		B87C87EC1F156DEA00F58517 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87EB1F156DEA00F58517 /* ExploreViewController.swift */; };
+		B87C87EE1F156E9300F58517 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87ED1F156E9300F58517 /* PostViewController.swift */; };
 		FACF129C1F15476200D505FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF129B1F15476200D505FE /* AppDelegate.swift */; };
 		FACF12A11F15476200D505FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACF129F1F15476200D505FE /* Main.storyboard */; };
 		FACF12A31F15476200D505FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF12A21F15476200D505FE /* Assets.xcassets */; };
@@ -44,6 +46,8 @@
 		8B1C5447CB4A291F000D9875 /* Pods-GoalsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsUITests/Pods-GoalsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A3870FB33249FFA01E80B856 /* Pods-GoalsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsTests/Pods-GoalsTests.release.xcconfig"; sourceTree = "<group>"; };
 		A9A37E25EFEFAC2CCC5DABED /* Pods_GoalsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoalsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B87C87EB1F156DEA00F58517 /* ExploreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
+		B87C87ED1F156E9300F58517 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		CB4F6A01BA5261F1C95C9952 /* Pods-GoalsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsTests/Pods-GoalsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CF3584AB59D862ECDED6FA78 /* Pods-Goals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Goals.release.xcconfig"; path = "Pods/Target Support Files/Pods-Goals/Pods-Goals.release.xcconfig"; sourceTree = "<group>"; };
 		E339925FD6B14DCCACECDAC9 /* Pods_GoalsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoalsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,6 +179,8 @@
 				FACF12C91F154A3D00D505FE /* LoginViewController.swift */,
 				FACF12CC1F154A6C00D505FE /* FeedViewController.swift */,
 				FACF12CE1F154A8700D505FE /* ProfileViewController.swift */,
+				B87C87EB1F156DEA00F58517 /* ExploreViewController.swift */,
+				B87C87ED1F156E9300F58517 /* PostViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -460,8 +466,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B87C87EE1F156E9300F58517 /* PostViewController.swift in Sources */,
 				FACF12CA1F154A3D00D505FE /* LoginViewController.swift in Sources */,
 				FACF12CF1F154A8700D505FE /* ProfileViewController.swift in Sources */,
+				B87C87EC1F156DEA00F58517 /* ExploreViewController.swift in Sources */,
 				FACF12CD1F154A6C00D505FE /* FeedViewController.swift in Sources */,
 				FACF129C1F15476200D505FE /* AppDelegate.swift in Sources */,
 			);
