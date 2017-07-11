@@ -97,20 +97,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E38DFD81F1571A900DEF47C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7E8642031F15707900EE968A /* Post.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		7E8642021F156FCA00EE968A /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				7E8642001F156F9500EE968A /* FeedCell.swift */,
 			);
 			name = Views;
-			sourceTree = "<group>";
-		};
-		7E8642051F15708300EE968A /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				7E8642031F15707900EE968A /* Post.swift */,
-			);
-			name = Classes;
 			sourceTree = "<group>";
 		};
 		81C301CB7A53EF2C808BEF11 /* Frameworks */ = {
@@ -163,7 +163,7 @@
 			children = (
 				FACF129B1F15476200D505FE /* AppDelegate.swift */,
 				FACF129F1F15476200D505FE /* Main.storyboard */,
-				7E8642051F15708300EE968A /* Classes */,
+				7E38DFD81F1571A900DEF47C /* Models */,
 				FACF12CB1F154A4600D505FE /* View Controllers */,
 				7E8642021F156FCA00EE968A /* Views */,
 				FACF12A21F15476200D505FE /* Assets.xcassets */,
