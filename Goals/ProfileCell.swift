@@ -10,6 +10,8 @@ import UIKit
 
 class ProfileCell: UITableViewCell {
 
+    @IBOutlet weak var goalTitleLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
