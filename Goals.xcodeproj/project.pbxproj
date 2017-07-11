@@ -11,12 +11,14 @@
 		55FD199C341B1A7428EE3609 /* Pods_GoalsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A37E25EFEFAC2CCC5DABED /* Pods_GoalsUITests.framework */; };
 		770E9622CD194284E248B22C /* Pods_Goals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFBA34B6999BBB6E2B553F30 /* Pods_Goals.framework */; };
 		FACF129C1F15476200D505FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF129B1F15476200D505FE /* AppDelegate.swift */; };
-		FACF129E1F15476200D505FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF129D1F15476200D505FE /* ViewController.swift */; };
 		FACF12A11F15476200D505FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACF129F1F15476200D505FE /* Main.storyboard */; };
 		FACF12A31F15476200D505FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF12A21F15476200D505FE /* Assets.xcassets */; };
 		FACF12A61F15476200D505FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACF12A41F15476200D505FE /* LaunchScreen.storyboard */; };
 		FACF12B11F15476300D505FE /* GoalsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF12B01F15476300D505FE /* GoalsTests.swift */; };
 		FACF12BC1F15476300D505FE /* GoalsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF12BB1F15476300D505FE /* GoalsUITests.swift */; };
+		FACF12CA1F154A3D00D505FE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF12C91F154A3D00D505FE /* LoginViewController.swift */; };
+		FACF12CD1F154A6C00D505FE /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF12CC1F154A6C00D505FE /* FeedViewController.swift */; };
+		FACF12CF1F154A8700D505FE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF12CE1F154A8700D505FE /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +49,6 @@
 		E339925FD6B14DCCACECDAC9 /* Pods_GoalsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoalsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACF12981F15476200D505FE /* Goals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Goals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACF129B1F15476200D505FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FACF129D1F15476200D505FE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FACF12A01F15476200D505FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FACF12A21F15476200D505FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FACF12A51F15476200D505FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,6 +59,9 @@
 		FACF12B71F15476300D505FE /* GoalsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoalsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACF12BB1F15476300D505FE /* GoalsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsUITests.swift; sourceTree = "<group>"; };
 		FACF12BD1F15476300D505FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FACF12C91F154A3D00D505FE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FACF12CC1F154A6C00D505FE /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		FACF12CE1F154A8700D505FE /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		FFBA34B6999BBB6E2B553F30 /* Pods_Goals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Goals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -137,8 +141,8 @@
 		FACF129A1F15476200D505FE /* Goals */ = {
 			isa = PBXGroup;
 			children = (
+				FACF12CB1F154A4600D505FE /* View Controllers */,
 				FACF129B1F15476200D505FE /* AppDelegate.swift */,
-				FACF129D1F15476200D505FE /* ViewController.swift */,
 				FACF129F1F15476200D505FE /* Main.storyboard */,
 				FACF12A21F15476200D505FE /* Assets.xcassets */,
 				FACF12A41F15476200D505FE /* LaunchScreen.storyboard */,
@@ -163,6 +167,16 @@
 				FACF12BD1F15476300D505FE /* Info.plist */,
 			);
 			path = GoalsUITests;
+			sourceTree = "<group>";
+		};
+		FACF12CB1F154A4600D505FE /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FACF12C91F154A3D00D505FE /* LoginViewController.swift */,
+				FACF12CC1F154A6C00D505FE /* FeedViewController.swift */,
+				FACF12CE1F154A8700D505FE /* ProfileViewController.swift */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -446,7 +460,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FACF129E1F15476200D505FE /* ViewController.swift in Sources */,
+				FACF12CA1F154A3D00D505FE /* LoginViewController.swift in Sources */,
+				FACF12CF1F154A8700D505FE /* ProfileViewController.swift in Sources */,
+				FACF12CD1F154A6C00D505FE /* FeedViewController.swift in Sources */,
 				FACF129C1F15476200D505FE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -700,6 +716,7 @@
 				FACF12C21F15476300D505FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FACF12C31F15476300D505FE /* Build configuration list for PBXNativeTarget "GoalsTests" */ = {
 			isa = XCConfigurationList;
@@ -708,6 +725,7 @@
 				FACF12C51F15476300D505FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FACF12C61F15476300D505FE /* Build configuration list for PBXNativeTarget "GoalsUITests" */ = {
 			isa = XCConfigurationList;
@@ -716,6 +734,7 @@
 				FACF12C81F15476300D505FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
