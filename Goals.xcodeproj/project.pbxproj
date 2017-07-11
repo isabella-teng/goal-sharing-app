@@ -14,7 +14,6 @@
 		7E8642011F156F9500EE968A /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8642001F156F9500EE968A /* FeedCell.swift */; };
 		B87C87EC1F156DEA00F58517 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87EB1F156DEA00F58517 /* ExploreViewController.swift */; };
 		B87C87EE1F156E9300F58517 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87ED1F156E9300F58517 /* PostViewController.swift */; };
-		FABD6C431F15814100779579 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABD6C421F15814100779579 /* Update.swift */; };
 		FACF129C1F15476200D505FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF129B1F15476200D505FE /* AppDelegate.swift */; };
 		FACF12A11F15476200D505FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACF129F1F15476200D505FE /* Main.storyboard */; };
 		FACF12A31F15476200D505FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF12A21F15476200D505FE /* Assets.xcassets */; };
@@ -58,7 +57,6 @@
 		CB4F6A01BA5261F1C95C9952 /* Pods-GoalsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsTests/Pods-GoalsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CF3584AB59D862ECDED6FA78 /* Pods-Goals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Goals.release.xcconfig"; path = "Pods/Target Support Files/Pods-Goals/Pods-Goals.release.xcconfig"; sourceTree = "<group>"; };
 		E339925FD6B14DCCACECDAC9 /* Pods_GoalsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoalsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FABD6C421F15814100779579 /* Update.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
 		FACF12981F15476200D505FE /* Goals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Goals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACF129B1F15476200D505FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FACF12A01F15476200D505FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -217,7 +215,6 @@
 		FACF12D31F156F3F00D505FE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				FABD6C421F15814100779579 /* Update.swift */,
 				FACF12D41F15707C00D505FE /* User.swift */,
 				7E38DFDA1F15813400DEF47C /* Goal.swift */,
 			);
@@ -507,12 +504,10 @@
 			files = (
 				B87C87EE1F156E9300F58517 /* PostViewController.swift in Sources */,
 				FACF12CA1F154A3D00D505FE /* LoginViewController.swift in Sources */,
-				FABD6C431F15814100779579 /* Update.swift in Sources */,
 				7E8642011F156F9500EE968A /* FeedCell.swift in Sources */,
 				FACF12CF1F154A8700D505FE /* ProfileViewController.swift in Sources */,
 				FACF12D51F15707C00D505FE /* User.swift in Sources */,
 				B87C87EC1F156DEA00F58517 /* ExploreViewController.swift in Sources */,
-				7E8642041F15707900EE968A /* Goal.swift in Sources */,
 				FACF12D51F15707C00D505FE /* User.swift in Sources */,
 				B87C87EC1F156DEA00F58517 /* ExploreViewController.swift in Sources */,
 				FACF12CD1F154A6C00D505FE /* FeedViewController.swift in Sources */,
