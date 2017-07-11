@@ -15,6 +15,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
+    
     
     var allUserPosts: [PFObject]? = []
     
@@ -24,6 +27,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        usernameLabel.text = PFUser.current()?.username
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

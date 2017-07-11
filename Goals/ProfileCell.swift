@@ -14,12 +14,12 @@ class ProfileCell: UITableViewCell {
 
     @IBOutlet weak var goalTitleLabel: UILabel!
     
-    var goalTitle: PFObject! {
-        didSet {
-            self.goalTitleLabel.text = goalTitle["title"] as? String
-            //self.goalTitleLabel.reloadInputViews()
-        }
-    }
+//    var goalTitle: PFObject! {
+//        didSet {
+//            self.goalTitleLabel.text = goalTitle["title"] as? String
+//            //self.goalTitleLabel.reloadInputViews()
+//        }
+//    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
