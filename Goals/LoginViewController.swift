@@ -97,7 +97,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.performSegue(withIdentifier: "loginSegue", sender: nil )
                 
             } else {
-                print(error?.localizedDescription)
+                print(error?.localizedDescription as Any)
                 
                 if error?._code == 202 {
                     let alertController = UIAlertController(title: "Username is taken", message: "Please choose a different username", preferredStyle: .alert)

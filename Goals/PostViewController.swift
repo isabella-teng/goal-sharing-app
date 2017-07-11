@@ -16,10 +16,6 @@ class PostViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func setGoal(_ sender: Any) {
-        
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +27,11 @@ class PostViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+   
+    // Temporary
+    @IBAction func postUpdate(_ sender: Any) {
+        Goal.createGoal(title: goalTextField.text!, withDescription: "")
+    }
 
     /*
     // MARK: - Navigation

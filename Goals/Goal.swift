@@ -1,5 +1,5 @@
 //
-//  Post.swift
+//  Goal.swift
 //  Goals
 //
 //  Created by Gerardo Parra on 7/11/17.
@@ -9,29 +9,29 @@
 import UIKit
 import Parse
 
-class Goal {
-//    var id: Int
-//    var title: String
-//    var description: String
-//    var likes: [User]
-//    var likeCount: Int
-//    var comments: [Comment]
-//    var categories: [String]
+class Goal: NSObject {
+    //    var id: Int
+    //    var title: String
+    //    var description: String
+    //    var likes: [User]
+    //    var likeCount: Int
+    //    var comments: [Comment]
+    //    var categories: [String]
     
-//    func fetchUpdates() {
-//        let query = PFQuery(className: "Update")
-//        query.addDescendingOrder("createdAt")
-//        query.includeKey("author")
-//        query.findObjectsInBackground { (loadedUpdates: [PFObject]?, error:Error?) in
-//            if error == nil {
-//               return loadedUpdates!
-//            } else {
-//                print(error?.localizedDescription)
-//            }
-//        }
-//    }
+    //    func fetchUpdates() {
+    //        let query = PFQuery(className: "Update")
+    //        query.addDescendingOrder("createdAt")
+    //        query.includeKey("author")
+    //        query.findObjectsInBackground { (loadedUpdates: [PFObject]?, error:Error?) in
+    //            if error == nil {
+    //               return loadedUpdates!
+    //            } else {
+    //                print(error?.localizedDescription)
+    //            }
+    //        }
+    //    }
     
-    func createGoal(title: String, description: String, withCompletion completion: PFBooleanResultBlock?) {
+    class func createGoal(title: String, withDescription description: String) {
         // Create Parse object PFObject
         let goal = PFObject(className: "Goal")
         
@@ -41,6 +41,6 @@ class Goal {
         goal["updates"] = []
         
         // Save object (following function will save the object in Parse asynchronously)
-        goal.saveInBackground(block: completion)
+        goal.saveInBackground()
     }
 }
