@@ -27,6 +27,7 @@
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
+                                    <action selector="onLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Df4-tq-LHV"/>
                                     <segue destination="OdU-zh-KtB" kind="presentation" identifier="loginSegue" id="oyV-sQ-3m5"/>
                                 </connections>
                             </button>
@@ -34,6 +35,9 @@
                                 <rect key="frame" x="44" y="340" width="287" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <action selector="onSignUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mLt-Hc-AkL"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="email" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zxj-HX-6Uf">
                                 <rect key="frame" x="63" y="132" width="268" height="30"/>
@@ -59,13 +63,17 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="emailField" destination="zxj-HX-6Uf" id="dvD-Mt-Khn"/>
+                        <outlet property="passwordField" destination="hMc-u7-z7c" id="fCb-0Y-Edi"/>
+                        <outlet property="usernameField" destination="pr6-jx-AVG" id="M3g-YY-rGC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="100" y="138.98050974512745"/>
         </scene>
         <!--Feed-->
-
         <scene sceneID="cR9-dx-rtx">
             <objects>
                 <viewController id="4cB-WK-Nnu" customClass="FeedViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
@@ -86,7 +94,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="131"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CDK-H9-u0K" id="9Qg-bV-Rtp">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="131"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="130.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -176,7 +184,6 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eTF-SU-lWR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-
             <point key="canvasLocation" x="2790" y="648"/>
         </scene>
         <!--Explore-->

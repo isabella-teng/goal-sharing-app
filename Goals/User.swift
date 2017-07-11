@@ -12,10 +12,11 @@ import Parse
 class User: NSObject {
     //Properties of user
     
-    var name: String
-    var screenName: String
-    var profPicURL: URL
+//    var name: String = ""
+//    var screenName: String = ""
+//    var profPicURL: URL
     //Add more properties later
+    
     
     //User persistance
 //    var dictionary: [String: Any]?
