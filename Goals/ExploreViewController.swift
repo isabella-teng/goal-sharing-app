@@ -2,7 +2,7 @@
 //  ExploreViewController.swift
 //  Goals
 //
-//  Created by Josh Olumese on 7/11/17.
+//  Created by Gerardo Parra on 7/11/17.
 //  Copyright © 2017 Isabella Teng. All rights reserved.
 //
 
