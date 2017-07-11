@@ -7,3 +7,11 @@
 //
 
 import Foundation
+import Parse
+
+class Post: NSObject {
+    
+    let post = PFObject(className: "Post")
+    
+    
+}

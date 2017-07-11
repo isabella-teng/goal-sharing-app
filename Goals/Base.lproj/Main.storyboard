@@ -39,7 +39,6 @@
             <point key="canvasLocation" x="100" y="139"/>
         </scene>
         <!--Feed-->
-
         <scene sceneID="cR9-dx-rtx">
             <objects>
                 <viewController id="4cB-WK-Nnu" customClass="FeedViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
@@ -60,7 +59,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="131"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CDK-H9-u0K" id="9Qg-bV-Rtp">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="131"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="130.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -86,7 +85,7 @@
             </objects>
             <point key="canvasLocation" x="2789.5999999999999" y="-402.54872563718146"/>
         </scene>
-        <!--Post View Controller-->
+        <!--Post-->
         <scene sceneID="BvD-io-799">
             <objects>
                 <viewController id="wh1-XR-JhU" customClass="PostViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
@@ -97,9 +96,26 @@
                     <view key="view" contentMode="scaleToFill" id="EUo-0m-kNM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="What's youur goal?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nS7-ak-A7r">
+                                <rect key="frame" x="16" y="120" width="261" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jiv-eV-h4r">
+                                <rect key="frame" x="300" y="119" width="59" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Set Goal"/>
+                                <connections>
+                                    <action selector="setGoal:" destination="wh1-XR-JhU" eventType="touchUpInside" id="j1M-Kc-KTh"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="fAa-sw-NTK">
+                    <navigationItem key="navigationItem" title="Post" id="fAa-sw-NTK">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="tXs-4F-mtJ">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uPp-SP-soc">
                                 <rect key="frame" x="16" y="7" width="83" height="30"/>
@@ -111,10 +127,13 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="goalTextField" destination="nS7-ak-A7r" id="YtP-Ti-rI9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V4f-o3-CjY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4506" y="-530"/>
+            <point key="canvasLocation" x="4504.8000000000002" y="-530.28485757121439"/>
         </scene>
         <!--Profile-->
         <scene sceneID="JHz-5Z-nmz">
