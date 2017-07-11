@@ -6,11 +6,10 @@
 //  Copyright © 2017 Isabella Teng. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import Parse
 
 class Update: PFObject {
-    // Properties
 //    var id: Int
 //    var title: String
 //    var description: String
@@ -18,8 +17,5 @@ class Update: PFObject {
 //    var likeCount: Int
 //    var comments: [Comment]
 //    var categories: [String]
-//    
-//    init(dictionary: [String: Any]) {
-//        
-//    }
+    
 }
