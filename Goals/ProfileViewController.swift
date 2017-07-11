@@ -21,6 +21,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,6 +42,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 print(error.localizedDescription)
             } else {
                 self.allUserPosts = posts
+                //print(self.allUserPosts?.first?["title"])
                 self.tableView.reloadData()
             }
         }
@@ -47,16 +51,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (allUserPosts?.count)!
+        return allUserPosts!.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
-        let singlePost = allUserPosts?[indexPath.row]
+        let singlePost = allUserPosts![indexPath.row]
         
         
-        if let title = singlePost?["title"] as? String {
+        if let title = singlePost["title"] as? String {
+            print(singlePost["title"])
             cell.goalTitleLabel.text = title
         }
         

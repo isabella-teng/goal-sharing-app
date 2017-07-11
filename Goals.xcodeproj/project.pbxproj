@@ -194,9 +194,9 @@
 			isa = PBXGroup;
 			children = (
 				FACF12C91F154A3D00D505FE /* LoginViewController.swift */,
-				7EF1FFD41F158598000DA708 /* ExploreViewController.swift */,
 				FACF12CC1F154A6C00D505FE /* FeedViewController.swift */,
 				FACF12CE1F154A8700D505FE /* ProfileViewController.swift */,
+				7EF1FFD41F158598000DA708 /* ExploreViewController.swift */,
 				B87C87ED1F156E9300F58517 /* PostViewController.swift */,
 			);
 			name = "View Controllers";

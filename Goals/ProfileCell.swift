@@ -17,7 +17,7 @@ class ProfileCell: UITableViewCell {
     var goalTitle: PFObject! {
         didSet {
             self.goalTitleLabel.text = goalTitle["title"] as? String
-            self.goalTitleLabel.reloadInputViews()
+            //self.goalTitleLabel.reloadInputViews()
         }
     }
     
