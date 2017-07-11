@@ -10,7 +10,7 @@ import UIKit
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var posts: [String] = []
+    var updates: [Update] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()

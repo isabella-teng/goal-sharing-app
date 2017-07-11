@@ -10,10 +10,10 @@
 		15A2C043446242E87172231A /* Pods_GoalsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E339925FD6B14DCCACECDAC9 /* Pods_GoalsTests.framework */; };
 		55FD199C341B1A7428EE3609 /* Pods_GoalsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A37E25EFEFAC2CCC5DABED /* Pods_GoalsUITests.framework */; };
 		770E9622CD194284E248B22C /* Pods_Goals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFBA34B6999BBB6E2B553F30 /* Pods_Goals.framework */; };
+		7E8642011F156F9500EE968A /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8642001F156F9500EE968A /* FeedCell.swift */; };
+		7E8642041F15707900EE968A /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8642031F15707900EE968A /* Update.swift */; };
 		B87C87EC1F156DEA00F58517 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87EB1F156DEA00F58517 /* ExploreViewController.swift */; };
 		B87C87EE1F156E9300F58517 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87ED1F156E9300F58517 /* PostViewController.swift */; };
-		7E8642011F156F9500EE968A /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8642001F156F9500EE968A /* FeedCell.swift */; };
-		7E8642041F15707900EE968A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8642031F15707900EE968A /* Post.swift */; };
 		FACF129C1F15476200D505FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF129B1F15476200D505FE /* AppDelegate.swift */; };
 		FACF12A11F15476200D505FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACF129F1F15476200D505FE /* Main.storyboard */; };
 		FACF12A31F15476200D505FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF12A21F15476200D505FE /* Assets.xcassets */; };
@@ -23,6 +23,8 @@
 		FACF12CA1F154A3D00D505FE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF12C91F154A3D00D505FE /* LoginViewController.swift */; };
 		FACF12CD1F154A6C00D505FE /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF12CC1F154A6C00D505FE /* FeedViewController.swift */; };
 		FACF12CF1F154A8700D505FE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF12CE1F154A8700D505FE /* ProfileViewController.swift */; };
+		FACF12D21F156E8C00D505FE /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF12D11F156E8C00D505FE /* ProfileCell.swift */; };
+		FACF12D51F15707C00D505FE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF12D41F15707C00D505FE /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +48,7 @@
 		1FCD39C47ED1A6703B4F8F14 /* Pods-Goals.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Goals.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Goals/Pods-Goals.debug.xcconfig"; sourceTree = "<group>"; };
 		7D58FA351BA108AA49E998F0 /* Pods-GoalsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsUITests/Pods-GoalsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7E8642001F156F9500EE968A /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedCell.swift; path = ../FeedCell.swift; sourceTree = "<group>"; };
-		7E8642031F15707900EE968A /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		7E8642031F15707900EE968A /* Update.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
 		8B1C5447CB4A291F000D9875 /* Pods-GoalsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsUITests/Pods-GoalsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A3870FB33249FFA01E80B856 /* Pods-GoalsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsTests/Pods-GoalsTests.release.xcconfig"; sourceTree = "<group>"; };
 		A9A37E25EFEFAC2CCC5DABED /* Pods_GoalsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoalsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +72,8 @@
 		FACF12C91F154A3D00D505FE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FACF12CC1F154A6C00D505FE /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		FACF12CE1F154A8700D505FE /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		FACF12D11F156E8C00D505FE /* ProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		FACF12D41F15707C00D505FE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FFBA34B6999BBB6E2B553F30 /* Pods_Goals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Goals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -101,14 +105,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7E38DFD81F1571A900DEF47C /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				7E8642031F15707900EE968A /* Post.swift */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
 		7E8642021F156FCA00EE968A /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,7 +163,8 @@
 			children = (
 				FACF129B1F15476200D505FE /* AppDelegate.swift */,
 				FACF129F1F15476200D505FE /* Main.storyboard */,
-				7E38DFD81F1571A900DEF47C /* Models */,
+				FACF12D01F156E4300D505FE /* Cells */,
+				FACF12D31F156F3F00D505FE /* Models */,
 				FACF12CB1F154A4600D505FE /* View Controllers */,
 				7E8642021F156FCA00EE968A /* Views */,
 				FACF12A21F15476200D505FE /* Assets.xcassets */,
@@ -205,6 +202,23 @@
 				B87C87ED1F156E9300F58517 /* PostViewController.swift */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		FACF12D01F156E4300D505FE /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FACF12D11F156E8C00D505FE /* ProfileCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		FACF12D31F156F3F00D505FE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FACF12D41F15707C00D505FE /* User.swift */,
+				7E8642031F15707900EE968A /* Update.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -492,10 +506,13 @@
 				FACF12CA1F154A3D00D505FE /* LoginViewController.swift in Sources */,
 				7E8642011F156F9500EE968A /* FeedCell.swift in Sources */,
 				FACF12CF1F154A8700D505FE /* ProfileViewController.swift in Sources */,
+				7E8642041F15707900EE968A /* Update.swift in Sources */,
+				FACF12D51F15707C00D505FE /* User.swift in Sources */,
 				B87C87EC1F156DEA00F58517 /* ExploreViewController.swift in Sources */,
-				7E8642041F15707900EE968A /* Post.swift in Sources */,
+				7E8642041F15707900EE968A /* Update.swift in Sources */,
 				FACF12CD1F154A6C00D505FE /* FeedViewController.swift in Sources */,
 				FACF129C1F15476200D505FE /* AppDelegate.swift in Sources */,
+				FACF12D21F156E8C00D505FE /* ProfileCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
