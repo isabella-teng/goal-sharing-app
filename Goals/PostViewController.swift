@@ -31,18 +31,8 @@ class PostViewController: UIViewController {
    
     // Temporary
     @IBAction func postUpdate(_ sender: Any) {
-        Goal.createGoal(title: goalTextField.text!, withDescription: "")
         self.dismiss(animated: true, completion: nil)
-        let goal = PFObject(className: "Goal")
-        goal["title"] = goalTextField.text ?? ""
-        goal.saveInBackground { (success, error) in
-            if success {
-                print("The message was saved!")
-                self.goalTextField.text = ""
-            } else if let error = error {
-                print("Problem saving message: \(error.localizedDescription)")
-            }
-        }
+        Goal.createGoal(title: goalTextField.text!, withDescription: "")
     }
 
     /*

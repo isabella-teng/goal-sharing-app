@@ -275,7 +275,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="nfl-4U-WKU"/>
+                    <navigationItem key="navigationItem" title="Profile" id="nfl-4U-WKU">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="b8H-dE-jh3">
+                            <connections>
+                                <action selector="didTapLogout:" destination="1Dv-Of-Uq1" id="2Df-O3-JeC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="profileImageView" destination="UhH-ks-eog" id="zSK-fL-NfV"/>
                         <outlet property="tableView" destination="bce-Sn-ehU" id="XCp-h4-FhL"/>
