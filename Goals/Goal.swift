@@ -74,7 +74,15 @@ class Goal: NSObject {
         goal["icon"] = NSNull()
         goal["progress"] = NSNull()
         goal["videoReplies"] = NSNull()
-        goal["updates"] = []
+
+        
+        let updateIds: [NSString] = []
+        
+        
+        // TODO: Create first update
+
+        goal["updates"] = updateIds
+
         
         // Save object (following function will save the object in Parse asynchronously)
         goal.saveInBackground { (success: Bool, error: Error?) in
@@ -86,7 +94,6 @@ class Goal: NSObject {
             }
         }
     }
-    
     
     // Fetch all goals from database
     class func fetchAllGoals(completion: @escaping ([PFObject]?, Error?) -> ()) {

@@ -34,6 +34,7 @@ class PostViewController: UIViewController {
     }
    
     // Temporary
+    //when you create a new goal you create a new update right now
     @IBAction func postGoal(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
         var data: [String: Any] = [:]
