@@ -31,10 +31,19 @@ class Update: NSObject {
         update["comments"] = []
         update["commentCount"] = 0
         
-        // TODO: add ID to goal array
-        
         // Save object (following function will save the object in Parse asynchronously)
-        update.saveInBackground()
+        update.saveInBackground { (success: Bool, error: Error?) in
+            if error == nil {
+                Goal.fetchGoalWithId(id: data["goalId"] as! String, withCompletion: { (goal: PFObject?, error: Error?) in
+                    if error == nil {
+                        var updatesArray = goal?["updates"] as! [String]
+                        updatesArray.append(update.objectId!)
+                        goal?["updates"] = updatesArray
+                        goal?.saveInBackground()
+                    }
+                })
+            }
+        }
     }
     
     
@@ -44,6 +53,7 @@ class Update: NSObject {
         
         query.order(byDescending: "createdAt")
         query.includeKey("author")
+        query.includeKey("objectId")
         
         query.findObjectsInBackground { (loadedUpdates: [PFObject]?, error:Error?) in
             if error == nil {

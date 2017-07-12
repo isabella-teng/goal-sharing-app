@@ -74,14 +74,17 @@ class Goal: NSObject {
         goal["icon"] = NSNull()
         goal["progress"] = NSNull()
         goal["videoReplies"] = NSNull()
-        let updateIds: [NSString] = []
-        
-        // TODO: Create first update
-        
-        goal["updates"] = updateIds
+        goal["updates"] = []
         
         // Save object (following function will save the object in Parse asynchronously)
-        goal.saveInBackground()
+        goal.saveInBackground { (success: Bool, error: Error?) in
+            if error == nil {
+                var updateData: [String: Any] = [:]
+                updateData["text"] = data["description"]
+                updateData["goalId"] = goal.objectId
+                Update.createUpdate(data: updateData)
+            }
+        }
     }
     
     
@@ -113,6 +116,24 @@ class Goal: NSObject {
         query.findObjectsInBackground { (loadedGoals: [PFObject]?, error:Error?) in
             if error == nil {
                 completion(loadedGoals, nil)
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
+    
+    
+    // Fetch goal by ID
+    class func fetchGoalWithId(id: String, withCompletion completion: @escaping (PFObject?, Error?) -> ()) {
+        let query = PFQuery(className: "Goal")
+        
+        query.order(byDescending: "createdAt")
+        query.includeKey("author")
+        query.whereKey("objectId", equalTo: id)
+        
+        query.getObjectInBackground(withId: id) { (loadedGoal: PFObject?, error: Error?) in
+            if error == nil {
+                completion(loadedGoal, nil)
             } else {
                 completion(nil, error)
             }
