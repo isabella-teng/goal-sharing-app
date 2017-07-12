@@ -11,15 +11,16 @@ import Parse
 
 class Update: NSObject {
     
-    class func createUpdate(title: String, withDescription description: String, withGoal goal: Int) {
+    class func createUpdate(text: String, withDescription description: String, withGoal goal: Int) {
         // Create Parse object PFObject
         let update = PFObject(className: "Update")
         
         // Add relevant fields to the object
         update["author"] = PFUser.current()
-        update["title"] = title
+        update["text"] = text
         update["description"] = description
         update["goal"] = goal
+        update["goalTitle"] = text
         
         // Save object (following function will save the object in Parse asynchronously)
         update.saveInBackground()

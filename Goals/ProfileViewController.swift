@@ -51,11 +51,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     // Format cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
-        let singlePost = allUserPosts![indexPath.row]
         
-        if let title = singlePost["title"] as? String {
-            cell.goalTitleLabel.text = title
-        }
+        cell.goal = allUserPosts![indexPath.row]
         
         return cell
     }
