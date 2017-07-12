@@ -9,19 +9,35 @@
 import UIKit
 import Parse
 
+//* Name
+//    * Description
+//    * Timestamp
+//    * User
+//    * Long-term/short-term/daily
+//    * Likes
+//    * Comments
+//    * Categories
+//    * Progress
+//    * Video replies
+//        * Updates
+//        * Likes
+//        * Comments
+//        * Timestamp
+//
+
 
 class Update: NSObject {
     
-    class func createUpdate(text: String, withDescription description: String, withGoal goal: Int) {
+    class func createUpdate(data: [String: Any]) {
         // Create Parse object PFObject
         let update = PFObject(className: "Update")
         
         // Add relevant fields to the object
         update["author"] = PFUser.current()
-        update["text"] = text
-        update["description"] = description
-        update["goal"] = goal
-        update["goalTitle"] = text
+        update["text"] = data["text"]
+        update["description"] = data["description"]
+        update["goalId"] = data["goal"]
+        update["goalTitle"] = data["goalText"]
         
         // Save object (following function will save the object in Parse asynchronously)
         update.saveInBackground()
@@ -47,7 +63,7 @@ class Update: NSObject {
         
         query.order(byDescending: "createdAt")
         query.includeKey("author")
-        query.whereKey("author", equalTo: PFUser.current() as Any)
+        query.whereKey("author", equalTo: user as Any)
         
         query.findObjectsInBackground { (loadedUpdates: [PFObject]?, error: Error?) in
             if let error = error {
