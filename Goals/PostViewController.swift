@@ -30,9 +30,11 @@ class PostViewController: UIViewController {
     }
    
     // Temporary
-    @IBAction func postUpdate(_ sender: Any) {
+    @IBAction func postGoal(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-        Update.createUpdate(text: goalTextField.text!, withDescription: "", withGoal: 1)
+        var data: [String: Any] = [:]
+        data["title"] = goalTextField.text
+        Update.createUpdate(data: data)
     }
 
     /*
