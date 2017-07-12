@@ -58,4 +58,6 @@ class Update: NSObject {
         }
     }
     
+    //Add function that only gets the updates by user and associated with given goal
+    
 }

@@ -15,6 +15,9 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var cellBackground: UIView!
     
+    
+    //add reference to original post if an update, none if new goal
+    
     var update: PFObject! {
         didSet {
 

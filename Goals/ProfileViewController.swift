@@ -29,6 +29,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.delegate = self
         
         usernameLabel.text = PFUser.current()?.username
+        
+        //set image and bio here
     }
     
     override func viewDidAppear(_ animated: Bool) {
