@@ -8,6 +8,6 @@
 
 import Foundation
 
-class Update {
+class Update: NSObject {
     
 }
