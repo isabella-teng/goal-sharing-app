@@ -27,8 +27,10 @@ class Update: NSObject {
     
     class func fetchAllUpdates(completion: @escaping ([PFObject]?, Error?) -> ()) {
         let query = PFQuery(className: "Update")
+        
         query.order(byDescending: "createdAt")
         query.includeKey("author")
+        
         query.findObjectsInBackground { (loadedUpdates: [PFObject]?, error:Error?) in
             if error == nil {
                 completion(loadedUpdates, nil)
@@ -37,4 +39,21 @@ class Update: NSObject {
             }
         }
     }
+    
+    class func fetchUpdatesByUser(user: PFUser, withCompletion completion: @escaping ([PFObject]?, Error?) -> ()) {
+        let query = PFQuery(className: "Update")
+        
+        query.order(byDescending: "createdAt")
+        query.includeKey("author")
+        query.whereKey("author", equalTo: PFUser.current() as Any)
+        
+        query.findObjectsInBackground { (loadedUpdates: [PFObject]?, error: Error?) in
+            if let error = error {
+                completion(nil, error)
+            } else {
+                completion(loadedUpdates, nil)
+            }
+        }
+    }
+    
 }
