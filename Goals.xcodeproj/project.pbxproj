@@ -20,7 +20,6 @@
 		B87C87F21F169B5500F58517 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87F11F169B5500F58517 /* EditProfileViewController.swift */; };
 		FACF129C1F15476200D505FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF129B1F15476200D505FE /* AppDelegate.swift */; };
 		FACF12A11F15476200D505FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACF129F1F15476200D505FE /* Main.storyboard */; };
-		FACF12A31F15476200D505FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACF12A21F15476200D505FE /* Assets.xcassets */; };
 		FACF12A61F15476200D505FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACF12A41F15476200D505FE /* LaunchScreen.storyboard */; };
 		FACF12B11F15476300D505FE /* GoalsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF12B01F15476300D505FE /* GoalsTests.swift */; };
 		FACF12BC1F15476300D505FE /* GoalsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF12BB1F15476300D505FE /* GoalsUITests.swift */; };
@@ -28,6 +27,7 @@
 		FACF12CF1F154A8700D505FE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF12CE1F154A8700D505FE /* ProfileViewController.swift */; };
 		FACF12D21F156E8C00D505FE /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF12D11F156E8C00D505FE /* ProfileCell.swift */; };
 		FAD3513A1F1597FE00998CCA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD351391F1597FE00998CCA /* User.swift */; };
+		FAD3513C1F16A8CC00998CCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAD3513B1F16A8CC00998CCA /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +67,6 @@
 		FACF12981F15476200D505FE /* Goals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Goals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACF129B1F15476200D505FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FACF12A01F15476200D505FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		FACF12A21F15476200D505FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FACF12A51F15476200D505FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FACF12A71F15476200D505FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FACF12AC1F15476300D505FE /* GoalsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoalsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +79,7 @@
 		FACF12CE1F154A8700D505FE /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		FACF12D11F156E8C00D505FE /* ProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		FAD351391F1597FE00998CCA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FAD3513B1F16A8CC00998CCA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FFBA34B6999BBB6E2B553F30 /* Pods_Goals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Goals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -173,9 +173,9 @@
 				FACF12D31F156F3F00D505FE /* Models */,
 				FACF12CB1F154A4600D505FE /* View Controllers */,
 				7E8642021F156FCA00EE968A /* Views */,
-				FACF12A21F15476200D505FE /* Assets.xcassets */,
 				FACF12A41F15476200D505FE /* LaunchScreen.storyboard */,
 				FACF12A71F15476200D505FE /* Info.plist */,
+				FAD3513B1F16A8CC00998CCA /* Assets.xcassets */,
 			);
 			path = Goals;
 			sourceTree = "<group>";
@@ -339,7 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FACF12A61F15476200D505FE /* LaunchScreen.storyboard in Resources */,
-				FACF12A31F15476200D505FE /* Assets.xcassets in Resources */,
+				FAD3513C1F16A8CC00998CCA /* Assets.xcassets in Resources */,
 				FACF12A11F15476200D505FE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

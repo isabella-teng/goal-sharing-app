@@ -15,6 +15,10 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var cellBackground: UIView!
     
+    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var favoriteCount: UILabel!
+    @IBOutlet weak var commentButton: UIButton!
+    @IBOutlet weak var videoButton: UIButton!
     
     //add reference to original post if an update, none if new goal
     
