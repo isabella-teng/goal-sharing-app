@@ -51,14 +51,14 @@ class Goal: NSObject {
         
         let updateIds: [NSString] = []
         
-        // TODO: Create first update
         
+        // TODO: Create first update
+
         goal["updates"] = updateIds
         
         // Save object (following function will save the object in Parse asynchronously)
         goal.saveInBackground()
     }
-    
     
     // Fetch all goals from database
     class func fetchAllGoals(completion: @escaping ([PFObject]?, Error?) -> ()) {
