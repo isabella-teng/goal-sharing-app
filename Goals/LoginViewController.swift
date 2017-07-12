@@ -21,7 +21,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         usernameField.delegate = self
         passwordField.delegate = self
     }
@@ -48,7 +48,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         PFUser.logInWithUsername(inBackground: username, password: password) { (user: PFUser?, error: Error?) in
             if user != nil {
-                print("User logged in successfully")
                 self.performSegue(withIdentifier: "loginSegue", sender: nil )
             } else {
                 let alertController = UIAlertController(title: "Error", message: "Incorrect username and/or password", preferredStyle: .alert)
@@ -60,10 +59,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 alertController.addAction(okAction)
                 self.present(alertController, animated: true) {
                 }
-                
             }
         }
-
     }
     
     func emptyCheck(user: String, pass: String) {
@@ -81,7 +78,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
-    
     @IBAction func onSignUp(_ sender: Any) {
          let newUser = PFUser()
         
@@ -115,13 +111,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     }
     
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-   
-
 }

@@ -7,12 +7,20 @@
 //
 
 import UIKit
+import Parse
 
 class FeedCell: UITableViewCell {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    var goal: PFObject! {
+        didSet {
+            self.titleLabel.text = goal["title"] as? String
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
