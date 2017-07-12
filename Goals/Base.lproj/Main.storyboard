@@ -85,20 +85,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="194" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="U5Q-49-VPy">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="205" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="U5Q-49-VPy">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="194" id="CDK-H9-u0K" customClass="FeedCell" customModule="Goals" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="194"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="205" id="CDK-H9-u0K" customClass="FeedCell" customModule="Goals" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="205"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CDK-H9-u0K" id="9Qg-bV-Rtp">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="194"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="205"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l61-AU-nNq">
-                                                    <rect key="frame" x="5" y="5" width="365" height="189"/>
+                                                    <rect key="frame" x="5" y="5" width="365" height="196"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ySw-7g-TCF">
                                                             <rect key="frame" x="0.0" y="0.0" width="365" height="105"/>
@@ -123,13 +123,24 @@
                                                             <rect key="frame" x="0.0" y="105" width="365" height="23"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <subviews>
-                                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yng-AV-4nN">
-                                                                    <rect key="frame" x="8" y="0.0" width="31" height="19"/>
+                                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yng-AV-4nN">
+                                                                    <rect key="frame" x="8" y="2" width="20" height="20"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <state key="normal" title="Like"/>
+                                                                    <state key="normal" image="like"/>
+                                                                    <state key="selected" image="like-red"/>
                                                                 </button>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7G-Rd-Hrm">
-                                                                    <rect key="frame" x="42" y="0.0" width="18" height="20"/>
+                                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VyZ-3h-L0G">
+                                                                    <rect key="frame" x="120" y="-6" width="67" height="25"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <state key="normal" title="Comment"/>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0m-HP-TVd">
+                                                                    <rect key="frame" x="246" y="-9" width="66" height="30"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <state key="normal" title="Video"/>
+                                                                </button>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Rh-bb-qWv">
+                                                                    <rect key="frame" x="36" y="5" width="23" height="15"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
@@ -138,6 +149,28 @@
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username: Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXx-68-dLa">
+                                                            <rect key="frame" x="8" y="136" width="349" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username: Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cf3-5J-gPa">
+                                                            <rect key="frame" x="8" y="155" width="349" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jEx-0l-AEM">
+                                                            <rect key="frame" x="8" y="176" width="30" height="12"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                            <state key="normal" title="...">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.41903933879999999" green="0.56087565419999996" blue="0.90593552590000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </view>
@@ -152,7 +185,11 @@
                                         <connections>
                                             <outlet property="authorLabel" destination="nmH-mo-2VR" id="Smk-c2-Voo"/>
                                             <outlet property="cellBackground" destination="l61-AU-nNq" id="trx-oU-LhL"/>
+                                            <outlet property="commentButton" destination="VyZ-3h-L0G" id="gkQ-vC-RiI"/>
+                                            <outlet property="favoriteButton" destination="yng-AV-4nN" id="PRM-v8-YAv"/>
+                                            <outlet property="favoriteCount" destination="2Rh-bb-qWv" id="Foa-9C-mRV"/>
                                             <outlet property="titleLabel" destination="OOF-Nk-awF" id="tVp-gf-8Q4"/>
+                                            <outlet property="videoButton" destination="E0m-HP-TVd" id="Poi-AH-kcc"/>
                                             <segue destination="cBe-TT-v37" kind="show" id="Z24-BW-lia"/>
                                         </connections>
                                     </tableViewCell>
@@ -485,4 +522,8 @@
             <point key="canvasLocation" x="4660" y="-530.28485757121439"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="like" width="24" height="24"/>
+        <image name="like-red" width="24" height="24"/>
+    </resources>
 </document>
