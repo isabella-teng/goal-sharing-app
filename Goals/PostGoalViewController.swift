@@ -1,5 +1,5 @@
 //
-//  PostViewController.swift
+//  PostGoalViewController.swift
 //  Goals
 //
 //  Created by Josh Olumese on 7/11/17.
@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class PostViewController: UIViewController, UITextViewDelegate {
+class PostGoalViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var titleTextField: UITextField!
@@ -22,7 +22,7 @@ class PostViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        postButton.layer.cornerRadius = 10
+        postButton.layer.cornerRadius = postButton.frame.height / 2
         
         descriptionTextView.delegate = self
         descriptionTextView.text = "Describe your goal briefly"

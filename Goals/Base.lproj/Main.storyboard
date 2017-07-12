@@ -228,10 +228,10 @@
             </objects>
             <point key="canvasLocation" x="2789.5999999999999" y="-725.48725637181417"/>
         </scene>
-        <!--Post View Controller-->
+        <!--Post Goal View Controller-->
         <scene sceneID="BvD-io-799">
             <objects>
-                <viewController id="wh1-XR-JhU" customClass="PostViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wh1-XR-JhU" customClass="PostGoalViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5Rr-3l-ogd"/>
                         <viewControllerLayoutGuide type="bottom" id="5oV-H3-2D8"/>
@@ -283,7 +283,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jiv-eV-h4r">
-                                <rect key="frame" x="283" y="28" width="76" height="30"/>
+                                <rect key="frame" x="272" y="28" width="87" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.37080722997810567" blue="0.42151759596015392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Set Goal">
@@ -589,7 +589,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="78"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="usr-CH-lhy" id="Pzg-rP-hNg">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="77.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="78"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Update title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sLY-Uz-reF">
@@ -617,7 +617,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Goal" id="DhX-9Y-4zh">
-                        <barButtonItem key="rightBarButtonItem" title="Update" id="BVy-II-0nY"/>
+                        <barButtonItem key="rightBarButtonItem" title="Update" id="BVy-II-0nY">
+                            <connections>
+                                <segue destination="OtZ-Tv-MZ9" kind="presentation" id="MCN-LW-kiY"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -627,6 +631,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sqf-54-heA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3645.5999999999999" y="-725.48725637181417"/>
+        </scene>
+        <!--Post Update View Controller-->
+        <scene sceneID="c1R-uH-3V0">
+            <objects>
+                <viewController id="OtZ-Tv-MZ9" customClass="PostUpdateViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oxz-dy-WZ6"/>
+                        <viewControllerLayoutGuide type="bottom" id="BfP-Sh-f68"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="o9k-Oa-1ct">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="What's your update?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lqv-dw-Zfj">
+                                <rect key="frame" x="16" y="58" width="343" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xx6-Ta-3Lt">
+                                <rect key="frame" x="311" y="20" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="didTapCancel:" destination="OtZ-Tv-MZ9" eventType="touchUpInside" id="3pu-N8-o2h"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qiw-e0-ofw">
+                                <rect key="frame" x="229" y="162" width="130" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Post Update">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="goalTextView" destination="lqv-dw-Zfj" id="Jk8-UN-lxe"/>
+                        <outlet property="postButton" destination="qiw-e0-ofw" id="SnT-aK-mFM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CUe-ma-MI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4472.8000000000002" y="-725.48725637181417"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PxH-Ff-uL8">
