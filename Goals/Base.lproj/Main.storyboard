@@ -138,7 +138,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Feed" id="TXs-L2-SH2">
-                        <barButtonItem key="rightBarButtonItem" title="Post" id="AFo-7Q-Wdj">
+                        <barButtonItem key="rightBarButtonItem" title="Post Goal" id="AFo-7Q-Wdj">
                             <connections>
                                 <segue destination="Ldl-iD-PML" kind="presentation" id="sWD-jq-4WD"/>
                             </connections>
@@ -176,7 +176,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Set Goal"/>
                                 <connections>
-                                    <action selector="postUpdate:" destination="wh1-XR-JhU" eventType="touchUpInside" id="EDk-zS-fZG"/>
+                                    <action selector="postGoal:" destination="wh1-XR-JhU" eventType="touchUpInside" id="JQw-Ge-WsU"/>
                                 </connections>
                             </button>
                         </subviews>

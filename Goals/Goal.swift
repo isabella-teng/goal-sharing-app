@@ -32,7 +32,7 @@ class Goal: NSObject {
     // TODO: Goal icons
     
     
-    // Post a goal to Parse database
+    // Post goal to Parse database
     class func createGoal(data: [String: Any]) {
         // Create Parse object PFObject
         let goal = PFObject(className: "Goal")
@@ -43,10 +43,11 @@ class Goal: NSObject {
         goal["description"] = data["description"]
         goal["type"] = data["type"]
         goal["categories"] = data["categories"]
+        
         // TODO: icons, progress, video replies
-        goal["icon"] = nil
-        goal["progress"] = nil
-        goal["videoReplies"] = nil
+        goal["icon"] = NSNull()
+        goal["progress"] = NSNull()
+        goal["videoReplies"] = NSNull()
         
         let updateIds: [NSString] = []
         
@@ -60,7 +61,7 @@ class Goal: NSObject {
     
     
     // Fetch all goals from database
-    class func fetchAllGoalss(completion: @escaping ([PFObject]?, Error?) -> ()) {
+    class func fetchAllGoals(completion: @escaping ([PFObject]?, Error?) -> ()) {
         let query = PFQuery(className: "Goal")
         
         query.order(byDescending: "createdAt")
