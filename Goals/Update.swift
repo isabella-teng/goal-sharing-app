@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 
+
 class Update: NSObject {
     
     class func createUpdate(text: String, withDescription description: String, withGoal goal: Int) {

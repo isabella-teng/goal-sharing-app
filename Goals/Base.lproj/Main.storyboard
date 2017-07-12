@@ -129,7 +129,7 @@
                                             <outlet property="authorLabel" destination="nmH-mo-2VR" id="Smk-c2-Voo"/>
                                             <outlet property="cellBackground" destination="l61-AU-nNq" id="trx-oU-LhL"/>
                                             <outlet property="titleLabel" destination="OOF-Nk-awF" id="tVp-gf-8Q4"/>
-                                            <segue destination="4wq-v3-Cgq" kind="show" id="5tp-xC-T05"/>
+                                            <segue destination="cBe-TT-v37" kind="show" id="Z24-BW-lia"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -386,6 +386,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="QhV-d7-C4z">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QhV-d7-C4z" id="cqS-zE-xCq">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -396,7 +406,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sqf-54-heA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4032.8000000000002" y="-1149.1754122938532"/>
+            <point key="canvasLocation" x="3549.5999999999999" y="-1094.3028485757122"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7A7-Ot-ijR">
@@ -415,24 +425,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WBW-Ij-ZNu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4660" y="-530.28485757121439"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="NpJ-bq-Cvm">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4wq-v3-Cgq" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FKj-OY-A0T">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="cBe-TT-v37" kind="relationship" relationship="rootViewController" id="zxV-yz-NzQ"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3K0-em-rRe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3093.5999999999999" y="-1149.1754122938532"/>
         </scene>
     </scenes>
 </document>
