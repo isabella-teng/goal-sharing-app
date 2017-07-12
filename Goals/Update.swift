@@ -26,6 +26,7 @@ class Update: NSObject {
         // Add relevant fields to update object
         update["author"] = PFUser.current()
         update["text"] = data["text"]
+        update["goalId"] = data["goalId"]
         update["likes"] = []
         update["likeCount"] = 0
         update["comments"] = []

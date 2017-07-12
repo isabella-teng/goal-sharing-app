@@ -19,15 +19,11 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var tableView: UITableView!
     
-    @IBOutlet weak var updateTextField: UITextField!
-    @IBOutlet weak var updateButton: UIButton!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -40,9 +36,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 print(error?.localizedDescription as Any)
             }
         }
-
-        
-        
     }
     
     
@@ -55,19 +48,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell = tableView.dequeueReusableCell(withIdentifier: "LogCell", for: indexPath) as! LogCell
         
         cell.update = updates[indexPath.row]
+        
         return cell
-        
-    }
-    
-    
-    @IBAction func onUpdate(_ sender: Any) {
-        
-        var data: [String: Any] = [:]
-        data["text"] = updateTextField.text
-        Update.createUpdate(data: data)
-        print("sent update")
-        tableView.reloadData()
-        
     }
     
 
