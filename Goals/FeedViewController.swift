@@ -20,7 +20,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         tableView.dataSource = self
         tableView.delegate = self
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         Goal.fetchAllGoals { (loadedGoals: [PFObject]?, error: Error?) -> () in
             if error == nil {
                 self.goals = loadedGoals!

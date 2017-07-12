@@ -27,21 +27,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         )
         
-        if let currentUser = PFUser.current() {
-            //if there is a logged in user then load the home view controller
-            print("Logged in as: " + (currentUser["username"] as! String))
-            //load Chat view controller and set as root view controller
-            
+        // Persist user
+        if PFUser.current() != nil {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let tabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
-            window?.rootViewController = tabBarController as! UITabBarController
-        } else {
+            let feedNavController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
+            window?.rootViewController = feedNavController
+        }
+        
+        // Log user out
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("logoutNotification"), object: nil, queue: OperationQueue.main) { (Notification) in
+            // Take user to logout screen
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
-            window?.rootViewController = loginViewController
-            
+            self.window?.rootViewController = loginViewController
         }
-
         
         return true
     }

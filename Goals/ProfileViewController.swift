@@ -29,10 +29,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.delegate = self
         
         usernameLabel.text = PFUser.current()?.username
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
+//        Goal.fetchUserGoals(completion: <#T##([PFObject]?, Error?) -> ()#>)
+        
         getPosts()
     }
     
@@ -51,28 +52,33 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.tableView.reloadData()
             }
         }
-        
-        
     }
     
+    // Return amount of tableView cells
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allUserPosts!.count
     }
     
+    // Format cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
         let singlePost = allUserPosts![indexPath.row]
-        
         
         if let title = singlePost["title"] as? String {
             cell.goalTitleLabel.text = title
         }
         
-        //cell.goalTitle = singlePost
-        
         return cell
     }
 
+    // Log user out
+    @IBAction func didTapLogout(_ sender: Any) {
+        PFUser.logOutInBackground { (error: Error?) in
+        }
+        
+        NotificationCenter.default.post(name: NSNotification.Name("logoutNotification"), object: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
 
