@@ -213,7 +213,7 @@
             </objects>
             <point key="canvasLocation" x="2870" y="-725"/>
         </scene>
-        <!--Post-->
+        <!--Post View Controller-->
         <scene sceneID="BvD-io-799">
             <objects>
                 <viewController id="wh1-XR-JhU" customClass="PostViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
@@ -225,26 +225,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jiv-eV-h4r">
-                                <rect key="frame" x="283" y="57" width="76" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.37080722997810567" blue="0.42151759596015392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Set Goal">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="postGoal:" destination="wh1-XR-JhU" eventType="touchUpInside" id="JQw-Ge-WsU"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Choose a title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d1C-dS-CxH">
-                                <rect key="frame" x="16" y="57" width="259" height="30"/>
+                                <rect key="frame" x="16" y="66" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Describe your goal" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OpY-jO-4Wh">
-                                <rect key="frame" x="16" y="95" width="343" height="87"/>
+                                <rect key="frame" x="16" y="104" width="343" height="87"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -252,7 +241,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="QRt-gJ-jwb">
-                                <rect key="frame" x="16" y="190" width="343" height="29"/>
+                                <rect key="frame" x="16" y="199" width="343" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Short-term"/>
@@ -260,7 +249,7 @@
                                 </segments>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="G4k-hu-WM4">
-                                <rect key="frame" x="16" y="226" width="343" height="29"/>
+                                <rect key="frame" x="16" y="235" width="343" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Education"/>
@@ -270,16 +259,28 @@
                                     <segment title="Spiritual"/>
                                 </segments>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mLv-Ut-IeO">
+                                <rect key="frame" x="15" y="28" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelPost:" destination="wh1-XR-JhU" eventType="touchUpInside" id="sbz-Dn-u9k"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jiv-eV-h4r">
+                                <rect key="frame" x="283" y="28" width="76" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.37080722997810567" blue="0.42151759596015392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Set Goal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="postGoal:" destination="wh1-XR-JhU" eventType="touchUpInside" id="JQw-Ge-WsU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Post" id="fAa-sw-NTK">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="VP9-Zm-Y6W">
-                            <connections>
-                                <action selector="cancelPost:" destination="wh1-XR-JhU" id="3N6-9h-pGp"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <outlet property="categoryControl" destination="G4k-hu-WM4" id="w3j-ro-kTD"/>
                         <outlet property="descriptionTextView" destination="OpY-jO-4Wh" id="tku-cO-rkg"/>
