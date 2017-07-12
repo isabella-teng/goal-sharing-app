@@ -12,20 +12,46 @@ import Parse
 class Goal: NSObject {
     
     // Goal types
-    enum GoalType {
-        case longTerm
+    enum GoalType: Int {
         case shortTerm
+        case longTerm
+        
+        var string: String {
+            switch self {
+            case .shortTerm: return "Short term";
+            case .longTerm: return "Long term";
+            }
+        }
+    }
+    
+    class func returnType(index: Int) -> String {
+        let type = GoalType(rawValue: index)!
+        return type.string
     }
     
     
     // Goal categories
-    enum GoalCategory {
+    enum GoalCategory: Int {
         case education
         case health
         case fun
-        case skill
         case finance
         case spiritual
+        
+        var string: String {
+            switch self {
+            case .education: return "Education";
+            case .health: return "Health";
+            case .fun: return "Fun";
+            case .finance: return "Money";
+            case .spiritual: return "Spiritual";
+            }
+        }
+    }
+    
+    class func returnCategory(index: Int) -> String {
+        let category = GoalCategory(rawValue: index)!
+        return category.string
     }
     
     
@@ -48,15 +74,17 @@ class Goal: NSObject {
         goal["icon"] = NSNull()
         goal["progress"] = NSNull()
         goal["videoReplies"] = NSNull()
-        
-        let updateIds: [NSString] = []
-        
-        // TODO: Create first update
-        
-        goal["updates"] = updateIds
+        goal["updates"] = []
         
         // Save object (following function will save the object in Parse asynchronously)
-        goal.saveInBackground()
+        goal.saveInBackground { (success: Bool, error: Error?) in
+            if error == nil {
+                var updateData: [String: Any] = [:]
+                updateData["text"] = data["description"]
+                updateData["goalId"] = goal.objectId
+                Update.createUpdate(data: updateData)
+            }
+        }
     }
     
     
@@ -88,6 +116,24 @@ class Goal: NSObject {
         query.findObjectsInBackground { (loadedGoals: [PFObject]?, error:Error?) in
             if error == nil {
                 completion(loadedGoals, nil)
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
+    
+    
+    // Fetch goal by ID
+    class func fetchGoalWithId(id: String, withCompletion completion: @escaping (PFObject?, Error?) -> ()) {
+        let query = PFQuery(className: "Goal")
+        
+        query.order(byDescending: "createdAt")
+        query.includeKey("author")
+        query.whereKey("objectId", equalTo: id)
+        
+        query.getObjectInBackground(withId: id) { (loadedGoal: PFObject?, error: Error?) in
+            if error == nil {
+                completion(loadedGoal, nil)
             } else {
                 completion(nil, error)
             }

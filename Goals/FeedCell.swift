@@ -10,7 +10,7 @@ import UIKit
 import Parse
 
 class FeedCell: UITableViewCell {
-
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var cellBackground: UIView!
@@ -24,12 +24,10 @@ class FeedCell: UITableViewCell {
     
     var update: PFObject! {
         didSet {
-
             self.titleLabel.text = update["text"] as? String
-
+            
             let author = update["author"] as! PFUser
             authorLabel.text = author.username
-
         }
     }
     
@@ -38,11 +36,11 @@ class FeedCell: UITableViewCell {
         
         cellBackground.layer.cornerRadius = 10
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

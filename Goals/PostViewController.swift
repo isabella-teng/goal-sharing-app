@@ -10,8 +10,12 @@ import UIKit
 import Parse
 
 class PostViewController: UIViewController {
-
-    @IBOutlet weak var goalTextField: UITextField!
+    
+    @IBOutlet weak var postButton: UIButton!
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var typeControl: UISegmentedControl!
+    @IBOutlet weak var categoryControl: UISegmentedControl!
     
     @IBAction func cancelPost(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -21,7 +25,7 @@ class PostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        postButton.layer.cornerRadius = 10
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,8 +37,16 @@ class PostViewController: UIViewController {
     @IBAction func postGoal(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
         var data: [String: Any] = [:]
-        data["title"] = goalTextField.text
-        Update.createUpdate(data: data)
+        data["title"] = titleTextField.text
+        data["description"] = descriptionTextView.text
+        
+        let goalType = Goal.returnType(index: typeControl.selectedSegmentIndex)
+        let goalCategory = Goal.returnCategory(index: categoryControl.selectedSegmentIndex)
+        
+        data["type"] = goalType
+        data["categories"] = goalCategory
+        
+        Goal.createGoal(data: data)
     }
 
     /*
