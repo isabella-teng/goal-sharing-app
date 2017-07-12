@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import Parse
 
 class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var editedImage: UIImage?
     
     @IBOutlet weak var photoPreview: UIImageView!
+    
+    @IBOutlet weak var bioField: UITextField!
     
     @IBAction func cancelEdit(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -42,7 +45,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         self.present(vc, animated: true, completion: nil)
     }
-    
 
     func resize(image: UIImage, newSize: CGSize) -> UIImage {
         let resizeImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
@@ -60,18 +62,25 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                                didFinishPickingMediaWithInfo info: [String : Any]) {
         // Get the image captured by the UIImagePickerController
         let userImage = info[UIImagePickerControllerEditedImage] as! UIImage
-        editedImage = resize(image: userImage, newSize: CGSize(width: 750, height: 750))
+        editedImage = resize(image: userImage, newSize: CGSize(width: 150, height: 150))
         photoPreview.image = editedImage
 
         // Dismiss UIImagePickerController to go back to your original view controller
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func saveEdits(_ sender: Any) {
+        let myUser = PFUser.current()
+        let imageURL = Update.getPFFileFromImage(image: editedImage)
+        myUser?["IconURL"] = imageURL
+        myUser?.saveInBackground()
+        self.dismiss(animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {

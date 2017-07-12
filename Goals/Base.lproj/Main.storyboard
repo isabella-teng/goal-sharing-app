@@ -377,7 +377,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="profileImageView" destination="UhH-ks-eog" id="zSK-fL-NfV"/>
+                        <outlet property="profileImageView" destination="UhH-ks-eog" id="LkE-af-urW"/>
                         <outlet property="tableView" destination="bce-Sn-ehU" id="XCp-h4-FhL"/>
                         <outlet property="usernameLabel" destination="Joj-Jw-deG" id="6ph-cg-m15"/>
                     </connections>
@@ -441,8 +441,14 @@
                                 <action selector="cancelEdit:" destination="lKG-hx-w8f" id="JhB-1f-cgc"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="JLr-6e-l66">
+                            <connections>
+                                <action selector="saveEdits:" destination="lKG-hx-w8f" id="8tp-wa-UdC"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bioField" destination="cxp-Fr-IiE" id="hsU-Zk-iJg"/>
                         <outlet property="photoPreview" destination="gZD-Fw-c5U" id="PG7-y4-bQ1"/>
                     </connections>
                 </viewController>
