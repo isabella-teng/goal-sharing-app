@@ -32,24 +32,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        Goal.fetchUserGoals(completion: <#T##([PFObject]?, Error?) -> ()#>)
-        
-        getPosts()
-    }
-    
-    func getPosts() {
-        let query = PFQuery(className: "Goal")
-        
-        query.order(byDescending: "createdAt")
-        query.includeKey("author")
-        query.whereKey("author", equalTo: PFUser.current() as Any)
-        
-        query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                self.allUserPosts = posts
+        // Fetch user updates
+        Update.fetchUpdatesByUser(user: PFUser.current()!) { (loadedUpdates: [PFObject]?, error: Error?) in
+            if error == nil {
+                self.allUserPosts = loadedUpdates!
                 self.tableView.reloadData()
+            } else {
+                print(error?.localizedDescription as Any)
             }
         }
     }
@@ -62,11 +51,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     // Format cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
-        let singlePost = allUserPosts![indexPath.row]
         
-        if let title = singlePost["title"] as? String {
-            cell.goalTitleLabel.text = title
-        }
+        cell.goal = allUserPosts![indexPath.row]
         
         return cell
     }

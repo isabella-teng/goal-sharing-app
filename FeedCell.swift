@@ -18,7 +18,8 @@ class FeedCell: UITableViewCell {
     var update: PFObject! {
         didSet {
 
-            self.titleLabel.text = update["title"] as? String
+            self.titleLabel.text = update["text"] as? String
+
             let author = update["author"] as! PFUser
             authorLabel.text = author.username
 
