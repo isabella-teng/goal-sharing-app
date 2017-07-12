@@ -97,6 +97,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="131"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l61-AU-nNq">
                                                     <rect key="frame" x="5" y="5" width="365" height="120.5"/>
                                                     <subviews>
@@ -117,6 +118,7 @@
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.41903933879999999" green="0.56087565419999996" blue="0.90593552590000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </view>
+
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="l61-AU-nNq" firstAttribute="leading" secondItem="9Qg-bV-Rtp" secondAttribute="leading" constant="5" id="Bfm-zK-l9p"/>
