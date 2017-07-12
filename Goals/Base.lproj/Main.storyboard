@@ -147,6 +147,7 @@
                                             <outlet property="authorLabel" destination="nmH-mo-2VR" id="Smk-c2-Voo"/>
                                             <outlet property="cellBackground" destination="l61-AU-nNq" id="trx-oU-LhL"/>
                                             <outlet property="titleLabel" destination="OOF-Nk-awF" id="tVp-gf-8Q4"/>
+                                            <segue destination="TaX-Jq-TBv" kind="show" id="Inq-9N-Fku"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
