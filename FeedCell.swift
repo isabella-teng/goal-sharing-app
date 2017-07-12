@@ -18,8 +18,10 @@ class FeedCell: UITableViewCell {
     var goal: PFObject! {
         didSet {
             self.titleLabel.text = goal["title"] as? String
-            let author = goal["author"] as! PFUser
-            authorLabel.text = author.username
+            if let author = goal["author"] as? PFUser {
+                authorLabel.text = author.username
+            }
+            //authorLabel.text = author.username
         }
     }
     
