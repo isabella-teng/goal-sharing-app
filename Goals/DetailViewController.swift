@@ -10,6 +10,7 @@
 
 import UIKit
 import Parse
+import ParseUI
 
 class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -26,12 +27,23 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         tableView.delegate = self
         tableView.dataSource = self
+        
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        
-//    }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        //Fetch all user's updates for that goal CHANGE function LATER
+        Update.fetchUpdatesByUser(user: PFUser.current()!) { (loadedUpdates: [PFObject]?, error: Error?) in
+            if error == nil {
+                self.updates = loadedUpdates!
+                self.tableView.reloadData()
+            } else {
+                print(error?.localizedDescription as Any)
+            }
+        }
+
+        
+        
+    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -40,7 +52,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LogCell", for: indexPath) as! LogCell
         
         cell.update = updates[indexPath.row]
         return cell
@@ -48,6 +60,15 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
+    @IBAction func onUpdate(_ sender: Any) {
+        
+        var data: [String: Any] = [:]
+        data["text"] = updateTextField.text
+        Update.createUpdate(data: data)
+        print("sent update")
+        tableView.reloadData()
+        
+    }
     
 
     override func didReceiveMemoryWarning() {

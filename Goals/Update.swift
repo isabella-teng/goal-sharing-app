@@ -31,6 +31,12 @@ class Update: NSObject {
         update["comments"] = []
         update["commentCount"] = 0
         
+
+        //TODO: associate goal ID
+        
+        // TODO: add ID, associate to goal array
+        
+
         // Save object (following function will save the object in Parse asynchronously)
         update.saveInBackground { (success: Bool, error: Error?) in
             if error == nil {
@@ -83,5 +89,7 @@ class Update: NSObject {
     }
     
     //Add function that only gets the updates by user and associated with given goal
-    
+//    class func fetchUpdatesByUserAndGoal(user: PFUser, goalid: String, withCompletion completion: @escaping ([PFObject?], Error?) -> ()) {
+//        let query = PFQuery(
+//    }
 }
