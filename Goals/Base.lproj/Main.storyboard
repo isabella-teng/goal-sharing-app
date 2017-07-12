@@ -279,7 +279,7 @@
                                         <rect key="frame" x="0.0" y="1" width="375" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6HF-en-oc3" id="bId-7c-FL0">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="73.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User's Goal Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="guD-JW-NB6">
@@ -460,7 +460,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="78"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="usr-CH-lhy" id="Pzg-rP-hNg">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="77.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="78"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sLY-Uz-reF">
