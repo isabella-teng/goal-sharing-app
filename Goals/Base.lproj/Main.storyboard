@@ -73,24 +73,6 @@
             </objects>
             <point key="canvasLocation" x="100" y="138.98050974512745"/>
         </scene>
-        <!--Detail View Controller-->
-        <scene sceneID="Tb5-eL-QKr">
-            <objects>
-                <viewController id="TaX-Jq-TBv" customClass="DetailViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="DGa-Zq-Dn0"/>
-                        <viewControllerLayoutGuide type="bottom" id="cwp-Nj-eif"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ya9-Fs-Dgf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Vaj-aS-qVu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3721" y="-1223"/>
-        </scene>
         <!--Feed-->
         <scene sceneID="cR9-dx-rtx">
             <objects>
@@ -147,7 +129,6 @@
                                             <outlet property="authorLabel" destination="nmH-mo-2VR" id="Smk-c2-Voo"/>
                                             <outlet property="cellBackground" destination="l61-AU-nNq" id="trx-oU-LhL"/>
                                             <outlet property="titleLabel" destination="OOF-Nk-awF" id="tVp-gf-8Q4"/>
-                                            <segue destination="TaX-Jq-TBv" kind="show" id="Inq-9N-Fku"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

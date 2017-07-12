@@ -13,7 +13,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     @IBOutlet weak var tableView: UITableView!
     
-    var goals: [PFObject] = []
+    var updates: [PFObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +23,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Goal.fetchAllGoals { (loadedGoals: [PFObject]?, error: Error?) -> () in
+        Update.fetchAllUpdates { (loadedUpdates: [PFObject]?, error: Error?) -> () in
             if error == nil {
-                self.goals = loadedGoals!
+                self.updates = loadedUpdates!
                 self.tableView.reloadData()
             } else {
                 print(error?.localizedDescription as Any)
@@ -39,13 +39,13 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return goals.count
+        return updates.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
         
-        cell.goal = goals[indexPath.row]
+        cell.update = updates[indexPath.row]
         
         return cell
     }

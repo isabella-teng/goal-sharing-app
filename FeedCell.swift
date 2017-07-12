@@ -15,10 +15,10 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var cellBackground: UIView!
     
-    var goal: PFObject! {
+    var update: PFObject! {
         didSet {
-            self.titleLabel.text = goal["title"] as? String
-            let author = goal["author"] as! PFUser
+            self.titleLabel.text = update["title"] as? String
+            let author = update["author"] as! PFUser
             authorLabel.text = author.username
         }
     }
