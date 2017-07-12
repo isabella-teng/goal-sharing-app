@@ -43,6 +43,7 @@ class Goal: NSObject {
         goal["description"] = data["description"]
         goal["type"] = data["type"]
         goal["categories"] = data["categories"]
+//        goal["bio"] = data["bio"]
         
         // TODO: icons, progress, video replies
         goal["icon"] = NSNull()

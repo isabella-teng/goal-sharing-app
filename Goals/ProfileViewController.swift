@@ -17,7 +17,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
+
     
+
     
     var allUserPosts: [PFObject]? = []
     
@@ -29,8 +31,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.delegate = self
         
         usernameLabel.text = PFUser.current()?.username
-        
         //set image and bio here
+        var profilePicture: PFObject! {
+            didSet {
+//                self.profileImageView.file = profilePicture["IconURL"] as? PFFile
+//                self.profileImageView.loadInBackground()
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
