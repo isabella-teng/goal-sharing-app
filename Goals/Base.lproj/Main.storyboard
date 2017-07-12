@@ -126,6 +126,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="titleLabel" destination="OOF-Nk-awF" id="tVp-gf-8Q4"/>
+                                            <segue destination="TaX-Jq-TBv" kind="show" id="Inq-9N-Fku"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
