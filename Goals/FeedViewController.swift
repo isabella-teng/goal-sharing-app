@@ -23,6 +23,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 180
     }
     
     override func viewDidAppear(_ animated: Bool) {

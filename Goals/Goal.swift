@@ -65,11 +65,10 @@ class Goal: NSObject {
         
         // Add relevant fields to update object
         goal["author"] = PFUser.current()
-        goal["title"] = data["title"]
-        goal["description"] = data["description"]
-        goal["type"] = data["type"]
-        goal["categories"] = data["categories"]
-//        goal["bio"] = data["bio"]
+        goal["title"] = data["title"] as! String
+        goal["description"] = data["description"] as! String
+        goal["type"] = data["type"] as! String
+        goal["categories"] = data["categories"] as! String
         
         // TODO: icons, progress, video replies
         goal["icon"] = NSNull()
