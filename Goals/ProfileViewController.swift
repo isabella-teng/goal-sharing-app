@@ -9,6 +9,8 @@
 import UIKit
 import Parse
 import ParseUI
+import Alamofire
+import AlamofireImage
 
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
@@ -16,7 +18,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var profileImageView: PFImageView!
 
     
 
@@ -31,11 +33,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.delegate = self
         
         usernameLabel.text = PFUser.current()?.username
+        
+        let myUser = PFUser.current()
+        
+        self.profileImageView.file = myUser?["IconURL"] as? PFFile
+        self.profileImageView.loadInBackground()
 
+        
         var profilePicture: PFObject! {
             didSet {
-//                self.profileImageView.file = profilePicture["IconURL"] as? PFFile
-//                self.profileImageView.loadInBackground()
+
+                
             }
         }
     }

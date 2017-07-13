@@ -74,12 +74,21 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         let imageURL = Update.getPFFileFromImage(image: editedImage)
         myUser?["IconURL"] = imageURL
         myUser?.saveInBackground()
+        
+        
         self.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        if PFUser.current()?.object(forKey: "IconURL") != nil {
+            let userImageFile:PFFile = PFUser.current()?.object(forKey: "IconURL") as! PFFile
+            
+            userImageFile.getDataInBackground(block: { (imageData: Data?, error: Error?) in
+                self.photoPreview.image = UIImage(data: imageData!)
+            })
+        }
         
     }
 
