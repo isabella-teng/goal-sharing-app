@@ -31,11 +31,7 @@ class Update: NSObject {
         update["likeCount"] = 0
         update["comments"] = []
         update["commentCount"] = 0
-        
 
-        //TODO: associate goal ID
-        
-        // TODO: add ID, associate to goal array
         
 
         // Save object (following function will save the object in Parse asynchronously)
@@ -87,6 +83,17 @@ class Update: NSObject {
                 completion(nil, error)
             }
         }
+    }
+    
+    class func getPFFileFromImage(image: UIImage?) -> PFFile? {
+        // check if image is not nil
+        if let image = image {
+            // get image data and check if that is not nil
+            if let imageData = UIImagePNGRepresentation(image) {
+                return PFFile(name: "image.png", data: imageData)
+            }
+        }
+        return nil
     }
     
     //Add function that only gets the updates by user and associated with given goal
