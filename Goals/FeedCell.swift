@@ -38,13 +38,10 @@ class FeedCell: UITableViewCell {
     
     func didTapCell(_ sender: UITapGestureRecognizer) {
         // Call method on delegate
-        //print("tapped cell")
         delegate?.feedCell(self, didTap: update)
 
         //print(update["text"])
         //print(update["goalId"])
-        
-
     }
     
     override func awakeFromNib() {
@@ -56,8 +53,6 @@ class FeedCell: UITableViewCell {
 
         cellBackground.addGestureRecognizer(cellTapGestureRecognizer)
         cellBackground.isUserInteractionEnabled = true
-        
-
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

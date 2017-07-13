@@ -22,10 +22,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         tableView.delegate = self
         tableView.dataSource = self
-
-        
-        //print(currentUpdate!["goalId"])
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -42,9 +38,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 print(error?.localizedDescription as Any)
             }
         }
-
-        
-
     }
     
     
