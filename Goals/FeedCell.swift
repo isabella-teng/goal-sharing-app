@@ -54,8 +54,8 @@ class FeedCell: UITableViewCell {
         
         let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCell(_:)))
 
-        cellView.addGestureRecognizer(cellTapGestureRecognizer)
-        cellView.isUserInteractionEnabled = true
+        cellBackground.addGestureRecognizer(cellTapGestureRecognizer)
+        cellBackground.isUserInteractionEnabled = true
         
 
     }

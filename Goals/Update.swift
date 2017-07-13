@@ -96,7 +96,7 @@ class Update: NSObject {
         return nil
     }
     
-    //Add function that only gets the updates with given goal, something wrong w this
+    //Add function that only gets the updates with given goal
     class func fetchUpdatesByGoal(goalid: String, withCompletion completion: @escaping ([PFObject]?, Error?) -> ()) {
         let query = PFQuery(className: "Update")
         
