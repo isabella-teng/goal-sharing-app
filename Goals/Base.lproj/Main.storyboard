@@ -182,15 +182,17 @@
                                                 <constraint firstAttribute="trailing" secondItem="l61-AU-nNq" secondAttribute="trailing" constant="5" id="yUf-Pj-ui3"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <gestureRecognizers/>
                                         <connections>
                                             <outlet property="authorLabel" destination="nmH-mo-2VR" id="Smk-c2-Voo"/>
                                             <outlet property="cellBackground" destination="l61-AU-nNq" id="trx-oU-LhL"/>
+                                            <outlet property="cellView" destination="ySw-7g-TCF" id="Xef-lQ-ApJ"/>
                                             <outlet property="commentButton" destination="VyZ-3h-L0G" id="gkQ-vC-RiI"/>
                                             <outlet property="favoriteButton" destination="yng-AV-4nN" id="PRM-v8-YAv"/>
                                             <outlet property="favoriteCount" destination="2Rh-bb-qWv" id="Foa-9C-mRV"/>
                                             <outlet property="titleLabel" destination="OOF-Nk-awF" id="tVp-gf-8Q4"/>
                                             <outlet property="videoButton" destination="E0m-HP-TVd" id="Poi-AH-kcc"/>
-                                            <segue destination="cBe-TT-v37" kind="show" id="Z24-BW-lia"/>
+                                            <segue destination="cBe-TT-v37" kind="show" identifier="detailSegue" id="Z24-BW-lia"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -201,7 +203,7 @@
                     <navigationItem key="navigationItem" title="Feed" id="TXs-L2-SH2">
                         <barButtonItem key="rightBarButtonItem" title="Post Goal" id="AFo-7Q-Wdj">
                             <connections>
-                                <segue destination="wh1-XR-JhU" kind="presentation" id="GcN-JU-aZ0"/>
+                                <segue destination="wh1-XR-JhU" kind="presentation" identifier="" id="GcN-JU-aZ0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

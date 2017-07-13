@@ -26,6 +26,7 @@ class Update: NSObject {
         // Add relevant fields to update object
         update["author"] = PFUser.current()
         update["text"] = data["text"]
+        update["goalId"] = data["goalId"]
         update["likes"] = []
         update["likeCount"] = 0
         update["comments"] = []
@@ -89,7 +90,10 @@ class Update: NSObject {
     }
     
     //Add function that only gets the updates by user and associated with given goal
-//    class func fetchUpdatesByUserAndGoal(user: PFUser, goalid: String, withCompletion completion: @escaping ([PFObject?], Error?) -> ()) {
-//        let query = PFQuery(
+//    class func fetchUpdatesByGoal(user: PFUser, goalid: String, withCompletion completion: @escaping ([PFObject?], Error?) -> ()) {
+//        let query = PFQuery(className: "Update")
+//        
+//        query.order(byDescending: "createdAt")
+//        query.includeKey(<#T##key: String##String#>)
 //    }
 }

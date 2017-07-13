@@ -8,10 +8,13 @@
 
 import UIKit
 import Parse
+import ParseUI
 
-class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
+class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    
     
     var updates: [PFObject] = []
     
@@ -32,6 +35,14 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
     }
+    
+    func feedCell(_ feedCell: FeedCell, didTap update: PFObject) {
+        print("reached this mf")
+        //segue sending over the goal id to the detail view controller
+        performSegue(withIdentifier: "detailSegue", sender: update)
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -50,14 +61,12 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view con dtroller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == "detailSegue") {
+            //send over goal id
+            let vc = segue.destination as! DetailViewController
+            vc.currentUpdate = sender as? PFObject
+        }
     }
-    */
 
 }

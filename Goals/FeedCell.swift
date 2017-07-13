@@ -9,7 +9,14 @@
 import UIKit
 import Parse
 
+protocol FeedCellDelegate: class {
+    func feedCell(_ feedCell: FeedCell, didTap update: PFObject)
+}
+
 class FeedCell: UITableViewCell {
+    weak var delegate : FeedCellDelegate?
+    
+    @IBOutlet weak var cellView: UIView!
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
@@ -31,10 +38,23 @@ class FeedCell: UITableViewCell {
         }
     }
     
+    func didTapCell(_ sender: UITapGestureRecognizer) {
+        // Call method on delegate
+        delegate?.feedCell(self, didTap: update)
+        print(update["text"])
+        
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         cellBackground.layer.cornerRadius = 10
+        
+        let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCell(_:)))
+        print("tapped cell")
+        cellView.addGestureRecognizer(cellTapGestureRecognizer)
+        cellView.isUserInteractionEnabled = true
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

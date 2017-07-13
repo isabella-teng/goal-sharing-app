@@ -16,6 +16,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     
     var updates: [PFObject] = []
+    var currentUpdate: PFObject?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -31,16 +32,18 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //Fetch all user's updates for that goal CHANGE function LATER
-        Update.fetchUpdatesByUser(user: PFUser.current()!) { (loadedUpdates: [PFObject]?, error: Error?) in
-            if error == nil {
-                self.updates = loadedUpdates!
-                self.tableView.reloadData()
-            } else {
-                print(error?.localizedDescription as Any)
-            }
-        }
-
+        //Fetch all user's updates for that goal
+//        Update.fetchUpdatesByUser(user: PFUser.current()!) { (loadedUpdates: [PFObject]?, error: Error?) in
+//            if error == nil {
+//                self.updates = loadedUpdates!
+//                self.tableView.reloadData()
+//            } else {
+//                print(error?.localizedDescription as Any)
+//            }
+//        }
+        
+        //Get the current goal, passed in from the feedviewcontroller
+        
         
         
     }
