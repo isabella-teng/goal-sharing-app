@@ -19,7 +19,6 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var cellBackground: UIView!
-    
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var favoriteCount: UILabel!
     @IBOutlet weak var commentButton: UIButton!
@@ -30,35 +29,71 @@ class FeedCell: UITableViewCell {
     var update: PFObject! {
         didSet {
             self.titleLabel.text = update["text"] as? String
-            
             let author = update["author"] as! PFUser
             authorLabel.text = author.username
+            
+            let currentLikeCount = update["likeCount"] as! Int
+            if (currentLikeCount != 0) {
+                self.favoriteCount.text = String(describing: update["likeCount"]!)
+            }
+            
+            let liked = update.value(forKey: "liked") as! Bool
+            
+            if liked {
+                self.favoriteButton.isSelected = true
+            } else {
+                self.favoriteButton.isSelected = false
+            }
         }
     }
     
+
     func didTapCell(_ sender: UITapGestureRecognizer) {
         // Call method on delegate
-        //print("tapped cell")
         delegate?.feedCell(self, didTap: update)
-
-        //print(update["text"])
-        //print(update["goalId"])
-        
-
     }
     
+    
+    @IBAction func onFavorite(_ sender: Any) {
+        var liked = update["liked"] as! Bool
+        
+        let currentUser = PFUser.current()
+        var likesArray = update["likes"] as! [PFUser]
+        
+        if !liked {
+            favoriteButton.isSelected = true
+            update.incrementKey("likeCount", byAmount: 1)
+            liked = true
+            update["liked"] = true
+            likesArray.append(currentUser!)
+            
+            
+        } else {
+            favoriteButton.isSelected = false
+            update.incrementKey("likeCount", byAmount: -1)
+            liked = false
+            update["liked"] = false
+            likesArray = likesArray.filter { $0 != PFUser.current() }
+        }
+        favoriteCount.text = String(describing: update["likeCount"]!)
+        
+        update["likes"] = likesArray
+        update.saveInBackground()
+    }
+    
+    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        cellBackground.layer.cornerRadius = 10
-        
+        // Add tap gesture recognizer to red area in cell
         let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCell(_:)))
-
         cellBackground.addGestureRecognizer(cellTapGestureRecognizer)
         cellBackground.isUserInteractionEnabled = true
         
-
+        cellBackground.layer.cornerRadius = 10
     }
+    
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

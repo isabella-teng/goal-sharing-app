@@ -9,6 +9,7 @@ import UIKit
 import Parse
 import ParseUI
 
+
 class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     
@@ -22,9 +23,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         tableView.delegate = self
         tableView.dataSource = self
-
-        
-        //print(currentUpdate!["goalId"])
 
     }
     
@@ -42,8 +40,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 print(error?.localizedDescription as Any)
             }
         }
-
-        
 
     }
     
@@ -69,8 +65,16 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     
-    //send the new update to the feed view controller as well
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "updateSegue") {
+            //send over goal id
+            
+            let vc = segue.destination as! PostUpdateViewController
+            //vc.delegate = self
+            vc.currentUpdate = currentUpdate
+            //print(vc.currentUpdate?["goalId"])
+        }
+    }
+
     
 }

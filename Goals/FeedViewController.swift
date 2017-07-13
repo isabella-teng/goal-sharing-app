@@ -15,7 +15,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     @IBOutlet weak var tableView: UITableView!
     
-    
     var updates: [PFObject] = []
     
     override func viewDidLoad() {
@@ -38,18 +37,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    func feedCell(_ feedCell: FeedCell, didTap update: PFObject) {
-        //segue sending over the goal id to the detail view controller
-        performSegue(withIdentifier: "detailSegue", sender: update)
-    }
-    
-    
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return updates.count
     }
@@ -57,19 +44,26 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
         
-        cell.update = updates[indexPath.row]
         cell.delegate = self
+        cell.update = updates[indexPath.row]
         
         return cell
+    }
+    
+    func feedCell(_ feedCell: FeedCell, didTap update: PFObject) {
+        //segue sending over the goal id to the detail view controller
+        performSegue(withIdentifier: "detailSegue", sender: update)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "detailSegue") {
-            //send over goal id
             let vc = segue.destination as! DetailViewController
             vc.currentUpdate = sender as? PFObject
-            //print(vc.currentUpdate?["goalId"])
         }
     }
-
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
 }

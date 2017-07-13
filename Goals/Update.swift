@@ -29,6 +29,7 @@ class Update: NSObject {
         update["goalId"] = data["goalId"]
         update["likes"] = []
         update["likeCount"] = 0
+        update["liked"] = false
         update["comments"] = []
         update["commentCount"] = 0
 
