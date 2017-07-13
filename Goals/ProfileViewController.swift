@@ -31,7 +31,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.delegate = self
         
         usernameLabel.text = PFUser.current()?.username
-        //set image and bio here
+
         var profilePicture: PFObject! {
             didSet {
 //                self.profileImageView.file = profilePicture["IconURL"] as? PFFile
@@ -42,9 +42,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidAppear(_ animated: Bool) {
         // Fetch user updates
-        Update.fetchUpdatesByUser(user: PFUser.current()!) { (loadedUpdates: [PFObject]?, error: Error?) in
+        Goal.fetchGoalsByUser(user: PFUser.current()!) { (loadedGoals: [PFObject]?, error: Error?) in
             if error == nil {
-                self.allUserPosts = loadedUpdates!
+                self.allUserPosts = loadedGoals!
                 self.tableView.reloadData()
             } else {
                 print(error?.localizedDescription as Any)
@@ -60,7 +60,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     // Format cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
-        
         cell.goal = allUserPosts![indexPath.row]
         
         return cell
@@ -76,6 +75,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-
     }
+    
 }

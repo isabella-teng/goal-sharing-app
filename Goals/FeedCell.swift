@@ -16,8 +16,6 @@ protocol FeedCellDelegate: class {
 class FeedCell: UITableViewCell {
     weak var delegate : FeedCellDelegate?
     
-    @IBOutlet weak var cellView: UIView!
-    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var cellBackground: UIView!
@@ -42,7 +40,6 @@ class FeedCell: UITableViewCell {
         // Call method on delegate
         delegate?.feedCell(self, didTap: update)
         print(update["text"])
-        
     }
     
     override func awakeFromNib() {
@@ -51,10 +48,8 @@ class FeedCell: UITableViewCell {
         cellBackground.layer.cornerRadius = 10
         
         let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCell(_:)))
-        print("tapped cell")
-        cellView.addGestureRecognizer(cellTapGestureRecognizer)
-        cellView.isUserInteractionEnabled = true
-        
+        cellBackground.addGestureRecognizer(cellTapGestureRecognizer)
+        cellBackground.isUserInteractionEnabled = true
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
