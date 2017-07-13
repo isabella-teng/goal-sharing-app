@@ -22,35 +22,40 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         
         postButton.layer.cornerRadius = postButton.frame.height / 2
         
+        
+        // Set up text view placeholder
         descriptionTextView.delegate = self
         descriptionTextView.text = "Describe your goal briefly"
         descriptionTextView.textColor = UIColor.lightGray
         
-        titleTextField.delegate = self
-        titleTextField.becomeFirstResponder()
-        
         postButton.isEnabled = false
         postButton.alpha = 0.7
+        
+        titleTextField.delegate = self
+        titleTextField.becomeFirstResponder()
     }
     
     // Temporary
     //when you create a new goal you create a new update right now
-    @IBAction func postGoal(_ sender: Any) {
+    @IBAction func didPostGoal(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+        
+        // Data to be posted
         var data: [String: Any] = [:]
         data["title"] = titleTextField.text
         data["description"] = descriptionTextView.text
         
         let goalType = Goal.returnType(index: typeControl.selectedSegmentIndex)
         let goalCategory = Goal.returnCategory(index: categoryControl.selectedSegmentIndex)
-        
         data["type"] = goalType
         data["categories"] = goalCategory
         
+        // Send request
         Goal.createGoal(data: data)
     }
     
     @IBAction func cancelPost(_ sender: Any) {
+        self.view.endEditing(true)
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -60,7 +65,6 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         descriptionTextView.text = ""
         descriptionTextView.textColor = UIColor.black
     }
-    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if (titleTextField.text?.isEmpty)! {
             postButton.isEnabled = false
@@ -70,7 +74,6 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
             postButton.alpha = 1.0
         }
     }
-    
     func textViewDidEndEditing(_ textView: UITextView) {
         if descriptionTextView.text.isEmpty {
             descriptionTextView.text = "Describe your goal briefly"
@@ -79,14 +82,12 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
             postButton.alpha = 0.7
         }
     }
-    
     func textFieldDidEndEditing(_ textField: UITextField) {
         if (titleTextField.text?.isEmpty)! {
             postButton.isEnabled = false
             postButton.alpha = 0.7
         }
     }
-    
     func textViewDidChange(_ textView: UITextView) {
         if descriptionTextView.text.isEmpty || (titleTextField.text?.isEmpty)! {
             postButton.isEnabled = false
