@@ -29,22 +29,22 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.delegate = self
         tableView.dataSource = self
         
+        //print(currentUpdate!["goalId"])
     }
     
     override func viewDidAppear(_ animated: Bool) {
         //Fetch all user's updates for that goal
-//        Update.fetchUpdatesByUser(user: PFUser.current()!) { (loadedUpdates: [PFObject]?, error: Error?) in
-//            if error == nil {
-//                self.updates = loadedUpdates!
-//                self.tableView.reloadData()
-//            } else {
-//                print(error?.localizedDescription as Any)
-//            }
-//        }
+
+        let goalid = currentUpdate?["goalId"] as! String
         
-        //Get the current goal, passed in from the feedviewcontroller
-        
-        
+        Update.fetchUpdatesByGoal(goalid: goalid) { (loadedUpdates: [PFObject]?, error: Error?) in
+            if error == nil {
+                self.updates = loadedUpdates!
+                self.tableView.reloadData()
+            } else {
+                print(error?.localizedDescription as Any)
+            }
+        }
         
     }
     

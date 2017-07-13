@@ -37,7 +37,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func feedCell(_ feedCell: FeedCell, didTap update: PFObject) {
-        print("reached this mf")
         //segue sending over the goal id to the detail view controller
         performSegue(withIdentifier: "detailSegue", sender: update)
     }
@@ -57,6 +56,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
         
         cell.update = updates[indexPath.row]
+        cell.delegate = self
         
         return cell
     }
@@ -66,6 +66,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             //send over goal id
             let vc = segue.destination as! DetailViewController
             vc.currentUpdate = sender as? PFObject
+            //print(vc.currentUpdate?["goalId"])
         }
     }
 

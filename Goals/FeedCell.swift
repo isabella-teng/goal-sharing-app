@@ -40,8 +40,10 @@ class FeedCell: UITableViewCell {
     
     func didTapCell(_ sender: UITapGestureRecognizer) {
         // Call method on delegate
+        //print("tapped cell")
         delegate?.feedCell(self, didTap: update)
-        print(update["text"])
+        //print(update["text"])
+        //print(update["goalId"])
         
     }
     
@@ -51,7 +53,6 @@ class FeedCell: UITableViewCell {
         cellBackground.layer.cornerRadius = 10
         
         let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCell(_:)))
-        print("tapped cell")
         cellView.addGestureRecognizer(cellTapGestureRecognizer)
         cellView.isUserInteractionEnabled = true
         

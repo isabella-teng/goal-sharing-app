@@ -96,11 +96,21 @@ class Update: NSObject {
         return nil
     }
     
-    //Add function that only gets the updates by user and associated with given goal
-//    class func fetchUpdatesByGoal(user: PFUser, goalid: String, withCompletion completion: @escaping ([PFObject?], Error?) -> ()) {
-//        let query = PFQuery(className: "Update")
-//        
-//        query.order(byDescending: "createdAt")
-//        query.includeKey(<#T##key: String##String#>)
-//    }
+    //Add function that only gets the updates with given goal, something wrong w this
+    class func fetchUpdatesByGoal(goalid: String, withCompletion completion: @escaping ([PFObject]?, Error?) -> ()) {
+        let query = PFQuery(className: "Update")
+        
+        query.order(byDescending: "createdAt")
+        query.whereKey("goalId", equalTo: goalid as Any)
+        
+        query.findObjectsInBackground { (loadedUpdates: [PFObject]?, error: Error?) in
+            if error == nil {
+                completion(loadedUpdates, nil)
+            } else {
+                completion(nil, error)
+            }
+        }
+        
+    }
+
 }
