@@ -62,7 +62,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     //send the new update to the feed view controller as well
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        <#code#>
 //    }
     
 

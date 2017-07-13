@@ -12,24 +12,23 @@ import ParseUI
 
 class ProfileCell: UITableViewCell {
 
-    @IBOutlet weak var goalTitleLabel: UILabel!
+    @IBOutlet weak var cellBackground: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
     
     var goal: PFObject! {
         didSet {
-            self.goalTitleLabel.text = goal["goalTitle"] as? String
+            titleLabel.text = goal["title"] as? String
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
+        cellBackground.layer.cornerRadius = 10
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }
