@@ -37,18 +37,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    func feedCell(_ feedCell: FeedCell, didTap update: PFObject) {
-        //segue sending over the goal id to the detail view controller
-        performSegue(withIdentifier: "detailSegue", sender: update)
-    }
-    
-    
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return updates.count
     }
@@ -61,13 +49,21 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         return cell
     }
+    
+    func feedCell(_ feedCell: FeedCell, didTap update: PFObject) {
+        //segue sending over the goal id to the detail view controller
+        performSegue(withIdentifier: "detailSegue", sender: update)
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "detailSegue") {
             let vc = segue.destination as! DetailViewController
             vc.currentUpdate = sender as? PFObject
-            //print(vc.currentUpdate?["goalId"])
         }
     }
-
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
 }

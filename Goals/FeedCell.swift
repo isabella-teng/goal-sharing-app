@@ -19,7 +19,6 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var cellBackground: UIView!
-    
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var favoriteCount: UILabel!
     @IBOutlet weak var commentButton: UIButton!
@@ -48,6 +47,7 @@ class FeedCell: UITableViewCell {
         }
     }
     
+
     func didTapCell(_ sender: UITapGestureRecognizer) {
         // Call method on delegate
         delegate?.feedCell(self, didTap: update)
@@ -82,15 +82,21 @@ class FeedCell: UITableViewCell {
     }
     
     
+
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        cellBackground.layer.cornerRadius = 10
-        
+        // Add tap gesture recognizer to red area in cell
         let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCell(_:)))
-
         cellBackground.addGestureRecognizer(cellTapGestureRecognizer)
         cellBackground.isUserInteractionEnabled = true
+        
+        cellBackground.layer.cornerRadius = 10
+    }
+    
+    func didTapCell(_ sender: UITapGestureRecognizer) {
+        // Call method on delegate
+        delegate?.feedCell(self, didTap: update)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
