@@ -31,7 +31,7 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
         goalTextView.textColor = UIColor.lightGray
         goalTextView.becomeFirstResponder()
         
-        print(currentUpdate!["goalId"])
+        //print(currentUpdate!["goalId"])
         
         
     }
