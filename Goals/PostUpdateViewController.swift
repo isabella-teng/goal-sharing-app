@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import ParseUI
 
+
 class PostUpdateViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var goalTextView: UITextView!
@@ -18,6 +19,7 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
     var textHasBeenEdited = false
     
     var currentUpdate: PFObject?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +30,10 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
         goalTextView.text = "What's your update?"
         goalTextView.textColor = UIColor.lightGray
         goalTextView.becomeFirstResponder()
+        
+        print(currentUpdate!["goalId"])
+        
+        
     }
 
     @IBAction func didTapCancel(_ sender: Any) {
@@ -39,7 +45,7 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
         self.dismiss(animated: true, completion: nil)
         var data: [String: Any] = [:]
         data["text"] = goalTextView.text
-        data["goalId"] = currentUpdate?["goalId"]
+        data["goalId"] = currentUpdate!["goalId"]
         
         Update.createUpdate(data: data)
     }
