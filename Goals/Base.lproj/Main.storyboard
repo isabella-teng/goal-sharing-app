@@ -638,6 +638,7 @@
                     <navigationItem key="navigationItem" title="Goal" id="DhX-9Y-4zh">
                         <barButtonItem key="rightBarButtonItem" title="Update" id="BVy-II-0nY">
                             <connections>
+                                <action selector="onUpdate:" destination="cBe-TT-v37" id="wSb-Se-R2J"/>
                                 <segue destination="OtZ-Tv-MZ9" kind="presentation" identifier="updateSegue" id="MCN-LW-kiY"/>
                             </connections>
                         </barButtonItem>

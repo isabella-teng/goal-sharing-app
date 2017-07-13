@@ -65,7 +65,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "detailSegue") {
-            //send over goal id
             let vc = segue.destination as! DetailViewController
             vc.currentUpdate = sender as? PFObject
             //print(vc.currentUpdate?["goalId"])

@@ -206,13 +206,13 @@
 		FACF12CB1F154A4600D505FE /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B87C87EF1F159AE100F58517 /* DetailViewController.swift */,
 				B87C87F11F169B5500F58517 /* EditProfileViewController.swift */,
 				7EF1FFD41F158598000DA708 /* ExploreViewController.swift */,
 				7EEEFB161F158A6E004A29EC /* FeedViewController.swift */,
 				FACF12CE1F154A8700D505FE /* ProfileViewController.swift */,
 				FACF12C91F154A3D00D505FE /* LoginViewController.swift */,
 				B87C87ED1F156E9300F58517 /* PostGoalViewController.swift */,
+				B87C87EF1F159AE100F58517 /* DetailViewController.swift */,
 				7E1FCE631F16E6DC009C0AF1 /* PostUpdateViewController.swift */,
 			);
 			name = "View Controllers";
