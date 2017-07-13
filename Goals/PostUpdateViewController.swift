@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Parse
+import ParseUI
 
 class PostUpdateViewController: UIViewController, UITextViewDelegate {
 
@@ -14,6 +16,8 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var postButton: UIButton!
     
     var textHasBeenEdited = false
+    
+    var currentUpdate: PFObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +32,16 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
 
     @IBAction func didTapCancel(_ sender: Any) {
         self.dismiss(animated: true)
+    }
+    
+    @IBAction func didPostUpdate(_ sender: Any) {
+        print("hello")
+        self.dismiss(animated: true, completion: nil)
+        var data: [String: Any] = [:]
+        data["text"] = goalTextView.text
+        data["goalId"] = currentUpdate?["goalId"]
+        
+        Update.createUpdate(data: data)
     }
     
     // Placeholder, disabled button functionality

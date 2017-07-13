@@ -321,9 +321,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bce-Sn-ehU">
-
                                 <rect key="frame" x="0.0" y="200" width="375" height="467"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -332,9 +330,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6HF-en-oc3" id="bId-7c-FL0">
-
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="73.5"/>
-
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H69-Hn-L0Q">
@@ -642,7 +638,7 @@
                     <navigationItem key="navigationItem" title="Goal" id="DhX-9Y-4zh">
                         <barButtonItem key="rightBarButtonItem" title="Update" id="BVy-II-0nY">
                             <connections>
-                                <segue destination="OtZ-Tv-MZ9" kind="presentation" id="MCN-LW-kiY"/>
+                                <segue destination="OtZ-Tv-MZ9" kind="presentation" identifier="updateSegue" id="MCN-LW-kiY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -690,6 +686,9 @@
                                 <state key="normal" title="Post Update">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="didPostUpdate:" destination="OtZ-Tv-MZ9" eventType="touchUpInside" id="6An-Vk-HVk"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
