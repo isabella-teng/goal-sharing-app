@@ -94,10 +94,6 @@ class FeedCell: UITableViewCell {
         cellBackground.layer.cornerRadius = 10
     }
     
-    func didTapCell(_ sender: UITapGestureRecognizer) {
-        // Call method on delegate
-        delegate?.feedCell(self, didTap: update)
-    }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
