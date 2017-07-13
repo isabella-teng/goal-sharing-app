@@ -24,16 +24,10 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.delegate = self
         tableView.dataSource = self
 
-        
-        //print(currentUpdate!["goalId"])
-        
-        
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
         //Fetch all user's updates for that goal
-
 
         let goalid = currentUpdate?["goalId"] as! String
         
@@ -46,7 +40,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 print(error?.localizedDescription as Any)
             }
         }
-
 
     }
     

@@ -15,7 +15,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     @IBOutlet weak var tableView: UITableView!
     
-    
     var updates: [PFObject] = []
     
     override func viewDidLoad() {
@@ -57,8 +56,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
         
-        cell.update = updates[indexPath.row]
         cell.delegate = self
+        cell.update = updates[indexPath.row]
         
         return cell
     }
