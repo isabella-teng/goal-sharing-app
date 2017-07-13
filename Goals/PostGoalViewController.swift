@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class PostGoalViewController: UIViewController, UITextViewDelegate {
+class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var titleTextField: UITextField!
@@ -17,19 +17,22 @@ class PostGoalViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var typeControl: UISegmentedControl!
     @IBOutlet weak var categoryControl: UISegmentedControl!
     
-    var textHasBeenEdited = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         postButton.layer.cornerRadius = postButton.frame.height / 2
         
         descriptionTextView.delegate = self
         descriptionTextView.text = "Describe your goal briefly"
         descriptionTextView.textColor = UIColor.lightGray
+        
+        titleTextField.delegate = self
         titleTextField.becomeFirstResponder()
+        
+        postButton.isEnabled = false
+        postButton.alpha = 0.7
     }
-   
+    
     // Temporary
     //when you create a new goal you create a new update right now
     @IBAction func postGoal(_ sender: Any) {
@@ -51,18 +54,25 @@ class PostGoalViewController: UIViewController, UITextViewDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     
-    // Placeholder, disabled button functionality
+    
+    // Description TextView placeholder, disabled button functionality
     func textViewDidBeginEditing(_ textView: UITextView) {
-       descriptionTextView.text = ""
-        if !textHasBeenEdited {
+        descriptionTextView.text = ""
+        descriptionTextView.textColor = UIColor.black
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if (titleTextField.text?.isEmpty)! {
             postButton.isEnabled = false
             postButton.alpha = 0.7
+        } else {
+            postButton.isEnabled = true
+            postButton.alpha = 1.0
         }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if descriptionTextView.text.isEmpty {
-            textHasBeenEdited = false
             descriptionTextView.text = "Describe your goal briefly"
             descriptionTextView.textColor = UIColor.lightGray
             postButton.isEnabled = false
@@ -70,30 +80,37 @@ class PostGoalViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if (titleTextField.text?.isEmpty)! {
+            postButton.isEnabled = false
+            postButton.alpha = 0.7
+        }
+    }
+    
     func textViewDidChange(_ textView: UITextView) {
-        if !textHasBeenEdited {
-            descriptionTextView.text = String(descriptionTextView.text.characters.prefix(1))
-            descriptionTextView.textColor = UIColor.black
-            textHasBeenEdited = true
+        if descriptionTextView.text.isEmpty || (titleTextField.text?.isEmpty)! {
+            postButton.isEnabled = false
+            postButton.alpha = 0.7
         } else {
             postButton.isEnabled = true
             postButton.alpha = 1.0
         }
     }
     
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

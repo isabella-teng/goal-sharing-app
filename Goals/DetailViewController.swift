@@ -31,7 +31,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidAppear(_ animated: Bool) {
         //Fetch all user's updates for that goal
 
-
         let goalid = currentUpdate?["goalId"] as! String
         
         Update.fetchUpdatesByGoal(goalid: goalid) { (loadedUpdates: [PFObject]?, error: Error?) in
