@@ -37,7 +37,7 @@ class GoalCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        //cellBackground.layer.cornerRadius = 10
+        cellBackground.layer.cornerRadius = 10
         
         let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCell(_:)))
         cellBackground.addGestureRecognizer(cellTapGestureRecognizer)

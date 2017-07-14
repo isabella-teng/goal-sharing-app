@@ -62,6 +62,10 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    @IBAction func backFromVC3(segue: UIStoryboardSegue) {
+        print("We are back in VC1!")
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
