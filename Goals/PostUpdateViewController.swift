@@ -17,6 +17,7 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var postButton: UIButton!
     
     var currentUpdate: PFObject?
+    var currentGoal: PFObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,8 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
         goalTextView.text = "What's your update?"
         goalTextView.textColor = UIColor.lightGray
         goalTextView.becomeFirstResponder()
-
+        
+        //print(currentGoal?["objectId"])
 
     }
 
@@ -43,7 +45,7 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
         // Data to post to Parse
         var data: [String: Any] = [:]
         data["text"] = goalTextView.text
-        data["goalId"] = currentUpdate!["goalId"]
+        data["goalId"] = currentGoal!.objectId
         
         Update.createUpdate(data: data)
     }

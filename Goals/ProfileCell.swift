@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import ParseUI
 
+
 class ProfileCell: UITableViewCell {
 
     @IBOutlet weak var cellBackground: UIView!
