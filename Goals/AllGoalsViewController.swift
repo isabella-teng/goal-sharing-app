@@ -1,60 +1,59 @@
 //
-//  DetailViewController.swift
+//  AllGoalsViewController.swift
 //  Goals
 //
-//  Created by Josh Olumese on 7/11/17.
+//  Created by Isabella Teng on 7/13/17.
 //  Copyright © 2017 Isabella Teng. All rights reserved.
+//
 
 import UIKit
 import Parse
 import ParseUI
 
+class AllGoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GoalCellDelegate{
 
-class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    
-    var updates: [PFObject] = []
-    var currentUpdate: PFObject?
-    
     @IBOutlet weak var tableView: UITableView!
+    
+    var allGoals: [PFObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
-
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //Fetch all user's updates for that goal
-
-        let goalid = currentUpdate?["goalId"] as! String
-        
-        Update.fetchUpdatesByGoal(goalid: goalid) { (loadedUpdates: [PFObject]?, error: Error?) in
-
+        Goal.fetchGoalsByUser(user: PFUser.current()!) { (loadedGoals: [PFObject]?, error: Error?) in
             if error == nil {
-                self.updates = loadedUpdates!
+                self.allGoals = loadedGoals!
                 self.tableView.reloadData()
             } else {
-                print(error?.localizedDescription as Any)
+                print(error?.localizedDescription)
             }
         }
-
     }
     
+    func goalCell(_ goalCell: GoalCell, didTap goal: PFObject) {
+        performSegue(withIdentifier: "goalUpdateSegue", sender: goal)
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return updates.count
+        return allGoals.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GoalCell", for: indexPath) as! GoalCell
+        cell.goal = allGoals[indexPath.row]
+        cell.delegate = self
+        return cell
+        
     }
     
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LogCell", for: indexPath) as! LogCell
-        
-        cell.update = updates[indexPath.row]
-        
-        return cell
+    @IBAction func onCancel(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
 
@@ -63,16 +62,13 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "updateSegue") {
-            //send over goal id
-            
+        if (segue.identifier == "goalUpdateSegue") {
             let vc = segue.destination as! PostUpdateViewController
-            vc.currentUpdate = currentUpdate
+            vc.currentGoal = sender as? PFObject
+            //print(vc.currentGoal?.objectId)
         }
     }
+ 
 
-    
 }
