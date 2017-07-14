@@ -135,6 +135,9 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VyZ-3h-L0G">
                                                             <rect key="frame" x="149" y="0.0" width="67" height="30"/>
                                                             <state key="normal" title="Comment"/>
+                                                            <connections>
+                                                                <segue destination="bNQ-6h-zci" kind="show" id="plk-n3-k2h"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0m-HP-TVd">
                                                             <rect key="frame" x="305" y="0.0" width="40" height="30"/>
@@ -232,6 +235,43 @@
             </objects>
             <point key="canvasLocation" x="2789.5999999999999" y="-725.48725637181417"/>
         </scene>
+        <!--Comment-->
+        <scene sceneID="vfz-38-z65">
+            <objects>
+                <viewController id="bNQ-6h-zci" customClass="CommentViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="B3F-yS-pJV"/>
+                        <viewControllerLayoutGuide type="bottom" id="cAT-jn-HaX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oZ7-tq-63J">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j0k-Da-H1G">
+                                <rect key="frame" x="16" y="134" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Comment" id="lwN-7S-TR2">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="rbj-Vm-fXs">
+                            <connections>
+                                <action selector="saveComment:" destination="bNQ-6h-zci" id="o3p-Y6-Lsd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="commentTextField" destination="j0k-Da-H1G" id="Axd-K0-qC6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xsy-Qk-FEp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2789.5999999999999" y="-1453.2233883058473"/>
+        </scene>
         <!--Post Goal View Controller-->
         <scene sceneID="BvD-io-799">
             <objects>
@@ -312,7 +352,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V4f-o3-CjY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3645.5999999999999" y="-1474.8125937031487"/>
+            <point key="canvasLocation" x="3646" y="-1453"/>
         </scene>
         <!--Profile-->
         <scene sceneID="JHz-5Z-nmz">
@@ -729,10 +769,31 @@
             </objects>
             <point key="canvasLocation" x="2790" y="1764"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="vEj-bI-Zzc">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="biz-Uj-YyP" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Gac-07-ovr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bNQ-6h-zci" kind="relationship" relationship="rootViewController" id="B7g-pp-vcc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TKF-WH-gSl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1961" y="-1453"/>
+        </scene>
     </scenes>
     <resources>
         <image name="like" width="24" height="24"/>
         <image name="like-red" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="plk-n3-k2h"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
