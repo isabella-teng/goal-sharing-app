@@ -57,7 +57,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 //            }
 //        }
         
-        profileImageView.layer.cornerRadius = 25
+        profileImageView.layer.cornerRadius = 35
+        profileImageView.clipsToBounds = true
     }
     
     func profileCell(_ profileCell: ProfileCell, didTap goal: PFObject) {

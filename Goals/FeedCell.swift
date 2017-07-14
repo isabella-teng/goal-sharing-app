@@ -23,6 +23,7 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var favoriteCount: UILabel!
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var videoButton: UIButton!
+    @IBOutlet weak var userProfPic: UIImageView!
     
     //add reference to original post if an update, none if new goal
     
@@ -31,6 +32,18 @@ class FeedCell: UITableViewCell {
             self.titleLabel.text = update["text"] as? String
             let author = update["author"] as! PFUser
             authorLabel.text = author.username
+            
+            userProfPic.layer.cornerRadius = 20
+            userProfPic.clipsToBounds = true
+            let user = PFUser.current()
+            if user?.username == "isabella" {
+                self.userProfPic.image = #imageLiteral(resourceName: "isabella")
+            } else if user?.username == "gerardo" {
+                self.userProfPic.image = #imageLiteral(resourceName: "gerardo")
+            } else if user?.username == "josh" {
+                self.userProfPic.image = #imageLiteral(resourceName: "josh")
+            }
+
             
             let currentLikeCount = update["likeCount"] as! Int
             if (currentLikeCount != 0) {
