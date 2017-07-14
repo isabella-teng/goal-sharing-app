@@ -74,7 +74,7 @@ class Goal: NSObject {
         goal["icon"] = NSNull()
         goal["progress"] = NSNull()
         goal["videoReplies"] = NSNull()
-
+        
         
         let updateIds: [NSString] = []
         

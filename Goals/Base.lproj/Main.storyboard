@@ -66,7 +66,7 @@
             </objects>
             <point key="canvasLocation" x="100" y="138.98050974512745"/>
         </scene>
-        <!--All Goals View Controller-->
+        <!--Update-->
         <scene sceneID="79C-0Q-nqv">
             <objects>
                 <viewController id="fjP-gN-c68" customClass="AllGoalsViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
@@ -79,7 +79,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="99" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wdc-uB-5Ph">
-                                <rect key="frame" x="0.0" y="65" width="375" height="602"/>
+                                <rect key="frame" x="0.0" y="99" width="375" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -119,13 +119,24 @@
                                 <rect key="frame" x="16" y="20" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Cancel"/>
-                                <connections>
-                                    <action selector="onCancel:" destination="fjP-gN-c68" eventType="touchUpInside" id="eUq-Yg-plA"/>
-                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="All Active Goals" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITt-lS-Gvp">
+                                <rect key="frame" x="0.0" y="64" width="375" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Update" id="b0f-Zu-Isf">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="kOU-4B-xhv">
+                            <connections>
+                                <action selector="onCancel:" destination="fjP-gN-c68" id="NKY-ha-T69"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Wdc-uB-5Ph" id="Dc4-hC-9rD"/>
                         <segue destination="OtZ-Tv-MZ9" kind="presentation" identifier="goalUpdateSegue" id="die-PK-ZT8"/>
@@ -133,7 +144,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qYG-QU-3i9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2028" y="-1553"/>
+            <point key="canvasLocation" x="2967.1999999999998" y="-1553.0734632683659"/>
         </scene>
         <!--Feed-->
         <scene sceneID="cR9-dx-rtx">
@@ -285,7 +296,7 @@
                     <navigationItem key="navigationItem" title="Feed" id="TXs-L2-SH2">
                         <barButtonItem key="leftBarButtonItem" title="Update" id="ZtU-yN-AxO">
                             <connections>
-                                <segue destination="fjP-gN-c68" kind="presentation" id="uvP-4o-G90"/>
+                                <segue destination="VhF-kq-3KK" kind="presentation" id="uvP-4o-G90"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Post Goal" id="AFo-7Q-Wdj">
@@ -419,7 +430,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V4f-o3-CjY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3567" y="-1337"/>
+            <point key="canvasLocation" x="4504.8000000000002" y="-1337.1814092953525"/>
         </scene>
         <!--Profile-->
         <scene sceneID="JHz-5Z-nmz">
@@ -434,7 +445,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bce-Sn-ehU">
-                                <rect key="frame" x="0.0" y="200" width="375" height="467"/>
+                                <rect key="frame" x="0.0" y="129" width="375" height="538"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -478,31 +489,31 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UhH-ks-eog" customClass="PFImageView">
-                                        <rect key="frame" x="0.0" y="0.0" width="98" height="97"/>
+                                        <rect key="frame" x="8" y="8" width="98" height="97"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Joj-Jw-deG">
-                                        <rect key="frame" x="106" y="21" width="176" height="21"/>
+                                        <rect key="frame" x="114" y="8" width="176" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Facebook University for Engineering Intern - iOS Track" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9S-bB-3I4">
-                                        <rect key="frame" x="106" y="54" width="261" height="66"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iMj-3H-yae">
-                                        <rect key="frame" x="337" y="21" width="30" height="19"/>
+                                        <rect key="frame" x="337" y="8" width="30" height="19"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Edit"/>
                                         <connections>
                                             <segue destination="87j-dB-pLW" kind="presentation" id="aQX-2i-iyH"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9S-bB-3I4">
+                                        <rect key="frame" x="114" y="37" width="253" height="66"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -517,9 +528,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bioLabel" destination="T9S-bB-3I4" id="dZh-oO-odr"/>
                         <outlet property="profileImageView" destination="UhH-ks-eog" id="q0W-Ae-c5p"/>
                         <outlet property="tableView" destination="bce-Sn-ehU" id="XCp-h4-FhL"/>
                         <outlet property="usernameLabel" destination="Joj-Jw-deG" id="6ph-cg-m15"/>
+                        <segue destination="cBe-TT-v37" kind="show" identifier="profiletoDetailSegue" id="e0i-yX-NK2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eTF-SU-lWR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -811,7 +824,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CUe-ma-MI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="o2c-Mp-Iof" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2790" y="-1553"/>
+            <point key="canvasLocation" x="3728.8000000000002" y="-1553.0734632683659"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PxH-Ff-uL8">
@@ -849,12 +862,31 @@
             </objects>
             <point key="canvasLocation" x="4666" y="290"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7DQ-6A-fPb">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VhF-kq-3KK" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0Zf-dD-PwB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fjP-gN-c68" kind="relationship" relationship="rootViewController" id="bdY-jC-cfC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mul-XA-sxo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2028" y="-1553.0734632683659"/>
+        </scene>
     </scenes>
     <resources>
         <image name="like" width="24" height="24"/>
         <image name="like-red" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="e0i-yX-NK2"/>
         <segue reference="B7g-pp-vcc"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

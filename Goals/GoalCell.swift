@@ -28,10 +28,8 @@ class GoalCell: UITableViewCell {
     }
     
     func didTapCell(_ sender: UITapGestureRecognizer) {
-        //print("tapped")
         // Call method on delegate
         delegate?.goalCell(self, didTap: goal)
-       //print(goal["objectId"])
     }
 
     override func awakeFromNib() {
