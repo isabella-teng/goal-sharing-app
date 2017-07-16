@@ -27,7 +27,16 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var goalTitleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
-    var goal: PFObject?
+//    var goal: PFObject! {
+//        didSet {
+//            if goal == nil {
+//                print("you foofed")
+//            }
+//            //self.goalTitleLabel.text = goal["title"] as? String
+//        }
+//    }
+    
+    var goal: PFObject!
     
     var update: PFObject! {
         didSet {
@@ -35,18 +44,10 @@ class FeedCell: UITableViewCell {
             let author = update["author"] as! PFUser
             self.authorLabel.text = author.username
             
-            //date format
-//            let createdAtOriginalString = update["createdAt"] as? String
-//            let formatter = DateFormatter()
-//            formatter.dateFormat = "E MMM d HH:mm:ss Z y"
-            //print(update.createdAt as? String)
-            //dateLabel.text = upd
-            
             let dateUpdated = update.createdAt! as Date
             let dateFormat = DateFormatter()
             dateFormat.dateFormat = "MM-dd-yy"
             self.dateLabel.text = String(dateFormat.string(from: dateUpdated))
-            
             
             
             userProfPic.layer.cornerRadius = 20
@@ -74,7 +75,15 @@ class FeedCell: UITableViewCell {
                 self.favoriteButton.isSelected = false
             }
             
+            if goal == nil {
+                print("you foofed")
+            }
+            
             //Reference to original goal
+            
+            //self.goalTitleLabel.text = goal["title"] as! String
+            //print(goal?.objectId as! String)
+            //self.goalTitleLabel.text = goal?["title"] as! String
             //print(update["goalId"] as! String)
 //            let updateId = update["goalId"] as! String
 //            Goal.fetchGoalWithId(id: updateId) { (loadedGoal: PFObject?, error: Error?) in

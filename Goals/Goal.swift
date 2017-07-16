@@ -132,6 +132,8 @@ class Goal: NSObject {
     
     // Fetch goal by ID SOMETHIGN WRONG HERE I THINK
     class func fetchGoalWithId(id: String, withCompletion completion: @escaping (PFObject?, Error?) -> ()) {
+        //print("heyo")
+        //print(id)
         let query = PFQuery(className: "Goal")
         
         query.order(byDescending: "createdAt")
@@ -141,6 +143,7 @@ class Goal: NSObject {
         query.getObjectInBackground(withId: id) { (loadedGoal: PFObject?, error: Error?) in
             if error == nil {
                 completion(loadedGoal, nil)
+                //print(loadedGoal?.objectId as! String)
             } else {
                 completion(nil, error)
             }

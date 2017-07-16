@@ -16,7 +16,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var tableView: UITableView!
     
     var updates: [PFObject] = []
-    var goal: PFObject? = nil
+    //var goal: PFObject? = nil
+    var goals: [PFObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,11 +37,36 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 print(error?.localizedDescription as Any)
             }
         }
+        
+        Goal.fetchAllGoals { (loadedGoals: [PFObject]?, error: Error?) in
+            if error == nil {
+                self.goals = loadedGoals!
+                self.tableView.reloadData() //test this
+            } else {
+                print(error?.localizedDescription as Any)
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return updates.count
     }
+    
+    
+//    func getGoal(updateId: String) {
+//        Goal.fetchGoalWithId(id: updateId) { (loadedGoal: PFObject?, error: Error?) in
+//            if error == nil {
+//                self.goal = loadedGoal
+//                //cell.goal = loadedGoal
+//                //cell.titleLabel.text = loadedGoal?["title"] as! String
+//                print(self.goal?["title"] as! String)
+//                //print(loadedGoal?.objectId as! String)
+//            } else {
+//                print(error?.localizedDescription)
+//            }
+//        }
+//        
+//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
@@ -48,17 +74,45 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.delegate = self
         cell.update = updates[indexPath.row]
         
-        let updateId = cell.update["goalId"] as! String
+        let updateId = updates[indexPath.row]["goalId"] as! String
+        let goal = goals.first(where: { $0.objectId == updateId })
         
-        Goal.fetchGoalWithId(id: updateId) { (loadedGoal: PFObject?, error: Error?) in
-            if error == nil {
-                self.goal = loadedGoal
-                cell.goal = loadedGoal
-                //print(loadedGoal?["objectId"])
-            } else {
-                print(error?.localizedDescription)
-            }
+        cell.goal = goal
+        print(goal?.objectId)
+        if (goal == nil) {
+            print("pizza")
         }
+        
+    
+        
+//        let goal = goals.first { (matchedGoal: PFObject) -> Bool in
+//            matchedGoal.objectId == updates[indexPath.row]["goalId"]
+//        }
+        
+        
+        //let goal = eventStore.sources.first(where: {$0.sourceType == .Local})
+        //let goal = goals.first
+        
+        
+//        let updateId = cell.update["goalId"] as! String
+//        
+//        getGoal(updateId: updateId)
+        //cell.goal = goal
+        //print(cell.goal["title"] as! String)
+        
+        //print(goal?["title"] as! String)
+        
+//        Goal.fetchGoalWithId(id: updateId) { (loadedGoal: PFObject?, error: Error?) in
+//            if error == nil {
+//                self.goal = loadedGoal
+//                cell.goal = loadedGoal
+//                cell.titleLabel.text = loadedGoal?["title"] as! String
+//                print(loadedGoal?["title"] as! String)
+//                //print(loadedGoal?.objectId as! String)
+//            } else {
+//                print(error?.localizedDescription)
+//            }
+//        }
         
         return cell
     }
