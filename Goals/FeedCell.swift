@@ -24,14 +24,30 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var videoButton: UIButton!
     @IBOutlet weak var userProfPic: UIImageView!
+    @IBOutlet weak var goalTitleLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
-    //add reference to original post if an update, none if new goal
+    var goal: PFObject?
     
     var update: PFObject! {
         didSet {
             self.titleLabel.text = update["text"] as? String
             let author = update["author"] as! PFUser
-            authorLabel.text = author.username
+            self.authorLabel.text = author.username
+            
+            //date format
+//            let createdAtOriginalString = update["createdAt"] as? String
+//            let formatter = DateFormatter()
+//            formatter.dateFormat = "E MMM d HH:mm:ss Z y"
+            //print(update.createdAt as? String)
+            //dateLabel.text = upd
+            
+            let dateUpdated = update.createdAt! as Date
+            let dateFormat = DateFormatter()
+            dateFormat.dateFormat = "MM-dd-yy"
+            self.dateLabel.text = String(dateFormat.string(from: dateUpdated))
+            
+            
             
             userProfPic.layer.cornerRadius = 20
             userProfPic.clipsToBounds = true
@@ -57,6 +73,21 @@ class FeedCell: UITableViewCell {
             } else {
                 self.favoriteButton.isSelected = false
             }
+            
+            //Reference to original goal
+            //print(update["goalId"] as! String)
+//            let updateId = update["goalId"] as! String
+//            Goal.fetchGoalWithId(id: updateId) { (loadedGoal: PFObject?, error: Error?) in
+//                if error == nil {
+//                    self.goal = loadedGoal!
+//                    //print(self.goal?["objectId"])
+//                } else {
+//                    print(error?.localizedDescription)
+//                }
+//            }
+            //print(update["goalId"] as! String)
+            //self.goalTitleLabel.text = goal?["title"] as! String
+            //print(goalTitleLabel.text)
         }
     }
     

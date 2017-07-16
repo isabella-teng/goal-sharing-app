@@ -16,6 +16,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var tableView: UITableView!
     
     var updates: [PFObject] = []
+    var goal: PFObject? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +47,18 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         cell.delegate = self
         cell.update = updates[indexPath.row]
+        
+        let updateId = cell.update["goalId"] as! String
+        
+        Goal.fetchGoalWithId(id: updateId) { (loadedGoal: PFObject?, error: Error?) in
+            if error == nil {
+                self.goal = loadedGoal
+                cell.goal = loadedGoal
+                //print(loadedGoal?["objectId"])
+            } else {
+                print(error?.localizedDescription)
+            }
+        }
         
         return cell
     }

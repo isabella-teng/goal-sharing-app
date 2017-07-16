@@ -130,7 +130,7 @@ class Goal: NSObject {
     }
     
     
-    // Fetch goal by ID
+    // Fetch goal by ID SOMETHIGN WRONG HERE I THINK
     class func fetchGoalWithId(id: String, withCompletion completion: @escaping (PFObject?, Error?) -> ()) {
         let query = PFQuery(className: "Goal")
         

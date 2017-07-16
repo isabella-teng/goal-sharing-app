@@ -185,10 +185,24 @@
                                                                 <constraint firstAttribute="width" constant="45" id="vtq-gt-Qme"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OOF-Nk-awF">
-                                                            <rect key="frame" x="8" y="73" width="162.5" height="34"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Update Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OOF-Nk-awF">
+                                                            <rect key="frame" x="8" y="93" width="259" height="34"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="28"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g80-sh-K3D">
+                                                            <rect key="frame" x="262" y="8" width="95" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Goal Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nxp-WH-xAJ">
+                                                            <rect key="frame" x="8" y="61" width="103" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                                            <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -283,8 +297,10 @@
                                             <outlet property="authorLabel" destination="nmH-mo-2VR" id="Smk-c2-Voo"/>
                                             <outlet property="cellBackground" destination="ySw-7g-TCF" id="Yns-X5-gpP"/>
                                             <outlet property="commentButton" destination="VyZ-3h-L0G" id="gkQ-vC-RiI"/>
+                                            <outlet property="dateLabel" destination="g80-sh-K3D" id="9nx-wP-dgf"/>
                                             <outlet property="favoriteButton" destination="yng-AV-4nN" id="PRM-v8-YAv"/>
                                             <outlet property="favoriteCount" destination="2Rh-bb-qWv" id="Foa-9C-mRV"/>
+                                            <outlet property="goalTitleLabel" destination="nxp-WH-xAJ" id="GWr-8o-pUE"/>
                                             <outlet property="titleLabel" destination="OOF-Nk-awF" id="tVp-gf-8Q4"/>
                                             <outlet property="userProfPic" destination="Ght-UI-sHp" id="J3i-zz-reM"/>
                                             <outlet property="videoButton" destination="E0m-HP-TVd" id="Poi-AH-kcc"/>
