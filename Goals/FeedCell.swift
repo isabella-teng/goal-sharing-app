@@ -27,22 +27,22 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var goalTitleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
-//    var goal: PFObject! {
-//        didSet {
-//            if goal == nil {
-//                print("you foofed")
-//            }
-//            //self.goalTitleLabel.text = goal["title"] as? String
-//        }
-//    }
-    
-    var goal: PFObject!
     
     var update: PFObject! {
         didSet {
             self.titleLabel.text = update["text"] as? String
             let author = update["author"] as! PFUser
             self.authorLabel.text = author.username
+            
+            if author.username == "isabella" {
+                self.userProfPic.image = #imageLiteral(resourceName: "isabella")
+            } else if author.username == "gerardo" {
+                self.userProfPic.image = #imageLiteral(resourceName: "gerardo")
+            } else if author.username == "josh" {
+                self.userProfPic.image = #imageLiteral(resourceName: "josh")
+            }
+
+            self.goalTitleLabel.text = update["goalTitle"] as? String
             
             let dateUpdated = update.createdAt! as Date
             let dateFormat = DateFormatter()
@@ -52,16 +52,9 @@ class FeedCell: UITableViewCell {
             
             userProfPic.layer.cornerRadius = 20
             userProfPic.clipsToBounds = true
-            let user = PFUser.current()
-            if user?.username == "isabella" {
-                self.userProfPic.image = #imageLiteral(resourceName: "isabella")
-            } else if user?.username == "gerardo" {
-                self.userProfPic.image = #imageLiteral(resourceName: "gerardo")
-            } else if user?.username == "josh" {
-                self.userProfPic.image = #imageLiteral(resourceName: "josh")
-            }
-
             
+            
+            //FIX SMALL BUG WHEN NO GOALS THIS CRASHES HERE
             let currentLikeCount = update["likeCount"] as! Int
             if (currentLikeCount != 0) {
                 self.favoriteCount.text = String(describing: update["likeCount"]!)
@@ -75,28 +68,6 @@ class FeedCell: UITableViewCell {
                 self.favoriteButton.isSelected = false
             }
             
-            if goal == nil {
-                print("you foofed")
-            }
-            
-            //Reference to original goal
-            
-            //self.goalTitleLabel.text = goal["title"] as! String
-            //print(goal?.objectId as! String)
-            //self.goalTitleLabel.text = goal?["title"] as! String
-            //print(update["goalId"] as! String)
-//            let updateId = update["goalId"] as! String
-//            Goal.fetchGoalWithId(id: updateId) { (loadedGoal: PFObject?, error: Error?) in
-//                if error == nil {
-//                    self.goal = loadedGoal!
-//                    //print(self.goal?["objectId"])
-//                } else {
-//                    print(error?.localizedDescription)
-//                }
-//            }
-            //print(update["goalId"] as! String)
-            //self.goalTitleLabel.text = goal?["title"] as! String
-            //print(goalTitleLabel.text)
         }
     }
     

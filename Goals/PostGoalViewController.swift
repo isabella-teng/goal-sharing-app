@@ -16,6 +16,8 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var typeControl: UISegmentedControl!
     @IBOutlet weak var categoryControl: UISegmentedControl!
+    @IBOutlet weak var logControl: UISegmentedControl!
+    @IBOutlet weak var alertTime: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +34,10 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         postButton.alpha = 0.7
         
         titleTextField.delegate = self
+        descriptionTextView.delegate = self
         titleTextField.becomeFirstResponder()
     }
+    
     
     // Temporary
     //when you create a new goal you create a new update right now
@@ -47,8 +51,10 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         
         let goalType = Goal.returnType(index: typeControl.selectedSegmentIndex)
         let goalCategory = Goal.returnCategory(index: categoryControl.selectedSegmentIndex)
+        let logSettings = Goal.returnLogSettings(index: logControl.selectedSegmentIndex)
         data["type"] = goalType
         data["categories"] = goalCategory
+        data["logTimePeriods"] = logSettings
         
         // Send request
         Goal.createGoal(data: data)
@@ -59,6 +65,14 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         self.dismiss(animated: true, completion: nil)
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     
     // Description TextView placeholder, disabled button functionality
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -104,14 +118,5 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         // Dispose of any resources that can be recreated.
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
