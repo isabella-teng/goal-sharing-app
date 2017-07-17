@@ -36,7 +36,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         //hard code pictures and bios
         if user?.username == "isabella" {
-            bioLabel.text = "Hi! I'm Isabella! My long-term goals are getting in shape, build better study habits, and read more!"
+            bioLabel.text = "Hi! I'm Isabella! My long-term goals are getting in shape, building better study habits, and reading more!"
             profileImageView.image = #imageLiteral(resourceName: "isabella")
         } else if user?.username == "gerardo" {
             bioLabel.text = "it me herro"

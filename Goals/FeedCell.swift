@@ -27,16 +27,16 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var goalTitleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
-//    var goal: PFObject! {
-//        didSet {
-//            if goal == nil {
-//                print("you foofed")
-//            }
-//            //self.goalTitleLabel.text = goal["title"] as? String
-//        }
-//    }
+    var goal: PFObject! {
+        didSet {
+            if goal == nil {
+                print("you foofed")
+            }
+            //self.goalTitleLabel.text = goal["title"] as? String
+        }
+    }
     
-    var goal: PFObject!
+    //var goal: PFObject!
     
     var update: PFObject! {
         didSet {
@@ -75,9 +75,9 @@ class FeedCell: UITableViewCell {
                 self.favoriteButton.isSelected = false
             }
             
-            if goal == nil {
-                print("you foofed")
-            }
+//            if goal == nil {
+//                print("you foofed")
+//            }
             
             //Reference to original goal
             

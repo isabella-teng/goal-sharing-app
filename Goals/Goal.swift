@@ -130,7 +130,7 @@ class Goal: NSObject {
     }
     
     
-    // Fetch goal by ID SOMETHIGN WRONG HERE I THINK
+    // Fetch goal by ID
     class func fetchGoalWithId(id: String, withCompletion completion: @escaping (PFObject?, Error?) -> ()) {
         //print("heyo")
         //print(id)
