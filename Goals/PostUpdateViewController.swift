@@ -9,25 +9,26 @@
 import UIKit
 import Parse
 import ParseUI
-
+import RSKPlaceholderTextView
 
 class PostUpdateViewController: UIViewController, UITextViewDelegate {
 
-    @IBOutlet weak var goalTextView: UITextView!
+    var updateTextView: RSKPlaceholderTextView? = nil
     @IBOutlet weak var postButton: UIButton!
     
     var currentUpdate: PFObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Placeholder TextView
+        self.updateTextView = RSKPlaceholderTextView(frame: CGRect(x: 16, y: 69, width: self.view.frame.width - 32, height: 122))
+        self.updateTextView?.placeholder = "Update your goal..."
+        self.view.addSubview(self.updateTextView!)
+        self.updateTextView?.becomeFirstResponder()
+        self.updateTextView?.font = UIFont (name: "HelveticaNeue-Light", size: 22)
 
         postButton.layer.cornerRadius = postButton.frame.height / 2
-        
-        // Set up textview: placeholder text, etc.
-        goalTextView.delegate = self
-        goalTextView.text = "What's your update?"
-        goalTextView.textColor = UIColor.lightGray
-        goalTextView.becomeFirstResponder()
     }
 
     @IBAction func didTapCancel(_ sender: Any) {
@@ -40,54 +41,11 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
         
         // Data to post to Parse
         var data: [String: Any] = [:]
-        data["text"] = goalTextView.text
+        data["text"] = updateTextView?.text
         data["goalId"] = currentUpdate!["goalId"]
         
         Update.createUpdate(data: data)
     }
-    
-    
-    // TextView placeholder text, disabled button functionality
-    var firstChange = true
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        let newPosition = goalTextView.beginningOfDocument
-        goalTextView.selectedTextRange = goalTextView.textRange(from: newPosition, to: newPosition)
-        if firstChange {
-            postButton.isEnabled = false
-            postButton.alpha = 0.7
-        }
-    }
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if goalTextView.text.isEmpty {
-            goalTextView.text = "What's your update?"
-            goalTextView.textColor = UIColor.lightGray
-            postButton.isEnabled = false
-            postButton.alpha = 0.7
-            firstChange = true
-        }
-    }
-    func textViewDidChange(_ textView: UITextView) {
-        if firstChange {
-            goalTextView.text = String(goalTextView.text.characters.prefix(1))
-            firstChange = false
-        }
-        if goalTextView.text.isEmpty {
-            goalTextView.text = "What's your update?"
-            goalTextView.textColor = UIColor.lightGray
-            
-            let newPosition = goalTextView.beginningOfDocument
-            goalTextView.selectedTextRange = goalTextView.textRange(from: newPosition, to: newPosition)
-            firstChange = true
-            
-            postButton.isEnabled = false
-            postButton.alpha = 0.7
-        } else {
-            postButton.isEnabled = true
-            postButton.alpha = 1.0
-            goalTextView.textColor = UIColor.black
-        }
-    }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

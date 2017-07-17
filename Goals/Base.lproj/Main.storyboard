@@ -135,6 +135,9 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VyZ-3h-L0G">
                                                             <rect key="frame" x="149" y="0.0" width="67" height="30"/>
                                                             <state key="normal" title="Comment"/>
+                                                            <connections>
+                                                                <segue destination="mMa-2P-jBS" kind="presentation" id="SVg-wM-ZPW"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0m-HP-TVd">
                                                             <rect key="frame" x="305" y="0.0" width="40" height="30"/>
@@ -227,7 +230,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o4i-eE-l3m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2789.5999999999999" y="-725.48725637181417"/>
+            <point key="canvasLocation" x="2790" y="-647"/>
         </scene>
         <!--Post Goal View Controller-->
         <scene sceneID="BvD-io-799">
@@ -248,16 +251,8 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Describe your goal" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OpY-jO-4Wh">
-                                <rect key="frame" x="16" y="112" width="343" height="110"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="QRt-gJ-jwb">
-                                <rect key="frame" x="15" y="230" width="343" height="29"/>
+                                <rect key="frame" x="15" y="242" width="343" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Short-term"/>
@@ -265,7 +260,7 @@
                                 </segments>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="G4k-hu-WM4">
-                                <rect key="frame" x="15" y="266" width="343" height="29"/>
+                                <rect key="frame" x="15" y="278" width="343" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Education"/>
@@ -301,7 +296,6 @@
                     </view>
                     <connections>
                         <outlet property="categoryControl" destination="G4k-hu-WM4" id="w3j-ro-kTD"/>
-                        <outlet property="descriptionTextView" destination="OpY-jO-4Wh" id="tku-cO-rkg"/>
                         <outlet property="postButton" destination="jiv-eV-h4r" id="hcX-31-Pkz"/>
                         <outlet property="titleTextField" destination="d1C-dS-CxH" id="rOt-qZ-jfF"/>
                         <outlet property="typeControl" destination="QRt-gJ-jwb" id="cFy-UC-5Kr"/>
@@ -309,7 +303,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V4f-o3-CjY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3645.5999999999999" y="-1474.8125937031487"/>
+            <point key="canvasLocation" x="3646" y="-1362"/>
         </scene>
         <!--Profile-->
         <scene sceneID="JHz-5Z-nmz">
@@ -486,6 +480,47 @@
             </objects>
             <point key="canvasLocation" x="3647" y="1764"/>
         </scene>
+        <!--Post Comment View Controller-->
+        <scene sceneID="lNc-tP-5XZ">
+            <objects>
+                <viewController id="mMa-2P-jBS" customClass="PostCommentViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YsD-au-z3n"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZBz-t8-gh3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pHY-xP-PY3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KbH-BZ-v0W">
+                                <rect key="frame" x="263" y="199" width="96" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <state key="normal" title="Comment">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mLa-ND-0Kd">
+                                <rect key="frame" x="303" y="28" width="56" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="didTapCancel:" destination="mMa-2P-jBS" eventType="touchUpInside" id="gKy-Fu-aEk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="commentButton" destination="KbH-BZ-v0W" id="mJ5-fF-RCn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P1M-oo-fP2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3645.5999999999999" y="138.98050974512745"/>
+        </scene>
         <!--Explore-->
         <scene sceneID="HQI-JE-X9N">
             <objects>
@@ -522,7 +557,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CXN-uO-iJ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1961" y="-724"/>
+            <point key="canvasLocation" x="1961" y="-647"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="iNE-Oy-kuQ">
@@ -653,7 +688,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sqf-54-heA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3645.5999999999999" y="-725.48725637181417"/>
+            <point key="canvasLocation" x="3646" y="-647"/>
         </scene>
         <!--Post Update View Controller-->
         <scene sceneID="c1R-uH-3V0">
@@ -667,14 +702,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="What's your update?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lqv-dw-Zfj">
-                                <rect key="frame" x="16" y="58" width="343" height="125"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="22"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qiw-e0-ofw">
                                 <rect key="frame" x="263" y="191" width="96" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -700,13 +727,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="goalTextView" destination="lqv-dw-Zfj" id="Jk8-UN-lxe"/>
                         <outlet property="postButton" destination="qiw-e0-ofw" id="SnT-aK-mFM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CUe-ma-MI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4472.8000000000002" y="-725.48725637181417"/>
+            <point key="canvasLocation" x="4494" y="-647"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PxH-Ff-uL8">

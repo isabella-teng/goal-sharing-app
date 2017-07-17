@@ -8,6 +8,7 @@ target 'Goals' do
   # Pods for Goals
   pod 'Parse'
   pod 'ParseUI'
+  pod 'RSKPlaceholderTextView'
 
   target 'GoalsTests' do
     inherit! :search_paths
