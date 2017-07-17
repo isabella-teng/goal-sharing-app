@@ -13,15 +13,16 @@ import RealmSwift
 
 class ProgressViewController: UIViewController {
 
-    @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var barView: BarChartView!
     @IBAction func cancelButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+
     
-    dynamic var date: Date = Date()
-    dynamic var count: Int = Int(0)
     
+//    dynamic var date: Date = Date()
+//    dynamic var count: Int = Int(0)
+//    
 //    func save() {
 //        do {
 //            let realm = try Realm()
