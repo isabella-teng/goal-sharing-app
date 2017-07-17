@@ -10,7 +10,7 @@ import UIKit
 import Parse
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
-
+    
     
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -50,14 +50,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.performSegue(withIdentifier: "loginSegue", sender: nil )
             } else {
                 let alertController = UIAlertController(title: "Error", message: "Incorrect username and/or password", preferredStyle: .alert)
-                
-                let okAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                    print("User dismissed error")
-                })
+                let okAction = UIAlertAction(title: "Try again", style: .default, handler: nil)
                 
                 alertController.addAction(okAction)
-                self.present(alertController, animated: true) {
-                }
+                self.present(alertController, animated: true)
             }
         }
     }
@@ -76,9 +72,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
         }
     }
-
+    
     @IBAction func onSignUp(_ sender: Any) {
-         let newUser = PFUser()
+        let newUser = PFUser()
         
         newUser.password = passwordField.text
         newUser.username = usernameField.text
@@ -107,7 +103,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
-
+        
     }
     
     override func didReceiveMemoryWarning() {

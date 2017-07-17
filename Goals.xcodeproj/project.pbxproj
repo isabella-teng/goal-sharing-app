@@ -14,6 +14,7 @@
 		7E1FCE641F16E6DC009C0AF1 /* PostUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1FCE631F16E6DC009C0AF1 /* PostUpdateViewController.swift */; };
 		7E38DFDB1F15813400DEF47C /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E38DFDA1F15813400DEF47C /* Update.swift */; };
 		7E6B47FF1F169CE00079AC1F /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6B47FE1F169CE00079AC1F /* Goal.swift */; };
+		7E949C081F18108800449DA0 /* PostCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E949C071F18108800449DA0 /* PostCommentViewController.swift */; };
 		7EEEFB171F158A6E004A29EC /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEEFB161F158A6E004A29EC /* FeedViewController.swift */; };
 		7EF1FFD51F158598000DA708 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF1FFD41F158598000DA708 /* ExploreViewController.swift */; };
 		B812C1151F1833F100953A11 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812C1141F1833F100953A11 /* CommentViewController.swift */; };
@@ -60,6 +61,7 @@
 		7E1FCE631F16E6DC009C0AF1 /* PostUpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostUpdateViewController.swift; sourceTree = "<group>"; };
 		7E38DFDA1F15813400DEF47C /* Update.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
 		7E6B47FE1F169CE00079AC1F /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
+		7E949C071F18108800449DA0 /* PostCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCommentViewController.swift; sourceTree = "<group>"; };
 		7EEEFB161F158A6E004A29EC /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		7EF1FFD41F158598000DA708 /* ExploreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 		8B1C5447CB4A291F000D9875 /* Pods-GoalsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsUITests/Pods-GoalsUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -216,12 +218,14 @@
 			isa = PBXGroup;
 			children = (
 				FAD351411F182FC500998CCA /* AllGoalsViewController.swift */,
+				B87C87EF1F159AE100F58517 /* DetailViewController.swift */,
 				B87C87F11F169B5500F58517 /* EditProfileViewController.swift */,
 				7EF1FFD41F158598000DA708 /* ExploreViewController.swift */,
 				7EEEFB161F158A6E004A29EC /* FeedViewController.swift */,
 				FACF12CE1F154A8700D505FE /* ProfileViewController.swift */,
 				FACF12C91F154A3D00D505FE /* LoginViewController.swift */,
 				B87C87EF1F159AE100F58517 /* DetailViewController.swift */,
+				7E949C071F18108800449DA0 /* PostCommentViewController.swift */,
 				B87C87ED1F156E9300F58517 /* PostGoalViewController.swift */,
 				7E1FCE631F16E6DC009C0AF1 /* PostUpdateViewController.swift */,
 				B812C1141F1833F100953A11 /* CommentViewController.swift */,
@@ -524,6 +528,7 @@
 			files = (
 				B87C87EE1F156E9300F58517 /* PostGoalViewController.swift in Sources */,
 				7E1FCE621F16D6E9009C0AF1 /* FeedCell.swift in Sources */,
+				7E949C081F18108800449DA0 /* PostCommentViewController.swift in Sources */,
 				FACF12CA1F154A3D00D505FE /* LoginViewController.swift in Sources */,
 				7EEEFB171F158A6E004A29EC /* FeedViewController.swift in Sources */,
 				7E6B47FF1F169CE00079AC1F /* Goal.swift in Sources */,

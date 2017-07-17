@@ -30,7 +30,7 @@ class AllGoalsViewController: UIViewController, UITableViewDelegate, UITableView
                 self.allGoals = loadedGoals!
                 self.tableView.reloadData()
             } else {
-                print(error?.localizedDescription)
+                print(error?.localizedDescription as Any)
             }
         }
     }

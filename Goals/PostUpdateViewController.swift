@@ -9,11 +9,11 @@
 import UIKit
 import Parse
 import ParseUI
-
+import RSKPlaceholderTextView
 
 class PostUpdateViewController: UIViewController, UITextViewDelegate {
 
-    @IBOutlet weak var goalTextView: UITextView!
+    var updateTextView: RSKPlaceholderTextView? = nil
     @IBOutlet weak var postButton: UIButton!
     
     var currentUpdate: PFObject?
@@ -21,17 +21,15 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Placeholder TextView
+        self.updateTextView = RSKPlaceholderTextView(frame: CGRect(x: 16, y: 69, width: self.view.frame.width - 32, height: 122))
+        self.updateTextView?.placeholder = "What's your update?"
+        self.view.addSubview(self.updateTextView!)
+        self.updateTextView?.becomeFirstResponder()
+        self.updateTextView?.font = UIFont (name: "HelveticaNeue-Light", size: 22)
 
         postButton.layer.cornerRadius = postButton.frame.height / 2
-        
-        // Set up textview: placeholder text, etc.
-        goalTextView.delegate = self
-        goalTextView.text = "What's your update?"
-        goalTextView.textColor = UIColor.lightGray
-        goalTextView.becomeFirstResponder()
-        
-        //print(currentGoal?["objectId"])
-
     }
 
     @IBAction func didTapCancel(_ sender: Any) {
@@ -40,62 +38,23 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func didPostUpdate(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-        
-        // Data to post to Parse
-        var data: [String: Any] = [:]
-        data["text"] = goalTextView.text
-        data["goalId"] = currentGoal!.objectId
-        data["goalTitle"] = currentGoal!["title"]
-        print(data["goalTitle"])
-        
-        Update.createUpdate(data: data)
-        
-    }
-    
-    
-    
-    // TextView placeholder text, disabled button functionality
-    var firstChange = true
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        let newPosition = goalTextView.beginningOfDocument
-        goalTextView.selectedTextRange = goalTextView.textRange(from: newPosition, to: newPosition)
-        if firstChange {
-            postButton.isEnabled = false
-            postButton.alpha = 0.7
-        }
-    }
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if goalTextView.text.isEmpty {
-            goalTextView.text = "What's your update?"
-            goalTextView.textColor = UIColor.lightGray
-            postButton.isEnabled = false
-            postButton.alpha = 0.7
-            firstChange = true
-        }
-    }
-    func textViewDidChange(_ textView: UITextView) {
-        if firstChange {
-            goalTextView.text = String(goalTextView.text.characters.prefix(1))
-            firstChange = false
-        }
-        if goalTextView.text.isEmpty {
-            goalTextView.text = "What's your update?"
-            goalTextView.textColor = UIColor.lightGray
+        if (updateTextView?.text.isEmpty)! {
+            let alertController = UIAlertController(title: "Empty field", message: "Cannot post an empty update", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Try again", style: .default, handler: nil )
             
-            let newPosition = goalTextView.beginningOfDocument
-            goalTextView.selectedTextRange = goalTextView.textRange(from: newPosition, to: newPosition)
-            firstChange = true
-            
-            postButton.isEnabled = false
-            postButton.alpha = 0.7
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true)
         } else {
-            postButton.isEnabled = true
-            postButton.alpha = 1.0
-            goalTextView.textColor = UIColor.black
+            self.dismiss(animated: true, completion: nil)
+            
+            // Data to post to Parse
+            var data: [String: Any] = [:]
+            data["text"] = updateTextView?.text
+            data["goalId"] = currentUpdate!["goalId"]
+            
+            Update.createUpdate(data: data)
         }
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
