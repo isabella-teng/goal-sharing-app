@@ -17,10 +17,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     @IBOutlet weak var bioField: UITextField!
     
-    @IBAction func cancelEdit(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     @IBAction func takePhotoButton(_ sender: Any) {
         let vc = UIImagePickerController()
         vc.delegate = self
