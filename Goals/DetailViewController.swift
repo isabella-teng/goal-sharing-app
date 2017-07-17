@@ -15,6 +15,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var updates: [PFObject] = []
     var currentUpdate: PFObject?
+
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -28,8 +29,13 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidAppear(_ animated: Bool) {
         //Fetch all user's updates for that goal
-
-        let goalid = currentUpdate?["goalId"] as! String
+        
+        var goalid: String = ""
+        if currentUpdate!.parseClassName == "Update" {
+            goalid = currentUpdate?["goalId"] as! String
+        } else if currentUpdate!.parseClassName == "Goal" {
+            goalid = currentUpdate?.objectId as! String
+        }
         
         Update.fetchUpdatesByGoal(goalid: goalid) { (loadedUpdates: [PFObject]?, error: Error?) in
 

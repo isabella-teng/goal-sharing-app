@@ -48,7 +48,9 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
         data["goalId"] = currentGoal!.objectId
         
         Update.createUpdate(data: data)
+        
     }
+    
     
     
     // TextView placeholder text, disabled button functionality

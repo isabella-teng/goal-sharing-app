@@ -28,16 +28,14 @@ class GoalCell: UITableViewCell {
     }
     
     func didTapCell(_ sender: UITapGestureRecognizer) {
-        //print("tapped")
         // Call method on delegate
         delegate?.goalCell(self, didTap: goal)
-       //print(goal["objectId"])
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        //cellBackground.layer.cornerRadius = 10
+        cellBackground.layer.cornerRadius = 10
         
         let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCell(_:)))
         cellBackground.addGestureRecognizer(cellTapGestureRecognizer)

@@ -13,15 +13,13 @@ import Alamofire
 import AlamofireImage
 
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ProfileCellDelegate {
 
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var profileImageView: PFImageView!
-
-    
-
+    @IBOutlet weak var bioLabel: UILabel!
     
     var allUserPosts: [PFObject]? = []
     
@@ -34,18 +32,37 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         usernameLabel.text = PFUser.current()?.username
         
-        let myUser = PFUser.current()
+        let user = PFUser.current()
         
-        self.profileImageView.file = myUser?["IconURL"] as? PFFile
-        self.profileImageView.loadInBackground()
-
-        
-        var profilePicture: PFObject! {
-            didSet {
-
-                
-            }
+        //hard code pictures and bios
+        if user?.username == "isabella" {
+            bioLabel.text = "Hi! I'm Isabella! My long-term goals are getting in shape, build better study habits, and read more!"
+            profileImageView.image = #imageLiteral(resourceName: "isabella")
+        } else if user?.username == "gerardo" {
+            bioLabel.text = "it me herro"
+            profileImageView.image = #imageLiteral(resourceName: "gerardo")
+        } else if user?.username == "josh" {
+            bioLabel.text = "heyo"
+            profileImageView.image = #imageLiteral(resourceName: "josh")
         }
+        
+//        self.profileImageView.file = myUser?["IconURL"] as? PFFile
+//        self.profileImageView.loadInBackground()
+//
+//        
+//        var profilePicture: PFObject! {
+//            didSet {
+//
+//                
+//            }
+//        }
+        
+        profileImageView.layer.cornerRadius = 35
+        profileImageView.clipsToBounds = true
+    }
+    
+    func profileCell(_ profileCell: ProfileCell, didTap goal: PFObject) {
+        performSegue(withIdentifier: "profiletoDetailSegue", sender: goal)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -60,6 +77,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    
+    
     // Return amount of tableView cells
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allUserPosts!.count
@@ -69,6 +88,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
         cell.goal = allUserPosts![indexPath.row]
+        cell.delegate = self
         
         return cell
     }
@@ -83,6 +103,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "profiletoDetailSegue") {
+            let vc = segue.destination as! DetailViewController
+            vc.currentUpdate = sender as? PFObject
+        }
     }
     
 }

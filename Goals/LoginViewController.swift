@@ -14,7 +14,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var emailField: UITextField!
     
     var usernameFirst: Bool = true
     var passwordFirst: Bool = true

@@ -23,14 +23,44 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var favoriteCount: UILabel!
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var videoButton: UIButton!
+    @IBOutlet weak var userProfPic: UIImageView!
+    @IBOutlet weak var goalTitleLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
-    //add reference to original post if an update, none if new goal
+//    var goal: PFObject! {
+//        didSet {
+//            if goal == nil {
+//                print("you foofed")
+//            }
+//            //self.goalTitleLabel.text = goal["title"] as? String
+//        }
+//    }
+    
+    var goal: PFObject!
     
     var update: PFObject! {
         didSet {
             self.titleLabel.text = update["text"] as? String
             let author = update["author"] as! PFUser
-            authorLabel.text = author.username
+            self.authorLabel.text = author.username
+            
+            let dateUpdated = update.createdAt! as Date
+            let dateFormat = DateFormatter()
+            dateFormat.dateFormat = "MM-dd-yy"
+            self.dateLabel.text = String(dateFormat.string(from: dateUpdated))
+            
+            
+            userProfPic.layer.cornerRadius = 20
+            userProfPic.clipsToBounds = true
+            let user = PFUser.current()
+            if user?.username == "isabella" {
+                self.userProfPic.image = #imageLiteral(resourceName: "isabella")
+            } else if user?.username == "gerardo" {
+                self.userProfPic.image = #imageLiteral(resourceName: "gerardo")
+            } else if user?.username == "josh" {
+                self.userProfPic.image = #imageLiteral(resourceName: "josh")
+            }
+
             
             let currentLikeCount = update["likeCount"] as! Int
             if (currentLikeCount != 0) {
@@ -44,6 +74,29 @@ class FeedCell: UITableViewCell {
             } else {
                 self.favoriteButton.isSelected = false
             }
+            
+            if goal == nil {
+                print("you foofed")
+            }
+            
+            //Reference to original goal
+            
+            //self.goalTitleLabel.text = goal["title"] as! String
+            //print(goal?.objectId as! String)
+            //self.goalTitleLabel.text = goal?["title"] as! String
+            //print(update["goalId"] as! String)
+//            let updateId = update["goalId"] as! String
+//            Goal.fetchGoalWithId(id: updateId) { (loadedGoal: PFObject?, error: Error?) in
+//                if error == nil {
+//                    self.goal = loadedGoal!
+//                    //print(self.goal?["objectId"])
+//                } else {
+//                    print(error?.localizedDescription)
+//                }
+//            }
+            //print(update["goalId"] as! String)
+            //self.goalTitleLabel.text = goal?["title"] as! String
+            //print(goalTitleLabel.text)
         }
     }
     

@@ -10,11 +10,16 @@ import UIKit
 import Parse
 import ParseUI
 
+protocol ProfileCellDelegate: class {
+    func profileCell(_ profileCell: ProfileCell, didTap goal: PFObject)
+}
 
 class ProfileCell: UITableViewCell {
 
     @IBOutlet weak var cellBackground: UIView!
     @IBOutlet weak var titleLabel: UILabel!
+    
+    weak var delegate: ProfileCellDelegate?
     
     var goal: PFObject! {
         didSet {
@@ -22,14 +27,25 @@ class ProfileCell: UITableViewCell {
         }
     }
     
+    func didTapCell(_ sender: UITapGestureRecognizer) {
+        // Call method on delegate
+        delegate?.profileCell(self, didTap: goal)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         cellBackground.layer.cornerRadius = 10
+        let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCell(_:)))
+
+        cellBackground.addGestureRecognizer(cellTapGestureRecognizer)
+        cellBackground.isUserInteractionEnabled = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        
+        
     }
 
 }
