@@ -55,6 +55,30 @@ class Goal: NSObject {
     }
     
     
+    //Log settings
+    enum LogSettings: Int {
+        case daily
+        case weekly
+        case monthly
+        case yearly
+        
+        var string: String {
+            switch self {
+            case .daily: return "Daily";
+            case .weekly: return "Weekly";
+            case .monthly: return "Monthly";
+            case .yearly: return "Yearly";
+            }
+        }
+    }
+    
+    class func returnLogSettings(index: Int) -> String {
+        let log = LogSettings(rawValue: index)!
+        return log.string
+
+    }
+    
+    
     // TODO: Goal icons
     
     
@@ -69,6 +93,7 @@ class Goal: NSObject {
         goal["description"] = data["description"] as! String
         goal["type"] = data["type"] as! String
         goal["categories"] = data["categories"] as! String
+        goal["logTimePeriods"] = data["logTimePeriods"] as! String
         
         // TODO: icons, progress, video replies
         goal["icon"] = NSNull()

@@ -54,7 +54,7 @@ class FeedCell: UITableViewCell {
             userProfPic.clipsToBounds = true
             
             
-            
+            //FIX SMALL BUG WHEN NO GOALS THIS CRASHES HERE
             let currentLikeCount = update["likeCount"] as! Int
             if (currentLikeCount != 0) {
                 self.favoriteCount.text = String(describing: update["likeCount"]!)
