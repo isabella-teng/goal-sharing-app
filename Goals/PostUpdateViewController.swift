@@ -23,7 +23,7 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
         
         // Placeholder TextView
         self.updateTextView = RSKPlaceholderTextView(frame: CGRect(x: 16, y: 69, width: self.view.frame.width - 32, height: 122))
-        self.updateTextView?.placeholder = "Update your goal..."
+        self.updateTextView?.placeholder = "What's your update?"
         self.view.addSubview(self.updateTextView!)
         self.updateTextView?.becomeFirstResponder()
         self.updateTextView?.font = UIFont (name: "HelveticaNeue-Light", size: 22)
@@ -37,14 +37,22 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func didPostUpdate(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-        
-        // Data to post to Parse
-        var data: [String: Any] = [:]
-        data["text"] = updateTextView?.text
-        data["goalId"] = currentUpdate!["goalId"]
-        
-        Update.createUpdate(data: data)
+        if (updateTextView?.text.isEmpty)! {
+            let alertController = UIAlertController(title: "Empty field", message: "Cannot post an empty update", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Try again", style: .default, handler: nil )
+            
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+            
+            // Data to post to Parse
+            var data: [String: Any] = [:]
+            data["text"] = updateTextView?.text
+            data["goalId"] = currentUpdate!["goalId"]
+            
+            Update.createUpdate(data: data)
+        }
     }
     
     override func didReceiveMemoryWarning() {

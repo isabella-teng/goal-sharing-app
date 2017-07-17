@@ -28,6 +28,18 @@ class PostCommentViewController: UIViewController {
         commentButton.layer.cornerRadius = commentButton.frame.height / 2
     }
 
+    @IBAction func didTapComment(_ sender: Any) {
+        if (commentTextView?.text.isEmpty)! {
+            let alertController = UIAlertController(title: "Empty field", message: "Cannot post an empty comment", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Try again", style: .default, handler: nil )
+            
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true)
+        } else {
+            // Post comment to database
+        }
+    }
+    
     @IBAction func didTapCancel(_ sender: Any) {
         self.view.endEditing(true)
         self.dismiss(animated: true)
@@ -38,7 +50,6 @@ class PostCommentViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -48,5 +59,4 @@ class PostCommentViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }

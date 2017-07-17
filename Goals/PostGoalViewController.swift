@@ -25,35 +25,38 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         
         // Placeholder TextView
         self.descriptionTextView = RSKPlaceholderTextView(frame: CGRect(x: 16, y: 112, width: self.view.frame.width - 32, height: 122))
-        self.descriptionTextView?.placeholder = "Comment on this update"
+        self.descriptionTextView?.placeholder = "Briefly describe your goal"
         self.view.addSubview(self.descriptionTextView!)
         self.descriptionTextView?.becomeFirstResponder()
         self.descriptionTextView?.font = UIFont (name: "HelveticaNeue-Light", size: 22)
         
-        postButton.isEnabled = false
-        postButton.alpha = 0.7
-        
         titleTextField.delegate = self
         titleTextField.becomeFirstResponder()
     }
-    
-    // Temporary
-    //when you create a new goal you create a new update right now
+
     @IBAction func didPostGoal(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-        
-        // Data to be posted
-        var data: [String: Any] = [:]
-        data["title"] = titleTextField.text
-        data["description"] = descriptionTextView?.text
-        
-        let goalType = Goal.returnType(index: typeControl.selectedSegmentIndex)
-        let goalCategory = Goal.returnCategory(index: categoryControl.selectedSegmentIndex)
-        data["type"] = goalType
-        data["categories"] = goalCategory
-        
-        // Send request
-        Goal.createGoal(data: data)
+        if (descriptionTextView?.text.isEmpty)! || (titleTextField.text?.isEmpty)! {
+            let alertController = UIAlertController(title: "Empty field", message: "Please provide a title and description for your goal", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Try again", style: .default, handler: nil )
+            
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+            
+            // Data to be posted
+            var data: [String: Any] = [:]
+            data["title"] = titleTextField.text
+            data["description"] = descriptionTextView?.text
+            
+            let goalType = Goal.returnType(index: typeControl.selectedSegmentIndex)
+            let goalCategory = Goal.returnCategory(index: categoryControl.selectedSegmentIndex)
+            data["type"] = goalType
+            data["categories"] = goalCategory
+            
+            // Send request
+            Goal.createGoal(data: data)
+        }
     }
     
     @IBAction func cancelPost(_ sender: Any) {
