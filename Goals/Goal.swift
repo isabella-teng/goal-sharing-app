@@ -90,6 +90,7 @@ class Goal: NSObject {
                 var updateData: [String: Any] = [:]
                 updateData["text"] = data["description"]
                 updateData["goalId"] = goal.objectId
+                updateData["goalTitle"] = goal["title"]
                 Update.createUpdate(data: updateData)
             }
         }

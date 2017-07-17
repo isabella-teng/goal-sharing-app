@@ -47,6 +47,7 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
         data["text"] = goalTextView.text
         data["goalId"] = currentGoal!.objectId
         data["goalTitle"] = currentGoal!["title"]
+        print(data["goalTitle"])
         
         Update.createUpdate(data: data)
         
