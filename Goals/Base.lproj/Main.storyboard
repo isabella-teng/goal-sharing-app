@@ -917,24 +917,6 @@
             <point key="canvasLocation" x="2790" y="1764"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="vEj-bI-Zzc">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="biz-Uj-YyP" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Gac-07-ovr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="bNQ-6h-zci" kind="relationship" relationship="rootViewController" id="B7g-pp-vcc"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TKF-WH-gSl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4666" y="290"/>
-        </scene>
-        <!--Navigation Controller-->
         <scene sceneID="7DQ-6A-fPb">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VhF-kq-3KK" sceneMemberID="viewController">
@@ -961,7 +943,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ZpT-ic-j8z"/>
-        <segue reference="plk-n3-k2h"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

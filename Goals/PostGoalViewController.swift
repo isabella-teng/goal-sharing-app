@@ -65,7 +65,7 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         self.dismiss(animated: true, completion: nil)
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }

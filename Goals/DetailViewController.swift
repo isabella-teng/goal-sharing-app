@@ -34,7 +34,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if currentUpdate!.parseClassName == "Update" {
             goalid = currentUpdate?["goalId"] as! String
         } else if currentUpdate!.parseClassName == "Goal" {
-            goalid = currentUpdate?.objectId as! String
+            goalid = (currentUpdate?.objectId!)!
         }
         
         Update.fetchUpdatesByGoal(goalid: goalid) { (loadedUpdates: [PFObject]?, error: Error?) in
