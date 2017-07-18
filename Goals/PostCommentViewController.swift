@@ -80,20 +80,23 @@ class PostCommentViewController: UIViewController {
                 }
             })
             
-            // TODO: Save comment in goal interactions array
-            // currentGoal?.saveInBackground(block: { (success: Bool, error: Error?) in
-                // if error == nil {
-                    // var interactionsArray = self.currentGoal?["interactions"] as! [[String: Any]]
-                    // var newInteraction: [String: Any] = [:]
-                    // newInteraction["sender"] = self.commentTextView?.text
-                    // 
-                    // interactionsArray.append(newInteraction)
-                    // self.currentGoal?["interactions"] = interactionsArray
-                    // self.currentGoal?.saveInBackground()
-                // } else {
-                    // print(error?.localizedDescription as Any)
-                // }
-            // })
+            // Save comment in goal interactions array
+             currentGoal?.saveInBackground(block: { (success: Bool, error: Error?) in
+                 if error == nil {
+                     var interactionsArray = self.currentGoal?["interactions"] as! [[String: Any]]
+                     var newInteraction: [String: Any] = [:]
+                     newInteraction["sender"] = PFUser.current()
+                     newInteraction["type"] = "comment"
+                     newInteraction["text"] = self.commentTextView?.text
+                     newInteraction["createdAt"] = NSDate()
+                     
+                     interactionsArray.append(newInteraction)
+                     self.currentGoal?["interactions"] = interactionsArray
+                     self.currentGoal?.saveInBackground()
+                 } else {
+                     print(error?.localizedDescription as Any)
+                 }
+             })
             
         }
     }
