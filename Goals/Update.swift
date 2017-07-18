@@ -33,6 +33,7 @@ class Update: NSObject {
         update["liked"] = false //should also have in the user
         update["comments"] = [[:]]
         update["commentCount"] = 0
+        //update["userInteractions"] = [[:]]  //will be comments and videos for now
         
 
         
