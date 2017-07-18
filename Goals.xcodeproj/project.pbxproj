@@ -538,7 +538,6 @@
 				FACF12CF1F154A8700D505FE /* ProfileViewController.swift in Sources */,
 				7EF1FFD51F158598000DA708 /* ExploreViewController.swift in Sources */,
 				FACF129C1F15476200D505FE /* AppDelegate.swift in Sources */,
-				B812C1151F1833F100953A11 /* CommentViewController.swift in Sources */,
 				FAD3514A1F1838D500998CCA /* GoalCell.swift in Sources */,
 				B812C1171F1D5C3E00953A11 /* ProgressViewController.swift in Sources */,
 				B87C87F01F159AE100F58517 /* DetailViewController.swift in Sources */,
