@@ -14,8 +14,11 @@ class PhotoViewController: UIViewController {
 
     init(image: UIImage) {
         self.backgroundImage = image
-        print("made it ")
         super.init(nibName: nil, bundle: nil)
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -30,7 +33,7 @@ class PhotoViewController: UIViewController {
         backgroundImageView.contentMode = UIViewContentMode.scaleAspectFit
         backgroundImageView.image = backgroundImage
         view.addSubview(backgroundImageView)
-        let cancelButton = UIButton(frame: CGRect(x: 10.0, y: 10.0, width: 30.0, height: 30.0))
+        let cancelButton = UIButton(frame: CGRect(x: 15.0, y: 15.0, width: 30.0, height: 30.0))
         cancelButton.setImage(#imageLiteral(resourceName: "cancel"), for: UIControlState())
         cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         view.addSubview(cancelButton)

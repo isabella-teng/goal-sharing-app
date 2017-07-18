@@ -244,7 +244,7 @@
                                                             <rect key="frame" x="321" y="3" width="24" height="24"/>
                                                             <state key="normal" image="photo"/>
                                                             <connections>
-                                                                <segue destination="V3S-Ul-3Sn" kind="presentation" id="Lxt-Pg-N61"/>
+                                                                <segue destination="V3S-Ul-3Sn" kind="presentation" id="kNn-XA-D7B"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yng-AV-4nN">
@@ -689,6 +689,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RGs-lA-h3r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
