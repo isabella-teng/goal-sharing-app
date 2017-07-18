@@ -243,6 +243,9 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0m-HP-TVd">
                                                             <rect key="frame" x="321" y="3" width="24" height="24"/>
                                                             <state key="normal" image="photo"/>
+                                                            <connections>
+                                                                <segue destination="V3S-Ul-3Sn" kind="presentation" id="Lxt-Pg-N61"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yng-AV-4nN">
                                                             <rect key="frame" x="20" y="5" width="20" height="20"/>
@@ -672,6 +675,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P1M-oo-fP2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3692" y="-647"/>
+        </scene>
+        <!--Camera View Controller-->
+        <scene sceneID="Heg-Ky-HA3">
+            <objects>
+                <viewController id="V3S-Ul-3Sn" customClass="CameraViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bBb-ot-OSd"/>
+                        <viewControllerLayoutGuide type="bottom" id="20R-M7-PLE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eSV-9b-aEI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RGs-lA-h3r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4428" y="-646.32683658170924"/>
         </scene>
         <!--Explore-->
         <scene sceneID="HQI-JE-X9N">

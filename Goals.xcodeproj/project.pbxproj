@@ -20,6 +20,9 @@
 		B87C87EE1F156E9300F58517 /* PostGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87ED1F156E9300F58517 /* PostGoalViewController.swift */; };
 		B87C87F01F159AE100F58517 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87EF1F159AE100F58517 /* DetailViewController.swift */; };
 		B87C87F21F169B5500F58517 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87F11F169B5500F58517 /* EditProfileViewController.swift */; };
+		FAA6C8C31F1EA79900FB8F26 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6C8C21F1EA79900FB8F26 /* CameraViewController.swift */; };
+		FAA6C8C51F1EB62D00FB8F26 /* SwiftyCamRecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6C8C41F1EB62D00FB8F26 /* SwiftyCamRecordButton.swift */; };
+		FAA6C8C81F1EB97E00FB8F26 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6C8C71F1EB97E00FB8F26 /* PhotoViewController.swift */; };
 		FACF129C1F15476200D505FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF129B1F15476200D505FE /* AppDelegate.swift */; };
 		FACF12A11F15476200D505FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACF129F1F15476200D505FE /* Main.storyboard */; };
 		FACF12A61F15476200D505FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACF12A41F15476200D505FE /* LaunchScreen.storyboard */; };
@@ -71,6 +74,9 @@
 		CB4F6A01BA5261F1C95C9952 /* Pods-GoalsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsTests/Pods-GoalsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CF3584AB59D862ECDED6FA78 /* Pods-Goals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Goals.release.xcconfig"; path = "Pods/Target Support Files/Pods-Goals/Pods-Goals.release.xcconfig"; sourceTree = "<group>"; };
 		E339925FD6B14DCCACECDAC9 /* Pods_GoalsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoalsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAA6C8C21F1EA79900FB8F26 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		FAA6C8C41F1EB62D00FB8F26 /* SwiftyCamRecordButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyCamRecordButton.swift; sourceTree = "<group>"; };
+		FAA6C8C71F1EB97E00FB8F26 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		FACF12981F15476200D505FE /* Goals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Goals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACF129B1F15476200D505FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FACF12A01F15476200D505FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -124,6 +130,7 @@
 		7E8642021F156FCA00EE968A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FAA6C8C41F1EB62D00FB8F26 /* SwiftyCamRecordButton.swift */,
 				FAD351491F1838D500998CCA /* GoalCell.swift */,
 				FAD3513D1F16D49A00998CCA /* LogCell.swift */,
 				FACF12D11F156E8C00D505FE /* ProfileCell.swift */,
@@ -153,6 +160,15 @@
 				8B1C5447CB4A291F000D9875 /* Pods-GoalsUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		FAA6C8C61F1EB94D00FB8F26 /* Camera VCs  */ = {
+			isa = PBXGroup;
+			children = (
+				FAA6C8C21F1EA79900FB8F26 /* CameraViewController.swift */,
+				FAA6C8C71F1EB97E00FB8F26 /* PhotoViewController.swift */,
+			);
+			name = "Camera VCs ";
 			sourceTree = "<group>";
 		};
 		FACF128F1F15476200D505FE = {
@@ -213,6 +229,7 @@
 		FACF12CB1F154A4600D505FE /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FAA6C8C61F1EB94D00FB8F26 /* Camera VCs  */,
 				FAD351411F182FC500998CCA /* AllGoalsViewController.swift */,
 				B87C87F11F169B5500F58517 /* EditProfileViewController.swift */,
 				7EF1FFD41F158598000DA708 /* ExploreViewController.swift */,
@@ -530,11 +547,14 @@
 				7EF1FFD51F158598000DA708 /* ExploreViewController.swift in Sources */,
 				FACF129C1F15476200D505FE /* AppDelegate.swift in Sources */,
 				FAD3514A1F1838D500998CCA /* GoalCell.swift in Sources */,
+				FAA6C8C81F1EB97E00FB8F26 /* PhotoViewController.swift in Sources */,
 				B87C87F01F159AE100F58517 /* DetailViewController.swift in Sources */,
+				FAA6C8C51F1EB62D00FB8F26 /* SwiftyCamRecordButton.swift in Sources */,
 				B87C87F21F169B5500F58517 /* EditProfileViewController.swift in Sources */,
 				7E38DFDB1F15813400DEF47C /* Update.swift in Sources */,
 				FAD3513A1F1597FE00998CCA /* User.swift in Sources */,
 				FACF12D21F156E8C00D505FE /* ProfileCell.swift in Sources */,
+				FAA6C8C31F1EA79900FB8F26 /* CameraViewController.swift in Sources */,
 				FAD3513E1F16D49A00998CCA /* LogCell.swift in Sources */,
 				7E1FCE641F16E6DC009C0AF1 /* PostUpdateViewController.swift in Sources */,
 			);
