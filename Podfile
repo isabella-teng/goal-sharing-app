@@ -12,8 +12,7 @@ target 'Goals' do
   pod 'AlamofireImage', '~> 3.1'
   pod 'RSKPlaceholderTextView'
   pod 'SwiftyCam'
-  pod 'Charts'
-  pod 'RealmSwift'
+
 
   target 'GoalsTests' do
     inherit! :search_paths
