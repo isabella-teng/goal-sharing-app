@@ -11,6 +11,7 @@ target 'Goals' do
   pod 'Alamofire', '~> 4.4'
   pod 'AlamofireImage', '~> 3.1'
   pod 'RSKPlaceholderTextView'
+  pod 'Charts'
 
   target 'GoalsTests' do
     inherit! :search_paths

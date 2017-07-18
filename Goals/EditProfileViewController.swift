@@ -82,7 +82,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             let userImageFile:PFFile = PFUser.current()?.object(forKey: "IconURL") as! PFFile
             
             userImageFile.getDataInBackground(block: { (imageData: Data?, error: Error?) in
-                self.photoPreview.image = UIImage(data: imageData!)
+                //self.photoPreview.image = UIImage(data: imageData!)
             })
         }
         

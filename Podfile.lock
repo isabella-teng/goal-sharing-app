@@ -3,6 +3,9 @@ PODS:
   - AlamofireImage (3.2.0):
     - Alamofire (~> 4.1)
   - Bolts/Tasks (1.8.4)
+  - Charts (3.0.2):
+    - Charts/Core (= 3.0.2)
+  - Charts/Core (3.0.2)
   - Parse (1.14.4):
     - Bolts/Tasks (~> 1.8)
   - ParseUI (1.2.0):
@@ -13,6 +16,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.4)
   - AlamofireImage (~> 3.1)
+  - Charts
   - Parse
   - ParseUI
   - RSKPlaceholderTextView
@@ -21,10 +25,11 @@ SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
   Parse: b0aa91d2c435e53d4a9af26e741e014c9b35c42e
   ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
   RSKPlaceholderTextView: 301f0f30e70e7c42fe4e941e3a08365ab0d890d5
 
-PODFILE CHECKSUM: 2fa6ef219795c11f6ed2fd5939b4cdc3d119af92
+PODFILE CHECKSUM: 8012313cc92595ff001f4f6f3a43b72761192fca
 
 COCOAPODS: 1.2.1
