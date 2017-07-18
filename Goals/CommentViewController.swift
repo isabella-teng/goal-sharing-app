@@ -17,12 +17,12 @@ class CommentViewController: UIViewController {
     
     
     
-    var update: PFObject! {
-        didSet{
-            self.commentTextField.text = update["comments"] as? String
-            let currentCommentCount = update["commentCount"] as! Int
-        }
-    }
+//    var update: PFObject! {
+//        didSet{
+//            self.commentTextField.text = update["comments"] as? String
+//            let currentCommentCount = update["commentCount"] as! Int
+//        }
+//    }
     
     @IBAction func saveComment(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)

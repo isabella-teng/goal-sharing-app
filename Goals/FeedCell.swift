@@ -10,7 +10,7 @@ import UIKit
 import Parse
 
 protocol FeedCellDelegate: class {
-    func feedCell(_ feedCell: FeedCell, didTap update: PFObject)
+    func feedCell(_ feedCell: FeedCell, didTap update: PFObject, tappedComment: Bool)
 }
 
 class FeedCell: UITableViewCell {
@@ -74,7 +74,11 @@ class FeedCell: UITableViewCell {
 
     func didTapCell(_ sender: UITapGestureRecognizer) {
         // Call method on delegate
-        delegate?.feedCell(self, didTap: update)
+        delegate?.feedCell(self, didTap: update, tappedComment: false)
+    }
+    
+    func didTapCommentButton(_ sender: UITapGestureRecognizer) {
+        delegate?.feedCell(self, didTap: update, tappedComment: true)
     }
     
     
@@ -114,6 +118,10 @@ class FeedCell: UITableViewCell {
         let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCell(_:)))
         cellBackground.addGestureRecognizer(cellTapGestureRecognizer)
         cellBackground.isUserInteractionEnabled = true
+        
+        let commentTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCommentButton(_:)))
+        commentButton.addGestureRecognizer(commentTapGestureRecognizer)
+        commentButton.isUserInteractionEnabled = true
         
         cellBackground.layer.cornerRadius = 10
     }

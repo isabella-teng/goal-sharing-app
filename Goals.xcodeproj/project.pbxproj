@@ -17,7 +17,6 @@
 		7E949C081F18108800449DA0 /* PostCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E949C071F18108800449DA0 /* PostCommentViewController.swift */; };
 		7EEEFB171F158A6E004A29EC /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEEFB161F158A6E004A29EC /* FeedViewController.swift */; };
 		7EF1FFD51F158598000DA708 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF1FFD41F158598000DA708 /* ExploreViewController.swift */; };
-		B812C1151F1833F100953A11 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812C1141F1833F100953A11 /* CommentViewController.swift */; };
 		B87C87EE1F156E9300F58517 /* PostGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87ED1F156E9300F58517 /* PostGoalViewController.swift */; };
 		B87C87F01F159AE100F58517 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87EF1F159AE100F58517 /* DetailViewController.swift */; };
 		B87C87F21F169B5500F58517 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87F11F169B5500F58517 /* EditProfileViewController.swift */; };
@@ -66,7 +65,6 @@
 		8B1C5447CB4A291F000D9875 /* Pods-GoalsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsUITests/Pods-GoalsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A3870FB33249FFA01E80B856 /* Pods-GoalsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsTests/Pods-GoalsTests.release.xcconfig"; sourceTree = "<group>"; };
 		A9A37E25EFEFAC2CCC5DABED /* Pods_GoalsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoalsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B812C1141F1833F100953A11 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		B87C87ED1F156E9300F58517 /* PostGoalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostGoalViewController.swift; sourceTree = "<group>"; };
 		B87C87EF1F159AE100F58517 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B87C87F11F169B5500F58517 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
@@ -216,7 +214,6 @@
 			isa = PBXGroup;
 			children = (
 				FAD351411F182FC500998CCA /* AllGoalsViewController.swift */,
-				B87C87EF1F159AE100F58517 /* DetailViewController.swift */,
 				B87C87F11F169B5500F58517 /* EditProfileViewController.swift */,
 				7EF1FFD41F158598000DA708 /* ExploreViewController.swift */,
 				7EEEFB161F158A6E004A29EC /* FeedViewController.swift */,
@@ -226,7 +223,6 @@
 				7E949C071F18108800449DA0 /* PostCommentViewController.swift */,
 				B87C87ED1F156E9300F58517 /* PostGoalViewController.swift */,
 				7E1FCE631F16E6DC009C0AF1 /* PostUpdateViewController.swift */,
-				B812C1141F1833F100953A11 /* CommentViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -533,7 +529,6 @@
 				FACF12CF1F154A8700D505FE /* ProfileViewController.swift in Sources */,
 				7EF1FFD51F158598000DA708 /* ExploreViewController.swift in Sources */,
 				FACF129C1F15476200D505FE /* AppDelegate.swift in Sources */,
-				B812C1151F1833F100953A11 /* CommentViewController.swift in Sources */,
 				FAD3514A1F1838D500998CCA /* GoalCell.swift in Sources */,
 				B87C87F01F159AE100F58517 /* DetailViewController.swift in Sources */,
 				B87C87F21F169B5500F58517 /* EditProfileViewController.swift in Sources */,

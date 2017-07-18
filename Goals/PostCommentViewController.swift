@@ -8,16 +8,23 @@
 
 import UIKit
 import RSKPlaceholderTextView
+import Parse
+import ParseUI
+
 
 class PostCommentViewController: UIViewController {
 
     var commentTextView: RSKPlaceholderTextView? = nil
+    
 //    var update: PFObject! {
 //        didSet{
-//            self.commentTextField.text = update["comments"] as? String
+//            self.commentTextView.text = update["comments"] as? String
 //            let currentCommentCount = update["commentCount"] as! Int
 //        }
 //    }
+    
+    var currentUpdate: PFObject?
+    
     
     @IBOutlet weak var commentButton: UIButton!
     
@@ -33,6 +40,9 @@ class PostCommentViewController: UIViewController {
         
         commentButton.layer.cornerRadius = commentButton.frame.height / 2
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+    }
 
     @IBAction func didTapComment(_ sender: Any) {
         if (commentTextView?.text.isEmpty)! {
@@ -44,6 +54,26 @@ class PostCommentViewController: UIViewController {
         } else {
             // Post comment to database
             self.dismiss(animated: true)
+            
+            currentUpdate?.saveInBackground(block: { (success: Bool, error: Error?) in
+                if error == nil {
+                    //print("made it")
+                    var commentsArray = self.currentUpdate?["comments"] as! [[String: Any]]
+                    var commentsDictionary: [String: Any] = [:]
+                    commentsDictionary["commentUser"] = PFUser.current()
+                    commentsDictionary["commentText"] = self.commentTextView?.text
+                    
+                    commentsArray.append(commentsDictionary)
+                    self.currentUpdate?["comments"] = commentsArray
+                    self.currentUpdate?.incrementKey("likeCount", byAmount: 1)
+                    self.currentUpdate?.saveInBackground()
+                } else {
+                    print(error?.localizedDescription)
+                }
+            })
+            
+            
+            
         }
     }
     
@@ -56,14 +86,5 @@ class PostCommentViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }

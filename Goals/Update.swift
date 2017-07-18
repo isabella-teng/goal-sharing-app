@@ -30,9 +30,10 @@ class Update: NSObject {
         update["goalTitle"] = data["goalTitle"]
         update["likes"] = []
         update["likeCount"] = 0
-        update["liked"] = false
-        update["comments"] = []
+        update["liked"] = false //should also have in the user
+        update["comments"] = [[:]]
         update["commentCount"] = 0
+        
 
         
 

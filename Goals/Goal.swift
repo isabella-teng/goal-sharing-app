@@ -158,8 +158,7 @@ class Goal: NSObject {
     
     // Fetch goal by ID
     class func fetchGoalWithId(id: String, withCompletion completion: @escaping (PFObject?, Error?) -> ()) {
-        //print("heyo")
-        //print(id)
+
         let query = PFQuery(className: "Goal")
         
         query.order(byDescending: "createdAt")

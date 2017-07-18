@@ -54,14 +54,22 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
-    func feedCell(_ feedCell: FeedCell, didTap update: PFObject) {
+    func feedCell(_ feedCell: FeedCell, didTap update: PFObject, tappedComment: Bool) {
         //segue sending over the goal id to the detail view controller
-        performSegue(withIdentifier: "detailSegue", sender: update)
+        if !tappedComment {
+            performSegue(withIdentifier: "detailSegue", sender: update)
+        } else {
+            performSegue(withIdentifier: "commentSegue", sender: update)
+        }
+        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "detailSegue") {
             let vc = segue.destination as! DetailViewController
+            vc.currentUpdate = sender as? PFObject
+        } else if (segue.identifier == "commentSegue") {
+            let vc = segue.destination as! PostCommentViewController
             vc.currentUpdate = sender as? PFObject
         }
     }
