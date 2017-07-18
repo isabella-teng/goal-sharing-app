@@ -17,6 +17,7 @@ PODS:
   - RealmSwift (2.8.3):
     - Realm (= 2.8.3)
   - RSKPlaceholderTextView (2.0.0)
+  - SwiftyCam (2.4.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
@@ -26,6 +27,7 @@ DEPENDENCIES:
   - ParseUI
   - RealmSwift
   - RSKPlaceholderTextView
+  - SwiftyCam
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
@@ -37,11 +39,8 @@ SPEC CHECKSUMS:
   Realm: 3601ef091c8c499a31101d8563b991e75546cdce
   RealmSwift: 8183818515471b01a99abdd2970f8e4fd52b6f4a
   RSKPlaceholderTextView: 301f0f30e70e7c42fe4e941e3a08365ab0d890d5
+  SwiftyCam: cb83b9a8e181f70fb741d30cea724c6b045a4549
 
-<<<<<<< HEAD
-PODFILE CHECKSUM: 8012313cc92595ff001f4f6f3a43b72761192fca
-=======
-PODFILE CHECKSUM: 0340b66b1c0b0552d0f294f8cf3ca99f2d150807
->>>>>>> 00e31367eef56c7a4914b94a7bf3677ba6daafae
+PODFILE CHECKSUM: 6e8ff1ac4a8aee6469d8bf3023a7cb82f6a5ec34
 
 COCOAPODS: 1.2.1
