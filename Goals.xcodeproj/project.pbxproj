@@ -10,6 +10,10 @@
 		15A2C043446242E87172231A /* Pods_GoalsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E339925FD6B14DCCACECDAC9 /* Pods_GoalsTests.framework */; };
 		55FD199C341B1A7428EE3609 /* Pods_GoalsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A37E25EFEFAC2CCC5DABED /* Pods_GoalsUITests.framework */; };
 		770E9622CD194284E248B22C /* Pods_Goals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFBA34B6999BBB6E2B553F30 /* Pods_Goals.framework */; };
+		7E124C931F1EA8C200858D35 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E124C921F1EA8C200858D35 /* HeaderCell.swift */; };
+		7E124C951F1EA8EF00858D35 /* UpdateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E124C941F1EA8EF00858D35 /* UpdateCell.swift */; };
+		7E124C971F1EBF0100858D35 /* MediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E124C961F1EBF0100858D35 /* MediaCell.swift */; };
+		7E124C991F1EBF7800858D35 /* ReactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E124C981F1EBF7800858D35 /* ReactionCell.swift */; };
 		7E1FCE621F16D6E9009C0AF1 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1FCE611F16D6E9009C0AF1 /* FeedCell.swift */; };
 		7E1FCE641F16E6DC009C0AF1 /* PostUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1FCE631F16E6DC009C0AF1 /* PostUpdateViewController.swift */; };
 		7E38DFDB1F15813400DEF47C /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E38DFDA1F15813400DEF47C /* Update.swift */; };
@@ -55,6 +59,10 @@
 /* Begin PBXFileReference section */
 		1FCD39C47ED1A6703B4F8F14 /* Pods-Goals.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Goals.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Goals/Pods-Goals.debug.xcconfig"; sourceTree = "<group>"; };
 		7D58FA351BA108AA49E998F0 /* Pods-GoalsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsUITests/Pods-GoalsUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		7E124C921F1EA8C200858D35 /* HeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
+		7E124C941F1EA8EF00858D35 /* UpdateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateCell.swift; sourceTree = "<group>"; };
+		7E124C961F1EBF0100858D35 /* MediaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCell.swift; sourceTree = "<group>"; };
+		7E124C981F1EBF7800858D35 /* ReactionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionCell.swift; sourceTree = "<group>"; };
 		7E1FCE611F16D6E9009C0AF1 /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		7E1FCE631F16E6DC009C0AF1 /* PostUpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostUpdateViewController.swift; sourceTree = "<group>"; };
 		7E38DFDA1F15813400DEF47C /* Update.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
@@ -124,10 +132,14 @@
 		7E8642021F156FCA00EE968A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FAD351491F1838D500998CCA /* GoalCell.swift */,
-				FAD3513D1F16D49A00998CCA /* LogCell.swift */,
-				FACF12D11F156E8C00D505FE /* ProfileCell.swift */,
 				7E1FCE611F16D6E9009C0AF1 /* FeedCell.swift */,
+				FAD351491F1838D500998CCA /* GoalCell.swift */,
+				7E124C921F1EA8C200858D35 /* HeaderCell.swift */,
+				FAD3513D1F16D49A00998CCA /* LogCell.swift */,
+				7E124C961F1EBF0100858D35 /* MediaCell.swift */,
+				FACF12D11F156E8C00D505FE /* ProfileCell.swift */,
+				7E124C981F1EBF7800858D35 /* ReactionCell.swift */,
+				7E124C941F1EA8EF00858D35 /* UpdateCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -525,9 +537,13 @@
 				FACF12CA1F154A3D00D505FE /* LoginViewController.swift in Sources */,
 				7EEEFB171F158A6E004A29EC /* FeedViewController.swift in Sources */,
 				7E6B47FF1F169CE00079AC1F /* Goal.swift in Sources */,
+				7E124C991F1EBF7800858D35 /* ReactionCell.swift in Sources */,
 				FAD351421F182FC500998CCA /* AllGoalsViewController.swift in Sources */,
+				7E124C971F1EBF0100858D35 /* MediaCell.swift in Sources */,
+				7E124C951F1EA8EF00858D35 /* UpdateCell.swift in Sources */,
 				FACF12CF1F154A8700D505FE /* ProfileViewController.swift in Sources */,
 				7EF1FFD51F158598000DA708 /* ExploreViewController.swift in Sources */,
+				7E124C931F1EA8C200858D35 /* HeaderCell.swift in Sources */,
 				FACF129C1F15476200D505FE /* AppDelegate.swift in Sources */,
 				FAD3514A1F1838D500998CCA /* GoalCell.swift in Sources */,
 				B87C87F01F159AE100F58517 /* DetailViewController.swift in Sources */,
