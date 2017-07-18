@@ -24,7 +24,7 @@ class PostCommentViewController: UIViewController {
 //    }
     
     var currentUpdate: PFObject?
-    
+    var currentGoal: PFObject?
     
     @IBOutlet weak var commentButton: UIButton!
     
@@ -39,9 +39,18 @@ class PostCommentViewController: UIViewController {
         self.commentTextView?.font = UIFont (name: "HelveticaNeue-Light", size: 22)
         
         commentButton.layer.cornerRadius = commentButton.frame.height / 2
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
+        
+        commentButton.isEnabled = false
+        commentButton.alpha = 0.7
+        
+        // Fetch current goal
+        Goal.fetchGoalWithId(id: currentUpdate?["goalId"] as! String) { (goal: PFObject?, error: Error?) in
+            if error == nil {
+                self.currentGoal = goal
+                self.commentButton.isEnabled = true
+                self.commentButton.alpha = 1.0
+            }
+        }
     }
 
     @IBAction func didTapComment(_ sender: Any) {
@@ -52,27 +61,42 @@ class PostCommentViewController: UIViewController {
             alertController.addAction(okAction)
             self.present(alertController, animated: true)
         } else {
-            // Post comment to database
             self.dismiss(animated: true)
             
+            // Save comment in current update object
             currentUpdate?.saveInBackground(block: { (success: Bool, error: Error?) in
                 if error == nil {
-                    //print("made it")
                     var commentsArray = self.currentUpdate?["comments"] as! [[String: Any]]
                     var commentsDictionary: [String: Any] = [:]
-                    commentsDictionary["commentUser"] = PFUser.current()
-                    commentsDictionary["commentText"] = self.commentTextView?.text
+                    commentsDictionary["sender"] = PFUser.current()
+                    commentsDictionary["text"] = self.commentTextView?.text
                     
                     commentsArray.append(commentsDictionary)
                     self.currentUpdate?["comments"] = commentsArray
-                    self.currentUpdate?.incrementKey("likeCount", byAmount: 1)
+                    self.currentUpdate?.incrementKey("commentCount", byAmount: 1)
                     self.currentUpdate?.saveInBackground()
                 } else {
-                    print(error?.localizedDescription)
+                    print(error?.localizedDescription as Any)
                 }
             })
             
-            
+            // Save comment in goal interactions array
+             currentGoal?.saveInBackground(block: { (success: Bool, error: Error?) in
+                 if error == nil {
+                     var interactionsArray = self.currentGoal?["interactions"] as! [[String: Any]]
+                     var newInteraction: [String: Any] = [:]
+                     newInteraction["sender"] = PFUser.current()
+                     newInteraction["type"] = "comment"
+                     newInteraction["text"] = self.commentTextView?.text
+                     newInteraction["createdAt"] = NSDate()
+                     
+                     interactionsArray.append(newInteraction)
+                     self.currentGoal?["interactions"] = interactionsArray
+                     self.currentGoal?.saveInBackground()
+                 } else {
+                     print(error?.localizedDescription as Any)
+                 }
+             })
             
         }
     }

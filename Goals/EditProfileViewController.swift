@@ -17,6 +17,18 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     @IBOutlet weak var bioField: UITextField!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if PFUser.current()?.object(forKey: "IconURL") != nil {
+            let userImageFile:PFFile = PFUser.current()?.object(forKey: "IconURL") as! PFFile
+            
+            userImageFile.getDataInBackground(block: { (imageData: Data?, error: Error?) in
+                self.photoPreview.image = UIImage(data: imageData!)
+            })
+        }
+    }
+    
     @IBAction func takePhotoButton(_ sender: Any) {
         let vc = UIImagePickerController()
         vc.delegate = self
@@ -65,35 +77,24 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func saveEdits(_ sender: Any) {
+    @IBAction func didTapSave(_ sender: Any) {
         let myUser = PFUser.current()
         let imageURL = Update.getPFFileFromImage(image: editedImage)
         myUser?["IconURL"] = imageURL
         myUser?.saveInBackground()
         
-        
         self.dismiss(animated: true, completion: nil)
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if PFUser.current()?.object(forKey: "IconURL") != nil {
-            let userImageFile:PFFile = PFUser.current()?.object(forKey: "IconURL") as! PFFile
-            
-            userImageFile.getDataInBackground(block: { (imageData: Data?, error: Error?) in
-                self.photoPreview.image = UIImage(data: imageData!)
-            })
-        }
-        
-    }
 
+    @IBAction func didTapCancel(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
 
