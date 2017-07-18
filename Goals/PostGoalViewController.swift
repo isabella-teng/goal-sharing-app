@@ -29,8 +29,9 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         self.descriptionTextView = RSKPlaceholderTextView(frame: CGRect(x: 16, y: 112, width: self.view.frame.width - 32, height: 122))
         self.descriptionTextView?.placeholder = "Briefly describe your goal"
         self.view.addSubview(self.descriptionTextView!)
-        self.descriptionTextView?.becomeFirstResponder()
         self.descriptionTextView?.font = UIFont (name: "HelveticaNeue-Light", size: 22)
+        
+        titleTextField.becomeFirstResponder()
     }
 
     @IBAction func didPostGoal(_ sender: Any) {

@@ -55,7 +55,7 @@ class Goal: NSObject {
     }
     
     
-    //Log settings
+    // Log settings
     enum LogSettings: Int {
         case daily
         case weekly
@@ -99,14 +99,8 @@ class Goal: NSObject {
         goal["icon"] = NSNull()
         goal["progress"] = NSNull()
         goal["videoReplies"] = NSNull()
-        
-        
-        let updateIds: [NSString] = []
-        
-        
-        // TODO: Create first update
-
-        goal["updates"] = updateIds
+        goal["updates"] = []
+        goal["interactions"] = []
 
         
         // Save object (following function will save the object in Parse asynchronously)

@@ -33,11 +33,8 @@ class Update: NSObject {
         update["liked"] = false //should also have in the user
         update["comments"] = [[:]]
         update["commentCount"] = 0
-        //update["userInteractions"] = [[:]]  //will be comments and videos for now
+        update["videos"] = [[:]]
         
-
-        
-
         // Save object (following function will save the object in Parse asynchronously)
         update.saveInBackground { (success: Bool, error: Error?) in
             if error == nil {
