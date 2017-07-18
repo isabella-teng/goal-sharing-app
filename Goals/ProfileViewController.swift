@@ -52,17 +52,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 //        
 //        var profilePicture: PFObject! {
 //            didSet {
-//
-//                
 //            }
 //        }
         
         profileImageView.layer.cornerRadius = 35
         profileImageView.clipsToBounds = true
-    }
-    
-    func profileCell(_ profileCell: ProfileCell, didTap goal: PFObject) {
-        performSegue(withIdentifier: "profiletoDetailSegue", sender: goal)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -77,8 +71,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    
-    
     // Return amount of tableView cells
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allUserPosts!.count
@@ -91,6 +83,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.delegate = self
         
         return cell
+    }
+    
+    func profileCell(_ profileCell: ProfileCell, didTap goal: PFObject) {
+        performSegue(withIdentifier: "profiletoDetailSegue", sender: goal)
     }
 
     // Log user out
