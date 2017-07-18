@@ -8,6 +8,7 @@
 
 import UIKit
 import Charts
+<<<<<<< HEAD
 
 
 class ProgressViewController: UIViewController, ChartViewDelegate {
@@ -18,10 +19,40 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
     }
     
     var months: [String] = []
+=======
+import Parse
+import RealmSwift
+
+class ProgressViewController: UIViewController {
+
+    @IBOutlet weak var barView: BarChartView!
+    @IBAction func cancelButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+
+    
+    
+//    dynamic var date: Date = Date()
+//    dynamic var count: Int = Int(0)
+//    
+//    func save() {
+//        do {
+//            let realm = try Realm()
+//            try realm.write {
+//                realm.add(self)
+//            }
+//        } catch let error as NSError {
+//            fatalError(error.localizedDescription)
+//        }
+//    }
+    
+    
+>>>>>>> 00e31367eef56c7a4914b94a7bf3677ba6daafae
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+<<<<<<< HEAD
         barChartView.delegate = self
         months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
         let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0, 16.0, 4.0, 18.0, 2.0, 4.0, 5.0, 4.0]
@@ -56,6 +87,11 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
     }
     
     
+=======
+    }
+    
+
+>>>>>>> 00e31367eef56c7a4914b94a7bf3677ba6daafae
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

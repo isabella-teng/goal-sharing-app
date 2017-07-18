@@ -714,6 +714,42 @@
             </objects>
             <point key="canvasLocation" x="3692" y="-647"/>
         </scene>
+        <!--Progress View Controller-->
+        <scene sceneID="die-gZ-wEZ">
+            <objects>
+                <viewController id="rr1-9q-47d" customClass="ProgressViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Eft-iW-wW4"/>
+                        <viewControllerLayoutGuide type="bottom" id="PP2-cE-Mfg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ddf-JN-9hp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6w-rL-kri">
+                                <rect key="frame" x="38" y="20" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelButton:" destination="rr1-9q-47d" eventType="touchUpInside" id="02l-yG-XGN"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8gf-nA-VXC" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="16" y="67" width="343" height="580"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="barView" destination="8gf-nA-VXC" id="Jw7-ng-7UA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tkr-ey-XhE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4562.3999999999996" y="1772.5637181409297"/>
+        </scene>
         <!--Explore-->
         <scene sceneID="HQI-JE-X9N">
             <objects>
@@ -947,6 +983,8 @@
         <image name="photo" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="plk-n3-k2h"/>
+        <segue reference="e0i-yX-NK2"/>
         <segue reference="ZpT-ic-j8z"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
