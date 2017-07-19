@@ -20,7 +20,6 @@ PODS:
   - SwiftyCam (2.4.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.4)
   - AlamofireImage (~> 3.1)
   - Charts
   - Parse
@@ -41,6 +40,6 @@ SPEC CHECKSUMS:
   RSKPlaceholderTextView: 301f0f30e70e7c42fe4e941e3a08365ab0d890d5
   SwiftyCam: cb83b9a8e181f70fb741d30cea724c6b045a4549
 
-PODFILE CHECKSUM: 4f6e17fefd0f808550a532c5318c7e089435d4d8
+PODFILE CHECKSUM: 19d6cbe4301079eef9573b010521771689f37006
 
 COCOAPODS: 1.2.1
