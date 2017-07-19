@@ -15,6 +15,8 @@ import ParseUI
 class PostCommentViewController: UIViewController {
 
     var commentTextView: RSKPlaceholderTextView? = nil
+    var currentUpdate: PFObject?
+    var currentGoal: PFObject?
     
 //    var update: PFObject! {
 //        didSet{
@@ -22,9 +24,6 @@ class PostCommentViewController: UIViewController {
 //            let currentCommentCount = update["commentCount"] as! Int
 //        }
 //    }
-    
-    var currentUpdate: PFObject?
-    var currentGoal: PFObject?
     
     @IBOutlet weak var commentButton: UIButton!
     
@@ -83,7 +82,7 @@ class PostCommentViewController: UIViewController {
             // Save comment in goal interactions array
              currentGoal?.saveInBackground(block: { (success: Bool, error: Error?) in
                  if error == nil {
-                     var interactionsArray = self.currentGoal?["interactions"] as! [[String: Any]]
+                     var interactionsArray = self.currentGoal?["activity"] as! [[String: Any]]
                      var newInteraction: [String: Any] = [:]
                      newInteraction["sender"] = PFUser.current()
                      newInteraction["type"] = "comment"
@@ -91,7 +90,7 @@ class PostCommentViewController: UIViewController {
                      newInteraction["createdAt"] = NSDate()
                      
                      interactionsArray.append(newInteraction)
-                     self.currentGoal?["interactions"] = interactionsArray
+                     self.currentGoal?["activity"] = interactionsArray
                      self.currentGoal?.saveInBackground()
                  } else {
                      print(error?.localizedDescription as Any)

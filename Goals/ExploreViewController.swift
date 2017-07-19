@@ -32,7 +32,7 @@ class ExploreViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let currentNode = nodes[indexPath.row]
         let currentType = currentNode["type"] as! String
-        if indexPath.row == 0 {
+        if indexPath.row == 90 {
             let cell = (tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath) as! HeaderCell)
             cell.data = nodes[indexPath.row]
             return cell
