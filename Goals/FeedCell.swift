@@ -68,6 +68,16 @@ class FeedCell: UITableViewCell {
                 self.favoriteButton.isSelected = false
             }
             
+            //change background of cell based on the good or bad update
+            //http://uicolor.xyz/#/rgb-to-ui
+            
+            let typeString = update["type"] as! String
+            if typeString == "Good update" {
+                cellBackground.backgroundColor = UIColor(red:0.50, green:0.91, blue:0.67, alpha:1.0)
+            } else if typeString == "Bad update" {
+                cellBackground.backgroundColor = UIColor(red:0.96, green:0.48, blue:0.48, alpha:1.0)
+            }
+            
         }
     }
     

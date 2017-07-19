@@ -16,6 +16,8 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
     var updateTextView: RSKPlaceholderTextView? = nil
     @IBOutlet weak var postButton: UIButton!
     
+    @IBOutlet weak var typeControl: UISegmentedControl!
+    
     var currentGoal: PFObject?
     
     override func viewDidLoad() {
@@ -52,6 +54,9 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
             data["text"] = updateTextView?.text
             data["goalId"] = currentGoal?.objectId
             data["goalTitle"] = currentGoal!["title"]
+            
+            let updateType = Update.returnUpdateType(index: typeControl.selectedSegmentIndex)
+            data["type"] = updateType
             
             Update.createUpdate(data: data)
         }

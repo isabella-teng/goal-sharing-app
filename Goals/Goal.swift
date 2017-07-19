@@ -110,6 +110,7 @@ class Goal: NSObject {
                 updateData["text"] = data["description"]
                 updateData["goalId"] = goal.objectId
                 updateData["goalTitle"] = goal["title"]
+                updateData["type"] = "initialGoalNoType"
                 Update.createUpdate(data: updateData)
             }
         }
