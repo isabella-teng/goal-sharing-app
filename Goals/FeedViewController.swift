@@ -54,12 +54,13 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
-    func feedCell(_ feedCell: FeedCell, didTap update: PFObject, tappedComment: Bool) {
-        //segue sending over the goal id to the detail view controller
-        if !tappedComment {
-            performSegue(withIdentifier: "detailSegue", sender: update)
-        } else {
+    func feedCell(_ feedCell: FeedCell, didTap update: PFObject, tappedComment: Bool, tappedCamera: Bool) {
+        if tappedComment {
             performSegue(withIdentifier: "commentSegue", sender: update)
+        } else if tappedCamera {
+            performSegue(withIdentifier: "cameraSegue", sender: update)
+        } else {
+            performSegue(withIdentifier: "detailSegue", sender: update) //to Detail controller
         }
         
     }
@@ -70,6 +71,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             vc.currentUpdate = sender as? PFObject
         } else if (segue.identifier == "commentSegue") {
             let vc = segue.destination as! PostCommentViewController
+            vc.currentUpdate = sender as? PFObject
+        } else if (segue.identifier == "cameraSegue") {
+            let vc = segue.destination as! CameraViewController
             vc.currentUpdate = sender as? PFObject
         }
     }

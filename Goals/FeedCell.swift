@@ -10,7 +10,7 @@ import UIKit
 import Parse
 
 protocol FeedCellDelegate: class {
-    func feedCell(_ feedCell: FeedCell, didTap update: PFObject, tappedComment: Bool)
+    func feedCell(_ feedCell: FeedCell, didTap update: PFObject, tappedComment: Bool, tappedCamera: Bool)
 }
 
 class FeedCell: UITableViewCell {
@@ -84,12 +84,18 @@ class FeedCell: UITableViewCell {
 
     func didTapCell(_ sender: UITapGestureRecognizer) {
         // Call method on delegate
-        delegate?.feedCell(self, didTap: update, tappedComment: false)
+        delegate?.feedCell(self, didTap: update, tappedComment: false, tappedCamera: false)
     }
     
     func didTapCommentButton(_ sender: UITapGestureRecognizer) {
-        delegate?.feedCell(self, didTap: update, tappedComment: true)
+        delegate?.feedCell(self, didTap: update, tappedComment: true, tappedCamera: false)
     }
+    
+    func didTapCameraButton(_ sender: UITapGestureRecognizer) {
+        delegate?.feedCell(self, didTap: update, tappedComment: false, tappedCamera: true)
+    }
+    
+    
     
     
     @IBAction func onFavorite(_ sender: Any) {
@@ -132,6 +138,10 @@ class FeedCell: UITableViewCell {
         let commentTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCommentButton(_:)))
         commentButton.addGestureRecognizer(commentTapGestureRecognizer)
         commentButton.isUserInteractionEnabled = true
+        
+        let cameraTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCameraButton(_:)))
+        videoButton.addGestureRecognizer(cameraTapGestureRecognizer)
+        videoButton.isUserInteractionEnabled = true
         
         cellBackground.layer.cornerRadius = 10
     }

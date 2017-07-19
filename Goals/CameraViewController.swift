@@ -8,32 +8,12 @@
 
 import UIKit
 import SwiftyCam
+import Parse
+import ParseUI
 
 class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
     
-    //change shrinkButton function to
-//    if self.innerCircle == nil {
-//    innerCircle = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
-//    innerCircle.center = CGPoint(x: self.bounds.midX, y: self.bounds.midY)
-//    innerCircle.backgroundColor = UIColor.red
-//    innerCircle.layer.cornerRadius = innerCircle.frame.size.width / 2
-//    innerCircle.clipsToBounds = true
-//    self.addSubview(innerCircle)
-//    
-//    self.innerCircle.transform = CGAffineTransform(scaleX: 62.4, y: 62.4)
-//    self.circleBorder.setAffineTransform(CGAffineTransform(scaleX: 1.352, y: 1.352))
-//    self.circleBorder.borderWidth = (6 / 1.352)
-//    
-//    }
-//    UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
-//    self.innerCircle.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-//    self.circleBorder.setAffineTransform(CGAffineTransform(scaleX: 1.0, y: 1.0))
-//    self.circleBorder.borderWidth = 6.0
-//    }, completion: { (success) in
-//    self.innerCircle.removeFromSuperview()
-//    self.innerCircle.isHidden = true;
-//    })
-
+    var currentUpdate: PFObject?
     
     var captureButton: SwiftyCamRecordButton!
     var flipCameraButton: UIButton!
@@ -42,7 +22,7 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         cameraDelegate = self
-        defaultCamera = .front
+        //defaultCamera = .front
         maximumVideoDuration = 10.0
         shouldUseDeviceOrientation = true
         allowAutoRotate = true
@@ -91,11 +71,16 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
         })
     }
     
-    func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFinishProcessVideoAt url: URL) {
+    func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFinishProcessVideoAt url: URL) { //send over the video url and the current update
         // Called when stopVideoRecording() is called and the video is finished processing
         // Returns a URL in the temporary directory where video is stored
-        let newVC = VideoViewController(videoURL: url)
+        
+        let newVC = VideoViewController(videoURL: url, update: self.currentUpdate!)
         self.present(newVC, animated: true, completion: nil)
+        
+        
+        //performSegue(withIdentifier: "videoSegue", sender: url)
+        
     }
     
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFocusAtPoint point: CGPoint) {
@@ -186,7 +171,7 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
         dismiss(animated: true, completion: nil)
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if (segue.identifier == "photoSegue") {
 //            //let vc = segue.destination as! PhotoViewController
 //            let vc = segue.destination as! PhotoViewController//(image: sender as! UIImage)
@@ -196,8 +181,36 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
 //            
 //            
 //        }
-//    }
+//        if (segue.identifier == "cameraSegue") {
+//            print("moo")
+////            let newVC = VideoViewController(videoURL: sender as! URL)
+////            self.present(newVC, animated: true, completion: nil)
+//            let newVC = segue.destination as! VideoViewController
+//            newVC.currentUpdate = self.currentUpdate
+//        }
+    }
    
-
+    //change shrinkButton function to
+    //    if self.innerCircle == nil {
+    //    innerCircle = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
+    //    innerCircle.center = CGPoint(x: self.bounds.midX, y: self.bounds.midY)
+    //    innerCircle.backgroundColor = UIColor.red
+    //    innerCircle.layer.cornerRadius = innerCircle.frame.size.width / 2
+    //    innerCircle.clipsToBounds = true
+    //    self.addSubview(innerCircle)
+    //
+    //    self.innerCircle.transform = CGAffineTransform(scaleX: 62.4, y: 62.4)
+    //    self.circleBorder.setAffineTransform(CGAffineTransform(scaleX: 1.352, y: 1.352))
+    //    self.circleBorder.borderWidth = (6 / 1.352)
+    //
+    //    }
+    //    UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
+    //    self.innerCircle.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+    //    self.circleBorder.setAffineTransform(CGAffineTransform(scaleX: 1.0, y: 1.0))
+    //    self.circleBorder.borderWidth = 6.0
+    //    }, completion: { (success) in
+    //    self.innerCircle.removeFromSuperview()
+    //    self.innerCircle.isHidden = true;
+    //    })\
 
 }

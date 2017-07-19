@@ -53,7 +53,9 @@ class Update: NSObject {
         update["liked"] = false //should also have in the user
         update["comments"] = []
         update["commentCount"] = 0
-        update["videos"] = []
+        update["videos"] = [[:]] //will contain the caption string, video url string, and author
+        update["pictures"] = [[:]] //contain the caption string, picture url string, and author
+
         
         
         // Save object (following function will save the object in Parse asynchronously)
