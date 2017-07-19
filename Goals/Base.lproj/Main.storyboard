@@ -314,14 +314,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Feed" id="TXs-L2-SH2">
-                        <barButtonItem key="leftBarButtonItem" title="Update" id="ZtU-yN-AxO">
-                            <connections>
-                                <segue destination="VhF-kq-3KK" kind="presentation" id="uvP-4o-G90"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Post Goal" id="AFo-7Q-Wdj">
+                        <barButtonItem key="leftBarButtonItem" title="Post Goal" id="AFo-7Q-Wdj">
                             <connections>
                                 <segue destination="wh1-XR-JhU" kind="presentation" identifier="" id="GcN-JU-aZ0"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Update" id="ZtU-yN-AxO">
+                            <connections>
+                                <segue destination="VhF-kq-3KK" kind="presentation" id="uvP-4o-G90"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
