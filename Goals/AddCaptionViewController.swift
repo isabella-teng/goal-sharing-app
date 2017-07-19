@@ -48,9 +48,6 @@ class AddCaptionViewController: UIViewController {
         self.view.backgroundColor = UIColor.gray
         
         
-//        print(currentUpdate?.objectId)
-//        print(savedMedia)
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
