@@ -13,9 +13,9 @@ class HeaderCell: UITableViewCell {
     @IBOutlet weak var cellBackground: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     
-    var data: [String: Any?] = [:] {
+    var data: [String: Any] = [:] {
         didSet {
-            titleLabel.text = data["text"] as? String
+            titleLabel.text = (data["text"] as! String)
         }
     }
     

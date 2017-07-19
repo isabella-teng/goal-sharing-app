@@ -34,7 +34,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = (tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath) as! HeaderCell)
-
+            let title = currentGoal?["title"] as! String
+            cell.data = ["text": title]
             return cell
         } else if indexPath.row == 1 {
             let cell = (tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! InfoCell)
@@ -60,6 +61,10 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
 
+    @IBAction func didTapClose(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
