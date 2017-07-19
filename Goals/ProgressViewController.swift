@@ -11,17 +11,27 @@ import Charts
 
 
 class ProgressViewController: UIViewController, ChartViewDelegate {
-
+    
     @IBOutlet weak var barChartView: BarChartView!
     @IBAction func cancelButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
+<<<<<<< HEAD
     weak var axisFormatDelegate: IAxisValueFormatter?
     
     var days: [String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+=======
+    var months: [String] = []
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Do any additional setup after loading the view.
+        
+>>>>>>> ee2eebf5ede9fce31831c37898813d97a0412b73
         barChartView.delegate = self
         axisFormatDelegate = self as? IAxisValueFormatter
         days = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]
@@ -69,13 +79,19 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
         barChartView.rightAxis.addLimitLine(lineLimit)
     }
     
+<<<<<<< HEAD
+=======
+    
+    
+>>>>>>> ee2eebf5ede9fce31831c37898813d97a0412b73
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
+<<<<<<< HEAD
     // MARK: - Navigation
      
      
@@ -88,5 +104,15 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
     */
 
     
+=======
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+>>>>>>> ee2eebf5ede9fce31831c37898813d97a0412b73
     
 }

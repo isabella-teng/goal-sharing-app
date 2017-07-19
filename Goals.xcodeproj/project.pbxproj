@@ -22,6 +22,7 @@
 		B87C87EE1F156E9300F58517 /* PostGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87ED1F156E9300F58517 /* PostGoalViewController.swift */; };
 		B87C87F01F159AE100F58517 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87EF1F159AE100F58517 /* DetailViewController.swift */; };
 		B87C87F21F169B5500F58517 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87F11F169B5500F58517 /* EditProfileViewController.swift */; };
+		B8A1F85D1F1ECFAE003B0352 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A1F85C1F1ECFAE003B0352 /* ProgressViewController.swift */; };
 		B8DC4F841F1D94B200A08729 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC4F831F1D94B200A08729 /* ProgressViewController.swift */; };
 		FACF129C1F15476200D505FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF129B1F15476200D505FE /* AppDelegate.swift */; };
 		FACF12A11F15476200D505FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACF129F1F15476200D505FE /* Main.storyboard */; };
@@ -73,6 +74,7 @@
 		B87C87ED1F156E9300F58517 /* PostGoalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostGoalViewController.swift; sourceTree = "<group>"; };
 		B87C87EF1F159AE100F58517 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B87C87F11F169B5500F58517 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		B8A1F85C1F1ECFAE003B0352 /* ProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		B8DC4F831F1D94B200A08729 /* ProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		CB4F6A01BA5261F1C95C9952 /* Pods-GoalsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsTests/Pods-GoalsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CF3584AB59D862ECDED6FA78 /* Pods-Goals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Goals.release.xcconfig"; path = "Pods/Target Support Files/Pods-Goals/Pods-Goals.release.xcconfig"; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				7E1FCE631F16E6DC009C0AF1 /* PostUpdateViewController.swift */,
 				B812C1141F1833F100953A11 /* CommentViewController.swift */,
 				B8DC4F831F1D94B200A08729 /* ProgressViewController.swift */,
+				B8A1F85C1F1ECFAE003B0352 /* ProgressViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -539,12 +542,12 @@
 				FACF12CF1F154A8700D505FE /* ProfileViewController.swift in Sources */,
 				7EF1FFD51F158598000DA708 /* ExploreViewController.swift in Sources */,
 				FACF129C1F15476200D505FE /* AppDelegate.swift in Sources */,
-				B812C1151F1833F100953A11 /* CommentViewController.swift in Sources */,
 				FAD3514A1F1838D500998CCA /* GoalCell.swift in Sources */,
 				B87C87F01F159AE100F58517 /* DetailViewController.swift in Sources */,
 				B87C87F21F169B5500F58517 /* EditProfileViewController.swift in Sources */,
 				7E38DFDB1F15813400DEF47C /* Update.swift in Sources */,
 				B8DC4F841F1D94B200A08729 /* ProgressViewController.swift in Sources */,
+				B8A1F85D1F1ECFAE003B0352 /* ProgressViewController.swift in Sources */,
 				FAD3513A1F1597FE00998CCA /* User.swift in Sources */,
 				FACF12D21F156E8C00D505FE /* ProfileCell.swift in Sources */,
 				FAD3513E1F16D49A00998CCA /* LogCell.swift in Sources */,
