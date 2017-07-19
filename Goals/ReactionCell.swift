@@ -16,7 +16,6 @@ class ReactionCell: UITableViewCell {
     
     var data: [String: Any] = [:] {
         didSet {
-            print(data)
             leftLabel.text = data["text"] as? String
         }
     }
