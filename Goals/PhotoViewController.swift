@@ -26,7 +26,6 @@ class PhotoViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        //print("made it ")
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.gray
         let backgroundImageView = UIImageView(frame: view.frame)
@@ -51,8 +50,8 @@ class PhotoViewController: UIViewController {
     }
     
     func edit() {
-        let newVC: UIViewController = AddCaptionViewController()
-        self.present(newVC, animated: true, completion: nil)
+        //let newVC: UIViewController = AddCaptionViewController()
+        //self.present(newVC, animated: true, completion: nil)
         //self.show(newVC, sender: self)
         
         //performSegue(withIdentifier: "editPhotoSegue", sender: self)

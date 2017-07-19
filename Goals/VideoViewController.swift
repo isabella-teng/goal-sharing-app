@@ -9,19 +9,25 @@
 import UIKit
 import AVFoundation
 import AVKit
+import Parse
 
 class VideoViewController: UIViewController {
-
+    
+    
+    @IBOutlet weak var testLabel: UILabel!
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
     
-    private var videoURL: URL
+    var currentUpdate: PFObject?
+    var videoURL: URL
     var player: AVPlayer?
     var playerController : AVPlayerViewController?
     
-    init(videoURL: URL) {
+    init(videoURL: URL, update: PFObject) {
         self.videoURL = videoURL
+        self.currentUpdate = update
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -51,7 +57,28 @@ class VideoViewController: UIViewController {
         cancelButton.setImage(#imageLiteral(resourceName: "cancel"), for: UIControlState())
         cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         view.addSubview(cancelButton)
+        
+        let test = CGFloat((view.frame.width - (view.frame.width / 2 + 37.5)) + ((view.frame.width / 2) - 37.5) - 9.0)
+        let editButton = UIButton(frame: CGRect(x: test, y: view.frame.height - 77.5, width: 32.0, height: 32.0))
+        editButton.setImage(#imageLiteral(resourceName: "edit"), for: UIControlState())
+        editButton.addTarget(self, action: #selector(edit), for: .touchUpInside)
+        view.addSubview(editButton)
+        
+//        view.addSubview(testLabel)
+//        //testLabel.superview?.bringSubview(toFront: testLabel)
+//        print("broken here")
+//        if testLabel == nil {
+//            print("something is wrong")
+//        }
+        //print(currentUpdate?["goalId"] as! String)
+
     }
+    
+    func edit() {
+        let newVC: UIViewController = AddCaptionViewController(mediaInfo: videoURL, update: currentUpdate!, mediaType: "video")
+        self.present(newVC, animated: true, completion: nil)
+    }
+
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

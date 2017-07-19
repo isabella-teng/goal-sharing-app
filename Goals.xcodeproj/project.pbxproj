@@ -184,9 +184,9 @@
 			isa = PBXGroup;
 			children = (
 				FAA6C8C21F1EA79900FB8F26 /* CameraViewController.swift */,
+				FAA6C8C91F1EC24300FB8F26 /* VideoViewController.swift */,
 				FAA6C8C71F1EB97E00FB8F26 /* PhotoViewController.swift */,
 				FAA6C8CB1F1ED64800FB8F26 /* AddCaptionViewController.swift */,
-				FAA6C8C91F1EC24300FB8F26 /* VideoViewController.swift */,
 			);
 			name = "Camera VCs ";
 			sourceTree = "<group>";
@@ -250,10 +250,10 @@
 			isa = PBXGroup;
 			children = (
 				FAA6C8C61F1EB94D00FB8F26 /* Camera VCs  */,
+				7EEEFB161F158A6E004A29EC /* FeedViewController.swift */,
 				FAD351411F182FC500998CCA /* AllGoalsViewController.swift */,
 				B87C87F11F169B5500F58517 /* EditProfileViewController.swift */,
 				7EF1FFD41F158598000DA708 /* ExploreViewController.swift */,
-				7EEEFB161F158A6E004A29EC /* FeedViewController.swift */,
 				FACF12CE1F154A8700D505FE /* ProfileViewController.swift */,
 				FACF12C91F154A3D00D505FE /* LoginViewController.swift */,
 				B87C87EF1F159AE100F58517 /* DetailViewController.swift */,
