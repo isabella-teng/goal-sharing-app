@@ -15,7 +15,10 @@ class MediaCell: UITableViewCell {
     
     var data: [String: Any] = [:] {
         didSet {
-            cellImage.image = data["image"] as? UIImage
+            let currentType = data["type"] as! String
+            if currentType == "image" {
+                cellImage.image = data["image"] as? UIImage
+            }
         }
     }
 
