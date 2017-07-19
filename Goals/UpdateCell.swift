@@ -14,6 +14,8 @@ class UpdateCell: UITableViewCell {
     @IBOutlet weak var rightBackground: UIView!
     @IBOutlet weak var rightLabel: UILabel!
     @IBOutlet weak var nodeView: UIView!
+    @IBOutlet weak var captionBackground: UIView!
+    @IBOutlet weak var profileImage: UIImageView!
     
     var data: [String: Any] = [:] {
         didSet {
@@ -25,7 +27,9 @@ class UpdateCell: UITableViewCell {
         super.awakeFromNib()
         
         rightBackground.layer.cornerRadius = 10
+        captionBackground.layer.cornerRadius = 10
         nodeView.layer.cornerRadius = nodeView.frame.height / 2
+        profileImage.layer.cornerRadius = profileImage.frame.height / 2
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
