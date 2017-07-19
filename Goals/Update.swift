@@ -51,10 +51,11 @@ class Update: NSObject {
         update["likes"] = []
         update["likeCount"] = 0
         update["liked"] = false //should also have in the user
-        update["comments"] = [[:]]
+        update["comments"] = []
         update["commentCount"] = 0
         update["videos"] = [[:]] //will contain the caption string, video url string, and author
         update["pictures"] = [[:]] //contain the caption string, picture url string, and author
+
         
         
         // Save object (following function will save the object in Parse asynchronously)
@@ -63,8 +64,11 @@ class Update: NSObject {
                 Goal.fetchGoalWithId(id: data["goalId"] as! String, withCompletion: { (goal: PFObject?, error: Error?) in
                     if error == nil {
                         var updatesArray = goal?["updates"] as! [String]
+                        var activityArray = goal?["activity"] as! [[String: Any]]
                         updatesArray.append(update.objectId!)
+                        activityArray.append(["type": "update", "text": update["text"]])
                         goal?["updates"] = updatesArray
+                        goal?["activity"] = activityArray
                         goal?.saveInBackground()
                     }
                 })

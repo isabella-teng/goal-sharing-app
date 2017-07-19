@@ -29,6 +29,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100
         
         usernameLabel.text = PFUser.current()?.username
         
@@ -86,7 +88,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func profileCell(_ profileCell: ProfileCell, didTap goal: PFObject) {
-        performSegue(withIdentifier: "profiletoDetailSegue", sender: goal)
+        performSegue(withIdentifier: "profileToTimeline", sender: goal)
     }
 
     // Log user out
@@ -102,9 +104,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "profiletoDetailSegue") {
-            let vc = segue.destination as! DetailViewController
-            vc.currentUpdate = sender as? PFObject
+        if (segue.identifier == "profileToTimeline") {
+            let vc = segue.destination as! TimelineViewController
+            vc.currentGoal = sender as? PFObject
         }
     }
     

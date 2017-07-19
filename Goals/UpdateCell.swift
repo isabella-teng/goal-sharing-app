@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class UpdateCell: UITableViewCell {
 
@@ -14,9 +15,9 @@ class UpdateCell: UITableViewCell {
     @IBOutlet weak var rightLabel: UILabel!
     @IBOutlet weak var nodeView: UIView!
     
-    var data: [String: Any?] = [:] {
+    var data: [String: Any] = [:] {
         didSet {
-            rightLabel.text = data["text"] as? String
+            rightLabel.text = (data["text"] as! String)
         }
     }
     

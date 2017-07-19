@@ -1,5 +1,5 @@
 //
-//  ExploreViewController.swift
+//  TimelineViewController.swift
 //  Goals
 //
 //  Created by Gerardo Parra on 7/11/17.
@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Parse
 
-class ExploreViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var nodes: [[String: Any?]] = []
+    var currentGoal: PFObject?
+    var nodes: [[String: Any]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,32 +24,39 @@ class ExploreViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
         
-        nodes = [["type": "post", "text": "Go to Chick Fil A"], ["type": "update", "text": "You started your goal of eating more chicken!"], ["type": "image", "image": #imageLiteral(resourceName: "isabella")], ["type": "update", "text": "Close--went to Whataburger"], ["type": "comment", "text": "congrats on your progress!"]]
+        nodes = currentGoal?["activity"] as! [[String : Any]]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return nodes.count
+        return nodes.count + 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let currentNode = nodes[indexPath.row]
-        let currentType = currentNode["type"] as! String
         if indexPath.row == 0 {
             let cell = (tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath) as! HeaderCell)
-            cell.data = nodes[indexPath.row]
+
             return cell
-        } else if currentType == "update" {
-            let cell = (tableView.dequeueReusableCell(withIdentifier: "UpdateCell", for: indexPath) as! UpdateCell)
-            cell.data = nodes[indexPath.row]
-            return cell
-        } else if currentType == "image" || currentType == "video" {
-            let cell = (tableView.dequeueReusableCell(withIdentifier: "MediaCell", for: indexPath) as! MediaCell)
-            cell.data = nodes[indexPath.row]
+        } else if indexPath.row == 1 {
+            let cell = (tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! InfoCell)
+            
             return cell
         } else {
-            let cell = (tableView.dequeueReusableCell(withIdentifier: "ReactionCell", for: indexPath) as! ReactionCell)
-            cell.data = nodes[indexPath.row]
-            return cell
+            let currentNode = nodes[indexPath.row - 2]
+            let currentType = currentNode["type"] as! String
+            
+            if currentType == "update" {
+                let cell = (tableView.dequeueReusableCell(withIdentifier: "UpdateCell", for: indexPath) as! UpdateCell)
+                cell.data = nodes[indexPath.row - 2]
+                return cell
+            } else if currentType == "image" || currentType == "video" {
+                let cell = (tableView.dequeueReusableCell(withIdentifier: "MediaCell", for: indexPath) as! MediaCell)
+                cell.data = nodes[indexPath.row - 2]
+                return cell
+            } else {
+                let cell = (tableView.dequeueReusableCell(withIdentifier: "ReactionCell", for: indexPath) as! ReactionCell)
+                cell.data = nodes[indexPath.row - 2]
+                return cell
+            }
         }
     }
 

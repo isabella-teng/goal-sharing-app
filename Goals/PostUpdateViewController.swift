@@ -15,9 +15,8 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
 
     var updateTextView: RSKPlaceholderTextView? = nil
     @IBOutlet weak var postButton: UIButton!
-    
     @IBOutlet weak var typeControl: UISegmentedControl!
-    
+
     var currentGoal: PFObject?
     
     override func viewDidLoad() {
@@ -48,7 +47,7 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
             self.present(alertController, animated: true)
         } else {
             self.dismiss(animated: true, completion: nil)
-            
+
             // Data to post to Parse
             var data: [String: Any] = [:]
             data["text"] = updateTextView?.text

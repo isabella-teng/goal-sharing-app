@@ -1,27 +1,21 @@
 //
-//  HeaderCell.swift
+//  InfoCell.swift
 //  Goals
 //
-//  Created by Gerardo Parra on 7/18/17.
+//  Created by Gerardo Parra on 7/19/17.
 //  Copyright © 2017 Isabella Teng. All rights reserved.
 //
 
 import UIKit
 
-class HeaderCell: UITableViewCell {
+class InfoCell: UITableViewCell {
 
-    @IBOutlet weak var cellBackground: UIView!
-    @IBOutlet weak var titleLabel: UILabel!
-    
-    var data: [String: Any?] = [:] {
-        didSet {
-            titleLabel.text = data["text"] as? String
-        }
-    }
+    @IBOutlet weak var progressBackground: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        progressBackground.layer.cornerRadius = 10
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -57,6 +57,7 @@ class AddCaptionViewController: UIViewController {
         let test = CGFloat((view.frame.width - (view.frame.width / 2 + 37.5)) + ((view.frame.width / 2) - 37.5) - 9.0)
         
         let postButton = UIButton(frame: CGRect(x: test, y: view.frame.height - 350, width: 30.0, height: 40.0))
+
         postButton.setImage(#imageLiteral(resourceName: "send"), for: UIControlState())
         postButton.addTarget(self, action: #selector(post), for: .touchUpInside)
         self.view.addSubview(postButton)

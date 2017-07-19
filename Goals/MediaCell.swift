@@ -13,7 +13,7 @@ class MediaCell: UITableViewCell {
     @IBOutlet weak var cellImage: UIImageView!
     @IBOutlet weak var nodeView: UIView!
     
-    var data: [String: Any?] = [:] {
+    var data: [String: Any] = [:] {
         didSet {
             cellImage.image = data["image"] as? UIImage
         }

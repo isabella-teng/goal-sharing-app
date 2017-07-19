@@ -100,7 +100,7 @@ class Goal: NSObject {
         goal["progress"] = NSNull()
         goal["videoReplies"] = NSNull()
         goal["updates"] = []
-        goal["interactions"] = []
+        goal["activity"] = []
 
         
         // Save object (following function will save the object in Parse asynchronously)
