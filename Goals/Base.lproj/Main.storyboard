@@ -529,6 +529,7 @@
                                         <connections>
                                             <outlet property="cellBackground" destination="H69-Hn-L0Q" id="e3f-e8-2KL"/>
                                             <outlet property="titleLabel" destination="eBR-kB-CaX" id="FWY-Sl-YiP"/>
+                                            <segue destination="TQZ-eh-Uwv" kind="show" identifier="profileToTimeline" id="Ptw-89-AKk"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -553,7 +554,6 @@
                         <outlet property="profileImageView" destination="UhH-ks-eog" id="q0W-Ae-c5p"/>
                         <outlet property="tableView" destination="bce-Sn-ehU" id="XCp-h4-FhL"/>
                         <outlet property="usernameLabel" destination="Joj-Jw-deG" id="6ph-cg-m15"/>
-                        <segue destination="cBe-TT-v37" kind="show" identifier="profiletoDetailSegue" id="e0i-yX-NK2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eTF-SU-lWR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -807,7 +807,7 @@
         <!--Timeline-->
         <scene sceneID="HQI-JE-X9N">
             <objects>
-                <viewController id="TQZ-eh-Uwv" customClass="ExploreViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="TQZ-eh-Uwv" customClass="TimelineViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KCY-H6-bba"/>
                         <viewControllerLayoutGuide type="bottom" id="SC2-Ee-iib"/>
@@ -833,7 +833,7 @@
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJZ-63-aBx">
                                                             <rect key="frame" x="16" y="25" width="343" height="86"/>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="35"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -1100,7 +1100,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aEb-zQ-Ws6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2789.5999999999999" y="138.98050974512745"/>
+            <point key="canvasLocation" x="3645.5999999999999" y="903.59820089955031"/>
         </scene>
         <!--Home-->
         <scene sceneID="Jg3-2V-tVf">
@@ -1172,9 +1172,6 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="TQZ-eh-Uwv" kind="relationship" relationship="rootViewController" id="AI9-3v-1EL"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CsJ-Z5-WQa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1316,8 +1313,5 @@
         <image name="like-red" width="24" height="24"/>
         <image name="photo" width="24" height="24"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="e0i-yX-NK2"/>
-    </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

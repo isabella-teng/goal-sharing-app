@@ -64,7 +64,7 @@ class Update: NSObject {
                         var updatesArray = goal?["updates"] as! [String]
                         var activityArray = goal?["activity"] as! [[String: Any]]
                         updatesArray.append(update.objectId!)
-                        activityArray.append(["type": "update", "update": update])
+                        activityArray.append(["type": "update", "text": update["text"]])
                         goal?["updates"] = updatesArray
                         goal?["activity"] = activityArray
                         goal?.saveInBackground()

@@ -21,7 +21,7 @@
 		7E949C081F18108800449DA0 /* PostCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E949C071F18108800449DA0 /* PostCommentViewController.swift */; };
 		7EE9D2AA1F1FDDCD00999BE6 /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE9D2A91F1FDDCD00999BE6 /* InfoCell.swift */; };
 		7EEEFB171F158A6E004A29EC /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEEFB161F158A6E004A29EC /* FeedViewController.swift */; };
-		7EF1FFD51F158598000DA708 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF1FFD41F158598000DA708 /* ExploreViewController.swift */; };
+		7EF1FFD51F158598000DA708 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF1FFD41F158598000DA708 /* TimelineViewController.swift */; };
 		B84B22791F1EDB6F00E9482E /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84B22781F1EDB6F00E9482E /* ProgressViewController.swift */; };
 		B87C87EE1F156E9300F58517 /* PostGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87ED1F156E9300F58517 /* PostGoalViewController.swift */; };
 		B87C87F01F159AE100F58517 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87EF1F159AE100F58517 /* DetailViewController.swift */; };
@@ -77,7 +77,7 @@
 		7E949C071F18108800449DA0 /* PostCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCommentViewController.swift; sourceTree = "<group>"; };
 		7EE9D2A91F1FDDCD00999BE6 /* InfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
 		7EEEFB161F158A6E004A29EC /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
-		7EF1FFD41F158598000DA708 /* ExploreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
+		7EF1FFD41F158598000DA708 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		8B1C5447CB4A291F000D9875 /* Pods-GoalsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsUITests/Pods-GoalsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A3870FB33249FFA01E80B856 /* Pods-GoalsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsTests/Pods-GoalsTests.release.xcconfig"; sourceTree = "<group>"; };
 		A9A37E25EFEFAC2CCC5DABED /* Pods_GoalsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoalsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -263,7 +263,6 @@
 				FAA6C8C61F1EB94D00FB8F26 /* Camera VCs  */,
 				FAD351411F182FC500998CCA /* AllGoalsViewController.swift */,
 				B87C87F11F169B5500F58517 /* EditProfileViewController.swift */,
-				7EF1FFD41F158598000DA708 /* ExploreViewController.swift */,
 				7EEEFB161F158A6E004A29EC /* FeedViewController.swift */,
 				FACF12CE1F154A8700D505FE /* ProfileViewController.swift */,
 				FACF12C91F154A3D00D505FE /* LoginViewController.swift */,
@@ -272,6 +271,7 @@
 				B87C87ED1F156E9300F58517 /* PostGoalViewController.swift */,
 				7E1FCE631F16E6DC009C0AF1 /* PostUpdateViewController.swift */,
 				B84B22781F1EDB6F00E9482E /* ProgressViewController.swift */,
+				7EF1FFD41F158598000DA708 /* TimelineViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -581,7 +581,7 @@
 				7E124C971F1EBF0100858D35 /* MediaCell.swift in Sources */,
 				7E124C951F1EA8EF00858D35 /* UpdateCell.swift in Sources */,
 				FACF12CF1F154A8700D505FE /* ProfileViewController.swift in Sources */,
-				7EF1FFD51F158598000DA708 /* ExploreViewController.swift in Sources */,
+				7EF1FFD51F158598000DA708 /* TimelineViewController.swift in Sources */,
 				7E124C931F1EA8C200858D35 /* HeaderCell.swift in Sources */,
 				FACF129C1F15476200D505FE /* AppDelegate.swift in Sources */,
 				FAD3514A1F1838D500998CCA /* GoalCell.swift in Sources */,

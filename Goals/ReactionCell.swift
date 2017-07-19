@@ -14,8 +14,9 @@ class ReactionCell: UITableViewCell {
     @IBOutlet weak var leftLabel: UILabel!
     @IBOutlet weak var nodeView: UIView!
     
-    var data: [String: Any?] = [:] {
+    var data: [String: Any] = [:] {
         didSet {
+            print(data)
             leftLabel.text = data["text"] as? String
         }
     }

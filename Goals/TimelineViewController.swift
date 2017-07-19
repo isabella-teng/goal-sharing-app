@@ -1,5 +1,5 @@
 //
-//  ExploreViewController.swift
+//  TimelineViewController.swift
 //  Goals
 //
 //  Created by Gerardo Parra on 7/11/17.
@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Parse
 
-class ExploreViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var nodes: [[String: Any?]] = []
+    var currentGoal: PFObject?
+    var nodes: [[String: Any]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +24,7 @@ class ExploreViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
         
-        nodes = [["type": "post", "text": "Go to Chick Fil A"], ["type": "update", "text": "You started your goal of eating more chicken!"], ["type": "image", "image": #imageLiteral(resourceName: "isabella")], ["type": "update", "text": "Close--went to Whataburger"], ["type": "comment", "text": "congrats on your progress!"]]
+        nodes = currentGoal?["activity"] as! [[String : Any]]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
