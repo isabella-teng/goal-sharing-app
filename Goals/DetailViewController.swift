@@ -72,12 +72,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "updateSegue") {
-            //send over goal id
-            
-            let vc = segue.destination as! PostUpdateViewController
-            vc.currentUpdate = currentUpdate
-        }
     }
 
     

@@ -66,7 +66,6 @@ class AllGoalsViewController: UIViewController, UITableViewDelegate, UITableView
         if (segue.identifier == "goalUpdateSegue") {
             let vc = segue.destination as! PostUpdateViewController
             vc.currentGoal = sender as? PFObject
-            //print(vc.currentGoal?.objectId)
         }
     }
  
