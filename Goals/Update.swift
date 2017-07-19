@@ -24,7 +24,6 @@ class Update: NSObject {
         let update = PFObject(className: "Update")
         
         // Add relevant fields to update object
-        print("hello")
         update["author"] = PFUser.current()
         update["text"] = data["text"]
         update["goalId"] = data["goalId"]

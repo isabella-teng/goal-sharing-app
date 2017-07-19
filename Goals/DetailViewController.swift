@@ -68,17 +68,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "updateSegue") {
-            //send over goal id
-            
-            let vc = segue.destination as! PostUpdateViewController
-            vc.currentUpdate = currentUpdate
-        }
-    }
 
     
 }

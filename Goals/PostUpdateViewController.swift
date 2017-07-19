@@ -16,7 +16,6 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
     var updateTextView: RSKPlaceholderTextView? = nil
     @IBOutlet weak var postButton: UIButton!
     
-    var currentUpdate: PFObject?
     var currentGoal: PFObject?
     
     override func viewDidLoad() {
@@ -30,6 +29,7 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
         self.updateTextView?.font = UIFont (name: "HelveticaNeue-Light", size: 22)
 
         postButton.layer.cornerRadius = postButton.frame.height / 2
+    
     }
 
     @IBAction func didTapCancel(_ sender: Any) {
@@ -50,7 +50,8 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
             // Data to post to Parse
             var data: [String: Any] = [:]
             data["text"] = updateTextView?.text
-            data["goalId"] = currentUpdate!["goalId"]
+            data["goalId"] = currentGoal?.objectId
+            data["goalTitle"] = currentGoal!["title"]
             
             Update.createUpdate(data: data)
         }
