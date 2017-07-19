@@ -32,6 +32,14 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         self.descriptionTextView?.font = UIFont (name: "HelveticaNeue-Light", size: 22)
         
         titleTextField.becomeFirstResponder()
+        descriptionTextView?.becomeFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        //titleTextField.resignFirstResponder()
+        //deß®scriptionTextView?.resignFirstResponder()
+        self.view.endEditing(true)
+        return false
     }
 
     @IBAction func didPostGoal(_ sender: Any) {
