@@ -63,7 +63,8 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didTake photo: UIImage) {
         // Called when takePhoto() is called or if a SwiftyCamButton initiates a tap gesture
         // Returns a UIImage captured from the current session
-
+        
+        //performSegue(withIdentifier: "photoSegue", sender: photo)
         let vc = PhotoViewController(image: photo)
         self.present(vc, animated: true, completion: nil)
     }
@@ -88,7 +89,6 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
             self.flashButton.alpha = 1.0
             self.flipCameraButton.alpha = 1.0
         })
-        print("made here")
     }
     
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFinishProcessVideoAt url: URL) {
@@ -174,8 +174,8 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
         flashButton.addTarget(self, action: #selector(toggleFlashAction(_:)), for: .touchUpInside)
         self.view.addSubview(flashButton)
         
-        let cancelButton = UIButton(frame: CGRect(x: 15.0, y: 15.0, width: 30.0, height: 30.0))
-        cancelButton.setImage(#imageLiteral(resourceName: "cancel"), for: UIControlState())
+        let cancelButton = UIButton(frame: CGRect(x: 15.0, y: 15.0, width: 24.0, height: 40.0))
+        cancelButton.setImage(#imageLiteral(resourceName: "left-arrow"), for: UIControlState())
         cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         view.addSubview(cancelButton)
 
@@ -185,7 +185,18 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
     func cancel() {
         dismiss(animated: true, completion: nil)
     }
-
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if (segue.identifier == "photoSegue") {
+//            //let vc = segue.destination as! PhotoViewController
+//            let vc = segue.destination as! PhotoViewController//(image: sender as! UIImage)
+//            //self.present(vc, animated: true, completion: nil)
+//            //vc.initialize(image: sender as! UIImage)
+//            
+//            
+//            
+//        }
+//    }
    
 
 

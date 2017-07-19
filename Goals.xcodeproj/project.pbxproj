@@ -28,6 +28,7 @@
 		FAA6C8C51F1EB62D00FB8F26 /* SwiftyCamRecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6C8C41F1EB62D00FB8F26 /* SwiftyCamRecordButton.swift */; };
 		FAA6C8C81F1EB97E00FB8F26 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6C8C71F1EB97E00FB8F26 /* PhotoViewController.swift */; };
 		FAA6C8CA1F1EC24300FB8F26 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6C8C91F1EC24300FB8F26 /* VideoViewController.swift */; };
+		FAA6C8CC1F1ED64800FB8F26 /* AddCaptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6C8CB1F1ED64800FB8F26 /* AddCaptionViewController.swift */; };
 		FACF129C1F15476200D505FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF129B1F15476200D505FE /* AppDelegate.swift */; };
 		FACF12A11F15476200D505FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACF129F1F15476200D505FE /* Main.storyboard */; };
 		FACF12A61F15476200D505FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACF12A41F15476200D505FE /* LaunchScreen.storyboard */; };
@@ -87,6 +88,7 @@
 		FAA6C8C41F1EB62D00FB8F26 /* SwiftyCamRecordButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyCamRecordButton.swift; sourceTree = "<group>"; };
 		FAA6C8C71F1EB97E00FB8F26 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		FAA6C8C91F1EC24300FB8F26 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		FAA6C8CB1F1ED64800FB8F26 /* AddCaptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCaptionViewController.swift; sourceTree = "<group>"; };
 		FACF12981F15476200D505FE /* Goals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Goals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACF129B1F15476200D505FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FACF12A01F15476200D505FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 			children = (
 				FAA6C8C21F1EA79900FB8F26 /* CameraViewController.swift */,
 				FAA6C8C71F1EB97E00FB8F26 /* PhotoViewController.swift */,
+				FAA6C8CB1F1ED64800FB8F26 /* AddCaptionViewController.swift */,
 				FAA6C8C91F1EC24300FB8F26 /* VideoViewController.swift */,
 			);
 			name = "Camera VCs ";
@@ -559,6 +562,7 @@
 				7E6B47FF1F169CE00079AC1F /* Goal.swift in Sources */,
 				FAA6C8CA1F1EC24300FB8F26 /* VideoViewController.swift in Sources */,
 				7E124C991F1EBF7800858D35 /* ReactionCell.swift in Sources */,
+				FAA6C8CC1F1ED64800FB8F26 /* AddCaptionViewController.swift in Sources */,
 				FAD351421F182FC500998CCA /* AllGoalsViewController.swift in Sources */,
 				7E124C971F1EBF0100858D35 /* MediaCell.swift in Sources */,
 				7E124C951F1EA8EF00858D35 /* UpdateCell.swift in Sources */,

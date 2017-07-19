@@ -689,10 +689,71 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <connections>
+                        <segue destination="juC-Zu-AxV" kind="presentation" identifier="photoSegue" id="eQB-W6-IJ6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RGs-lA-h3r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4465" y="-358"/>
+        </scene>
+        <!--Photo View Controller-->
+        <scene sceneID="SRq-nj-kTp">
+            <objects>
+                <viewController id="juC-Zu-AxV" customClass="PhotoViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FB6-qU-IpY"/>
+                        <viewControllerLayoutGuide type="bottom" id="LQN-1Q-X5q"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="L11-16-F9I">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="iN9-oH-XcC" kind="show" identifier="editPhotoSegue" id="MIK-T1-Ss5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gVm-Cf-UlK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5178" y="-152"/>
+        </scene>
+        <!--Add Caption View Controller-->
+        <scene sceneID="By4-pq-uxA">
+            <objects>
+                <viewController id="iN9-oH-XcC" customClass="AddCaptionViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="K97-fw-ZO5"/>
+                        <viewControllerLayoutGuide type="bottom" id="4UM-kO-7Ua"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PbI-p1-r2X">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Send a Caption" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gw8-QL-Biu">
+                                <rect key="frame" x="49" y="43" width="300" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r2F-6c-xsF">
+                                <rect key="frame" x="245" y="426" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="postButton" destination="r2F-6c-xsF" id="WKr-Vs-Axb"/>
+                        <segue destination="7Hk-JC-pfQ" kind="unwind" identifier="backToFeedSegue" unwindAction="backFromVC3WithSegue:" id="lfa-9g-3fg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sYw-oa-RL8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="7Hk-JC-pfQ" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="5920.8000000000002" y="-370.16491754122939"/>
         </scene>
         <!--Goal-->
         <scene sceneID="HQI-JE-X9N">
