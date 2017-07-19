@@ -93,6 +93,7 @@
 		FAA6C8C71F1EB97E00FB8F26 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		FAA6C8C91F1EC24300FB8F26 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		FAA6C8CB1F1ED64800FB8F26 /* AddCaptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCaptionViewController.swift; sourceTree = "<group>"; };
+		FAA6C8CD1F200EE900FB8F26 /* Goals.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Goals.entitlements; sourceTree = "<group>"; };
 		FACF12981F15476200D505FE /* Goals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Goals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACF129B1F15476200D505FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FACF12A01F15476200D505FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -227,6 +228,7 @@
 		FACF129A1F15476200D505FE /* Goals */ = {
 			isa = PBXGroup;
 			children = (
+				FAA6C8CD1F200EE900FB8F26 /* Goals.entitlements */,
 				FACF129B1F15476200D505FE /* AppDelegate.swift */,
 				FACF129F1F15476200D505FE /* Main.storyboard */,
 				FACF12D31F156F3F00D505FE /* Models */,
@@ -261,10 +263,8 @@
 			isa = PBXGroup;
 			children = (
 				FAA6C8C61F1EB94D00FB8F26 /* Camera VCs  */,
-				7EEEFB161F158A6E004A29EC /* FeedViewController.swift */,
 				FAD351411F182FC500998CCA /* AllGoalsViewController.swift */,
 				B87C87F11F169B5500F58517 /* EditProfileViewController.swift */,
-				7EF1FFD41F158598000DA708 /* ExploreViewController.swift */,
 				7EEEFB161F158A6E004A29EC /* FeedViewController.swift */,
 				FACF12CE1F154A8700D505FE /* ProfileViewController.swift */,
 				FACF12C91F154A3D00D505FE /* LoginViewController.swift */,
@@ -365,8 +365,13 @@
 				TargetAttributes = {
 					FACF12971F15476200D505FE = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 3JE575EG34;
+						DevelopmentTeam = V9WTTPBFK9;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					FACF12AB1F15476300D505FE = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -753,10 +758,11 @@
 			baseConfigurationReference = 1FCD39C47ED1A6703B4F8F14 /* Pods-Goals.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3JE575EG34;
+				CODE_SIGN_ENTITLEMENTS = Goals/Goals.entitlements;
+				DEVELOPMENT_TEAM = V9WTTPBFK9;
 				INFOPLIST_FILE = Goals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Gerardo.com.Goals;
+				PRODUCT_BUNDLE_IDENTIFIER = "Isabella.com.Goals-2017";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -767,10 +773,11 @@
 			baseConfigurationReference = CF3584AB59D862ECDED6FA78 /* Pods-Goals.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3JE575EG34;
+				CODE_SIGN_ENTITLEMENTS = Goals/Goals.entitlements;
+				DEVELOPMENT_TEAM = V9WTTPBFK9;
 				INFOPLIST_FILE = Goals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Gerardo.com.Goals;
+				PRODUCT_BUNDLE_IDENTIFIER = "Isabella.com.Goals-2017";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

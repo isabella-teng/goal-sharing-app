@@ -78,8 +78,6 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
         let newVC = VideoViewController(videoURL: url, update: self.currentUpdate!)
         self.present(newVC, animated: true, completion: nil)
         
-        print("made it!!")
-        
         
         //performSegue(withIdentifier: "videoSegue", sender: url)
         
