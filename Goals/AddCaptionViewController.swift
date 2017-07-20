@@ -133,17 +133,12 @@ class AddCaptionViewController: UIViewController {
             
             
             let alertController = UIAlertController(title: "Message Sent!", message: "Thank you for sending an encouraging message!", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Yay!", style: .default, handler: nil )
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: {
+            let okAction = UIAlertAction(title: "Yay!", style: .default, handler: { (action) in
                 self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: false, completion: nil)
             })
-            
-            //fix to this!! only go back to feed view controller once you've clicked ok
-//            alertController.addAction(UIAlertAction(title: "Yay!", style: .default, handler: { (action: UIAlertAction!) in
-//                print("sent message")
-//                self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: false, completion: nil)
-//            }))
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+
         
 
             
