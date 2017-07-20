@@ -18,6 +18,10 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if currentGoal == nil {
+            print("you foofed")
+        }
 
         tableView.dataSource = self
         tableView.delegate = self
@@ -26,6 +30,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         
         nodes = currentGoal?["activity"] as! [[String : Any]]
         nodes.append(["type": "image", "image": #imageLiteral(resourceName: "isabella")])
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
