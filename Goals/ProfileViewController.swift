@@ -20,6 +20,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var profileImageView: PFImageView!
     @IBOutlet weak var bioLabel: UILabel!
+    @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var editProfileButton: UIButton!
+    @IBOutlet weak var closeButton: UIButton!
     
     var user: PFUser? = nil
     var fromFeed: Bool = false
@@ -38,6 +41,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         if !fromFeed {
             self.user = PFUser.current()
+            closeButton.isHidden = true
+            logoutButton.isHidden = false
+            editProfileButton.isHidden = false
+        } else {
+            logoutButton.isHidden = true
+            editProfileButton.isHidden = true
+            closeButton.isHidden = false
         }
         
         //hard code pictures and bios
@@ -52,7 +62,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             profileImageView.image = #imageLiteral(resourceName: "josh")
         }
         
-        
+        logoutButton.layer.cornerRadius = logoutButton.frame.height / 2
+        closeButton.layer.cornerRadius = closeButton.frame.height / 2
         profileImageView.layer.cornerRadius = 35
         profileImageView.clipsToBounds = true
     }
@@ -93,6 +104,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         
         NotificationCenter.default.post(name: NSNotification.Name("logoutNotification"), object: nil)
+    }
+    
+    @IBAction func didTapClose(_ sender: Any) {
+        self.dismiss(animated: true)
     }
     
     override func didReceiveMemoryWarning() {
