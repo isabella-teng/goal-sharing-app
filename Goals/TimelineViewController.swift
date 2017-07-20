@@ -29,8 +29,6 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.estimatedRowHeight = 200
         
         nodes = currentGoal?["activity"] as! [[String : Any]]
-        nodes.append(["type": "image", "image": #imageLiteral(resourceName: "isabella")])
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -40,30 +38,20 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = (tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath) as! HeaderCell)
+            
             let title = currentGoal?["title"] as! String
             cell.data = ["text": title]
+            
             return cell
         } else if indexPath.row == 1 {
             let cell = (tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! InfoCell)
             
             return cell
         } else {
-            let currentNode = nodes[indexPath.row - 2]
-            let currentType = currentNode["type"] as! String
+            let cell = (tableView.dequeueReusableCell(withIdentifier: "UpdateCell", for: indexPath) as! UpdateCell)
             
-            if currentType == "update" {
-                let cell = (tableView.dequeueReusableCell(withIdentifier: "UpdateCell", for: indexPath) as! UpdateCell)
-                cell.data = nodes[indexPath.row - 2]
-                return cell
-            } else if currentType == "image" || currentType == "video" {
-                let cell = (tableView.dequeueReusableCell(withIdentifier: "MediaCell", for: indexPath) as! MediaCell)
-                cell.data = nodes[indexPath.row - 2]
-                return cell
-            } else {
-                let cell = (tableView.dequeueReusableCell(withIdentifier: "ReactionCell", for: indexPath) as! ReactionCell)
-                cell.data = nodes[indexPath.row - 2]
-                return cell
-            }
+            cell.data = nodes[indexPath.row - 2]
+            return cell
         }
     }
 
