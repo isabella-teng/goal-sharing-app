@@ -112,7 +112,7 @@ class AddCaptionViewController: UIViewController {
                         var photoDictionary: [String: Any] = [:]
                         photoDictionary["sender"] = self.currentUser
                         photoDictionary["caption"] = self.captionTextView?.text
-                        photoDictionary["image"] = Update.getPFFileFromImage(image: self.savedMedia as! UIImage)
+                        photoDictionary["image"] = Update.getPFFileFromImage(image: self.savedMedia as? UIImage)
                         photoArray.append(photoDictionary)
                         self.currentUpdate?["pictures"] = photoArray
                         
