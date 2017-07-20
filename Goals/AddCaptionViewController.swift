@@ -19,7 +19,6 @@ class AddCaptionViewController: UIViewController {
     
     var currentUser = PFUser.current()
     var currentUpdate: PFObject?
-    var currentGoal: PFObject?
     
     var savedMedia: Any
     var media: String
@@ -48,12 +47,6 @@ class AddCaptionViewController: UIViewController {
         self.captionTextView?.font = UIFont (name: "HelveticaNeue-Light", size: 22)
 
         self.view.backgroundColor = UIColor.gray
-        
-        Goal.fetchGoalWithId(id: currentUpdate?["goalId"] as! String) { (loadedGoal: PFObject?, error: Error?) in
-            if error == nil {
-                self.currentGoal = loadedGoal
-            }
-        }
         
         
     }
@@ -95,28 +88,19 @@ class AddCaptionViewController: UIViewController {
                         videoDictionary["sender"] = self.currentUser
                         videoDictionary["caption"] = self.captionTextView?.text
                         videoDictionary["videoURL"] = "\(self.savedMedia as! URL)"
-                        //videoDictionary["createdAt"] = NSDate()
-                        
                         videoArray.append(videoDictionary)
                         self.currentUpdate?["videos"] = videoArray
+                        
+                        //Save video in interactions array
+                        var interactionsArray = self.currentUpdate?["activity"] as! [[String: Any]]
+                        var newInteraction: [String: Any] = videoDictionary
+                        newInteraction["type"] = "video"
+                        newInteraction["createdAt"] = NSDate()
+                        interactionsArray.append(newInteraction)
+                        self.currentUpdate?["activity"] = interactionsArray
+                        
                         self.currentUpdate?.saveInBackground()
                         
-                    }
-                })
-                //Save video in goal interactions array
-                currentGoal?.saveInBackground(block: { (success: Bool, error: Error?) in
-                    if error == nil {
-                        var interactionsArray = self.currentGoal?["activity"] as! [[String: Any]]
-                        var newInteraction : [String: Any] = [:]
-                        newInteraction["sender"] = self.currentUser
-                        newInteraction["type"] = "video"
-                        newInteraction["text"] = self.captionTextView?.text
-                        newInteraction["videoURL"] = "\(self.savedMedia as! URL)"
-                        newInteraction["createdAt"] = NSDate()
-                        
-                        interactionsArray.append(newInteraction)
-                        self.currentGoal?["activity"] = interactionsArray
-                        self.currentGoal?.saveInBackground()
                     }
                 })
                 
@@ -128,28 +112,19 @@ class AddCaptionViewController: UIViewController {
                         var photoDictionary: [String: Any] = [:]
                         photoDictionary["sender"] = self.currentUser
                         photoDictionary["caption"] = self.captionTextView?.text
-                        photoDictionary["image"] = Update.getPFFileFromImage(image: self.savedMedia as? UIImage)
-                        //photoDictionary["createdAt"] = NSDate()
-                        
+                        photoDictionary["image"] = Update.getPFFileFromImage(image: self.savedMedia as! UIImage)
                         photoArray.append(photoDictionary)
                         self.currentUpdate?["pictures"] = photoArray
-                        self.currentUpdate?.saveInBackground()
-                    }
-                })
-                //Save photo in goal interactions array
-                currentGoal?.saveInBackground(block: { (success: Bool, error: Error?) in
-                    if error == nil {
-                        var interactionsArray = self.currentGoal?["activity"] as! [[String: Any]]
-                        var newInteraction : [String: Any] = [:]
-                        newInteraction["sender"] = self.currentUser
-                        newInteraction["type"] = "photo"
-                        newInteraction["text"] = self.captionTextView?.text
-                        newInteraction["image"] = Update.getPFFileFromImage(image: self.savedMedia as? UIImage)
-                        newInteraction["createdAt"] = NSDate()
                         
+                        //Save photo in updates interactions array
+                        var interactionsArray = self.currentUpdate?["activity"] as! [[String: Any]]
+                        var newInteraction: [String: Any] = photoDictionary
+                        newInteraction["type"] = "photo"
+                        newInteraction["createdAt"] = NSDate()
                         interactionsArray.append(newInteraction)
-                        self.currentGoal?["activity"] = interactionsArray
-                        self.currentGoal?.saveInBackground()
+                        self.currentUpdate?["activity"] = interactionsArray
+                        
+                        self.currentUpdate?.saveInBackground()
                     }
                 })
 
