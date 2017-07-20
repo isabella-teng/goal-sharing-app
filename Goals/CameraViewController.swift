@@ -14,7 +14,7 @@ import ParseUI
 class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
     
     var currentUpdate: PFObject?
-    
+
     var captureButton: SwiftyCamRecordButton!
     var flipCameraButton: UIButton!
     var flashButton: UIButton!
@@ -167,24 +167,6 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
         dismiss(animated: true, completion: nil)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if (segue.identifier == "photoSegue") {
-//            //let vc = segue.destination as! PhotoViewController
-//            let vc = segue.destination as! PhotoViewController//(image: sender as! UIImage)
-//            //self.present(vc, animated: true, completion: nil)
-//            //vc.initialize(image: sender as! UIImage)
-//            
-//            
-//            
-//        }
-//        if (segue.identifier == "cameraSegue") {
-//            print("moo")
-////            let newVC = VideoViewController(videoURL: sender as! URL)
-////            self.present(newVC, animated: true, completion: nil)
-//            let newVC = segue.destination as! VideoViewController
-//            newVC.currentUpdate = self.currentUpdate
-//        }
-    }
    
     //change shrinkButton function to
     //    if self.innerCircle == nil {

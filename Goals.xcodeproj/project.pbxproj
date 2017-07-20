@@ -201,7 +201,6 @@
 				FAA6C8C91F1EC24300FB8F26 /* VideoViewController.swift */,
 				FAA6C8C71F1EB97E00FB8F26 /* PhotoViewController.swift */,
 				FAA6C8CB1F1ED64800FB8F26 /* AddCaptionViewController.swift */,
-				FAD351411F182FC500998CCA /* AllGoalsViewController.swift */,
 			);
 			name = "Camera VCs ";
 			sourceTree = "<group>";
@@ -267,6 +266,7 @@
 			children = (
 				FAA6C8C61F1EB94D00FB8F26 /* Camera VCs  */,
 				B87C87F11F169B5500F58517 /* EditProfileViewController.swift */,
+				FAD351411F182FC500998CCA /* AllGoalsViewController.swift */,
 				7EEEFB161F158A6E004A29EC /* FeedViewController.swift */,
 				FACF12CE1F154A8700D505FE /* ProfileViewController.swift */,
 				FACF12C91F154A3D00D505FE /* LoginViewController.swift */,
