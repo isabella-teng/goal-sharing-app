@@ -32,6 +32,7 @@
 		FAA6C8C81F1EB97E00FB8F26 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6C8C71F1EB97E00FB8F26 /* PhotoViewController.swift */; };
 		FAA6C8CA1F1EC24300FB8F26 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6C8C91F1EC24300FB8F26 /* VideoViewController.swift */; };
 		FAA6C8CC1F1ED64800FB8F26 /* AddCaptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6C8CB1F1ED64800FB8F26 /* AddCaptionViewController.swift */; };
+		FAA6C8CF1F211F1800FB8F26 /* SetAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6C8CE1F211F1800FB8F26 /* SetAlertViewController.swift */; };
 		FACF129C1F15476200D505FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF129B1F15476200D505FE /* AppDelegate.swift */; };
 		FACF12A11F15476200D505FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACF129F1F15476200D505FE /* Main.storyboard */; };
 		FACF12A61F15476200D505FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACF12A41F15476200D505FE /* LaunchScreen.storyboard */; };
@@ -96,6 +97,7 @@
 		FAA6C8C91F1EC24300FB8F26 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		FAA6C8CB1F1ED64800FB8F26 /* AddCaptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCaptionViewController.swift; sourceTree = "<group>"; };
 		FAA6C8CD1F200EE900FB8F26 /* Goals.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Goals.entitlements; sourceTree = "<group>"; };
+		FAA6C8CE1F211F1800FB8F26 /* SetAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetAlertViewController.swift; sourceTree = "<group>"; };
 		FACF12981F15476200D505FE /* Goals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Goals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACF129B1F15476200D505FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FACF12A01F15476200D505FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				B87C87EF1F159AE100F58517 /* DetailViewController.swift */,
 				7E949C071F18108800449DA0 /* PostCommentViewController.swift */,
 				B87C87ED1F156E9300F58517 /* PostGoalViewController.swift */,
+				FAA6C8CE1F211F1800FB8F26 /* SetAlertViewController.swift */,
 				7E1FCE631F16E6DC009C0AF1 /* PostUpdateViewController.swift */,
 				B84B22781F1EDB6F00E9482E /* ProgressViewController.swift */,
 				7EF1FFD41F158598000DA708 /* TimelineViewController.swift */,
@@ -602,6 +605,7 @@
 				7E38DFDB1F15813400DEF47C /* Update.swift in Sources */,
 				7EE9D2AA1F1FDDCD00999BE6 /* InfoCell.swift in Sources */,
 				FAD3513A1F1597FE00998CCA /* User.swift in Sources */,
+				FAA6C8CF1F211F1800FB8F26 /* SetAlertViewController.swift in Sources */,
 				B84B227D1F2019BE00E9482E /* xAxisValueFormatter.swift in Sources */,
 				FACF12D21F156E8C00D505FE /* ProfileCell.swift in Sources */,
 				FAA6C8C31F1EA79900FB8F26 /* CameraViewController.swift in Sources */,

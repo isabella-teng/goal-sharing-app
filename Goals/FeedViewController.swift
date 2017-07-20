@@ -54,13 +54,15 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
-    func feedCell(_ feedCell: FeedCell, didTap update: PFObject, tappedComment: Bool, tappedCamera: Bool) {
+    func feedCell(_ feedCell: FeedCell, didTap update: PFObject, tappedComment: Bool, tappedCamera: Bool, tappedProfPic: Bool) {
         if tappedComment {
             performSegue(withIdentifier: "commentSegue", sender: update)
         } else if tappedCamera {
             performSegue(withIdentifier: "cameraSegue", sender: update)
+        } else if tappedProfPic {
+            performSegue(withIdentifier: "profilePicSegue", sender: update)
         } else {
-            performSegue(withIdentifier: "detailSegue", sender: update) //to Detail controller
+            performSegue(withIdentifier: "detailSegue", sender: update)
         }
         
     }
@@ -75,6 +77,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else if (segue.identifier == "cameraSegue") {
             let vc = segue.destination as! CameraViewController
             vc.currentUpdate = sender as? PFObject
+        } else if (segue.identifier == "profilePicSegue") {
+            let vc = segue.destination as! ProfileViewController
+            print("yayz")
         }
     }
     

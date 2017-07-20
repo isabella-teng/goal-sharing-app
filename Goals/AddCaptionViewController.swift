@@ -74,7 +74,7 @@ class AddCaptionViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    //clean up this code, add into the object classes functions
+    //TODO: clean up this code, add into the object classes functions
     func post() {
         //send the media to the database
         

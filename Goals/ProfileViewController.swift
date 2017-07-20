@@ -48,14 +48,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             profileImageView.image = #imageLiteral(resourceName: "josh")
         }
         
-//        self.profileImageView.file = myUser?["IconURL"] as? PFFile
-//        self.profileImageView.loadInBackground()
-//
-//        
-//        var profilePicture: PFObject! {
-//            didSet {
-//            }
-//        }
         
         profileImageView.layer.cornerRadius = 35
         profileImageView.clipsToBounds = true

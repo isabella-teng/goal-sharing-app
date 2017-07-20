@@ -10,7 +10,7 @@ import UIKit
 import Parse
 
 protocol FeedCellDelegate: class {
-    func feedCell(_ feedCell: FeedCell, didTap update: PFObject, tappedComment: Bool, tappedCamera: Bool)
+    func feedCell(_ feedCell: FeedCell, didTap update: PFObject, tappedComment: Bool, tappedCamera: Bool, tappedProfPic: Bool)
 }
 
 class FeedCell: UITableViewCell {
@@ -84,15 +84,19 @@ class FeedCell: UITableViewCell {
 
     func didTapCell(_ sender: UITapGestureRecognizer) {
         // Call method on delegate
-        delegate?.feedCell(self, didTap: update, tappedComment: false, tappedCamera: false)
+        delegate?.feedCell(self, didTap: update, tappedComment: false, tappedCamera: false, tappedProfPic: false)
     }
     
     func didTapCommentButton(_ sender: UITapGestureRecognizer) {
-        delegate?.feedCell(self, didTap: update, tappedComment: true, tappedCamera: false)
+        delegate?.feedCell(self, didTap: update, tappedComment: true, tappedCamera: false, tappedProfPic: false)
     }
     
     func didTapCameraButton(_ sender: UITapGestureRecognizer) {
-        delegate?.feedCell(self, didTap: update, tappedComment: false, tappedCamera: true)
+        delegate?.feedCell(self, didTap: update, tappedComment: false, tappedCamera: true, tappedProfPic: false)
+    }
+    
+    func didTapProfPic(_ sender: UITapGestureRecognizer) {
+        delegate?.feedCell(self, didTap: update, tappedComment: false, tappedCamera: false, tappedProfPic: true)
     }
     
     
@@ -142,6 +146,10 @@ class FeedCell: UITableViewCell {
         let cameraTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCameraButton(_:)))
         videoButton.addGestureRecognizer(cameraTapGestureRecognizer)
         videoButton.isUserInteractionEnabled = true
+        
+        let profTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapProfPic(_:)))
+        userProfPic.addGestureRecognizer(profTapGestureRecognizer)
+        userProfPic.isUserInteractionEnabled = true
         
         cellBackground.layer.cornerRadius = 10
     }
