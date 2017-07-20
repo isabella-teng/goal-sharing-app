@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import Parse
 
 class PhotoViewController: UIViewController {
 
     private var backgroundImage: UIImage
+    
+    var currentUpdate: PFObject?
 
-    init(image: UIImage) {
+    init(image: UIImage, update: PFObject) {
         self.backgroundImage = image
+        self.currentUpdate = update
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -50,11 +54,8 @@ class PhotoViewController: UIViewController {
     }
     
     func edit() {
-        //let newVC: UIViewController = AddCaptionViewController()
-        //self.present(newVC, animated: true, completion: nil)
-        //self.show(newVC, sender: self)
-        
-        //performSegue(withIdentifier: "editPhotoSegue", sender: self)
+        let newVC: UIViewController = AddCaptionViewController(mediaInfo: backgroundImage, update: currentUpdate!, mediaType: "photo")
+        self.present(newVC, animated: true, completion: nil)
     
     }
 

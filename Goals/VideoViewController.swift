@@ -13,9 +13,6 @@ import Parse
 
 class VideoViewController: UIViewController {
     
-    
-    @IBOutlet weak var testLabel: UILabel!
-    
     override var prefersStatusBarHidden: Bool {
         return true
     }
@@ -63,14 +60,7 @@ class VideoViewController: UIViewController {
         editButton.setImage(#imageLiteral(resourceName: "edit"), for: UIControlState())
         editButton.addTarget(self, action: #selector(edit), for: .touchUpInside)
         view.addSubview(editButton)
-        
-//        view.addSubview(testLabel)
-//        //testLabel.superview?.bringSubview(toFront: testLabel)
-//        print("broken here")
-//        if testLabel == nil {
-//            print("something is wrong")
-//        }
-        //print(currentUpdate?["goalId"] as! String)
+
 
     }
     

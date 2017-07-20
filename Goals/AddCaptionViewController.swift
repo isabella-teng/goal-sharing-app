@@ -66,6 +66,7 @@ class AddCaptionViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //clean up this code, add into the object classes functions
     func post() {
         //send the media to the database
         
@@ -86,12 +87,27 @@ class AddCaptionViewController: UIViewController {
                         videoDictionary["author"] = self.currentUser
                         videoDictionary["caption"] = self.captionTextView?.text
                         videoDictionary["videoURL"] = "\(self.savedMedia as! URL)"
+                        videoDictionary["createdAt"] = NSDate()
                         
                         videoArray.append(videoDictionary)
                         self.currentUpdate?["videos"] = videoArray
-                        
                         self.currentUpdate?.saveInBackground()
                         
+                    }
+                })
+            } else if (media == "photo") {
+                currentUpdate?.saveInBackground(block: { (success: Bool, error: Error?) in
+                    if error == nil {
+                        var photoArray = self.currentUpdate?["pictures"] as! [[String: Any]]
+                        var photoDictionary: [String: Any] = [:]
+                        photoDictionary["author"] = self.currentUser
+                        photoDictionary["caption"] = self.captionTextView?.text
+                        photoDictionary["image"] = Update.getPFFileFromImage(image: self.savedMedia as! UIImage)
+                        photoDictionary["createdAt"] = NSDate()
+                        
+                        photoArray.append(photoDictionary)
+                        self.currentUpdate?["pictures"] = photoArray
+                        self.currentUpdate?.saveInBackground()
                     }
                 })
             }
