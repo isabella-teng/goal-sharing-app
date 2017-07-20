@@ -17,6 +17,23 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func saveChart(_ sender: Any) {
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, UIScreen.main.scale)
+        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
+        let alertController = UIAlertController(title: "Saved", message: "Your chart has been successfully saved to your camera roll!", preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion: nil)
+        let when = DispatchTime.now() + 5
+        DispatchQueue.main.asyncAfter(deadline: when) { 
+            alertController.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    
     weak var axisFormatDelegate: IAxisValueFormatter?
     
     var days: [String] = []
@@ -25,14 +42,15 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
         barChartView.delegate = self
         axisFormatDelegate = self as? IAxisValueFormatter
         days = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]
-        let goalsSet = [1.0, 4.0, 6.0, 3.0, 4.0, 2.0, 4.0]
+        let updatesMade = [1.0, 4.0, 6.0, 3.0, 4.0, 2.0, 4.0]
+        
+        //Sets up X Axis labels
         let xAxis = barChartView!.xAxis
         xAxis.labelCount = xAxisValueFormatter.labelCount
         xAxis.valueFormatter = xAxisValueFormatter()
         
-        setChart(dataPoints: days, values: goalsSet)
+        setChart(dataPoints: days, values: updatesMade)
         barChartView.notifyDataSetChanged()
-        
     }
     
     func setChart(dataPoints: [String], values: [Double]) {
@@ -40,12 +58,13 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
         barChartView.chartDescription?.text = ""
         
         var dataEntries: [BarChartDataEntry] = []
+        
         for i in 0..<dataPoints.count {
             let dataEntry = BarChartDataEntry(x: Double(i), yValues: [values[i]])
             dataEntries.append(dataEntry)
         }
         
-        let chartDataSet = BarChartDataSet(values: dataEntries, label: "Goals Set")
+        let chartDataSet = BarChartDataSet(values: dataEntries, label: "Updates Made")
         let chartData = BarChartData(dataSet: chartDataSet)
         barChartView.data = chartData
         
@@ -54,7 +73,7 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
         
         
         //Settings for the Bar graph
-        chartDataSet.colors = ChartColorTemplates.vordiplom()
+        chartDataSet.colors = [UIColor(red: 255/255, green: 95/255, blue: 107/255, alpha: 1)]
         barChartView.xAxis.labelPosition = .bottom
         barChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
         barChartView.scaleYEnabled = false
@@ -62,10 +81,16 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
         barChartView.pinchZoomEnabled = false
         barChartView.doubleTapToZoomEnabled = false
         barChartView.xAxis.drawGridLinesEnabled = false
+        barChartView.leftAxis.drawGridLinesEnabled = false
+        barChartView.rightAxis.drawGridLinesEnabled = false
+        barChartView.rightAxis.drawLabelsEnabled = false
         barChartView.legend.enabled = true
         
+        
         // Target or Goal Line
-        let lineLimit = ChartLimitLine(limit: average, label: "Avg Goals Per Week")
+        let lineLimit = ChartLimitLine(limit: average, label: "Avg Updates Per Week")
+        lineLimit.valueFont = UIFont(name: "Verdana", size: 10.0)!
+        lineLimit.lineColor = UIColor.green
         barChartView.rightAxis.addLimitLine(lineLimit)
     }
     
