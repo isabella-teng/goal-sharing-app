@@ -69,10 +69,20 @@ class PostCommentViewController: UIViewController {
                     var commentsDictionary: [String: Any] = [:]
                     commentsDictionary["sender"] = PFUser.current()
                     commentsDictionary["text"] = self.commentTextView?.text
-                    
                     commentsArray.append(commentsDictionary)
                     self.currentUpdate?["comments"] = commentsArray
                     self.currentUpdate?.incrementKey("commentCount", byAmount: 1)
+                    
+                    //Save updates activity array
+                    var interactionsArray = self.currentUpdate?["activity"] as! [[String: Any]]
+                    print("made it")
+                    var newInteraction: [String: Any] = commentsDictionary
+                    print("?")
+                    newInteraction["type"] = "comment"
+                    newInteraction["createdAt"] = NSDate()
+                    interactionsArray.append(newInteraction)
+                    self.currentUpdate?["activity"] = interactionsArray
+                    
                     self.currentUpdate?.saveInBackground()
                 } else {
                     print(error?.localizedDescription as Any)
@@ -80,22 +90,22 @@ class PostCommentViewController: UIViewController {
             })
             
             // Save comment in goal interactions array
-             currentGoal?.saveInBackground(block: { (success: Bool, error: Error?) in
-                 if error == nil {
-                     var interactionsArray = self.currentGoal?["activity"] as! [[String: Any]]
-                     var newInteraction: [String: Any] = [:]
-                     newInteraction["sender"] = PFUser.current()
-                     newInteraction["type"] = "comment"
-                     newInteraction["text"] = self.commentTextView?.text
-                     newInteraction["createdAt"] = NSDate()
-                     
-                     interactionsArray.append(newInteraction)
-                     self.currentGoal?["activity"] = interactionsArray
-                     self.currentGoal?.saveInBackground()
-                 } else {
-                     print(error?.localizedDescription as Any)
-                 }
-             })
+//             currentGoal?.saveInBackground(block: { (success: Bool, error: Error?) in
+//                 if error == nil {
+//                     var interactionsArray = self.currentGoal?["activity"] as! [[String: Any]]
+//                     var newInteraction: [String: Any] = [:]
+//                     newInteraction["sender"] = PFUser.current()
+//                     newInteraction["type"] = "comment"
+//                     newInteraction["text"] = self.commentTextView?.text
+//                     newInteraction["createdAt"] = NSDate()
+//                     
+//                     interactionsArray.append(newInteraction)
+//                     self.currentGoal?["activity"] = interactionsArray
+//                     self.currentGoal?.saveInBackground()
+//                 } else {
+//                     print(error?.localizedDescription as Any)
+//                 }
+//             })
             
         }
     }

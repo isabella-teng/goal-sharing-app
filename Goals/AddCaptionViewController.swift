@@ -19,7 +19,6 @@ class AddCaptionViewController: UIViewController {
     
     var currentUser = PFUser.current()
     var currentUpdate: PFObject?
-    var currentGoal: PFObject?
     
     var savedMedia: Any
     var media: String
@@ -49,12 +48,6 @@ class AddCaptionViewController: UIViewController {
 
         self.view.backgroundColor = UIColor.gray
         
-        Goal.fetchGoalWithId(id: currentUpdate?["goalId"] as! String) { (loadedGoal: PFObject?, error: Error?) in
-            if error == nil {
-                self.currentGoal = loadedGoal
-            }
-        }
-        
         
     }
     
@@ -74,7 +67,7 @@ class AddCaptionViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    //clean up this code, add into the object classes functions
+    //TODO: clean up this code, add into the object classes functions
     func post() {
         //send the media to the database
         
@@ -95,28 +88,19 @@ class AddCaptionViewController: UIViewController {
                         videoDictionary["sender"] = self.currentUser
                         videoDictionary["caption"] = self.captionTextView?.text
                         videoDictionary["videoURL"] = "\(self.savedMedia as! URL)"
-                        //videoDictionary["createdAt"] = NSDate()
-                        
                         videoArray.append(videoDictionary)
                         self.currentUpdate?["videos"] = videoArray
+                        
+                        //Save video in interactions array
+                        var interactionsArray = self.currentUpdate?["activity"] as! [[String: Any]]
+                        var newInteraction: [String: Any] = videoDictionary
+                        newInteraction["type"] = "video"
+                        newInteraction["createdAt"] = NSDate()
+                        interactionsArray.append(newInteraction)
+                        self.currentUpdate?["activity"] = interactionsArray
+                        
                         self.currentUpdate?.saveInBackground()
                         
-                    }
-                })
-                //Save video in goal interactions array
-                currentGoal?.saveInBackground(block: { (success: Bool, error: Error?) in
-                    if error == nil {
-                        var interactionsArray = self.currentGoal?["activity"] as! [[String: Any]]
-                        var newInteraction : [String: Any] = [:]
-                        newInteraction["sender"] = self.currentUser
-                        newInteraction["type"] = "video"
-                        newInteraction["text"] = self.captionTextView?.text
-                        newInteraction["videoURL"] = "\(self.savedMedia as! URL)"
-                        newInteraction["createdAt"] = NSDate()
-                        
-                        interactionsArray.append(newInteraction)
-                        self.currentGoal?["activity"] = interactionsArray
-                        self.currentGoal?.saveInBackground()
                     }
                 })
                 
@@ -129,27 +113,22 @@ class AddCaptionViewController: UIViewController {
                         photoDictionary["sender"] = self.currentUser
                         photoDictionary["caption"] = self.captionTextView?.text
                         photoDictionary["image"] = Update.getPFFileFromImage(image: self.savedMedia as? UIImage)
-                        //photoDictionary["createdAt"] = NSDate()
-                        
+
                         photoArray.append(photoDictionary)
                         self.currentUpdate?["pictures"] = photoArray
-                        self.currentUpdate?.saveInBackground()
-                    }
-                })
-                //Save photo in goal interactions array
-                currentGoal?.saveInBackground(block: { (success: Bool, error: Error?) in
-                    if error == nil {
-                        var interactionsArray = self.currentGoal?["activity"] as! [[String: Any]]
-                        var newInteraction : [String: Any] = [:]
-                        newInteraction["sender"] = self.currentUser
+                        
+                        //Save photo in updates interactions array
+                        var interactionsArray = self.currentUpdate?["activity"] as! [[String: Any]]
+                        var newInteraction: [String: Any] = photoDictionary
                         newInteraction["type"] = "photo"
                         newInteraction["text"] = self.captionTextView?.text
                         newInteraction["image"] = Update.getPFFileFromImage(image: self.savedMedia as? UIImage)
+
                         newInteraction["createdAt"] = NSDate()
-                        
                         interactionsArray.append(newInteraction)
-                        self.currentGoal?["activity"] = interactionsArray
-                        self.currentGoal?.saveInBackground()
+                        self.currentUpdate?["activity"] = interactionsArray
+                        
+                        self.currentUpdate?.saveInBackground()
                     }
                 })
 
@@ -158,17 +137,12 @@ class AddCaptionViewController: UIViewController {
             
             
             let alertController = UIAlertController(title: "Message Sent!", message: "Thank you for sending an encouraging message!", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Yay!", style: .default, handler: nil )
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: {
+            let okAction = UIAlertAction(title: "Yay!", style: .default, handler: { (action) in
                 self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: false, completion: nil)
             })
-            
-            //fix to this!! only go back to feed view controller once you've clicked ok
-//            alertController.addAction(UIAlertAction(title: "Yay!", style: .default, handler: { (action: UIAlertAction!) in
-//                print("sent message")
-//                self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: false, completion: nil)
-//            }))
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+
         
 
             

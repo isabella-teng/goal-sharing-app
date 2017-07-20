@@ -17,7 +17,7 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
     @IBOutlet weak var typeControl: UISegmentedControl!
     @IBOutlet weak var categoryControl: UISegmentedControl!
     @IBOutlet weak var logControl: UISegmentedControl!
-    @IBOutlet weak var alertTime: UIDatePicker!
+    
     var descriptionTextView: RSKPlaceholderTextView? = nil
     
     override func viewDidLoad() {
