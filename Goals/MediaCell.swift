@@ -12,10 +12,15 @@ class MediaCell: UITableViewCell {
     
     @IBOutlet weak var cellImage: UIImageView!
     @IBOutlet weak var nodeView: UIView!
+    @IBOutlet weak var captionBackground: UIView!
+    @IBOutlet weak var profileImage: UIImageView!
     
     var data: [String: Any] = [:] {
         didSet {
-            cellImage.image = data["image"] as? UIImage
+            let currentType = data["type"] as! String
+            if currentType == "image" {
+                cellImage.image = data["image"] as? UIImage
+            }
         }
     }
 
@@ -23,6 +28,8 @@ class MediaCell: UITableViewCell {
         super.awakeFromNib()
         
         cellImage.layer.cornerRadius = 10
+        captionBackground.layer.cornerRadius = 10
+        profileImage.layer.cornerRadius = profileImage.frame.height / 2
         nodeView.layer.cornerRadius = nodeView.frame.height / 2
     }
 

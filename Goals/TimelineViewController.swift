@@ -25,6 +25,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.estimatedRowHeight = 200
         
         nodes = currentGoal?["activity"] as! [[String : Any]]
+        nodes.append(["type": "image", "image": #imageLiteral(resourceName: "isabella")])
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
