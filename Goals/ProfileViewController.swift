@@ -21,6 +21,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var profileImageView: PFImageView!
     @IBOutlet weak var bioLabel: UILabel!
     
+    var user: PFUser? = nil
+    var fromFeed: Bool = false
     var allUserPosts: [PFObject]? = []
     
     
@@ -34,7 +36,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         usernameLabel.text = PFUser.current()?.username
         
-        let user = PFUser.current()
+        if !fromFeed {
+            self.user = PFUser.current()
+        }
         
         //hard code pictures and bios
         if user?.username == "isabella" {
@@ -55,7 +59,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidAppear(_ animated: Bool) {
         // Fetch user updates
-        Goal.fetchGoalsByUser(user: PFUser.current()!) { (loadedGoals: [PFObject]?, error: Error?) in
+        Goal.fetchGoalsByUser(user: user!) { (loadedGoals: [PFObject]?, error: Error?) in
             if error == nil {
                 self.allUserPosts = loadedGoals!
                 self.tableView.reloadData()
