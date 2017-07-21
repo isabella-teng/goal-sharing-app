@@ -37,7 +37,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         
-        usernameLabel.text = PFUser.current()?.username
+        usernameLabel.text = user?.username
         
         if !fromFeed {
             self.user = PFUser.current()
