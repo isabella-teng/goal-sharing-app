@@ -37,8 +37,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         
-        usernameLabel.text = user?.username
-        
         if !fromFeed {
             self.user = PFUser.current()
             closeButton.isHidden = true
@@ -49,6 +47,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             editProfileButton.isHidden = true
             closeButton.isHidden = false
         }
+        
+        usernameLabel.text = user?.username
         
         //hard code pictures and bios
         if user?.username == "isabella" {
@@ -78,6 +78,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 print(error?.localizedDescription as Any)
             }
         }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     // Return amount of tableView cells
