@@ -93,6 +93,8 @@ class Goal: NSObject {
         goal["description"] = data["description"] as! String
         goal["type"] = data["type"] as! String
         goal["categories"] = data["categories"] as! String
+        goal["completionDate"] = data["completionDate"] as! NSDate
+        goal["intendedUpdateCount"] = data["intendedUpdateCount"] as! Int
         goal["logTimePeriods"] = data["logTimePeriods"] as! String
         
         // TODO: icons, progress, video replies
