@@ -51,15 +51,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         usernameLabel.text = user?.username
         bioLabel.text = user?["bio"] as? String
         
-        //hard code pictures and bios
-        if user?.username == "isabella" {
-            bioLabel.text = "Hi! I'm Isabella! My long-term goals are getting in shape, building better study habits, and reading more!"
-            profileImageView.image = #imageLiteral(resourceName: "isabella")
-        } else if user?.username == "gerardo" {
-            profileImageView.image = #imageLiteral(resourceName: "gerardo")
-        } else if user?.username == "josh" {
-            bioLabel.text = "heyo"
-            profileImageView.image = #imageLiteral(resourceName: "josh")
+        if let profpic = user?["portrait"] as? PFFile {
+            profpic.getDataInBackground { (imageData: Data?, error: Error?) in
+                if error == nil {
+                    let profImage = UIImage(data: imageData!)
+                    self.profileImageView.image = profImage
+                }
+            }
         }
         
         logoutButton.layer.cornerRadius = logoutButton.frame.height / 2
