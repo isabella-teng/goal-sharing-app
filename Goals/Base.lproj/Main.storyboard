@@ -1149,7 +1149,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="190" id="i3X-t2-m61"/>
                                                     </constraints>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="WPD-7s-WEF">
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="WPD-7s-WEF">
                                                         <size key="itemSize" width="169" height="190"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
