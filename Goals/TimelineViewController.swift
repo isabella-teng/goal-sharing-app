@@ -14,21 +14,17 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     
     var currentGoal: PFObject?
-    var nodes: [[String: Any]] = []
+    var nodes: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if currentGoal == nil {
-            print("you foofed")
-        }
 
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
         
-        nodes = currentGoal?["activity"] as! [[String : Any]]
+        nodes = currentGoal?["updates"] as! [String]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,7 +46,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         } else {
             let cell = (tableView.dequeueReusableCell(withIdentifier: "UpdateCell", for: indexPath) as! UpdateCell)
             
-            cell.data = nodes[indexPath.row - 2]
+//            cell.data = nodes[indexPath.row - 2]
             return cell
         }
     }
