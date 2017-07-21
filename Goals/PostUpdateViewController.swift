@@ -28,6 +28,8 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
         self.view.addSubview(self.updateTextView!)
         self.updateTextView?.becomeFirstResponder()
         self.updateTextView?.font = UIFont (name: "HelveticaNeue-Light", size: 22)
+        
+        //create calendar (where to?)
 
         postButton.layer.cornerRadius = postButton.frame.height / 2
     
@@ -53,6 +55,7 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
             data["text"] = updateTextView?.text
             data["goalId"] = currentGoal?.objectId
             data["goalTitle"] = currentGoal!["title"]
+            data["goalDate"] = currentGoal?.createdAt
             
             let updateType = Update.returnUpdateType(index: typeControl.selectedSegmentIndex)
             data["type"] = updateType

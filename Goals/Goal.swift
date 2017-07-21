@@ -95,12 +95,11 @@ class Goal: NSObject {
         goal["categories"] = data["categories"] as! String
         goal["completionDate"] = data["completionDate"] as! NSDate
         goal["intendedUpdateCount"] = data["intendedUpdateCount"] as! Int
-        goal["logTimePeriods"] = data["logTimePeriods"] as! String
+        goal["logTimePeriods"] = data["logTimePeriods"] as! String //don't need for now
         
         // TODO: icons, progress, video replies
         goal["icon"] = NSNull()
         goal["updatesCount"] = -1 //the first one is not counted as an update
-        goal["videoReplies"] = NSNull()
         goal["updates"] = []
 
         
@@ -112,6 +111,7 @@ class Goal: NSObject {
                 updateData["goalId"] = goal.objectId
                 updateData["goalTitle"] = goal["title"]
                 updateData["type"] = "initialGoalNoType"
+                updateData["goalDate"] = goal.createdAt
                 Update.createUpdate(data: updateData)
             }
         }
