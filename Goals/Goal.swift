@@ -99,7 +99,7 @@ class Goal: NSObject {
         
         // TODO: icons, progress, video replies
         goal["icon"] = NSNull()
-        goal["progress"] = NSNull()
+        goal["updatesCount"] = -1 //the first one is not counted as an update
         goal["videoReplies"] = NSNull()
         goal["updates"] = []
 

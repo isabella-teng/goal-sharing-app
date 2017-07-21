@@ -68,6 +68,7 @@ class Update: NSObject {
                         var updatesArray = goal?["updates"] as! [String]
                         updatesArray.append(update.objectId!)
                         goal?["updates"] = updatesArray
+                        goal?.incrementKey("updatesCount", byAmount: 1)
                         goal?.saveInBackground()
                     }
                 })
