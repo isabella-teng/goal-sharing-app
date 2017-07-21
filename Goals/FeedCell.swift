@@ -26,6 +26,7 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var userProfPic: UIImageView!
     @IBOutlet weak var goalTitleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var goalDateLabel: UILabel!
     
     var author: PFUser? = nil
     var update: PFObject! {
@@ -46,8 +47,13 @@ class FeedCell: UITableViewCell {
             
             let dateUpdated = update.createdAt! as Date
             let dateFormat = DateFormatter()
-            dateFormat.dateFormat = "MM-dd-yy"
+            dateFormat.dateFormat = "MM.dd.yy"
             self.dateLabel.text = String(dateFormat.string(from: dateUpdated))
+            
+            let goalDateUpdated = update["goalDate"] as! Date
+            //let dateFormate = DateFormatter()
+            self.goalDateLabel.text = String(dateFormat.string(from: goalDateUpdated))
+            
             
             
             userProfPic.layer.cornerRadius = 20

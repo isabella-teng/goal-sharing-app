@@ -9,7 +9,7 @@
 import UIKit
 
 class InfoCell: UITableViewCell {
-
+    
     @IBOutlet weak var progressBackground: UIView!
     @IBOutlet weak var infoBackground: UIView!
     @IBOutlet weak var nodeView: UIView!
@@ -21,11 +21,11 @@ class InfoCell: UITableViewCell {
         infoBackground.layer.cornerRadius = 10
         nodeView.layer.cornerRadius = nodeView.frame.height / 2
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

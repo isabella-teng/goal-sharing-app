@@ -113,6 +113,7 @@ class AddCaptionViewController: UIViewController {
                         photoDictionary["sender"] = self.currentUser
                         photoDictionary["caption"] = self.captionTextView?.text
                         photoDictionary["image"] = Update.getPFFileFromImage(image: self.savedMedia as? UIImage)
+
                         photoArray.append(photoDictionary)
                         self.currentUpdate?["pictures"] = photoArray
                         
@@ -120,6 +121,9 @@ class AddCaptionViewController: UIViewController {
                         var interactionsArray = self.currentUpdate?["activity"] as! [[String: Any]]
                         var newInteraction: [String: Any] = photoDictionary
                         newInteraction["type"] = "photo"
+                        newInteraction["text"] = self.captionTextView?.text
+                        newInteraction["image"] = Update.getPFFileFromImage(image: self.savedMedia as? UIImage)
+
                         newInteraction["createdAt"] = NSDate()
                         interactionsArray.append(newInteraction)
                         self.currentUpdate?["activity"] = interactionsArray

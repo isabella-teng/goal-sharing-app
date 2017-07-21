@@ -37,8 +37,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         
-        usernameLabel.text = user?.username
-        
         if !fromFeed {
             self.user = PFUser.current()
             closeButton.isHidden = true
@@ -50,12 +48,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             closeButton.isHidden = false
         }
         
+        usernameLabel.text = user?.username
+        bioLabel.text = user?["bio"] as? String
+        
         //hard code pictures and bios
         if user?.username == "isabella" {
             bioLabel.text = "Hi! I'm Isabella! My long-term goals are getting in shape, building better study habits, and reading more!"
             profileImageView.image = #imageLiteral(resourceName: "isabella")
         } else if user?.username == "gerardo" {
-            bioLabel.text = "it me herro"
             profileImageView.image = #imageLiteral(resourceName: "gerardo")
         } else if user?.username == "josh" {
             bioLabel.text = "heyo"
@@ -65,7 +65,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         logoutButton.layer.cornerRadius = logoutButton.frame.height / 2
         closeButton.layer.cornerRadius = closeButton.frame.height / 2
         profileImageView.layer.cornerRadius = 35
-        profileImageView.clipsToBounds = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -78,6 +77,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 print(error?.localizedDescription as Any)
             }
         }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     // Return amount of tableView cells
