@@ -17,6 +17,11 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
     @IBOutlet weak var typeControl: UISegmentedControl!
     @IBOutlet weak var categoryControl: UISegmentedControl!
     @IBOutlet weak var logControl: UISegmentedControl!
+    @IBOutlet weak var chooseDateTextField: UITextField!
+    @IBOutlet weak var updateNumberTextField: UITextField!
+    
+    var datePickerView  : UIDatePicker = UIDatePicker()
+    var dateFormatter = DateFormatter()
     
     var descriptionTextView: RSKPlaceholderTextView? = nil
     
@@ -32,18 +37,32 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         self.descriptionTextView?.font = UIFont (name: "HelveticaNeue-Light", size: 22)
         
         titleTextField.becomeFirstResponder()
-        descriptionTextView?.becomeFirstResponder()
+        //descriptionTextView?.becomeFirstResponder()
+        
+        datePickerView.datePickerMode = UIDatePickerMode.date
+        chooseDateTextField.inputView = datePickerView
+        datePickerView .addTarget(self, action: #selector(handleDatePicker(sender:)), for: UIControlEvents.valueChanged)
     }
     
+    
+    func handleDatePicker(sender: UIDatePicker) {
+        
+        dateFormatter.dateFormat = "dd MMM yyyy"
+        chooseDateTextField.text = dateFormatter.string(from: sender.date)
+    }
+    
+    
+    
+    //TODO: tap return or outside and all text field disappears
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         //titleTextField.resignFirstResponder()
-        //deß®scriptionTextView?.resignFirstResponder()
+        //descriptionTextView?.resignFirstResponder()
         self.view.endEditing(true)
         return false
     }
 
     @IBAction func didPostGoal(_ sender: Any) {
-        if (descriptionTextView?.text.isEmpty)! || (titleTextField.text?.isEmpty)! {
+        if (descriptionTextView?.text.isEmpty)! || (titleTextField.text?.isEmpty)! || (chooseDateTextField.text?.isEmpty)! || (updateNumberTextField.text?.isEmpty)! {
             let alertController = UIAlertController(title: "Empty field", message: "Please provide a title and description for your goal", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "Try again", style: .default, handler: nil )
             
@@ -56,10 +75,15 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
             var data: [String: Any] = [:]
             data["title"] = titleTextField.text
             data["description"] = descriptionTextView?.text
+            let dateFromString = dateFormatter.date(from: chooseDateTextField.text!)
+            data["completionDate"] = dateFromString
+            data["intendedUpdateCount"] = Int(updateNumberTextField.text!)
+            
             
             let goalType = Goal.returnType(index: typeControl.selectedSegmentIndex)
             let goalCategory = Goal.returnCategory(index: categoryControl.selectedSegmentIndex)
             let logSettings = Goal.returnLogSettings(index: logControl.selectedSegmentIndex)
+            
             data["type"] = goalType
             data["categories"] = goalCategory
             data["logTimePeriods"] = logSettings

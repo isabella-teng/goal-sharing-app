@@ -21,7 +21,8 @@ class AllGoalsViewController: UIViewController, UITableViewDelegate, UITableView
         
         tableView.delegate = self
         tableView.dataSource = self
-        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100
     }
     
     override func viewDidAppear(_ animated: Bool) {

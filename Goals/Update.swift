@@ -47,6 +47,7 @@ class Update: NSObject {
         update["text"] = data["text"]
         update["goalId"] = data["goalId"]
         update["goalTitle"] = data["goalTitle"]
+        update["goalDate"] = data["goalDate"]
         update["type"] = data["type"] as! String
         update["likes"] = []
         update["likeCount"] = 0
@@ -68,6 +69,7 @@ class Update: NSObject {
                         var updatesArray = goal?["updates"] as! [String]
                         updatesArray.append(update.objectId!)
                         goal?["updates"] = updatesArray
+                        goal?.incrementKey("updatesCount", byAmount: 1)
                         goal?.saveInBackground()
                     }
                 })
