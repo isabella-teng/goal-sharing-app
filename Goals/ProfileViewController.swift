@@ -20,7 +20,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var profileImageView: PFImageView!
     @IBOutlet weak var bioLabel: UILabel!
+    @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var editProfileButton: UIButton!
+    @IBOutlet weak var closeButton: UIButton!
     
+    var user: PFUser? = nil
+    var fromFeed: Bool = false
     var allUserPosts: [PFObject]? = []
     
     
@@ -29,10 +34,21 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100
         
-        usernameLabel.text = PFUser.current()?.username
+        usernameLabel.text = user?.username
         
-        let user = PFUser.current()
+        if !fromFeed {
+            self.user = PFUser.current()
+            closeButton.isHidden = true
+            logoutButton.isHidden = false
+            editProfileButton.isHidden = false
+        } else {
+            logoutButton.isHidden = true
+            editProfileButton.isHidden = true
+            closeButton.isHidden = false
+        }
         
         //hard code pictures and bios
         if user?.username == "isabella" {
@@ -46,28 +62,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             profileImageView.image = #imageLiteral(resourceName: "josh")
         }
         
-//        self.profileImageView.file = myUser?["IconURL"] as? PFFile
-//        self.profileImageView.loadInBackground()
-//
-//        
-//        var profilePicture: PFObject! {
-//            didSet {
-//
-//                
-//            }
-//        }
-        
+        logoutButton.layer.cornerRadius = logoutButton.frame.height / 2
+        closeButton.layer.cornerRadius = closeButton.frame.height / 2
         profileImageView.layer.cornerRadius = 35
         profileImageView.clipsToBounds = true
     }
     
-    func profileCell(_ profileCell: ProfileCell, didTap goal: PFObject) {
-        performSegue(withIdentifier: "profiletoDetailSegue", sender: goal)
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         // Fetch user updates
-        Goal.fetchGoalsByUser(user: PFUser.current()!) { (loadedGoals: [PFObject]?, error: Error?) in
+        Goal.fetchGoalsByUser(user: user!) { (loadedGoals: [PFObject]?, error: Error?) in
             if error == nil {
                 self.allUserPosts = loadedGoals!
                 self.tableView.reloadData()
@@ -76,8 +79,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
     }
-    
-    
     
     // Return amount of tableView cells
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -92,6 +93,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         return cell
     }
+    
+    func profileCell(_ profileCell: ProfileCell, didTap goal: PFObject) {
+        performSegue(withIdentifier: "profileToTimeline", sender: goal)
+    }
 
     // Log user out
     @IBAction func didTapLogout(_ sender: Any) {
@@ -101,14 +106,18 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         NotificationCenter.default.post(name: NSNotification.Name("logoutNotification"), object: nil)
     }
     
+    @IBAction func didTapClose(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "profiletoDetailSegue") {
-            let vc = segue.destination as! DetailViewController
-            vc.currentUpdate = sender as? PFObject
+        if (segue.identifier == "profileToTimeline") {
+            let vc = segue.destination as! TimelineViewController
+            vc.currentGoal = sender as? PFObject
         }
     }
     

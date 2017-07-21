@@ -10,7 +10,7 @@ import UIKit
 import Parse
 
 protocol FeedCellDelegate: class {
-    func feedCell(_ feedCell: FeedCell, didTap update: PFObject)
+    func feedCell(_ feedCell: FeedCell, didTap update: PFObject, tappedComment: Bool, tappedCamera: Bool, tappedUser: PFUser?)
 }
 
 class FeedCell: UITableViewCell {
@@ -27,18 +27,18 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var goalTitleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
-    
+    var author: PFUser? = nil
     var update: PFObject! {
         didSet {
             self.titleLabel.text = update["text"] as? String
-            let author = update["author"] as! PFUser
-            self.authorLabel.text = author.username
+            self.author = update["author"] as? PFUser
+            self.authorLabel.text = author?.username
             
-            if author.username == "isabella" {
+            if author?.username == "isabella" {
                 self.userProfPic.image = #imageLiteral(resourceName: "isabella")
-            } else if author.username == "gerardo" {
+            } else if author?.username == "gerardo" {
                 self.userProfPic.image = #imageLiteral(resourceName: "gerardo")
-            } else if author.username == "josh" {
+            } else if author?.username == "josh" {
                 self.userProfPic.image = #imageLiteral(resourceName: "josh")
             }
 
@@ -68,15 +68,32 @@ class FeedCell: UITableViewCell {
                 self.favoriteButton.isSelected = false
             }
             
+            //change background of cell based on the good or bad update
+            //http://uicolor.xyz/#/rgb-to-ui
+            
+            let typeString = update["type"] as! String
+            if typeString == "Good update" {
+                cellBackground.backgroundColor = UIColor(red:0.50, green:0.91, blue:0.67, alpha:1.0)
+            } else if typeString == "Bad update" {
+                cellBackground.backgroundColor = UIColor(red:0.96, green:0.48, blue:0.48, alpha:1.0)
+            }
+            
         }
     }
     
 
     func didTapCell(_ sender: UITapGestureRecognizer) {
         // Call method on delegate
-        delegate?.feedCell(self, didTap: update)
+        delegate?.feedCell(self, didTap: update, tappedComment: false, tappedCamera: false, tappedUser: nil)
     }
     
+    func didTapCommentButton(_ sender: UITapGestureRecognizer) {
+        delegate?.feedCell(self, didTap: update, tappedComment: true, tappedCamera: false, tappedUser: nil)
+    }
+    
+    func didTapCameraButton(_ sender: UITapGestureRecognizer) {
+        delegate?.feedCell(self, didTap: update, tappedComment: false, tappedCamera: true, tappedUser: nil)
+    }
     
     @IBAction func onFavorite(_ sender: Any) {
         var liked = update["liked"] as! Bool
@@ -105,8 +122,10 @@ class FeedCell: UITableViewCell {
         update.saveInBackground()
     }
     
+    @IBAction func didTapUser(_ sender: Any) {
+        delegate?.feedCell(self, didTap: update, tappedComment: false, tappedCamera: false, tappedUser: author)
+    }
     
-
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -114,6 +133,14 @@ class FeedCell: UITableViewCell {
         let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCell(_:)))
         cellBackground.addGestureRecognizer(cellTapGestureRecognizer)
         cellBackground.isUserInteractionEnabled = true
+        
+        let commentTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCommentButton(_:)))
+        commentButton.addGestureRecognizer(commentTapGestureRecognizer)
+        commentButton.isUserInteractionEnabled = true
+        
+        let cameraTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCameraButton(_:)))
+        videoButton.addGestureRecognizer(cameraTapGestureRecognizer)
+        videoButton.isUserInteractionEnabled = true
         
         cellBackground.layer.cornerRadius = 10
     }

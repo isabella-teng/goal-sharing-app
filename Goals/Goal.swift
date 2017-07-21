@@ -55,7 +55,7 @@ class Goal: NSObject {
     }
     
     
-    //Log settings
+    // Log settings
     enum LogSettings: Int {
         case daily
         case weekly
@@ -99,14 +99,7 @@ class Goal: NSObject {
         goal["icon"] = NSNull()
         goal["progress"] = NSNull()
         goal["videoReplies"] = NSNull()
-        
-        
-        let updateIds: [NSString] = []
-        
-        
-        // TODO: Create first update
-
-        goal["updates"] = updateIds
+        goal["updates"] = []
 
         
         // Save object (following function will save the object in Parse asynchronously)
@@ -116,6 +109,7 @@ class Goal: NSObject {
                 updateData["text"] = data["description"]
                 updateData["goalId"] = goal.objectId
                 updateData["goalTitle"] = goal["title"]
+                updateData["type"] = "initialGoalNoType"
                 Update.createUpdate(data: updateData)
             }
         }
@@ -158,8 +152,7 @@ class Goal: NSObject {
     
     // Fetch goal by ID
     class func fetchGoalWithId(id: String, withCompletion completion: @escaping (PFObject?, Error?) -> ()) {
-        //print("heyo")
-        //print(id)
+
         let query = PFQuery(className: "Goal")
         
         query.order(byDescending: "createdAt")

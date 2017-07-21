@@ -54,15 +54,33 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
-    func feedCell(_ feedCell: FeedCell, didTap update: PFObject) {
-        //segue sending over the goal id to the detail view controller
-        performSegue(withIdentifier: "detailSegue", sender: update)
+    func feedCell(_ feedCell: FeedCell, didTap update: PFObject, tappedComment: Bool, tappedCamera: Bool, tappedUser: PFUser?) {
+        if tappedComment {
+            performSegue(withIdentifier: "commentSegue", sender: update)
+        } else if tappedCamera {
+            performSegue(withIdentifier: "cameraSegue", sender: update)
+        } else if tappedUser != nil {
+            performSegue(withIdentifier: "profileSegue", sender: tappedUser!)
+        } else {
+            performSegue(withIdentifier: "detailSegue", sender: update)
+        }
+        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "detailSegue") {
             let vc = segue.destination as! DetailViewController
             vc.currentUpdate = sender as? PFObject
+        } else if (segue.identifier == "commentSegue") {
+            let vc = segue.destination as! PostCommentViewController
+            vc.currentUpdate = sender as? PFObject
+        } else if (segue.identifier == "cameraSegue") {
+            let vc = segue.destination as! CameraViewController
+            vc.currentUpdate = sender as? PFObject
+        } else if (segue.identifier == "profileSegue") {
+            let vc = segue.destination as! ProfileViewController
+            vc.user = sender as? PFUser
+            vc.fromFeed = true
         }
     }
     

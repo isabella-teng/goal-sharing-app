@@ -8,13 +8,19 @@
 
 import UIKit
 import RSKPlaceholderTextView
+import Parse
+import ParseUI
+
 
 class PostCommentViewController: UIViewController {
 
     var commentTextView: RSKPlaceholderTextView? = nil
+    var currentUpdate: PFObject?
+    var currentGoal: PFObject?
+    
 //    var update: PFObject! {
 //        didSet{
-//            self.commentTextField.text = update["comments"] as? String
+//            self.commentTextView.text = update["comments"] as? String
 //            let currentCommentCount = update["commentCount"] as! Int
 //        }
 //    }
@@ -32,6 +38,18 @@ class PostCommentViewController: UIViewController {
         self.commentTextView?.font = UIFont (name: "HelveticaNeue-Light", size: 22)
         
         commentButton.layer.cornerRadius = commentButton.frame.height / 2
+        
+        commentButton.isEnabled = false
+        commentButton.alpha = 0.7
+        
+        // Fetch current goal
+        Goal.fetchGoalWithId(id: currentUpdate?["goalId"] as! String) { (goal: PFObject?, error: Error?) in
+            if error == nil {
+                self.currentGoal = goal
+                self.commentButton.isEnabled = true
+                self.commentButton.alpha = 1.0
+            }
+        }
     }
 
     @IBAction func didTapComment(_ sender: Any) {
@@ -42,8 +60,53 @@ class PostCommentViewController: UIViewController {
             alertController.addAction(okAction)
             self.present(alertController, animated: true)
         } else {
-            // Post comment to database
             self.dismiss(animated: true)
+            
+            // Save comment in current update object
+            currentUpdate?.saveInBackground(block: { (success: Bool, error: Error?) in
+                if error == nil {
+                    var commentsArray = self.currentUpdate?["comments"] as! [[String: Any]]
+                    var commentsDictionary: [String: Any] = [:]
+                    commentsDictionary["sender"] = PFUser.current()
+                    commentsDictionary["text"] = self.commentTextView?.text
+                    commentsArray.append(commentsDictionary)
+                    self.currentUpdate?["comments"] = commentsArray
+                    self.currentUpdate?.incrementKey("commentCount", byAmount: 1)
+                    
+                    //Save updates activity array
+                    var interactionsArray = self.currentUpdate?["activity"] as! [[String: Any]]
+                    print("made it")
+                    var newInteraction: [String: Any] = commentsDictionary
+                    print("?")
+                    newInteraction["type"] = "comment"
+                    newInteraction["createdAt"] = NSDate()
+                    interactionsArray.append(newInteraction)
+                    self.currentUpdate?["activity"] = interactionsArray
+                    
+                    self.currentUpdate?.saveInBackground()
+                } else {
+                    print(error?.localizedDescription as Any)
+                }
+            })
+            
+            // Save comment in goal interactions array
+//             currentGoal?.saveInBackground(block: { (success: Bool, error: Error?) in
+//                 if error == nil {
+//                     var interactionsArray = self.currentGoal?["activity"] as! [[String: Any]]
+//                     var newInteraction: [String: Any] = [:]
+//                     newInteraction["sender"] = PFUser.current()
+//                     newInteraction["type"] = "comment"
+//                     newInteraction["text"] = self.commentTextView?.text
+//                     newInteraction["createdAt"] = NSDate()
+//                     
+//                     interactionsArray.append(newInteraction)
+//                     self.currentGoal?["activity"] = interactionsArray
+//                     self.currentGoal?.saveInBackground()
+//                 } else {
+//                     print(error?.localizedDescription as Any)
+//                 }
+//             })
+            
         }
     }
     
@@ -56,14 +119,5 @@ class PostCommentViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }

@@ -18,6 +18,25 @@ import Parse
 
 class Update: NSObject {
     
+    // Update types
+    enum UpdateType: Int {
+        case positive
+        case negative
+        
+        var string: String {
+            switch self {
+            case .positive: return "Good update";
+            case .negative: return "Bad update";
+            }
+        }
+    }
+    
+    class func returnUpdateType(index: Int) -> String {
+        let type = UpdateType(rawValue: index)!
+        return type.string
+    }
+
+    
     // Post update to Parse database
     class func createUpdate(data: [String: Any]) {
         // Create Parse object PFObject
@@ -28,14 +47,19 @@ class Update: NSObject {
         update["text"] = data["text"]
         update["goalId"] = data["goalId"]
         update["goalTitle"] = data["goalTitle"]
+        update["type"] = data["type"] as! String
         update["likes"] = []
         update["likeCount"] = 0
-        update["liked"] = false
-        update["comments"] = []
+        update["liked"] = false //should also have in the user
+        update["comments"] = [[:]] //will have sender and text
         update["commentCount"] = 0
+        update["videos"] = [[:]] //will contain the caption string, video url string, and author
+        update["pictures"] = [[:]] //contain the caption string, picture url string, and author
+        
+        update["activity"] = [[:]] //this is for the interactions - update and its comments, videos, and pictures by date
 
         
-
+        
         // Save object (following function will save the object in Parse asynchronously)
         update.saveInBackground { (success: Bool, error: Error?) in
             if error == nil {
@@ -114,6 +138,7 @@ class Update: NSObject {
         }
         
     }
+    
     
     
 

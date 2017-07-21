@@ -11,15 +11,22 @@ PODS:
   - ParseUI (1.2.0):
     - Bolts/Tasks (~> 1.3)
     - Parse (~> 1.9)
+  - Realm (2.8.3):
+    - Realm/Headers (= 2.8.3)
+  - Realm/Headers (2.8.3)
+  - RealmSwift (2.8.3):
+    - Realm (= 2.8.3)
   - RSKPlaceholderTextView (2.0.0)
+  - SwiftyCam (2.4.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.4)
   - AlamofireImage (~> 3.1)
   - Charts
   - Parse
   - ParseUI
+  - RealmSwift
   - RSKPlaceholderTextView
+  - SwiftyCam
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
@@ -28,8 +35,15 @@ SPEC CHECKSUMS:
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
   Parse: b0aa91d2c435e53d4a9af26e741e014c9b35c42e
   ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
+  Realm: 3601ef091c8c499a31101d8563b991e75546cdce
+  RealmSwift: 8183818515471b01a99abdd2970f8e4fd52b6f4a
   RSKPlaceholderTextView: 301f0f30e70e7c42fe4e941e3a08365ab0d890d5
+  SwiftyCam: cb83b9a8e181f70fb741d30cea724c6b045a4549
 
+<<<<<<< HEAD
 PODFILE CHECKSUM: 8012313cc92595ff001f4f6f3a43b72761192fca
+=======
+PODFILE CHECKSUM: 19d6cbe4301079eef9573b010521771689f37006
+>>>>>>> master
 
 COCOAPODS: 1.2.1

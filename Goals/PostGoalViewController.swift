@@ -17,7 +17,7 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
     @IBOutlet weak var typeControl: UISegmentedControl!
     @IBOutlet weak var categoryControl: UISegmentedControl!
     @IBOutlet weak var logControl: UISegmentedControl!
-    @IBOutlet weak var alertTime: UIDatePicker!
+    
     var descriptionTextView: RSKPlaceholderTextView? = nil
     
     override func viewDidLoad() {
@@ -29,8 +29,17 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         self.descriptionTextView = RSKPlaceholderTextView(frame: CGRect(x: 16, y: 112, width: self.view.frame.width - 32, height: 122))
         self.descriptionTextView?.placeholder = "Briefly describe your goal"
         self.view.addSubview(self.descriptionTextView!)
-        self.descriptionTextView?.becomeFirstResponder()
         self.descriptionTextView?.font = UIFont (name: "HelveticaNeue-Light", size: 22)
+        
+        titleTextField.becomeFirstResponder()
+        descriptionTextView?.becomeFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        //titleTextField.resignFirstResponder()
+        //deß®scriptionTextView?.resignFirstResponder()
+        self.view.endEditing(true)
+        return false
     }
 
     @IBAction func didPostGoal(_ sender: Any) {
