@@ -12,21 +12,27 @@ import Parse
 class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var editedImage: UIImage?
+    let user = PFUser.current()
     
     @IBOutlet weak var photoPreview: UIImageView!
-    
     @IBOutlet weak var bioField: UITextField!
+    @IBOutlet weak var usernameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if PFUser.current()?.object(forKey: "IconURL") != nil {
-            let userImageFile:PFFile = PFUser.current()?.object(forKey: "IconURL") as! PFFile
-            
-            userImageFile.getDataInBackground(block: { (imageData: Data?, error: Error?) in
-                self.photoPreview.image = UIImage(data: imageData!)
-            })
+        photoPreview.layer.cornerRadius = 35
+        
+        if let profpic = user?["portrait"] as? PFFile {
+            profpic.getDataInBackground { (imageData: Data?, error: Error?) in
+                if error == nil {
+                    let profImage = UIImage(data: imageData!)
+                    self.photoPreview.image = profImage
+                }
+            }
         }
+        
+        bioField.text = user?["bio"] as? String
     }
     
     @IBAction func takePhotoButton(_ sender: Any) {
@@ -35,10 +41,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         vc.allowsEditing = true
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            print("Camera is available")
             vc.sourceType = .camera
         } else {
-            print("Camera not available so we will use photo library instead")
             vc.sourceType = .photoLibrary
         }
         self.present(vc, animated: true, completion: nil)
@@ -78,10 +82,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     @IBAction func didTapSave(_ sender: Any) {
-        let myUser = PFUser.current()
         let imageURL = Update.getPFFileFromImage(image: editedImage)
-        myUser?["IconURL"] = imageURL
-        myUser?.saveInBackground()
+        user?["portrait"] = imageURL ?? NSNull()
+        user?["bio"] = bioField.text
+        user?.saveInBackground()
         
         self.dismiss(animated: true, completion: nil)
     }
