@@ -68,7 +68,7 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
 
     @IBAction func didPostGoal(_ sender: Any) {
         if (descriptionTextView?.text.isEmpty)! || (titleTextField.text?.isEmpty)! || (chooseDateTextField.text?.isEmpty)! || (updateNumberTextField.text?.isEmpty)! {
-            let alertController = UIAlertController(title: "Empty field", message: "Please provide a title and description for your goal", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Empty field", message: "Please fil out all necessary fields", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "Try again", style: .default, handler: nil )
             
             alertController.addAction(okAction)
@@ -108,13 +108,4 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         // Dispose of any resources that can be recreated.
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
 }
