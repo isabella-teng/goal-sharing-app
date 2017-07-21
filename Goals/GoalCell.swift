@@ -19,11 +19,18 @@ class GoalCell: UITableViewCell {
     
     @IBOutlet weak var cellBackground: UIView!
     @IBOutlet weak var goalTitle: UILabel!
-
+    @IBOutlet weak var goalStartDateLabel: UILabel!
+    
     
     var goal: PFObject! {
         didSet {
             goalTitle.text = goal["title"] as? String
+            
+            let dateCreated = goal.createdAt! as Date
+            let dateFormat = DateFormatter()
+            dateFormat.dateFormat = "MM.dd.yy"
+            self.goalStartDateLabel.text = String("Began goal on " + dateFormat.string(from: dateCreated))
+
         }
     }
     
