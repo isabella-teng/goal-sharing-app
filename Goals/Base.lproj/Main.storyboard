@@ -741,18 +741,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xpc-0P-nEH" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="16" y="77" width="343" height="570"/>
+                                <rect key="frame" x="16" y="77" width="343" height="523"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7It-FL-in7">
-                                        <rect key="frame" x="81" y="532" width="180" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Save Chart to Camera Roll"/>
-                                        <connections>
-                                            <action selector="saveChart:" destination="6dc-ye-LrG" eventType="touchUpInside" id="03s-JG-KlR"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s9K-fn-3wl">
@@ -761,6 +751,14 @@
                                 <state key="normal" title="Cancel"/>
                                 <connections>
                                     <action selector="cancelButton:" destination="6dc-ye-LrG" eventType="touchUpInside" id="DiU-rv-NTm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7It-FL-in7">
+                                <rect key="frame" x="97" y="621" width="180" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save Chart to Camera Roll"/>
+                                <connections>
+                                    <action selector="saveChart:" destination="6dc-ye-LrG" eventType="touchUpInside" id="03s-JG-KlR"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -772,7 +770,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cFB-ed-aqS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3692" y="1633"/>
+            <point key="canvasLocation" x="3692" y="1632.2338830584708"/>
         </scene>
         <!--Post Comment View Controller-->
         <scene sceneID="lNc-tP-5XZ">
