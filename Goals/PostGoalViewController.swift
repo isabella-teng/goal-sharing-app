@@ -14,7 +14,6 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
     
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var typeControl: UISegmentedControl!
     @IBOutlet weak var categoryControl: UISegmentedControl!
     @IBOutlet weak var logControl: UISegmentedControl!
     @IBOutlet weak var chooseDateTextField: UITextField!
@@ -31,10 +30,10 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         postButton.layer.cornerRadius = postButton.frame.height / 2
         
         // Placeholder TextView
-        self.descriptionTextView = RSKPlaceholderTextView(frame: CGRect(x: 16, y: 112, width: self.view.frame.width - 32, height: 122))
+        self.descriptionTextView = RSKPlaceholderTextView(frame: CGRect(x: 16, y: 106, width: self.view.frame.width - 32, height: 74))
         self.descriptionTextView?.placeholder = "Briefly describe your goal"
         self.view.addSubview(self.descriptionTextView!)
-        self.descriptionTextView?.font = UIFont (name: "HelveticaNeue-Light", size: 22)
+        self.descriptionTextView?.font = UIFont (name: "HelveticaNeue-Light", size: 18)
         
         titleTextField.becomeFirstResponder()
         //descriptionTextView?.becomeFirstResponder()
@@ -46,12 +45,9 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
     
     
     func handleDatePicker(sender: UIDatePicker) {
-        
         dateFormatter.dateFormat = "dd MMM yyyy"
         chooseDateTextField.text = dateFormatter.string(from: sender.date)
     }
-    
-    
     
     //TODO: tap return or outside and all text field disappears
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -59,6 +55,10 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         //descriptionTextView?.resignFirstResponder()
         self.view.endEditing(true)
         return false
+    }
+    
+    @IBAction func didTapScreen(_ sender: Any) {
+        self.view.endEditing(true)
     }
 
     @IBAction func didPostGoal(_ sender: Any) {
@@ -79,12 +79,9 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
             data["completionDate"] = dateFromString
             data["intendedUpdateCount"] = Int(updateNumberTextField.text!)
             
-            
-            let goalType = Goal.returnType(index: typeControl.selectedSegmentIndex)
             let goalCategory = Goal.returnCategory(index: categoryControl.selectedSegmentIndex)
             let logSettings = Goal.returnLogSettings(index: logControl.selectedSegmentIndex)
             
-            data["type"] = goalType
             data["categories"] = goalCategory
             data["logTimePeriods"] = logSettings
             

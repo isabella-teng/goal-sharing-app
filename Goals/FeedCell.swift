@@ -35,12 +35,13 @@ class FeedCell: UITableViewCell {
             self.author = update["author"] as? PFUser
             self.authorLabel.text = author?.username
             
-            if author?.username == "isabella" {
-                self.userProfPic.image = #imageLiteral(resourceName: "isabella")
-            } else if author?.username == "gerardo" {
-                self.userProfPic.image = #imageLiteral(resourceName: "gerardo")
-            } else if author?.username == "josh" {
-                self.userProfPic.image = #imageLiteral(resourceName: "josh")
+            if let profpic = author?["portrait"] as? PFFile {
+                profpic.getDataInBackground { (imageData: Data?, error: Error?) in
+                    if error == nil {
+                        let profImage = UIImage(data: imageData!)
+                        self.userProfPic.image = profImage
+                    }
+                }
             }
 
             self.goalTitleLabel.text = update["goalTitle"] as? String
