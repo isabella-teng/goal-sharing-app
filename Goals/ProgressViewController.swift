@@ -70,7 +70,7 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
         
         let sum = values.reduce(0, +)
         let average = sum / 7
-        let average1 = average + 1.01
+        let average1 = average
         
         
         //Settings for the Bar graph
@@ -96,7 +96,7 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
         averageEstimate.labelPosition = .leftBottom
         
         let actualAverage = ChartLimitLine(limit: average1, label: "Your average")
-        averageEstimate.valueFont = UIFont(name: "Verdana", size: 10.0)!
+        actualAverage.valueFont = UIFont(name: "Verdana", size: 10.0)!
         if average1 > average {
             actualAverage.lineColor = UIColor.green
             barChartView.rightAxis.addLimitLine(actualAverage)
