@@ -11,7 +11,7 @@ import Charts
 
 
 class ProgressViewController: UIViewController, ChartViewDelegate {
-
+    
     
     @IBOutlet weak var barChartView: BarChartView!
     @IBAction func cancelButton(_ sender: Any) {
@@ -31,8 +31,8 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
         let when = DispatchTime.now() + 5
         DispatchQueue.main.asyncAfter(deadline: when) {
             alertController.dismiss(animated: true, completion: nil)
-            }
         }
+    }
     
     weak var axisFormatDelegate: IAxisValueFormatter?
     
@@ -99,19 +99,19 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
+     // MARK: - Navigation
      
      
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
     
     /*
      // MARK: - Navigation

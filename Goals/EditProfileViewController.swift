@@ -85,22 +85,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         self.dismiss(animated: true, completion: nil)
     }
-<<<<<<< HEAD
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if PFUser.current()?.object(forKey: "IconURL") != nil {
-            let userImageFile:PFFile = PFUser.current()?.object(forKey: "IconURL") as! PFFile
-            
-            userImageFile.getDataInBackground(block: { (imageData: Data?, error: Error?) in
-                //self.photoPreview.image = UIImage(data: imageData!)
-            })
-        }
-        
-    }
-=======
->>>>>>> master
+
 
     @IBAction func didTapCancel(_ sender: Any) {
         self.dismiss(animated: true)
