@@ -259,7 +259,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal Date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vS1-bK-WPV">
-                                                            <rect key="frame" x="30" y="80" width="57" height="14.5"/>
+                                                            <rect key="frame" x="30" y="80" width="151" height="15"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -272,6 +272,7 @@
                                                         <constraint firstItem="vS1-bK-WPV" firstAttribute="leading" secondItem="kzA-1h-QJ2" secondAttribute="trailing" constant="5" id="CWX-U2-JaJ"/>
                                                         <constraint firstItem="nmH-mo-2VR" firstAttribute="top" secondItem="ySw-7g-TCF" secondAttribute="top" constant="20" id="CzC-jn-hbZ"/>
                                                         <constraint firstItem="kzA-1h-QJ2" firstAttribute="leading" secondItem="ySw-7g-TCF" secondAttribute="leading" constant="8" id="Ey8-dD-7Sf"/>
+                                                        <constraint firstAttribute="trailing" secondItem="vS1-bK-WPV" secondAttribute="trailing" constant="178" id="FjA-T6-Yjn"/>
                                                         <constraint firstItem="5D2-UC-Mu7" firstAttribute="top" secondItem="ySw-7g-TCF" secondAttribute="top" constant="8" id="HQu-8j-ljx"/>
                                                         <constraint firstItem="nmH-mo-2VR" firstAttribute="leading" secondItem="5D2-UC-Mu7" secondAttribute="trailing" constant="8" id="HUE-HB-Uc8"/>
                                                         <constraint firstItem="j7R-3j-LPC" firstAttribute="top" secondItem="kzA-1h-QJ2" secondAttribute="bottom" constant="27" id="ItV-6S-8HZ"/>
@@ -298,7 +299,6 @@
                                                         <constraint firstItem="OOF-Nk-awF" firstAttribute="top" secondItem="vS1-bK-WPV" secondAttribute="bottom" constant="32.5" id="pv4-i2-jr1"/>
                                                         <constraint firstItem="kzA-1h-QJ2" firstAttribute="top" secondItem="nxp-WH-xAJ" secondAttribute="bottom" constant="1" id="wcW-ji-ubP"/>
                                                         <constraint firstItem="kzA-1h-QJ2" firstAttribute="leading" secondItem="ySw-7g-TCF" secondAttribute="leading" constant="8" id="yLk-il-xyR"/>
-                                                        <constraint firstAttribute="trailing" secondItem="vS1-bK-WPV" secondAttribute="trailing" constant="272" id="zwf-gn-PkF"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="On0-kS-fqa">
@@ -521,11 +521,17 @@
                                 <rect key="frame" x="331" y="332" width="34" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="&gt;"/>
+                                <connections>
+                                    <action selector="onSetCompletionDate:" destination="wh1-XR-JhU" eventType="touchUpInside" id="AUp-SL-OF3"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HgP-BZ-YiZ">
                                 <rect key="frame" x="147" y="405" width="34" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="&gt;"/>
+                                <connections>
+                                    <action selector="onSetUpdatesTap:" destination="wh1-XR-JhU" eventType="touchUpInside" id="dPe-h8-NDv"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

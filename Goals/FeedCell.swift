@@ -52,7 +52,7 @@ class FeedCell: UITableViewCell {
             
             let goalDateUpdated = update["goalDate"] as! Date
             //let dateFormate = DateFormatter()
-            self.goalDateLabel.text = String(dateFormat.string(from: goalDateUpdated))
+            self.goalDateLabel.text = String("Began goal on " + dateFormat.string(from: goalDateUpdated))
             
             
             

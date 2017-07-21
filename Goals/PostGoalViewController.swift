@@ -36,8 +36,9 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         self.view.addSubview(self.descriptionTextView!)
         self.descriptionTextView?.font = UIFont (name: "HelveticaNeue-Light", size: 22)
         
-        titleTextField.becomeFirstResponder()
-        //descriptionTextView?.becomeFirstResponder()
+        titleTextField.delegate = self
+        updateNumberTextField.delegate = self
+        
         
         datePickerView.datePickerMode = UIDatePickerMode.date
         chooseDateTextField.inputView = datePickerView
@@ -51,12 +52,16 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         chooseDateTextField.text = dateFormatter.string(from: sender.date)
     }
     
+    @IBAction func onSetCompletionDate(_ sender: Any) {
+        self.view.endEditing(true)
+    }
     
+    @IBAction func onSetUpdatesTap(_ sender: Any) {
+        self.view.endEditing(true)
+    }
     
     //TODO: tap return or outside and all text field disappears
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        //titleTextField.resignFirstResponder()
-        //descriptionTextView?.resignFirstResponder()
         self.view.endEditing(true)
         return false
     }
