@@ -395,7 +395,7 @@
                                 <segue destination="wh1-XR-JhU" kind="presentation" identifier="" id="GcN-JU-aZ0"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Update" id="ZtU-yN-AxO">
+                        <barButtonItem key="rightBarButtonItem" image="menu" id="ZtU-yN-AxO">
                             <connections>
                                 <segue destination="VhF-kq-3KK" kind="presentation" modalTransitionStyle="coverVertical" id="uvP-4o-G90"/>
                             </connections>
@@ -1522,6 +1522,7 @@
         <image name="isabella" width="1673" height="1673"/>
         <image name="like" width="24" height="24"/>
         <image name="like-red" width="24" height="24"/>
+        <image name="menu" width="32" height="32"/>
         <image name="photo" width="24" height="24"/>
         <image name="update" width="32" height="32"/>
     </resources>
