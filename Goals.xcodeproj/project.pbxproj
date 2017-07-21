@@ -10,6 +10,7 @@
 		15A2C043446242E87172231A /* Pods_GoalsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E339925FD6B14DCCACECDAC9 /* Pods_GoalsTests.framework */; };
 		55FD199C341B1A7428EE3609 /* Pods_GoalsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A37E25EFEFAC2CCC5DABED /* Pods_GoalsUITests.framework */; };
 		770E9622CD194284E248B22C /* Pods_Goals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFBA34B6999BBB6E2B553F30 /* Pods_Goals.framework */; };
+		7E1238AD1F22A79000DAF688 /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1238AC1F22A79000DAF688 /* InfoCell.swift */; };
 		7E124C931F1EA8C200858D35 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E124C921F1EA8C200858D35 /* HeaderCell.swift */; };
 		7E124C951F1EA8EF00858D35 /* UpdateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E124C941F1EA8EF00858D35 /* UpdateCell.swift */; };
 		7E1FCE621F16D6E9009C0AF1 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1FCE611F16D6E9009C0AF1 /* FeedCell.swift */; };
@@ -20,7 +21,6 @@
 		7EEEFB171F158A6E004A29EC /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEEFB161F158A6E004A29EC /* FeedViewController.swift */; };
 		7EF1FFD51F158598000DA708 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF1FFD41F158598000DA708 /* TimelineViewController.swift */; };
 		7EFAB7F61F216E0F00972A0F /* MediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFAB7F51F216E0F00972A0F /* MediaCell.swift */; };
-		7EFAB7F81F216F7100972A0F /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFAB7F71F216F7100972A0F /* InfoCell.swift */; };
 		B84B22791F1EDB6F00E9482E /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84B22781F1EDB6F00E9482E /* ProgressViewController.swift */; };
 		B84B227D1F2019BE00E9482E /* xAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84B227C1F2019BE00E9482E /* xAxisValueFormatter.swift */; };
 		B87C87EE1F156E9300F58517 /* PostGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87ED1F156E9300F58517 /* PostGoalViewController.swift */; };
@@ -66,6 +66,7 @@
 /* Begin PBXFileReference section */
 		1FCD39C47ED1A6703B4F8F14 /* Pods-Goals.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Goals.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Goals/Pods-Goals.debug.xcconfig"; sourceTree = "<group>"; };
 		7D58FA351BA108AA49E998F0 /* Pods-GoalsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsUITests/Pods-GoalsUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		7E1238AC1F22A79000DAF688 /* InfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
 		7E124C921F1EA8C200858D35 /* HeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		7E124C941F1EA8EF00858D35 /* UpdateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateCell.swift; sourceTree = "<group>"; };
 		7E1FCE611F16D6E9009C0AF1 /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
@@ -76,7 +77,6 @@
 		7EEEFB161F158A6E004A29EC /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		7EF1FFD41F158598000DA708 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		7EFAB7F51F216E0F00972A0F /* MediaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCell.swift; sourceTree = "<group>"; };
-		7EFAB7F71F216F7100972A0F /* InfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoCell.swift; path = ../../../../.Trash/InfoCell.swift; sourceTree = "<group>"; };
 		8B1C5447CB4A291F000D9875 /* Pods-GoalsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsUITests/Pods-GoalsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A3870FB33249FFA01E80B856 /* Pods-GoalsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsTests/Pods-GoalsTests.release.xcconfig"; sourceTree = "<group>"; };
 		A9A37E25EFEFAC2CCC5DABED /* Pods_GoalsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoalsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,9 +148,9 @@
 			isa = PBXGroup;
 			children = (
 				7E124C921F1EA8C200858D35 /* HeaderCell.swift */,
-				7EFAB7F71F216F7100972A0F /* InfoCell.swift */,
 				7E124C941F1EA8EF00858D35 /* UpdateCell.swift */,
 				7EFAB7F51F216E0F00972A0F /* MediaCell.swift */,
+				7E1238AC1F22A79000DAF688 /* InfoCell.swift */,
 			);
 			name = Timeline;
 			sourceTree = "<group>";
@@ -597,13 +597,13 @@
 				7E38DFDB1F15813400DEF47C /* Update.swift in Sources */,
 				FAD3513A1F1597FE00998CCA /* User.swift in Sources */,
 				7EFAB7F61F216E0F00972A0F /* MediaCell.swift in Sources */,
+				7E1238AD1F22A79000DAF688 /* InfoCell.swift in Sources */,
 				B84B227D1F2019BE00E9482E /* xAxisValueFormatter.swift in Sources */,
 				FACF12D21F156E8C00D505FE /* ProfileCell.swift in Sources */,
 				FAA6C8C31F1EA79900FB8F26 /* CameraViewController.swift in Sources */,
 				B84B22791F1EDB6F00E9482E /* ProgressViewController.swift in Sources */,
 				FAD3513E1F16D49A00998CCA /* LogCell.swift in Sources */,
 				7E1FCE641F16E6DC009C0AF1 /* PostUpdateViewController.swift in Sources */,
-				7EFAB7F81F216F7100972A0F /* InfoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
