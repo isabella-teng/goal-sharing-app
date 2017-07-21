@@ -420,16 +420,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="QRt-gJ-jwb">
-                                <rect key="frame" x="15" y="242" width="343" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Short-term"/>
-                                    <segment title="Long-term"/>
-                                </segments>
-                            </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="G4k-hu-WM4">
-                                <rect key="frame" x="15" y="278" width="343" height="29"/>
+                                <rect key="frame" x="16" y="253" width="343" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Education"/>
@@ -439,27 +431,6 @@
                                     <segment title="Spiritual"/>
                                 </segments>
                             </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jiv-eV-h4r">
-                                <rect key="frame" x="264" y="26" width="95" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.37080722997810567" blue="0.42151759596015392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <state key="normal" title="Set Goal">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="didPostGoal:" destination="wh1-XR-JhU" eventType="touchUpInside" id="JZw-ga-xdN"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mLv-Ut-IeO">
-                                <rect key="frame" x="16" y="27" width="56" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                                <state key="normal" title="Cancel"/>
-                                <connections>
-                                    <action selector="cancelPost:" destination="wh1-XR-JhU" eventType="touchUpInside" id="sbz-Dn-u9k"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Per (possibly get rid of):" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wOt-c2-DAw">
                                 <rect key="frame" x="16" y="443" width="165" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -477,9 +448,8 @@
                                     <segment title="Year"/>
                                 </segments>
                             </segmentedControl>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Choose a title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d1C-dS-CxH">
-                                <rect key="frame" x="20" y="69" width="335" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Choose a title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d1C-dS-CxH">
+                                <rect key="frame" x="20" y="65" width="335" height="26"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -533,8 +503,48 @@
                                     <action selector="onSetUpdatesTap:" destination="wh1-XR-JhU" eventType="touchUpInside" id="dPe-h8-NDv"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cQs-dH-hDd">
+                                <rect key="frame" x="20" y="104" width="335" height="1"/>
+                                <color key="backgroundColor" red="0.79592949150000003" green="0.79575818779999996" blue="0.81638228889999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="8GG-x1-Z5H"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mLv-Ut-IeO">
+                                <rect key="frame" x="334" y="36" width="25" height="25"/>
+                                <state key="normal" image="cross"/>
+                                <connections>
+                                    <action selector="cancelPost:" destination="wh1-XR-JhU" eventType="touchUpInside" id="sbz-Dn-u9k"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jiv-eV-h4r">
+                                <rect key="frame" x="15" y="547" width="343" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.37080722997810567" blue="0.42151759596015392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <state key="normal" title="Set Goal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didPostGoal:" destination="wh1-XR-JhU" eventType="touchUpInside" id="JZw-ga-xdN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="d1C-dS-CxH" firstAttribute="top" secondItem="5Rr-3l-ogd" secondAttribute="bottom" constant="45" id="14A-pg-GcE"/>
+                            <constraint firstItem="cQs-dH-hDd" firstAttribute="top" secondItem="d1C-dS-CxH" secondAttribute="bottom" constant="13" id="6SN-0q-CZ0"/>
+                            <constraint firstItem="cQs-dH-hDd" firstAttribute="leading" secondItem="d1C-dS-CxH" secondAttribute="leading" id="XYk-Q6-8fZ"/>
+                            <constraint firstItem="d1C-dS-CxH" firstAttribute="leading" secondItem="EUo-0m-kNM" secondAttribute="leading" constant="20" id="ZIq-jM-Sgu"/>
+                            <constraint firstItem="mLv-Ut-IeO" firstAttribute="top" secondItem="5Rr-3l-ogd" secondAttribute="bottom" constant="16" id="fBV-aJ-GSg"/>
+                            <constraint firstAttribute="trailing" secondItem="d1C-dS-CxH" secondAttribute="trailing" constant="20" id="neG-Fb-LKZ"/>
+                            <constraint firstItem="cQs-dH-hDd" firstAttribute="trailing" secondItem="d1C-dS-CxH" secondAttribute="trailing" id="vQB-qs-CJb"/>
+                            <constraint firstAttribute="trailing" secondItem="mLv-Ut-IeO" secondAttribute="trailing" constant="16" id="xB7-ed-IRj"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="yT3-z7-JMc" appends="YES" id="zIG-Xe-ieK"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="categoryControl" destination="G4k-hu-WM4" id="w3j-ro-kTD"/>
@@ -542,11 +552,15 @@
                         <outlet property="logControl" destination="DK9-FN-2IT" id="Xbg-ek-1RL"/>
                         <outlet property="postButton" destination="jiv-eV-h4r" id="iv2-TM-PS6"/>
                         <outlet property="titleTextField" destination="d1C-dS-CxH" id="rOt-qZ-jfF"/>
-                        <outlet property="typeControl" destination="QRt-gJ-jwb" id="cFy-UC-5Kr"/>
                         <outlet property="updateNumberTextField" destination="Rjy-gl-PEf" id="fFG-s0-hpf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V4f-o3-CjY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="yT3-z7-JMc">
+                    <connections>
+                        <action selector="didTapScreen:" destination="wh1-XR-JhU" id="t0i-nA-XrF"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3692" y="-1343.4782608695652"/>
         </scene>
@@ -974,7 +988,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gVm-Cf-UlK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5182" y="-110"/>
+            <point key="canvasLocation" x="5182" y="-291"/>
         </scene>
         <!--Video View Controller-->
         <scene sceneID="NoL-BZ-Nin">
@@ -1004,7 +1018,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eas-3K-Tpt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5181.6000000000004" y="-796.55172413793105"/>
+            <point key="canvasLocation" x="5182" y="-980"/>
         </scene>
         <!--Add Caption View Controller-->
         <scene sceneID="By4-pq-uxA">
@@ -1537,6 +1551,7 @@
     <resources>
         <image name="ballons" width="1500" height="500"/>
         <image name="comment" width="24" height="24"/>
+        <image name="cross" width="25" height="25"/>
         <image name="date" width="24" height="24"/>
         <image name="goal-24" width="24" height="24"/>
         <image name="home-24" width="24" height="24"/>

@@ -10,26 +10,7 @@ import UIKit
 import Parse
 
 class Goal: NSObject {
-    
-    // Goal types
-    enum GoalType: Int {
-        case shortTerm
-        case longTerm
-        
-        var string: String {
-            switch self {
-            case .shortTerm: return "Short term";
-            case .longTerm: return "Long term";
-            }
-        }
-    }
-    
-    class func returnType(index: Int) -> String {
-        let type = GoalType(rawValue: index)!
-        return type.string
-    }
-    
-    
+
     // Goal categories
     enum GoalCategory: Int {
         case education
