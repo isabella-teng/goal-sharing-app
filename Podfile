@@ -10,14 +10,11 @@ target 'Goals' do
   pod 'ParseUI'
   pod 'AlamofireImage', '~> 3.1'
   pod 'RSKPlaceholderTextView'
-<<<<<<< HEAD
   pod 'Charts'
-=======
   pod 'SwiftyCam'
   pod 'Charts'
   pod 'RealmSwift'
 
->>>>>>> master
 
   target 'GoalsTests' do
     inherit! :search_paths
