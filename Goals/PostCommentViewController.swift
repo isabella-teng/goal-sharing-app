@@ -75,9 +75,7 @@ class PostCommentViewController: UIViewController {
                     
                     //Save updates activity array
                     var interactionsArray = self.currentUpdate?["activity"] as! [[String: Any]]
-                    print("made it")
                     var newInteraction: [String: Any] = commentsDictionary
-                    print("?")
                     newInteraction["type"] = "comment"
                     newInteraction["createdAt"] = NSDate()
                     interactionsArray.append(newInteraction)

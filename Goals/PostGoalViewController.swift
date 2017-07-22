@@ -71,7 +71,7 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
 
     @IBAction func didPostGoal(_ sender: Any) {
         if (descriptionTextView?.text.isEmpty)! || (titleTextField.text?.isEmpty)! || (chooseDateTextField.text?.isEmpty)! || (updateNumberTextField.text?.isEmpty)! {
-            let alertController = UIAlertController(title: "Empty field", message: "Please fil out all necessary fields", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Empty field", message: "Please fill out all necessary fields", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "Try again", style: .default, handler: nil )
             
             alertController.addAction(okAction)

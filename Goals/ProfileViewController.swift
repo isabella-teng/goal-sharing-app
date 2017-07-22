@@ -23,6 +23,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var editProfileButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var followUserButton: UIButton!
     
     var user: PFUser? = nil
     var fromFeed: Bool = false
@@ -42,10 +43,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             closeButton.isHidden = true
             logoutButton.isHidden = false
             editProfileButton.isHidden = false
+            followUserButton.isHidden = true
         } else {
             logoutButton.isHidden = true
             editProfileButton.isHidden = true
             closeButton.isHidden = false
+            followUserButton.isHidden = false
         }
         
         usernameLabel.text = user?.username

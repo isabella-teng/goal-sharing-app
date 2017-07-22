@@ -12,7 +12,5 @@ import ParseUI
 
 class User: NSObject {
     
-//    class func getUser() {
-//        
-//    }
+    //ß®class func
 }
