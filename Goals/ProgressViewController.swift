@@ -73,6 +73,7 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
         let average1 = average + 1.02
         
         
+        
         //Settings for the Bar graph
         chartDataSet.colors = [UIColor(red: 255/255, green: 95/255, blue: 107/255, alpha: 1)]
         barChartView.xAxis.labelPosition = .bottom
