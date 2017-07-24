@@ -41,11 +41,12 @@ class LoginViewController: UIViewController {
         
         newUser.username = usernameField.text
         newUser.password = passwordField.text
-        
+
         newUser["followerCount"] = 0
         newUser["followingCount"] = 0
         newUser["followers"] = [] //array of user objects
         newUser["following"] = []
+
         
         newUser.signUpInBackground { (success: Bool, error:Error?) in
             if success {

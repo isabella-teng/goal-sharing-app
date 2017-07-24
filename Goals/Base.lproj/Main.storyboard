@@ -669,11 +669,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9c-iV-bma">
+<<<<<<< HEAD
                                 <rect key="frame" x="10" y="151" width="81" height="30"/>
                                 <state key="normal" title="Follow User"/>
                                 <state key="selected" title="Unfollow!"/>
                                 <connections>
                                     <action selector="onFollowUser:" destination="1Dv-Of-Uq1" eventType="touchUpInside" id="iOM-5Z-JcK"/>
+
                                 </connections>
                             </button>
                         </subviews>
