@@ -27,17 +27,13 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        postButton.layer.cornerRadius = postButton.frame.height / 2
+        postButton.layer.cornerRadius = 10
         
         // Placeholder TextView
-        self.descriptionTextView = RSKPlaceholderTextView(frame: CGRect(x: 16, y: 106, width: self.view.frame.width - 32, height: 74))
+        self.descriptionTextView = RSKPlaceholderTextView(frame: CGRect(x: 16, y: 106, width: self.view.frame.width - 32, height: 65))
         self.descriptionTextView?.placeholder = "Briefly describe your goal"
         self.view.addSubview(self.descriptionTextView!)
         self.descriptionTextView?.font = UIFont (name: "HelveticaNeue-Light", size: 18)
-        
-        titleTextField.delegate = self
-        updateNumberTextField.delegate = self
-        
         
         datePickerView.datePickerMode = UIDatePickerMode.date
         chooseDateTextField.inputView = datePickerView
@@ -88,10 +84,7 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
             data["intendedUpdateCount"] = Int(updateNumberTextField.text!)
             
             let goalCategory = Goal.returnCategory(index: categoryControl.selectedSegmentIndex)
-            let logSettings = Goal.returnLogSettings(index: logControl.selectedSegmentIndex)
-            
             data["categories"] = goalCategory
-            data["logTimePeriods"] = logSettings
             
             // Send request
             Goal.createGoal(data: data)
