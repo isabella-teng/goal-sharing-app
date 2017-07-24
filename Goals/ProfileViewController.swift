@@ -44,7 +44,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             logoutButton.isHidden = false
             editProfileButton.isHidden = false
             followUserButton.isHidden = true
-        } else if fromFeed && !(isOwnUser()) {
+        } else if fromFeed && (user?.objectId == PFUser.current()?.objectId) {
+            logoutButton.isHidden = true
+            editProfileButton.isHidden = false
+            closeButton.isHidden = false
+            followUserButton.isHidden = true
+        } else {
             logoutButton.isHidden = true
             editProfileButton.isHidden = true
             closeButton.isHidden = false
@@ -76,6 +81,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         print("made it")
     }
     
+
     @IBAction func onFollowUser(_ sender: Any) {
         
 //        var followingArray = PFUser.current()?["following"] as! [PFUser]
@@ -116,6 +122,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         return userBool
     }
+
     
     override func viewDidAppear(_ animated: Bool) {
         // Fetch user updates
