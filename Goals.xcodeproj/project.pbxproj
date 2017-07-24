@@ -761,7 +761,7 @@
 				DEVELOPMENT_TEAM = NF7K8Y2LMW;
 				INFOPLIST_FILE = Goals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Isabella.com.GoalsAF-2017";
+				PRODUCT_BUNDLE_IDENTIFIER = "Isabella.com.GoalsAF-2017-fbu";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -775,7 +775,7 @@
 				DEVELOPMENT_TEAM = NF7K8Y2LMW;
 				INFOPLIST_FILE = Goals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Isabella.com.GoalsAF-2017";
+				PRODUCT_BUNDLE_IDENTIFIER = "Isabella.com.GoalsAF-2017-fbu";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

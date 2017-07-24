@@ -44,7 +44,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             logoutButton.isHidden = false
             editProfileButton.isHidden = false
             followUserButton.isHidden = true
-        } else {
+        } else if fromFeed && !(isOwnUser()) {
+            print("here!!")
             logoutButton.isHidden = true
             editProfileButton.isHidden = true
             closeButton.isHidden = false
@@ -66,6 +67,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         logoutButton.layer.cornerRadius = logoutButton.frame.height / 2
         closeButton.layer.cornerRadius = closeButton.frame.height / 2
         profileImageView.layer.cornerRadius = 35
+    }
+    
+    func isOwnUser() -> Bool {
+        let feedUser = user?.objectId! //something wrong here
+        let currUser = PFUser.current()?.objectId!
+        
+        var userBool: Bool = false
+        
+        if feedUser == currUser {
+            userBool = true
+        }
+        
+        return userBool
     }
     
     override func viewDidAppear(_ animated: Bool) {

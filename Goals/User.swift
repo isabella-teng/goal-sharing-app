@@ -12,5 +12,5 @@ import ParseUI
 
 class User: NSObject {
     
-    //ß®class func
+    //save user keys upon creating
 }
