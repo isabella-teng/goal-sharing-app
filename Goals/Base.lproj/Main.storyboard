@@ -669,13 +669,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9c-iV-bma">
-<<<<<<< HEAD
                                 <rect key="frame" x="10" y="151" width="81" height="30"/>
                                 <state key="normal" title="Follow User"/>
                                 <state key="selected" title="Unfollow!"/>
                                 <connections>
                                     <action selector="onFollowUser:" destination="1Dv-Of-Uq1" eventType="touchUpInside" id="iOM-5Z-JcK"/>
-
                                 </connections>
                             </button>
                         </subviews>
@@ -1372,7 +1370,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HqN-zQ-mFw" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="home-24" selectedImage="home-24" id="Mbq-Ia-ZTP"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="uHu-1d-37X">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="uHu-1d-37X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1537,7 +1535,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VhF-kq-3KK" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="0Zf-dD-PwB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="0Zf-dD-PwB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
