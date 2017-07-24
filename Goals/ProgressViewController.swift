@@ -12,6 +12,7 @@ import Charts
 
 class ProgressViewController: UIViewController, ChartViewDelegate {
     
+    
     @IBOutlet weak var barChartView: BarChartView!
     @IBAction func cancelButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -32,7 +33,6 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
             alertController.dismiss(animated: true, completion: nil)
         }
     }
-    
     
     weak var axisFormatDelegate: IAxisValueFormatter?
     
@@ -70,6 +70,7 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
         
         let sum = values.reduce(0, +)
         let average = sum / 7
+        let average1 = average + 1.02
         
         
         //Settings for the Bar graph
@@ -87,11 +88,25 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
         barChartView.legend.enabled = true
         
         
-        // Target or Goal Line
-        let lineLimit = ChartLimitLine(limit: average, label: "Avg Updates Per Week")
-        lineLimit.valueFont = UIFont(name: "Verdana", size: 10.0)!
-        lineLimit.lineColor = UIColor.green
-        barChartView.rightAxis.addLimitLine(lineLimit)
+        // Updates/Average Limit Lines
+        let averageEstimate = ChartLimitLine(limit: average, label: "Est. Updates Per Week")
+        averageEstimate.valueFont = UIFont(name: "Verdana", size: 10.0)!
+        averageEstimate.lineColor = UIColor.gray
+        barChartView.rightAxis.addLimitLine(averageEstimate)
+        averageEstimate.labelPosition = .leftBottom
+        
+        let actualAverage = ChartLimitLine(limit: average1, label: "Your average")
+        actualAverage.valueFont = UIFont(name: "Verdana", size: 10.0)!
+        if average1 > average {
+            actualAverage.lineColor = UIColor.green
+            barChartView.rightAxis.addLimitLine(actualAverage)
+        } else if average1 < average {
+            actualAverage.lineColor = UIColor.red
+            barChartView.rightAxis.addLimitLine(actualAverage)
+        } else if average1 == average {
+            actualAverage.lineColor = UIColor.green
+            barChartView.rightAxis.addLimitLine(actualAverage)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -111,7 +126,4 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
      // Pass the selected object to the new view controller.
      }
      */
-    
-    
-    
 }
