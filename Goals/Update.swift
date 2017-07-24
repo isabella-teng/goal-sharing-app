@@ -25,8 +25,8 @@ class Update: NSObject {
         
         var string: String {
             switch self {
-            case .positive: return "Good update";
-            case .negative: return "Bad update";
+            case .positive: return "positive";
+            case .negative: return "negative";
             }
         }
     }

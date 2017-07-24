@@ -27,6 +27,8 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var goalTitleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var goalDateLabel: UILabel!
+    @IBOutlet weak var goalCellBg: UIView!
+    @IBOutlet weak var goalCellEdges: UIView!
     
     var author: PFUser? = nil
     var update: PFObject! {
@@ -53,13 +55,7 @@ class FeedCell: UITableViewCell {
             
             let goalDateUpdated = update["goalDate"] as! Date
             //let dateFormate = DateFormatter()
-            self.goalDateLabel.text = String("Began goal on " + dateFormat.string(from: goalDateUpdated))
-            
-            
-            
-            userProfPic.layer.cornerRadius = 20
-            userProfPic.clipsToBounds = true
-            
+            self.goalDateLabel.text = String(dateFormat.string(from: goalDateUpdated))
             
             //FIX SMALL BUG WHEN NO GOALS THIS CRASHES HERE
             let currentLikeCount = update["likeCount"] as! Int
@@ -79,10 +75,18 @@ class FeedCell: UITableViewCell {
             //http://uicolor.xyz/#/rgb-to-ui
             
             let typeString = update["type"] as! String
-            if typeString == "Good update" {
-                cellBackground.backgroundColor = UIColor(red:0.50, green:0.91, blue:0.67, alpha:1.0)
-            } else if typeString == "Bad update" {
-                cellBackground.backgroundColor = UIColor(red:0.96, green:0.48, blue:0.48, alpha:1.0)
+            if typeString == "positive" {
+                cellBackground.backgroundColor = UIColor(red:0.50, green:0.85, blue:0.60, alpha:1.0)
+                goalCellBg.backgroundColor = UIColor(red: 0.40, green: 0.75, blue: 0.45, alpha: 1.0)
+                goalCellEdges.backgroundColor = goalCellBg.backgroundColor
+            } else if typeString == "negative" {
+                cellBackground.backgroundColor = UIColor(red:0.95, green:0.45, blue:0.45, alpha:1.0)
+                goalCellBg.backgroundColor = UIColor(red: 0.85, green: 0.30, blue: 0.30, alpha: 1.0)
+                goalCellEdges.backgroundColor = goalCellBg.backgroundColor
+            } else {
+                cellBackground.backgroundColor = UIColor(red: 0.45, green: 0.50, blue: 0.90, alpha: 1.0)
+                goalCellBg.backgroundColor = UIColor(red: 0.35, green: 0.40, blue: 0.70, alpha: 1.0)
+                goalCellEdges.backgroundColor = goalCellBg.backgroundColor
             }
             
         }
@@ -150,6 +154,9 @@ class FeedCell: UITableViewCell {
         videoButton.isUserInteractionEnabled = true
         
         cellBackground.layer.cornerRadius = 10
+        goalCellBg.layer.cornerRadius = 10
+        userProfPic.layer.cornerRadius = 20
+        userProfPic.clipsToBounds = true
     }
     
     

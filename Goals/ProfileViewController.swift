@@ -44,8 +44,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             logoutButton.isHidden = false
             editProfileButton.isHidden = false
             followUserButton.isHidden = true
-        } else if fromFeed && !(isOwnUser()) {
-            print("here!!")
+        } else if fromFeed && (user?.objectId == PFUser.current()?.objectId) {
+            logoutButton.isHidden = true
+            editProfileButton.isHidden = false
+            closeButton.isHidden = false
+            followUserButton.isHidden = true
+        } else {
             logoutButton.isHidden = true
             editProfileButton.isHidden = true
             closeButton.isHidden = false
@@ -69,18 +73,18 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         profileImageView.layer.cornerRadius = 35
     }
     
-    func isOwnUser() -> Bool {
-        let feedUser = user?.objectId! //something wrong here
-        let currUser = PFUser.current()?.objectId!
-        
-        var userBool: Bool = false
-        
-        if feedUser == currUser {
-            userBool = true
-        }
-        
-        return userBool
-    }
+//    func isOwnUser() -> Bool {
+//        let feedUser = user?.objectId! //something wrong here
+//        let currUser = PFUser.current()?.objectId!
+//        
+//        var userBool: Bool = false
+//        
+//        if feedUser == currUser {
+//            userBool = true
+//        }
+//        
+//        return userBool
+//    }
     
     override func viewDidAppear(_ animated: Bool) {
         // Fetch user updates
