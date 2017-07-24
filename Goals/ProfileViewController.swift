@@ -68,23 +68,20 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
         
+        //set user button based on if followed or not
+        //set the follow button accordingly
+        let foundFollower = (PFUser.current()?["following"] as! [PFUser]).filter { $0==user! }
+        if foundFollower.isEmpty {
+            followUserButton.isSelected = true
+        }
+        
+        
         logoutButton.layer.cornerRadius = logoutButton.frame.height / 2
         closeButton.layer.cornerRadius = closeButton.frame.height / 2
         profileImageView.layer.cornerRadius = 35
     }
     
-//    func isOwnUser() -> Bool {
-//        let feedUser = user?.objectId! //something wrong here
-//        let currUser = PFUser.current()?.objectId!
-//        
-//        var userBool: Bool = false
-//        
-//        if feedUser == currUser {
-//            userBool = true
-//        }
-//        
-//        return userBool
-//    }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         // Fetch user updates
@@ -96,6 +93,24 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 print(error?.localizedDescription as Any)
             }
         }
+    }
+    
+    @IBAction func onFollowUser(_ sender: Any) {
+        var followingArray = PFUser.current()?["following"] as! [PFUser]
+            if followUserButton.titleLabel?.text == "Follow User!" {
+                followUserButton.isSelected = true
+                PFUser.current()?.incrementKey("followingCount", byAmount: 1)
+                print(PFUser.current()?["followingCount"])
+                    followingArray.append(user!)
+            } else {
+                //follow the user
+                print("unfollowed user")
+                    
+                PFUser.current()?.incrementKey("followingCount", byAmount: -1)
+                followUserButton.isSelected = true
+            }
+                PFUser.current()?["following"] = followingArray
+                PFUser.current()?.saveInBackground()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
