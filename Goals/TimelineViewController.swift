@@ -35,18 +35,26 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         if indexPath.row == 0 {
             let cell = (tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath) as! HeaderCell)
             
-            let title = currentGoal?["title"] as! String
-            cell.data = ["text": title]
+            cell.data = ["title": currentGoal?["title"] as! String]
             
             return cell
         } else if indexPath.row == 1 {
             let cell = (tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! InfoCell)
             
+            cell.data = currentGoal
+            
             return cell
         } else {
             let cell = (tableView.dequeueReusableCell(withIdentifier: "UpdateCell", for: indexPath) as! UpdateCell)
             
-//            cell.data = nodes[indexPath.row - 2]
+            // Fetch data
+            let currentId = nodes[indexPath.row - 2]
+            Update.fetchUpdateById(updateId: currentId) { (loadedUpdate: PFObject?, error: Error?) in
+                if error == nil {
+                    cell.update = loadedUpdate!
+                }
+            }
+            
             return cell
         }
     }

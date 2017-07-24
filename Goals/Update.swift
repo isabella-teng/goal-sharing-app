@@ -124,7 +124,7 @@ class Update: NSObject {
         return nil
     }
     
-    //Add function that only gets the updates with given goal
+    // Add function that only gets the updates with given goal
     class func fetchUpdatesByGoal(goalid: String, withCompletion completion: @escaping ([PFObject]?, Error?) -> ()) {
         let query = PFQuery(className: "Update")
         
@@ -141,7 +141,18 @@ class Update: NSObject {
         
     }
     
-    
+    // Fetch update by ID
+    class func fetchUpdateById(updateId: String, withCompletion completion: @escaping (PFObject?, Error?) -> ()) {
+        let query = PFQuery(className: "Update")
+        
+        query.getObjectInBackground(withId: updateId) { (update: PFObject?, error: Error?) in
+            if error == nil {
+                completion(update, nil)
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
     
 
 }

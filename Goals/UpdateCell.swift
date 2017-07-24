@@ -18,9 +18,18 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var data: [String: Any] = [:] {
+    var update: PFObject? = nil {
         didSet {
-            rightLabel.text = (data["text"] as! String)
+            let updateType = update?["type"] as! String
+            if updateType == "positive" {
+                rightBackground.backgroundColor = UIColor(red:0.50, green:0.85, blue:0.60, alpha:1.0)
+            } else if updateType == "negative" {
+                rightBackground.backgroundColor = UIColor(red:0.95, green:0.45, blue:0.45, alpha:1.0)
+            } else {
+                rightBackground.backgroundColor = UIColor(red: 0.45, green: 0.50, blue: 0.90, alpha: 1.0)
+            }
+            
+            rightLabel.text = update?["text"] as? String
         }
     }
     var media: [[String: Any]] = []
@@ -32,6 +41,7 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
         collectionView.dataSource = self
         collectionView.layer.cornerRadius = 10
         
+        rightBackground.backgroundColor = UIColor.white
         rightBackground.layer.cornerRadius = 10
         captionBackground.layer.cornerRadius = 10
         nodeView.layer.cornerRadius = nodeView.frame.height / 2
