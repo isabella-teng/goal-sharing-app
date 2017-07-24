@@ -14,7 +14,7 @@ import AlamofireImage
 
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ProfileCellDelegate {
-
+    
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -74,15 +74,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             followUserButton.isSelected = true
         }
         
-
         logoutButton.layer.cornerRadius = logoutButton.frame.height / 2
         closeButton.layer.cornerRadius = closeButton.frame.height / 2
         profileImageView.layer.cornerRadius = 35
-        
-        print("made it")
     }
     
-
+    
     override func viewDidAppear(_ animated: Bool) {
         // Fetch user updates
         Goal.fetchGoalsByUser(user: user!) { (loadedGoals: [PFObject]?, error: Error?) in
@@ -97,20 +94,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBAction func onFollowUser(_ sender: Any) {
         var followingArray = PFUser.current()?["following"] as! [PFUser]
-            if followUserButton.titleLabel?.text == "Follow User!" {
-                followUserButton.isSelected = true
-                PFUser.current()?.incrementKey("followingCount", byAmount: 1)
-                print(PFUser.current()?["followingCount"])
-                    followingArray.append(user!)
-            } else {
-                //follow the user
-                print("unfollowed user")
-                    
-                PFUser.current()?.incrementKey("followingCount", byAmount: -1)
-                followUserButton.isSelected = true
-            }
-                PFUser.current()?["following"] = followingArray
-                PFUser.current()?.saveInBackground()
+        if followUserButton.titleLabel?.text == "Follow User!" {
+            followUserButton.isSelected = true
+            PFUser.current()?.incrementKey("followingCount", byAmount: 1)
+            followingArray.append(user!)
+        } else {
+            //follow the user
+            print("unfollowed user")
+            
+            PFUser.current()?.incrementKey("followingCount", byAmount: -1)
+            followUserButton.isSelected = true
+        }
+        PFUser.current()?["following"] = followingArray
+        PFUser.current()?.saveInBackground()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -134,7 +130,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func profileCell(_ profileCell: ProfileCell, didTap goal: PFObject) {
         performSegue(withIdentifier: "profileToTimeline", sender: goal)
     }
-
+    
     // Log user out
     @IBAction func didTapLogout(_ sender: Any) {
         PFUser.logOutInBackground { (error: Error?) in
@@ -153,8 +149,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "profileToTimeline") {
+            let goal = sender as! PFObject
             let vc = segue.destination as! TimelineViewController
-            vc.currentGoal = sender as? PFObject
+            vc.currentGoal = goal
+            
+            Update.fetchUpdatesByGoal(goalid: goal.objectId!, withCompletion: { (updates: [PFObject]?, error: Error?) in
+                if error == nil {
+                    vc.updates = updates!
+                }
+            })
         }
     }
     

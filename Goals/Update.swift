@@ -128,7 +128,7 @@ class Update: NSObject {
     class func fetchUpdatesByGoal(goalid: String, withCompletion completion: @escaping ([PFObject]?, Error?) -> ()) {
         let query = PFQuery(className: "Update")
         
-        query.order(byDescending: "createdAt")
+        query.order(byAscending: "createdAt")
         query.whereKey("goalId", equalTo: goalid as Any)
         
         query.findObjectsInBackground { (loadedUpdates: [PFObject]?, error: Error?) in
