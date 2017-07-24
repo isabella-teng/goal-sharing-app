@@ -42,6 +42,16 @@ class LoginViewController: UIViewController {
         newUser.username = usernameField.text
         newUser.password = passwordField.text
         
+        //newUser.setFollowersFollowing()
+        
+        
+        
+//        newUser["followerCount"] = 0
+//        newUser["followingCount"] = 0
+//        newUser["followers"] = [] //array of user objects
+//        newUser["following"] = []
+        //update count, other keys?
+        
         newUser.signUpInBackground { (success: Bool, error:Error?) in
             if success {
                 self.performSegue(withIdentifier: "loginSegue", sender: nil )
