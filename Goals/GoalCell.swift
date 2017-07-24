@@ -20,6 +20,7 @@ class GoalCell: UITableViewCell {
     @IBOutlet weak var cellBackground: UIView!
     @IBOutlet weak var goalTitle: UILabel!
     @IBOutlet weak var goalStartDateLabel: UILabel!
+    @IBOutlet weak var dateImage: UIButton!
     
     
     var goal: PFObject! {
@@ -48,6 +49,11 @@ class GoalCell: UITableViewCell {
         cellBackground.addGestureRecognizer(cellTapGestureRecognizer)
         cellBackground.isUserInteractionEnabled = true
         
+        // Change close button tint
+        let origImage = #imageLiteral(resourceName: "info")
+        let tintedImage = origImage.withRenderingMode(.alwaysTemplate)
+        dateImage.setImage(tintedImage, for: .normal)
+        dateImage.tintColor = goalStartDateLabel.textColor
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

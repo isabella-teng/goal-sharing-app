@@ -35,33 +35,7 @@ class Goal: NSObject {
         return category.string
     }
     
-    
-    // Log settings
-    enum LogSettings: Int {
-        case daily
-        case weekly
-        case monthly
-        case yearly
-        
-        var string: String {
-            switch self {
-            case .daily: return "Daily";
-            case .weekly: return "Weekly";
-            case .monthly: return "Monthly";
-            case .yearly: return "Yearly";
-            }
-        }
-    }
-    
-    class func returnLogSettings(index: Int) -> String {
-        let log = LogSettings(rawValue: index)!
-        return log.string
-
-    }
-    
-    
     // TODO: Goal icons
-    
     
     // Post goal to Parse database
     class func createGoal(data: [String: Any]) {
@@ -72,15 +46,13 @@ class Goal: NSObject {
         goal["author"] = PFUser.current()
         goal["title"] = data["title"] as! String
         goal["description"] = data["description"] as! String
-        goal["type"] = data["type"] as! String
         goal["categories"] = data["categories"] as! String
         goal["completionDate"] = data["completionDate"] as! NSDate
         goal["intendedUpdateCount"] = data["intendedUpdateCount"] as! Int
-        goal["logTimePeriods"] = data["logTimePeriods"] as! String //don't need for now
         
         // TODO: icons, progress, video replies
         goal["icon"] = NSNull()
-        goal["updatesCount"] = -1 //the first one is not counted as an update
+        goal["updatesCount"] = 0 //the first one is not counted as an update
         goal["updates"] = []
 
         
