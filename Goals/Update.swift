@@ -52,12 +52,12 @@ class Update: NSObject {
         update["likes"] = []
         update["likeCount"] = 0
         update["liked"] = false //should also have in the user
-        update["comments"] = [[:]] //will have sender and text
+        update["comments"] = [] //will have sender and text
         update["commentCount"] = 0
-        update["videos"] = [[:]] //will contain the caption string, video url string, and author
-        update["pictures"] = [[:]] //contain the caption string, picture url string, and author
+        update["videos"] = [] //will contain the caption string, video url string, and author
+        update["pictures"] = [] //contain the caption string, picture url string, and author
         
-        update["activity"] = [[:]] //this is for the interactions - update and its comments, videos, and pictures by date
+        update["activity"] = [] //this is for the interactions - update and its comments, videos, and pictures by date
 
         
         
