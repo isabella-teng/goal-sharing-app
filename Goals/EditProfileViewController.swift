@@ -29,7 +29,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 if error == nil {
                     let profImage = UIImage(data: imageData!)
                     self.photoPreview.image = profImage
-                    self.imageButton.isHidden = true
+                    self.imageButton.titleLabel?.text = ""
                 }
             }
         }
@@ -90,7 +90,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         // Check for attached image
         if photoPreview.image != nil {
             // Resize image
-            let newSize: CGSize = CGSize(width: 100.0, height: 100.0)
+            let newSize: CGSize = CGSize(width: 300.0, height: 100.0)
             let resizedImage = resize(image: photoPreview.image!, newSize: newSize)
             let imageURL = Update.getPFFileFromImage(image: resizedImage)
             user?["portrait"] = imageURL ?? NSNull()
