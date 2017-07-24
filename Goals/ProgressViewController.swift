@@ -88,7 +88,7 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
         barChartView.legend.enabled = true
         
         
-        // Target or Goal Line
+        // Updates/Average Limit Lines
         let averageEstimate = ChartLimitLine(limit: average, label: "Est. Updates Per Week")
         averageEstimate.valueFont = UIFont(name: "Verdana", size: 10.0)!
         averageEstimate.lineColor = UIColor.gray
