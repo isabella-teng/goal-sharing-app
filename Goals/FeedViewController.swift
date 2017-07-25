@@ -98,9 +98,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let vc = segue.destination as! ProfileViewController
             vc.user = sender as? PFUser
             vc.fromFeed = true
-            
-//            let followingArray = sender["following"] as! [String]
-//            if
         }
     }
     
