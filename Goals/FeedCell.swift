@@ -54,7 +54,6 @@ class FeedCell: UITableViewCell {
             self.dateLabel.text = String(dateFormat.string(from: dateUpdated))
             
             let goalDateUpdated = update["goalDate"] as! Date
-            //let dateFormate = DateFormatter()
             self.goalDateLabel.text = String(dateFormat.string(from: goalDateUpdated))
             
             //FIX SMALL BUG WHEN NO GOALS THIS CRASHES HERE

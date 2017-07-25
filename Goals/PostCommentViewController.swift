@@ -61,7 +61,7 @@ class PostCommentViewController: UIViewController {
                 if error == nil {
                     var commentsArray = self.currentUpdate?["comments"] as! [[String: Any]]
                     var commentsDictionary: [String: Any] = [:]
-                    commentsDictionary["sender"] = PFUser.current()
+                    commentsDictionary["author"] = PFUser.current()
                     commentsDictionary["text"] = self.commentTextView?.text
                     commentsArray.append(commentsDictionary)
                     self.currentUpdate?["comments"] = commentsArray

@@ -85,7 +85,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @IBAction func backFromVC3(segue: UIStoryboardSegue) {
-        print("unwind segue success")
     }
     
     override func didReceiveMemoryWarning() {

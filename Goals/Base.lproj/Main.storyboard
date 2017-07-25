@@ -1237,21 +1237,21 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qet-qd-j7R">
                                                     <rect key="frame" x="8" y="56" width="171" height="71.5"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="isabella" translatesAutoresizingMaskIntoConstraints="NO" id="bXk-gi-IQ9">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bXk-gi-IQ9">
                                                             <rect key="frame" x="8" y="8" width="30" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="30" id="3nJ-Nv-t0L"/>
                                                                 <constraint firstAttribute="height" constant="30" id="x5m-l5-gPi"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="isabella" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRX-u5-Fwg">
-                                                            <rect key="frame" x="43" y="14" width="55" height="18"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRX-u5-Fwg">
+                                                            <rect key="frame" x="43" y="14" width="71.5" height="18"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wow good job!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQy-kE-IBA">
-                                                            <rect key="frame" x="8" y="46" width="101" height="17.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQy-kE-IBA">
+                                                            <rect key="frame" x="8" y="46" width="96" height="18"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1328,12 +1328,17 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="captionBackground" destination="Qet-qd-j7R" id="ceM-Z9-YJt"/>
+                                            <outlet property="captionLabel" destination="NQy-kE-IBA" id="bOA-sr-1NR"/>
                                             <outlet property="collectionView" destination="Ah3-He-wQc" id="QxI-YS-Ofp"/>
+                                            <outlet property="commentBackground" destination="Qet-qd-j7R" id="wDp-Sz-dhO"/>
+                                            <outlet property="dateLabel" destination="mwr-iz-aCm" id="vWf-Oz-mvM"/>
+                                            <outlet property="mediaHeight" destination="i3X-t2-m61" id="PPR-d1-6nj"/>
+                                            <outlet property="mediaPostion" destination="svJ-nn-xf9" id="4l4-x3-kH0"/>
                                             <outlet property="nodeView" destination="IfM-Ks-qjm" id="Gko-e8-6iN"/>
                                             <outlet property="profileImage" destination="bXk-gi-IQ9" id="dF3-3o-W2t"/>
                                             <outlet property="rightBackground" destination="RGu-yA-8ix" id="Oz5-7Q-xuh"/>
                                             <outlet property="rightLabel" destination="UX4-Td-0ZF" id="UNg-sa-6wO"/>
+                                            <outlet property="senderLabel" destination="dRX-u5-Fwg" id="wHA-La-mK8"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1556,7 +1561,6 @@
         <image name="goal-24" width="24" height="24"/>
         <image name="home-24" width="24" height="24"/>
         <image name="info" width="16" height="16"/>
-        <image name="isabella" width="1673" height="1673"/>
         <image name="like" width="24" height="24"/>
         <image name="like-red" width="24" height="24"/>
         <image name="menu" width="32" height="32"/>

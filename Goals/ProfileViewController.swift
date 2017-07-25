@@ -9,9 +9,6 @@
 import UIKit
 import Parse
 import ParseUI
-import Alamofire
-import AlamofireImage
-
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ProfileCellDelegate {
     
