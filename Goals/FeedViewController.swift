@@ -39,14 +39,11 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             User.fetchUserById(userId: user) { (loadedUser: PFObject?, error: Error?) -> () in
                 if error == nil {
                     self.usersObjectArray.append(loadedUser as! PFUser)
-                    print(self.usersObjectArray)
                 } else {
                     print(error?.localizedDescription)
                 }
             }
         }
-        
-        print(self.usersObjectArray)
         
         Update.fetchUpdatesFromUserArray(userArray: usersObjectArray) { (loadedUpdates: [PFObject]?, error: Error?) in
             if error == nil {

@@ -89,7 +89,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         if fromFeed {
             if (PFUser.current()?["following"] as! [String]).contains((user?.objectId)! as! String) {
-                print("entered correctly")
                 followUserButton.isSelected = true
                 isFollowing = true
             } else {
@@ -102,23 +101,27 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBAction func onFollowUser(_ sender: Any) {
 
         var followingArray = PFUser.current()?["following"] as! [String]
+        var followersArray = user?["followers"] as! [String]
         
             if !isFollowing {
                 print("followed user")
                 followUserButton.isSelected = true
                 PFUser.current()?.incrementKey("followingCount", byAmount: 1)
-                print(PFUser.current()?["followingCount"])
                 followingArray.append(user!.objectId!)
+                user?.incrementKey("followerCount", byAmount: 1)
+                followersArray.append((PFUser.current()?.objectId!)!)
                 isFollowing = true
             } else {
                 print("unfollowed user")
-                isFollowing = false
+                followUserButton.isSelected = false
                 PFUser.current()?.incrementKey("followingCount", byAmount: -1)
                 followingArray = followingArray.filter { $0 != user?.objectId }
-                
-                followUserButton.isSelected = false
+                user?.incrementKey("followerCount", byAmount: -1)
+                followersArray = followersArray.filter { $0 != PFUser.current()?.objectId! }
+                isFollowing = false
             }
                 PFUser.current()?["following"] = followingArray
+                user?["followers"] = followersArray
                 PFUser.current()?.saveInBackground()
 
     }
