@@ -98,27 +98,27 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         var followingArray = PFUser.current()?["following"] as! [PFUser]
         var followersArray = user?["followers"] as! [PFUser]
         
-            if !isFollowing {
-                print("followed user")
-                followUserButton.isSelected = true
-                PFUser.current()?.incrementKey("followingCount", byAmount: 1)
-                followingArray.append(user!)
-                user?.incrementKey("followerCount", byAmount: 1)
-                followersArray.append(PFUser.current()!)
-                isFollowing = true
-            } else {
-                print("unfollowed user")
-                followUserButton.isSelected = false
-                PFUser.current()?.incrementKey("followingCount", byAmount: -1)
-                followingArray = followingArray.filter { $0 != user }
-                user?.incrementKey("followerCount", byAmount: -1)
-                followersArray = followersArray.filter { $0 != PFUser.current() }
-                isFollowing = false
-            }
-                PFUser.current()?["following"] = followingArray
-                user?["followers"] = followersArray
-                PFUser.current()?.saveInBackground()
-
+        if !isFollowing {
+            print("followed user")
+            followUserButton.isSelected = true
+            PFUser.current()?.incrementKey("followingCount", byAmount: 1)
+            followingArray.append(user!)
+            user?.incrementKey("followerCount", byAmount: 1)
+            followersArray.append(PFUser.current()!)
+            isFollowing = true
+        } else {
+            print("unfollowed user")
+            followUserButton.isSelected = false
+            PFUser.current()?.incrementKey("followingCount", byAmount: -1)
+            followingArray = followingArray.filter { $0 != user }
+            user?.incrementKey("followerCount", byAmount: -1)
+            followersArray = followersArray.filter { $0 != PFUser.current() }
+            isFollowing = false
+        }
+        
+        PFUser.current()?["following"] = followingArray
+        user?["followers"] = followersArray
+        PFUser.current()?.saveInBackground()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

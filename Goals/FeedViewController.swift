@@ -26,16 +26,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 180
-        
-        User.fetchUserById(userId: "s4wqDrTHOa") { (user: PFObject?, error: Error?) in
-            if error == nil {
-                let me = PFUser.current()
-                var following = me?["following"] as! [PFUser]
-                following.append(user as! PFUser)
-                me?["following"] = following
-                me?.saveInBackground()
-            }
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
