@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 import ParseUI
-
+import Whisper
 
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate {
 
@@ -39,8 +39,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func viewDidAppear(_ animated: Bool) {
-
-        
         let usersArray = PFUser.current()?["following"] as! [PFUser]
         
         Update.fetchUpdatesFromUserArray(userArray: usersArray) { (loadedUpdates: [PFObject]?, error: Error?) in
@@ -51,6 +49,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 print(error?.localizedDescription as Any)
             }
         }
+        
+        //in app notification for every 1 update posted
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

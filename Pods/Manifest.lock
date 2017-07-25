@@ -18,6 +18,7 @@ PODS:
     - Realm (= 2.8.3)
   - RSKPlaceholderTextView (2.0.0)
   - SwiftyCam (2.4.0)
+  - Whisper (5.0.0)
 
 DEPENDENCIES:
   - AlamofireImage (~> 3.1)
@@ -27,6 +28,7 @@ DEPENDENCIES:
   - RealmSwift
   - RSKPlaceholderTextView
   - SwiftyCam
+  - Whisper
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
@@ -39,7 +41,8 @@ SPEC CHECKSUMS:
   RealmSwift: 8183818515471b01a99abdd2970f8e4fd52b6f4a
   RSKPlaceholderTextView: 301f0f30e70e7c42fe4e941e3a08365ab0d890d5
   SwiftyCam: cb83b9a8e181f70fb741d30cea724c6b045a4549
+  Whisper: 051f25e704bf8992641ffd28b20d5682ddc5f5d3
 
-PODFILE CHECKSUM: 19d6cbe4301079eef9573b010521771689f37006
+PODFILE CHECKSUM: e48986ccffb42ce328095933689216da4ed197af
 
 COCOAPODS: 1.2.1
