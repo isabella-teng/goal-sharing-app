@@ -26,7 +26,7 @@ class LogCell: UITableViewCell {
             //let dateUpdated = update.createdAt! as Date
             let dateFormat = DateFormatter()
             dateFormat.dateFormat = "MM.dd.yy"
-            let updateDate = update.createdAt as! Date
+            let updateDate = update.createdAt!
             self.dateLabel.text = String("Updated on " + dateFormat.string(from: updateDate))
         }
     }

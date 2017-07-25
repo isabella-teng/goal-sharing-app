@@ -86,9 +86,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
         
-        
         if fromFeed {
-            if (PFUser.current()?["following"] as! [String]).contains((user?.objectId)! as! String) {
+            if (PFUser.current()?["following"] as! [String]).contains((user?.objectId)! ) {
                 followUserButton.isSelected = true
                 isFollowing = true
             } else {
@@ -99,25 +98,24 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @IBAction func onFollowUser(_ sender: Any) {
-
-        var followingArray = PFUser.current()?["following"] as! [String]
-        var followersArray = user?["followers"] as! [String]
+        var followingArray = PFUser.current()?["following"] as! [PFUser]
+        var followersArray = user?["followers"] as! [PFUser]
         
             if !isFollowing {
                 print("followed user")
                 followUserButton.isSelected = true
                 PFUser.current()?.incrementKey("followingCount", byAmount: 1)
-                followingArray.append(user!.objectId!)
+                followingArray.append(user!)
                 user?.incrementKey("followerCount", byAmount: 1)
-                followersArray.append((PFUser.current()?.objectId!)!)
+                followersArray.append(PFUser.current()!)
                 isFollowing = true
             } else {
                 print("unfollowed user")
                 followUserButton.isSelected = false
                 PFUser.current()?.incrementKey("followingCount", byAmount: -1)
-                followingArray = followingArray.filter { $0 != user?.objectId }
+                followingArray = followingArray.filter { $0 != user }
                 user?.incrementKey("followerCount", byAmount: -1)
-                followersArray = followersArray.filter { $0 != PFUser.current()?.objectId! }
+                followersArray = followersArray.filter { $0 != PFUser.current() }
                 isFollowing = false
             }
                 PFUser.current()?["following"] = followingArray

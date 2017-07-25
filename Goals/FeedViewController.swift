@@ -26,26 +26,24 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 180
+        
+        User.fetchUserById(userId: "s4wqDrTHOa") { (user: PFObject?, error: Error?) in
+            if error == nil {
+                let me = PFUser.current()
+                var following = me?["following"] as! [PFUser]
+                following.append(user as! PFUser)
+                me?["following"] = following
+                me?.saveInBackground()
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
 
         
-        let usersArray = PFUser.current()?["following"] as! [String]
-        usersObjectArray.append(PFUser.current()!) //ensure that current user posts will be fetched
-
-        for user in usersArray {
-            print(user)
-            User.fetchUserById(userId: user) { (loadedUser: PFObject?, error: Error?) -> () in
-                if error == nil {
-                    self.usersObjectArray.append(loadedUser as! PFUser)
-                } else {
-                    print(error?.localizedDescription)
-                }
-            }
-        }
+        let usersArray = PFUser.current()?["following"] as! [PFUser]
         
-        Update.fetchUpdatesFromUserArray(userArray: usersObjectArray) { (loadedUpdates: [PFObject]?, error: Error?) in
+        Update.fetchUpdatesFromUserArray(userArray: usersArray) { (loadedUpdates: [PFObject]?, error: Error?) in
             if error == nil {
                 self.updates = loadedUpdates!
                 self.tableView.reloadData()

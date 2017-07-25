@@ -31,7 +31,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        goalTitleLabel.text = currentUpdate?["goalTitle"] as! String
+        goalTitleLabel.text = currentUpdate?["goalTitle"] as? String
         
         let dateFormat = DateFormatter()
         dateFormat.dateFormat = "MM.dd.yy"

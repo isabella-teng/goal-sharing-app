@@ -51,7 +51,9 @@ class LoginViewController: UIViewController {
         newUser.signUpInBackground { (success: Bool, error:Error?) in
             if success {
                 self.performSegue(withIdentifier: "loginSegue", sender: nil )
-                
+                let user = PFUser.current()
+                user?["following"] = [PFUser.current()!]
+                user?.saveInBackground()
             } else {
                 let alertController = UIAlertController(title: "Error", message: error?.localizedDescription.capitalized, preferredStyle: .alert)
                 let cancelAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
