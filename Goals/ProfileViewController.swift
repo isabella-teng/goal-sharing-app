@@ -53,8 +53,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             editProfileButton.isHidden = true
             closeButton.isHidden = false
             followUserButton.isHidden = false
-    
-            
         }
         
         usernameLabel.text = user?.username
@@ -87,13 +85,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         
         if fromFeed {
-            if (PFUser.current()?["following"] as! [String]).contains((user?.objectId)! ) {
+            if (PFUser.current()?["following"] as! [PFUser]).contains(user!) {
                 followUserButton.isSelected = true
                 isFollowing = true
             } else {
                 self.followUserButton.isSelected = false
             }
-
         }
     }
     
