@@ -13,6 +13,7 @@ target 'Goals' do
   pod 'SwiftyCam'
   pod 'Charts'
   pod 'RealmSwift'
+  pod 'Whisper'
 
 
   target 'GoalsTests' do

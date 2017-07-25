@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import ParseUI
+import Whisper
 
 
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate {
@@ -35,7 +36,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         usersObjectArray.append(PFUser.current()!) //ensure that current user posts will be fetched
 
         for user in usersArray {
-            print(user)
             User.fetchUserById(userId: user) { (loadedUser: PFObject?, error: Error?) -> () in
                 if error == nil {
                     self.usersObjectArray.append(loadedUser as! PFUser)
@@ -53,6 +53,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 print(error?.localizedDescription as Any)
             }
         }
+        
+        //in app notification for every 1 update posted
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

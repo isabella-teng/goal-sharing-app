@@ -26,7 +26,6 @@
 		B87C87EE1F156E9300F58517 /* PostGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87ED1F156E9300F58517 /* PostGoalViewController.swift */; };
 		B87C87F01F159AE100F58517 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87EF1F159AE100F58517 /* DetailViewController.swift */; };
 		B87C87F21F169B5500F58517 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87F11F169B5500F58517 /* EditProfileViewController.swift */; };
-		FA2258501F26755E008CDBCC /* PFUserTapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA22584F1F26755E008CDBCC /* PFUserTapGestureRecognizer.swift */; };
 		FAA6C8C31F1EA79900FB8F26 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6C8C21F1EA79900FB8F26 /* CameraViewController.swift */; };
 		FAA6C8C51F1EB62D00FB8F26 /* SwiftyCamRecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6C8C41F1EB62D00FB8F26 /* SwiftyCamRecordButton.swift */; };
 		FAA6C8C81F1EB97E00FB8F26 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6C8C71F1EB97E00FB8F26 /* PhotoViewController.swift */; };
@@ -89,7 +88,6 @@
 		CB4F6A01BA5261F1C95C9952 /* Pods-GoalsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsTests/Pods-GoalsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CF3584AB59D862ECDED6FA78 /* Pods-Goals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Goals.release.xcconfig"; path = "Pods/Target Support Files/Pods-Goals/Pods-Goals.release.xcconfig"; sourceTree = "<group>"; };
 		E339925FD6B14DCCACECDAC9 /* Pods_GoalsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoalsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FA22584F1F26755E008CDBCC /* PFUserTapGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFUserTapGestureRecognizer.swift; sourceTree = "<group>"; };
 		FAA6C8C21F1EA79900FB8F26 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		FAA6C8C41F1EB62D00FB8F26 /* SwiftyCamRecordButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyCamRecordButton.swift; sourceTree = "<group>"; };
 		FAA6C8C71F1EB97E00FB8F26 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
@@ -160,7 +158,6 @@
 		7E8642021F156FCA00EE968A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FA22584F1F26755E008CDBCC /* PFUserTapGestureRecognizer.swift */,
 				7E1FCE611F16D6E9009C0AF1 /* FeedCell.swift */,
 				FAD351491F1838D500998CCA /* GoalCell.swift */,
 				FAD3513D1F16D49A00998CCA /* LogCell.swift */,
@@ -192,6 +189,15 @@
 				8B1C5447CB4A291F000D9875 /* Pods-GoalsUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		FA2258511F27B286008CDBCC /* Profile VCs */ = {
+			isa = PBXGroup;
+			children = (
+				B87C87F11F169B5500F58517 /* EditProfileViewController.swift */,
+				FACF12CE1F154A8700D505FE /* ProfileViewController.swift */,
+			);
+			name = "Profile VCs";
 			sourceTree = "<group>";
 		};
 		FAA6C8C61F1EB94D00FB8F26 /* Camera VCs  */ = {
@@ -265,15 +271,14 @@
 			isa = PBXGroup;
 			children = (
 				FAA6C8C61F1EB94D00FB8F26 /* Camera VCs  */,
-				FAD351411F182FC500998CCA /* AllGoalsViewController.swift */,
-				B87C87F11F169B5500F58517 /* EditProfileViewController.swift */,
+				FA2258511F27B286008CDBCC /* Profile VCs */,
 				7EEEFB161F158A6E004A29EC /* FeedViewController.swift */,
 				FACF12C91F154A3D00D505FE /* LoginViewController.swift */,
+				FAD351411F182FC500998CCA /* AllGoalsViewController.swift */,
 				B87C87EF1F159AE100F58517 /* DetailViewController.swift */,
 				7E949C071F18108800449DA0 /* PostCommentViewController.swift */,
 				B87C87ED1F156E9300F58517 /* PostGoalViewController.swift */,
 				7E1FCE631F16E6DC009C0AF1 /* PostUpdateViewController.swift */,
-				FACF12CE1F154A8700D505FE /* ProfileViewController.swift */,
 				B84B22781F1EDB6F00E9482E /* ProgressViewController.swift */,
 				7EF1FFD41F158598000DA708 /* TimelineViewController.swift */,
 			);
@@ -586,7 +591,6 @@
 				7E6B47FF1F169CE00079AC1F /* Goal.swift in Sources */,
 				FAA6C8CA1F1EC24300FB8F26 /* VideoViewController.swift in Sources */,
 				FAA6C8CC1F1ED64800FB8F26 /* AddCaptionViewController.swift in Sources */,
-				FA2258501F26755E008CDBCC /* PFUserTapGestureRecognizer.swift in Sources */,
 				FAD351421F182FC500998CCA /* AllGoalsViewController.swift in Sources */,
 				7E124C951F1EA8EF00858D35 /* UpdateCell.swift in Sources */,
 				FACF12CF1F154A8700D505FE /* ProfileViewController.swift in Sources */,
