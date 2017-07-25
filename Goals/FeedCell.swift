@@ -54,7 +54,6 @@ class FeedCell: UITableViewCell {
             self.dateLabel.text = String(dateFormat.string(from: dateUpdated))
             
             let goalDateUpdated = update["goalDate"] as! Date
-            //let dateFormate = DateFormatter()
             self.goalDateLabel.text = String(dateFormat.string(from: goalDateUpdated))
             
             //FIX SMALL BUG WHEN NO GOALS THIS CRASHES HERE
@@ -118,8 +117,6 @@ class FeedCell: UITableViewCell {
             liked = true
             update["liked"] = true
             likesArray.append(currentUser!)
-            
-            
         } else {
             favoriteButton.isSelected = false
             update.incrementKey("likeCount", byAmount: -1)
@@ -127,6 +124,7 @@ class FeedCell: UITableViewCell {
             update["liked"] = false
             likesArray = likesArray.filter { $0 != PFUser.current() }
         }
+        
         favoriteCount.text = String(describing: update["likeCount"]!)
         
         update["likes"] = likesArray

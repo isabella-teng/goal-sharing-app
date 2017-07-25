@@ -9,13 +9,15 @@
 import UIKit
 import Parse
 import ParseUI
-
+import Whisper
 
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
     var updates: [PFObject] = []
+    
+    var usersObjectArray: [PFUser] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +29,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Update.fetchAllUpdates { (loadedUpdates: [PFObject]?, error: Error?) -> () in
+        let usersArray = PFUser.current()?["following"] as! [PFUser]
+        
+        Update.fetchUpdatesFromUserArray(userArray: usersArray) { (loadedUpdates: [PFObject]?, error: Error?) in
             if error == nil {
                 self.updates = loadedUpdates!
                 self.tableView.reloadData()
@@ -36,6 +40,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
         
+        //in app notification for every 1 update posted
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -85,7 +90,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @IBAction func backFromVC3(segue: UIStoryboardSegue) {
-        print("unwind segue success")
     }
     
     override func didReceiveMemoryWarning() {

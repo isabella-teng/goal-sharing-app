@@ -9,12 +9,9 @@
 import UIKit
 import Parse
 import ParseUI
-import Alamofire
-import AlamofireImage
-
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ProfileCellDelegate {
-
+    
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -28,6 +25,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var user: PFUser? = nil
     var fromFeed: Bool = false
     var allUserPosts: [PFObject]? = []
+    
+    var isFollowing: Bool = false
     
     
     override func viewDidLoad() {
@@ -73,18 +72,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         profileImageView.layer.cornerRadius = 35
     }
     
-//    func isOwnUser() -> Bool {
-//        let feedUser = user?.objectId! //something wrong here
-//        let currUser = PFUser.current()?.objectId!
-//        
-//        var userBool: Bool = false
-//        
-//        if feedUser == currUser {
-//            userBool = true
-//        }
-//        
-//        return userBool
-//    }
     
     override func viewDidAppear(_ animated: Bool) {
         // Fetch user updates
@@ -96,6 +83,42 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 print(error?.localizedDescription as Any)
             }
         }
+        
+        if fromFeed {
+            if (PFUser.current()?["following"] as! [PFUser]).contains(user!) {
+                followUserButton.isSelected = true
+                isFollowing = true
+            } else {
+                self.followUserButton.isSelected = false
+            }
+        }
+    }
+    
+    @IBAction func onFollowUser(_ sender: Any) {
+        var followingArray = PFUser.current()?["following"] as! [PFUser]
+        var followersArray = user?["followers"] as! [PFUser]
+        
+        if !isFollowing {
+            print("followed user")
+            followUserButton.isSelected = true
+            PFUser.current()?.incrementKey("followingCount", byAmount: 1)
+            followingArray.append(user!)
+            user?.incrementKey("followerCount", byAmount: 1)
+            followersArray.append(PFUser.current()!)
+            isFollowing = true
+        } else {
+            print("unfollowed user")
+            followUserButton.isSelected = false
+            PFUser.current()?.incrementKey("followingCount", byAmount: -1)
+            followingArray = followingArray.filter { $0 != user }
+            user?.incrementKey("followerCount", byAmount: -1)
+            followersArray = followersArray.filter { $0 != PFUser.current() }
+            isFollowing = false
+        }
+        
+        PFUser.current()?["following"] = followingArray
+        user?["followers"] = followersArray
+        PFUser.current()?.saveInBackground()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -119,7 +142,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func profileCell(_ profileCell: ProfileCell, didTap goal: PFObject) {
         performSegue(withIdentifier: "profileToTimeline", sender: goal)
     }
-
+    
     // Log user out
     @IBAction func didTapLogout(_ sender: Any) {
         PFUser.logOutInBackground { (error: Error?) in
@@ -138,8 +161,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "profileToTimeline") {
+            let goal = sender as! PFObject
             let vc = segue.destination as! TimelineViewController
-            vc.currentGoal = sender as? PFObject
+            vc.currentGoal = goal
+            
+            Update.fetchUpdatesByGoal(goalid: goal.objectId!, withCompletion: { (updates: [PFObject]?, error: Error?) in
+                if error == nil {
+                    vc.updates = updates!
+                }
+            })
         }
     }
     

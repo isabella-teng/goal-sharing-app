@@ -16,6 +16,9 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var updates: [PFObject] = []
     var currentUpdate: PFObject?
 
+    @IBOutlet weak var goalTitleLabel: UILabel!
+    @IBOutlet weak var goalCreationDate: UILabel!
+    @IBOutlet weak var goalView: UIView!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -28,6 +31,13 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        goalTitleLabel.text = currentUpdate?["goalTitle"] as? String
+        
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "MM.dd.yy"
+        let goalDate = currentUpdate?["goalDate"] as! Date
+        self.goalCreationDate.text = String("Created goal on " + dateFormat.string(from: goalDate))
+        
         //Fetch all user's updates for that goal
         
         var goalid: String = ""
@@ -36,6 +46,9 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else if currentUpdate!.parseClassName == "Goal" {
             goalid = (currentUpdate?.objectId!)!
         }
+        
+        goalView.layer.cornerRadius = 15
+        goalView.backgroundColor = UIColor(red:0.53, green:0.76, blue:0.96, alpha:1.0)
         
         Update.fetchUpdatesByGoal(goalid: goalid) { (loadedUpdates: [PFObject]?, error: Error?) in
 

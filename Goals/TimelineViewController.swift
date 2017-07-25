@@ -14,7 +14,11 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     
     var currentGoal: PFObject?
-    var nodes: [String] = []
+    var updates: [PFObject] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,30 +27,30 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
-        
-        nodes = currentGoal?["updates"] as! [String]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return nodes.count + 2
+        return updates.count + 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = (tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath) as! HeaderCell)
             
-            let title = currentGoal?["title"] as! String
-            cell.data = ["text": title]
+            cell.data = ["title": currentGoal?["title"] as! String]
             
             return cell
         } else if indexPath.row == 1 {
             let cell = (tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! InfoCell)
             
+            cell.data = currentGoal
+            
             return cell
         } else {
             let cell = (tableView.dequeueReusableCell(withIdentifier: "UpdateCell", for: indexPath) as! UpdateCell)
+        
+            cell.update = updates[indexPath.row - 2]
             
-//            cell.data = nodes[indexPath.row - 2]
             return cell
         }
     }

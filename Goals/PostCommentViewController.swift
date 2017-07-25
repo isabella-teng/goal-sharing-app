@@ -18,12 +18,6 @@ class PostCommentViewController: UIViewController {
     var currentUpdate: PFObject?
     var currentGoal: PFObject?
     
-//    var update: PFObject! {
-//        didSet{
-//            self.commentTextView.text = update["comments"] as? String
-//            let currentCommentCount = update["commentCount"] as! Int
-//        }
-//    }
     
     @IBOutlet weak var commentButton: UIButton!
     
@@ -67,7 +61,7 @@ class PostCommentViewController: UIViewController {
                 if error == nil {
                     var commentsArray = self.currentUpdate?["comments"] as! [[String: Any]]
                     var commentsDictionary: [String: Any] = [:]
-                    commentsDictionary["sender"] = PFUser.current()
+                    commentsDictionary["author"] = PFUser.current()
                     commentsDictionary["text"] = self.commentTextView?.text
                     commentsArray.append(commentsDictionary)
                     self.currentUpdate?["comments"] = commentsArray
@@ -87,23 +81,6 @@ class PostCommentViewController: UIViewController {
                 }
             })
             
-            // Save comment in goal interactions array
-//             currentGoal?.saveInBackground(block: { (success: Bool, error: Error?) in
-//                 if error == nil {
-//                     var interactionsArray = self.currentGoal?["activity"] as! [[String: Any]]
-//                     var newInteraction: [String: Any] = [:]
-//                     newInteraction["sender"] = PFUser.current()
-//                     newInteraction["type"] = "comment"
-//                     newInteraction["text"] = self.commentTextView?.text
-//                     newInteraction["createdAt"] = NSDate()
-//                     
-//                     interactionsArray.append(newInteraction)
-//                     self.currentGoal?["activity"] = interactionsArray
-//                     self.currentGoal?.saveInBackground()
-//                 } else {
-//                     print(error?.localizedDescription as Any)
-//                 }
-//             })
             
         }
     }

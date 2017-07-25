@@ -15,7 +15,7 @@ class HeaderCell: UITableViewCell {
     
     var data: [String: Any] = [:] {
         didSet {
-            titleLabel.text = (data["text"] as! String)
+            titleLabel.text = data["title"] as? String
         }
     }
     

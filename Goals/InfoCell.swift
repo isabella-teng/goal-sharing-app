@@ -7,12 +7,19 @@
 //
 
 import UIKit
+import Parse
 
 class InfoCell: UITableViewCell {
     
     @IBOutlet weak var progressBackground: UIView!
     @IBOutlet weak var infoBackground: UIView!
     @IBOutlet weak var nodeView: UIView!
+    
+    var data: PFObject? = nil {
+        didSet {
+            
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -13,4 +13,19 @@ import ParseUI
 class User: NSObject {
     
     //save user keys upon creating
+    
+    class func fetchUserById(userId: String, withCompletion completion: @escaping (PFObject?, Error?) -> ()) {
+        let query = PFUser.query()!
+        
+        query.getObjectInBackground(withId: userId) { (user: PFObject?, error: Error?) in
+            if error == nil {
+                completion(user, nil)
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
+    
+    
+
 }
