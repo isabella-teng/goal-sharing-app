@@ -113,6 +113,25 @@ class Update: NSObject {
         }
     }
     
+    //Fetch updates from array of user ids
+    class func fetchUpdatesFromUserArray(userIdArray: [String], withCompletion completion: @escaping ([PFObject]?, Error?) -> ()) {
+        let query = PFQuery(className: "Update")
+        
+        query.order(byDescending: "createdAt")
+        query.includeKey("author")
+        query.whereKey("author", containedIn: userIdArray)
+        
+        query.findObjectsInBackground { (loadedUpdates: [PFObject]?, error:Error?) in
+            if error == nil {
+                completion(loadedUpdates, nil)
+            } else {
+                completion(nil, error)
+            }
+        }
+        
+    }
+
+    
     class func getPFFileFromImage(image: UIImage?) -> PFFile? {
         // check if image is not nil
         if let image = image {

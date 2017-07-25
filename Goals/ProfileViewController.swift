@@ -29,6 +29,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var fromFeed: Bool = false
     var allUserPosts: [PFObject]? = []
     
+    var isFollowing: Bool = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +56,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             editProfileButton.isHidden = true
             closeButton.isHidden = false
             followUserButton.isHidden = false
+    
+            
         }
         
         usernameLabel.text = user?.username
@@ -67,19 +71,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
             }
         }
-        
-        //set user button based on if followed or not
-        let foundFollower = (PFUser.current()?["following"] as! [PFUser]).filter { $0==user! }
-        if foundFollower.isEmpty {
-            followUserButton.isSelected = true
-        }
-        
 
         logoutButton.layer.cornerRadius = logoutButton.frame.height / 2
         closeButton.layer.cornerRadius = closeButton.frame.height / 2
         profileImageView.layer.cornerRadius = 35
-        
-        print("made it")
     }
     
 
@@ -93,21 +88,37 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 print(error?.localizedDescription as Any)
             }
         }
+        
+        
+        if fromFeed {
+            if (PFUser.current()?["following"] as! [String]).contains((user?.objectId)! as! String) {
+                print("entered correctly")
+                followUserButton.isSelected = true
+                isFollowing = true
+            } else {
+                self.followUserButton.isSelected = false
+            }
+
+        }
     }
     
     @IBAction func onFollowUser(_ sender: Any) {
-        var followingArray = PFUser.current()?["following"] as! [PFUser]
-            if followUserButton.titleLabel?.text == "Follow User!" {
+        var followingArray = PFUser.current()?["following"] as! [String]
+        
+            if !isFollowing {
+                print("followed user")
                 followUserButton.isSelected = true
                 PFUser.current()?.incrementKey("followingCount", byAmount: 1)
                 print(PFUser.current()?["followingCount"])
-                    followingArray.append(user!)
+                followingArray.append(user!.objectId!)
+                isFollowing = true
             } else {
-                //follow the user
                 print("unfollowed user")
-                    
+                isFollowing = false
                 PFUser.current()?.incrementKey("followingCount", byAmount: -1)
-                followUserButton.isSelected = true
+                followingArray = followingArray.filter { $0 != user?.objectId }
+                
+                followUserButton.isSelected = false
             }
                 PFUser.current()?["following"] = followingArray
                 PFUser.current()?.saveInBackground()

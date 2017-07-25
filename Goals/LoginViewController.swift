@@ -44,7 +44,7 @@ class LoginViewController: UIViewController {
 
         newUser["followerCount"] = 0
         newUser["followingCount"] = 0
-        newUser["followers"] = [] //array of user objects
+        newUser["followers"] = [] //array of user objects ids
         newUser["following"] = []
 
         

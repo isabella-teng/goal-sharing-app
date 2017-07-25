@@ -27,7 +27,19 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Update.fetchAllUpdates { (loadedUpdates: [PFObject]?, error: Error?) -> () in
+//        Update.fetchAllUpdates { (loadedUpdates: [PFObject]?, error: Error?) -> () in
+//            if error == nil {
+//                self.updates = loadedUpdates!
+//                self.tableView.reloadData()
+//            } else {
+//                print(error?.localizedDescription as Any)
+//            }
+//        }
+        
+        let usersArray = PFUser.current()?["following"] as! [String]
+        print(usersArray)
+        
+        Update.fetchUpdatesFromUserArray(userIdArray: usersArray) { (loadedUpdates: [PFObject]?, error: Error?) in
             if error == nil {
                 self.updates = loadedUpdates!
                 self.tableView.reloadData()
@@ -35,7 +47,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 print(error?.localizedDescription as Any)
             }
         }
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -81,6 +92,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let vc = segue.destination as! ProfileViewController
             vc.user = sender as? PFUser
             vc.fromFeed = true
+            
+//            let followingArray = sender["following"] as! [String]
+//            if
         }
     }
     
