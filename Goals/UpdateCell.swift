@@ -71,8 +71,9 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
                 })
             }
             
-            let pictures = update?["pictures"] as! [[String: Any]]
-            if pictures.count == 0 {
+            let activityMedia = update?["activity"] as! [[String: Any]]
+            //let pictures = update?["pictures"] as! [[String: Any]]
+            if activityMedia.count == 0 {
                 collectionView.isHidden = true
                 mediaHeight.constant = 0
                 mediaPostion.constant = 0
@@ -80,7 +81,7 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
                 collectionView.isHidden = false
                 mediaHeight.constant = 190
                 mediaPostion.constant = 8
-                media = pictures
+                media = activityMedia
             }
         }
     }
