@@ -47,8 +47,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return updates.count
     }
     
-    
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
         

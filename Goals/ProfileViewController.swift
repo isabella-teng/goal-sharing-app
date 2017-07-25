@@ -55,18 +55,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             followUserButton.isHidden = false
         }
         
-        usernameLabel.text = user?.username
-        bioLabel.text = user?["bio"] as? String
-        
-        if let profpic = user?["portrait"] as? PFFile {
-            profpic.getDataInBackground { (imageData: Data?, error: Error?) in
-                if error == nil {
-                    let profImage = UIImage(data: imageData!)
-                    self.profileImageView.image = profImage
-                }
-            }
-        }
-        
         logoutButton.layer.cornerRadius = logoutButton.frame.height / 2
         closeButton.layer.cornerRadius = closeButton.frame.height / 2
         profileImageView.layer.cornerRadius = 35
@@ -84,12 +72,26 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
         
+        usernameLabel.text = user?.username
+        bioLabel.text = user?["bio"] as? String
+        
+        if let profpic = user?["portrait"] as? PFFile {
+            profpic.getDataInBackground { (imageData: Data?, error: Error?) in
+                if error == nil {
+                    let profImage = UIImage(data: imageData!)
+                    self.profileImageView.image = profImage
+                }
+            }
+        }
+        
         if fromFeed {
-            if (PFUser.current()?["following"] as! [PFUser]).contains(user!) {
-                followUserButton.isSelected = true
-                isFollowing = true
-            } else {
-                self.followUserButton.isSelected = false
+            let current = PFUser.current()
+            let following = current?["following"] as! [PFUser]
+            for item in following {
+                if item.objectId! == user?.objectId {
+                    followUserButton.isSelected = true
+                    isFollowing = true
+                }
             }
         }
     }
@@ -99,7 +101,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         var followersArray = user?["followers"] as! [PFUser]
         
         if !isFollowing {
-            print("followed user")
             followUserButton.isSelected = true
             PFUser.current()?.incrementKey("followingCount", byAmount: 1)
             followingArray.append(user!)
@@ -107,7 +108,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             followersArray.append(PFUser.current()!)
             isFollowing = true
         } else {
-            print("unfollowed user")
             followUserButton.isSelected = false
             PFUser.current()?.incrementKey("followingCount", byAmount: -1)
             followingArray = followingArray.filter { $0 != user }
@@ -119,6 +119,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         PFUser.current()?["following"] = followingArray
         user?["followers"] = followersArray
         PFUser.current()?.saveInBackground()
+        user?.saveInBackground()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
