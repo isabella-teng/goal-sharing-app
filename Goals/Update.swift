@@ -52,12 +52,12 @@ class Update: NSObject {
         update["likes"] = []
         update["likeCount"] = 0
         update["liked"] = false //should also have in the user
-        update["comments"] = [[:]] //will have sender and text
+        update["comments"] = [] //will have sender and text
         update["commentCount"] = 0
-        update["videos"] = [[:]] //will contain the caption string, video url string, and author
-        update["pictures"] = [[:]] //contain the caption string, picture url string, and author
+        update["videos"] = [] //will contain the caption string, video url string, and author
+        update["pictures"] = [] //contain the caption string, picture url string, and author
         
-        update["activity"] = [[:]] //this is for the interactions - update and its comments, videos, and pictures by date
+        update["activity"] = [] //this is for the interactions - update and its comments, videos, and pictures by date
 
         
         
@@ -143,11 +143,11 @@ class Update: NSObject {
         return nil
     }
     
-    //Add function that only gets the updates with given goal
+    // Add function that only gets the updates with given goal
     class func fetchUpdatesByGoal(goalid: String, withCompletion completion: @escaping ([PFObject]?, Error?) -> ()) {
         let query = PFQuery(className: "Update")
         
-        query.order(byDescending: "createdAt")
+        query.order(byAscending: "createdAt")
         query.whereKey("goalId", equalTo: goalid as Any)
         
         query.findObjectsInBackground { (loadedUpdates: [PFObject]?, error: Error?) in
@@ -160,7 +160,18 @@ class Update: NSObject {
         
     }
     
-    
+    // Fetch update by ID
+    class func fetchUpdateById(updateId: String, withCompletion completion: @escaping (PFObject?, Error?) -> ()) {
+        let query = PFQuery(className: "Update")
+        
+        query.getObjectInBackground(withId: updateId) { (update: PFObject?, error: Error?) in
+            if error == nil {
+                completion(update, nil)
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
     
 
 }

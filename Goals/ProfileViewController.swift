@@ -9,12 +9,9 @@
 import UIKit
 import Parse
 import ParseUI
-import Alamofire
-import AlamofireImage
-
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ProfileCellDelegate {
-
+    
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -72,12 +69,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
 
+        
+        //set user button based on if followed or not
+        let foundFollower = (PFUser.current()?["following"] as! [PFUser]).filter { $0==user! }
+        if foundFollower.isEmpty {
+            followUserButton.isSelected = true
+        }
+        
         logoutButton.layer.cornerRadius = logoutButton.frame.height / 2
         closeButton.layer.cornerRadius = closeButton.frame.height / 2
         profileImageView.layer.cornerRadius = 35
     }
     
-
+    
     override func viewDidAppear(_ animated: Bool) {
         // Fetch user updates
         Goal.fetchGoalsByUser(user: user!) { (loadedGoals: [PFObject]?, error: Error?) in
@@ -103,6 +107,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @IBAction func onFollowUser(_ sender: Any) {
+
         var followingArray = PFUser.current()?["following"] as! [String]
         
             if !isFollowing {
@@ -122,6 +127,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
                 PFUser.current()?["following"] = followingArray
                 PFUser.current()?.saveInBackground()
+
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -145,7 +151,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func profileCell(_ profileCell: ProfileCell, didTap goal: PFObject) {
         performSegue(withIdentifier: "profileToTimeline", sender: goal)
     }
-
+    
     // Log user out
     @IBAction func didTapLogout(_ sender: Any) {
         PFUser.logOutInBackground { (error: Error?) in
@@ -164,8 +170,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "profileToTimeline") {
+            let goal = sender as! PFObject
             let vc = segue.destination as! TimelineViewController
-            vc.currentGoal = sender as? PFObject
+            vc.currentGoal = goal
+            
+            Update.fetchUpdatesByGoal(goalid: goal.objectId!, withCompletion: { (updates: [PFObject]?, error: Error?) in
+                if error == nil {
+                    vc.updates = updates!
+                }
+            })
         }
     }
     

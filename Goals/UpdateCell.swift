@@ -14,16 +14,76 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
     @IBOutlet weak var rightBackground: UIView!
     @IBOutlet weak var rightLabel: UILabel!
     @IBOutlet weak var nodeView: UIView!
-    @IBOutlet weak var captionBackground: UIView!
+    @IBOutlet weak var commentBackground: UIView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var senderLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
-    var data: [String: Any] = [:] {
+    @IBOutlet weak var mediaPostion: NSLayoutConstraint!
+    @IBOutlet weak var mediaHeight: NSLayoutConstraint!
+    
+    var media: [[String: Any]] = []
+    var update: PFObject? = nil {
         didSet {
-            rightLabel.text = (data["text"] as! String)
+            let updateType = update?["type"] as! String
+            if updateType == "positive" {
+                rightBackground.backgroundColor = UIColor(red:0.50, green:0.85, blue:0.60, alpha:1.0)
+            } else if updateType == "negative" {
+                rightBackground.backgroundColor = UIColor(red:0.95, green:0.45, blue:0.45, alpha:1.0)
+            } else {
+                rightBackground.backgroundColor = UIColor(red: 0.45, green: 0.50, blue: 0.90, alpha: 1.0)
+            }
+            
+            rightLabel.text = update?["text"] as? String
+            
+            let date = update?.createdAt!
+            let dateFormat = DateFormatter()
+            dateFormat.dateFormat = "M/d/yyyy"
+            dateLabel.text = String(dateFormat.string(from: date!))
+            
+            let comments = update?["comments"] as! [[String: Any]]
+            if comments.count == 0 {
+                mediaPostion.constant = -71.5
+                commentBackground.isHidden = true
+            } else {
+                mediaPostion.constant = 8
+                commentBackground.isHidden = false
+                let comment = comments[comments.count - 1]
+                captionLabel.text = comment["text"] as? String
+                
+                let author = comment["author"] as! PFUser
+                author.fetchIfNeededInBackground(block: { (fetchedUser: PFObject?, error: Error?) in
+                    if error == nil {
+                        let author = fetchedUser as? PFUser
+                        self.senderLabel.text = author?.username
+                        
+                        if let profpic = author?["portrait"] as? PFFile {
+                            profpic.getDataInBackground { (imageData: Data?, error: Error?) in
+                                if error == nil {
+                                    let profImage = UIImage(data: imageData!)
+                                    self.profileImage.image = profImage
+                                }
+                            }
+                        }
+                    }
+                })
+            }
+            
+            let pictures = update?["pictures"] as! [[String: Any]]
+            if pictures.count == 0 {
+                collectionView.isHidden = true
+                mediaHeight.constant = 0
+                mediaPostion.constant = 0
+            } else {
+                collectionView.isHidden = false
+                mediaHeight.constant = 190
+                mediaPostion.constant = 8
+                media = pictures
+            }
         }
     }
-    var media: [[String: Any]] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,12 +92,11 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
         collectionView.dataSource = self
         collectionView.layer.cornerRadius = 10
         
+        rightBackground.backgroundColor = UIColor.white
         rightBackground.layer.cornerRadius = 10
-        captionBackground.layer.cornerRadius = 10
+        commentBackground.layer.cornerRadius = 10
         nodeView.layer.cornerRadius = nodeView.frame.height / 2
         profileImage.layer.cornerRadius = profileImage.frame.height / 2
-        
-        media = [["image": #imageLiteral(resourceName: "isabella")], ["image": #imageLiteral(resourceName: "josh")], ["image": #imageLiteral(resourceName: "gerardo")]]
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

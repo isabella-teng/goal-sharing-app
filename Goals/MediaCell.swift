@@ -7,14 +7,22 @@
 //
 
 import UIKit
+import Parse
 
 class MediaCell: UICollectionViewCell {
     
     var data: [String: Any] = [:] {
         didSet {
-            mediaImage.image = data["image"] as? UIImage
+            if let urlString = data["image"] as? PFFile {
+                urlString.getDataInBackground { (imageData: Data?, error: Error?) in
+                    if error == nil {
+                        let profImage = UIImage(data: imageData!)
+                        self.mediaImage.image = profImage
+                    }
+                }
+            }
         }
     }
-
+    
     @IBOutlet weak var mediaImage: UIImageView!
 }
