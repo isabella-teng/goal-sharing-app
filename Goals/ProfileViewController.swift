@@ -57,6 +57,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         logoutButton.layer.cornerRadius = logoutButton.frame.height / 2
         closeButton.layer.cornerRadius = closeButton.frame.height / 2
+        followUserButton.layer.cornerRadius = followUserButton.frame.height / 2
         profileImageView.layer.cornerRadius = 35
     }
     
@@ -89,37 +90,45 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             let following = current?["following"] as! [PFUser]
             for item in following {
                 if item.objectId! == user?.objectId {
-                    followUserButton.isSelected = true
-                    isFollowing = true
+                    toggleFollow()
                 }
             }
         }
     }
     
+    func toggleFollow() {
+        if !isFollowing {
+            isFollowing = true
+            followUserButton.setTitle("Unfollow", for: .normal)
+            followUserButton.backgroundColor = closeButton.backgroundColor
+            followUserButton.setTitleColor(UIColor.white, for: .normal)
+        } else {
+            isFollowing = false
+            followUserButton.setTitle("Follow", for: .normal)
+            followUserButton.backgroundColor = UIColor.white
+            followUserButton.setTitleColor(closeButton.backgroundColor, for: .normal)
+        }
+    }
+    
     @IBAction func onFollowUser(_ sender: Any) {
         var followingArray = PFUser.current()?["following"] as! [PFUser]
-        var followersArray = user?["followers"] as! [PFUser]
         
         if !isFollowing {
-            followUserButton.isSelected = true
             PFUser.current()?.incrementKey("followingCount", byAmount: 1)
             followingArray.append(user!)
-            user?.incrementKey("followerCount", byAmount: 1)
-            followersArray.append(PFUser.current()!)
-            isFollowing = true
         } else {
-            followUserButton.isSelected = false
             PFUser.current()?.incrementKey("followingCount", byAmount: -1)
-            followingArray = followingArray.filter { $0 != user }
-            user?.incrementKey("followerCount", byAmount: -1)
-            followersArray = followersArray.filter { $0 != PFUser.current() }
-            isFollowing = false
+            for (index, item) in followingArray.enumerated() {
+                if item.objectId! == user?.objectId {
+                    followingArray.remove(at: index)
+                }
+            }
         }
         
+        toggleFollow()
+        
         PFUser.current()?["following"] = followingArray
-        user?["followers"] = followersArray
         PFUser.current()?.saveInBackground()
-        user?.saveInBackground()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
