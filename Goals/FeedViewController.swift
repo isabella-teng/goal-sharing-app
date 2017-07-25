@@ -17,6 +17,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var updates: [PFObject] = []
     
+    var usersObjectArray: [PFUser] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,19 +29,26 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        Update.fetchAllUpdates { (loadedUpdates: [PFObject]?, error: Error?) -> () in
-//            if error == nil {
-//                self.updates = loadedUpdates!
-//                self.tableView.reloadData()
-//            } else {
-//                print(error?.localizedDescription as Any)
-//            }
-//        }
+
         
         let usersArray = PFUser.current()?["following"] as! [String]
-        print(usersArray)
+        usersObjectArray.append(PFUser.current()!) //ensure that current user posts will be fetched
+
+        for user in usersArray {
+            print(user)
+            User.fetchUserById(userId: user) { (loadedUser: PFObject?, error: Error?) -> () in
+                if error == nil {
+                    self.usersObjectArray.append(loadedUser as! PFUser)
+                    print(self.usersObjectArray)
+                } else {
+                    print(error?.localizedDescription)
+                }
+            }
+        }
         
-        Update.fetchUpdatesFromUserArray(userIdArray: usersArray) { (loadedUpdates: [PFObject]?, error: Error?) in
+        print(self.usersObjectArray)
+        
+        Update.fetchUpdatesFromUserArray(userArray: usersObjectArray) { (loadedUpdates: [PFObject]?, error: Error?) in
             if error == nil {
                 self.updates = loadedUpdates!
                 self.tableView.reloadData()

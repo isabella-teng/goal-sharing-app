@@ -68,13 +68,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
             }
         }
-
-        
-        //set user button based on if followed or not
-        let foundFollower = (PFUser.current()?["following"] as! [PFUser]).filter { $0==user! }
-        if foundFollower.isEmpty {
-            followUserButton.isSelected = true
-        }
         
         logoutButton.layer.cornerRadius = logoutButton.frame.height / 2
         closeButton.layer.cornerRadius = closeButton.frame.height / 2

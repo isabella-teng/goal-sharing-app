@@ -14,14 +14,18 @@ class User: NSObject {
     
     //save user keys upon creating
     
-    class func setFollowersFollowing() {
+    class func fetchUserById(userId: String, withCompletion completion: @escaping (PFObject?, Error?) -> ()) {
+        var query: PFQuery = PFUser.query()!
         
-        let user = PFObject(className: "User")
-        
-        user["followerCount"] = 0
-        user["followingCount"] = 0
-        user["followers"] = [] //array of user objects
-        user["following"] = []
-        
+        query.getObjectInBackground(withId: userId) { (user: PFObject?, error: Error?) in
+            if error == nil {
+                completion(user, nil)
+            } else {
+                completion(nil, error)
+            }
+        }
     }
+    
+    
+
 }
