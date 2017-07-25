@@ -8,7 +8,7 @@
 
 import UIKit
 import Charts
-
+import Parse
 
 class ProgressViewController: UIViewController, ChartViewDelegate {
     
@@ -37,6 +37,7 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
     weak var axisFormatDelegate: IAxisValueFormatter?
     
     var days: [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         barChartView.delegate = self
@@ -64,13 +65,15 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
             dataEntries.append(dataEntry)
         }
         
+        
+        
         let chartDataSet = BarChartDataSet(values: dataEntries, label: "Updates Made")
         let chartData = BarChartData(dataSet: chartDataSet)
         barChartView.data = chartData
         
         let sum = values.reduce(0, +)
         let average = sum / 7
-        let average1 = average + 1.02
+        let average1 = average - 1.02
         
         
         
