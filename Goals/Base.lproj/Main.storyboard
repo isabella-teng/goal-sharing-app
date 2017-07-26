@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -163,15 +162,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="All Active Goals" id="b0f-Zu-Isf">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="menu" id="ut6-MH-YSj">
-                            <color key="tintColor" red="0.9270021915435791" green="0.41587281227111816" blue="0.43535754084587097" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <barButtonItem key="rightBarButtonItem" title="Close" id="RkL-TN-m1c">
                             <connections>
-                                <action selector="onClose:" destination="fjP-gN-c68" id="hEP-9I-4hs"/>
+                                <action selector="onClose:" destination="fjP-gN-c68" id="zaG-oZ-gql"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="closeButton" destination="ut6-MH-YSj" id="vzC-OO-ZpU"/>
+                        <outlet property="closeButton" destination="RkL-TN-m1c" id="oMy-lh-X33"/>
                         <outlet property="tableView" destination="Wdc-uB-5Ph" id="Dc4-hC-9rD"/>
                         <segue destination="OtZ-Tv-MZ9" kind="presentation" identifier="goalUpdateSegue" id="die-PK-ZT8"/>
                     </connections>
@@ -405,23 +403,13 @@
                                 <segue destination="wh1-XR-JhU" kind="presentation" identifier="" id="GcN-JU-aZ0"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem image="menu" id="ZtU-yN-AxO">
-                                <connections>
-                                    <segue destination="VhF-kq-3KK" kind="presentation" identifier="barButtonSegue" id="teF-p4-Wsc"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem style="plain" id="1Xc-Lw-J8J">
-                                <view key="customView" contentMode="scaleToFill" id="stp-tB-P78">
-                                    <rect key="frame" x="225" y="5" width="83" height="33"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </view>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" image="menu" id="ZtU-yN-AxO">
+                            <connections>
+                                <segue destination="VhF-kq-3KK" kind="presentation" identifier="barButtonSegue" id="teF-p4-Wsc"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="barButtonView" destination="stp-tB-P78" id="GTw-dV-XZv"/>
                         <outlet property="goalMenuButton" destination="ZtU-yN-AxO" id="BsB-rV-aT2"/>
                         <outlet property="tableView" destination="U5Q-49-VPy" id="QWD-nZ-y2D"/>
                     </connections>
@@ -1432,7 +1420,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="116"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="usr-CH-lhy" id="Pzg-rP-hNg">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="115.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="116"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Creation/Updated Date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHg-0J-BUY">
