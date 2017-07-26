@@ -10,8 +10,9 @@ import UIKit
 import Parse
 import ParseUI
 import Whisper
+import BubbleTransition
 
-class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate, DidPostUpdateDelegate {
+class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate, DidPostUpdateDelegate, UIViewControllerTransitioningDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -19,6 +20,11 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var usersObjectArray: [PFUser] = []
     
     var didPostUpdate: Bool = false
+    
+    let transition = BubbleTransition()
+    @IBOutlet weak var goalMenuButton: UIBarButtonItem!
+    //TODO: fix the view location
+    @IBOutlet weak var barButtonView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +82,20 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .present
+        transition.startingPoint = barButtonView.center //goalMenuButton.value(forKey: "view") as! CGPoint
+        transition.bubbleColor = UIColor(red:1.00, green:0.70, blue:0.88, alpha:1.0)
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .dismiss
+        transition.startingPoint = barButtonView.center //goalMenuButton.value(forKey: "view") as! CGPoint
+        transition.bubbleColor = UIColor(red:0.70, green:1.00, blue:0.96, alpha:1.0)
+        return transition
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return updates.count
     }
@@ -117,6 +137,10 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let vc = segue.destination as! ProfileViewController
             vc.user = sender as? PFUser
             vc.fromFeed = true
+        } else if (segue.identifier == "allGoalsSegue") {
+            let controller = segue.destination //as! AllGoalsViewController
+            controller.transitioningDelegate = self
+            controller.modalPresentationStyle = .custom
         }
     }
     
