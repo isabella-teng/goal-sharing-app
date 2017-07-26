@@ -145,9 +145,9 @@
 		7E4EE3411F1FDB4900BCFEA4 /* Timeline */ = {
 			isa = PBXGroup;
 			children = (
-				7E124C941F1EA8EF00858D35 /* UpdateCell.swift */,
 				7E1238AC1F22A79000DAF688 /* InfoCell.swift */,
 				7ECD22391F26C2A900D09608 /* MediaCell.swift */,
+				7E124C941F1EA8EF00858D35 /* UpdateCell.swift */,
 			);
 			name = Timeline;
 			sourceTree = "<group>";

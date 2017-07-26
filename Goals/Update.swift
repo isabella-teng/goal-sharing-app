@@ -57,7 +57,7 @@ class Update: NSObject {
         update["videos"] = [] //will contain the caption string, video url string, and author
         update["pictures"] = [] //contain the caption string, picture url string, and author
         
-        update["activity"] = [] //this is for the interactions - update and its comments, videos, and pictures by date
+        update["activity"] = [] //this is only for the media - pictures and videos
 
         
         
