@@ -66,12 +66,8 @@ class AllGoalsViewController: UIViewController, UITableViewDelegate, UITableView
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        UIApplication.shared.setStatusBarStyle(.lightContent, animated: true)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        UIApplication.shared.setStatusBarStyle(.default, animated: true)
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

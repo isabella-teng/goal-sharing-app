@@ -267,17 +267,17 @@
 		FACF12CB1F154A4600D505FE /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FAA6C8C61F1EB94D00FB8F26 /* Camera VCs  */,
-				FA2258511F27B286008CDBCC /* Profile VCs */,
-				7EEEFB161F158A6E004A29EC /* FeedViewController.swift */,
-				FACF12C91F154A3D00D505FE /* LoginViewController.swift */,
 				FAD351411F182FC500998CCA /* AllGoalsViewController.swift */,
 				B87C87EF1F159AE100F58517 /* DetailViewController.swift */,
+				7EEEFB161F158A6E004A29EC /* FeedViewController.swift */,
+				FACF12C91F154A3D00D505FE /* LoginViewController.swift */,
 				7E949C071F18108800449DA0 /* PostCommentViewController.swift */,
 				B87C87ED1F156E9300F58517 /* PostGoalViewController.swift */,
 				7E1FCE631F16E6DC009C0AF1 /* PostUpdateViewController.swift */,
 				B84B22781F1EDB6F00E9482E /* ProgressViewController.swift */,
 				7EF1FFD41F158598000DA708 /* TimelineViewController.swift */,
+				FAA6C8C61F1EB94D00FB8F26 /* Camera VCs  */,
+				FA2258511F27B286008CDBCC /* Profile VCs */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -370,7 +370,7 @@
 				TargetAttributes = {
 					FACF12971F15476200D505FE = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = NF7K8Y2LMW;
+						DevelopmentTeam = 3JE575EG34;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -762,10 +762,10 @@
 			baseConfigurationReference = 1FCD39C47ED1A6703B4F8F14 /* Pods-Goals.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = NF7K8Y2LMW;
+				DEVELOPMENT_TEAM = 3JE575EG34;
 				INFOPLIST_FILE = Goals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Isabella.com.Goals;
+				PRODUCT_BUNDLE_IDENTIFIER = Gerardo.com.Goals;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -776,10 +776,10 @@
 			baseConfigurationReference = CF3584AB59D862ECDED6FA78 /* Pods-Goals.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = NF7K8Y2LMW;
+				DEVELOPMENT_TEAM = 3JE575EG34;
 				INFOPLIST_FILE = Goals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Isabella.com.Goals;
+				PRODUCT_BUNDLE_IDENTIFIER = Gerardo.com.Goals;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
