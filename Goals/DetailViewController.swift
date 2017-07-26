@@ -50,7 +50,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         goalView.layer.cornerRadius = 15
         goalView.backgroundColor = UIColor(red:0.53, green:0.76, blue:0.96, alpha:1.0)
         
-        Update.fetchUpdatesByGoal(goalid: goalid) { (loadedUpdates: [PFObject]?, error: Error?) in
+        Update.fetchUpdatesByGoal(goalId: goalid) { (loadedUpdates: [PFObject]?, error: Error?) in
 
             if error == nil {
                 self.updates = loadedUpdates!

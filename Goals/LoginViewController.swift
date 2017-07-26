@@ -19,47 +19,46 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loginButton.layer.cornerRadius = loginButton.frame.height / 2
+        loginButton.layer.cornerRadius = 5
     }
     
-    @IBAction func onLogin(_ sender: Any) {
+    // Alerts to handle errors
+    func createAlert(message: String) {
+        let alertController = UIAlertController(title: "Error", message: message.capitalized, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "OK", style: .cancel) { (action) in }
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true)
+    }
+    
+    @IBAction func onLogIn(_ sender: Any) {
+        // Log in and segue to home feed
         PFUser.logInWithUsername(inBackground: usernameField.text!, password: passwordField.text!) { (user: PFUser?, error: Error?) in
             if user != nil {
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
             } else {
-                let alertController = UIAlertController(title: "Error", message: error?.localizedDescription.capitalized, preferredStyle: .alert)
-                let cancelAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
-                }
-                alertController.addAction(cancelAction)
-                self.present(alertController, animated: true)
+                self.createAlert(message: (error?.localizedDescription)!)
             }
         }
     }
     
     @IBAction func onSignUp(_ sender: Any) {
+        // Create Parse user
         let newUser = PFUser()
-        
         newUser.username = usernameField.text
         newUser.password = passwordField.text
-
-        newUser["followerCount"] = 0
-        newUser["followingCount"] = 0
-        newUser["followers"] = [] //array of user objects ids
         newUser["following"] = []
-
         
+        // Post user to database
         newUser.signUpInBackground { (success: Bool, error:Error?) in
             if success {
-                self.performSegue(withIdentifier: "loginSegue", sender: nil )
+                self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                
+                // User must follow self to see own posts in feed
                 let user = PFUser.current()
                 user?["following"] = [PFUser.current()!]
                 user?.saveInBackground()
             } else {
-                let alertController = UIAlertController(title: "Error", message: error?.localizedDescription.capitalized, preferredStyle: .alert)
-                let cancelAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
-                }
-                alertController.addAction(cancelAction)
-                self.present(alertController, animated: true)
+                self.createAlert(message: (error?.localizedDescription)!)
             }
         }
     }

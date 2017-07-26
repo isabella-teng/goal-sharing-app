@@ -144,11 +144,11 @@ class Update: NSObject {
     }
     
     // Add function that only gets the updates with given goal
-    class func fetchUpdatesByGoal(goalid: String, withCompletion completion: @escaping ([PFObject]?, Error?) -> ()) {
+    class func fetchUpdatesByGoal(goalId: String, withCompletion completion: @escaping ([PFObject]?, Error?) -> ()) {
         let query = PFQuery(className: "Update")
         
         query.order(byAscending: "createdAt")
-        query.whereKey("goalId", equalTo: goalid as Any)
+        query.whereKey("goalId", equalTo: goalId as Any)
         
         query.findObjectsInBackground { (loadedUpdates: [PFObject]?, error: Error?) in
             if error == nil {

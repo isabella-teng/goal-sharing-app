@@ -12,16 +12,18 @@ import ParseUI
 import Whisper
 
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
-    var updates: [PFObject] = []
     
+    var updates: [PFObject] = []
     var usersObjectArray: [PFUser] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // Set up tableView
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -29,8 +31,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        // Fetch feed based on followed users
         let usersArray = PFUser.current()?["following"] as! [PFUser]
-        
         Update.fetchUpdatesFromUserArray(userArray: usersArray) { (loadedUpdates: [PFObject]?, error: Error?) in
             if error == nil {
                 self.updates = loadedUpdates!
@@ -40,23 +42,26 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
         
-        //in app notification for every 1 update posted
+        // TODO: in app notification for every 1 update posted
     }
     
+    // Return amount of tableView cells
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return updates.count
     }
     
+    // Format tableView cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
         
         cell.delegate = self
         cell.update = updates[indexPath.row]
-
         
         return cell
     }
     
+    
+    // Control segues
     func feedCell(_ feedCell: FeedCell, didTap update: PFObject, tappedComment: Bool, tappedCamera: Bool, tappedUser: PFUser?) {
         if tappedComment {
             performSegue(withIdentifier: "commentSegue", sender: update)
@@ -67,9 +72,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else {
             performSegue(withIdentifier: "detailSegue", sender: update)
         }
-        
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "detailSegue") {
             let vc = segue.destination as! DetailViewController
@@ -87,11 +91,12 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    @IBAction func backFromVC3(segue: UIStoryboardSegue) {
-    }
+    
+    // Return user to feed after posting update
+    @IBAction func backFromVC3(segue: UIStoryboardSegue) { }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
