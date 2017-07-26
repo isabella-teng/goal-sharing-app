@@ -162,7 +162,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="All Active Goals" id="b0f-Zu-Isf">
-                        <barButtonItem key="rightBarButtonItem" title="Close" id="RkL-TN-m1c">
+                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="RkL-TN-m1c">
                             <connections>
                                 <action selector="onClose:" destination="fjP-gN-c68" id="zaG-oZ-gql"/>
                             </connections>
@@ -1590,7 +1590,7 @@
         <image name="info" width="16" height="16"/>
         <image name="like" width="24" height="24"/>
         <image name="like-red" width="24" height="24"/>
-        <image name="menu" width="32" height="32"/>
+        <image name="menu" width="25" height="25"/>
         <image name="photo" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
