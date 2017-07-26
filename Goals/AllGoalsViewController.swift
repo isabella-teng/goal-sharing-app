@@ -24,8 +24,6 @@ class AllGoalsViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
-        
-        tableView.backgroundColor = UIColor(red:0.70, green:1.00, blue:0.96, alpha:1.0)
     }
     
     override func viewDidAppear(_ animated: Bool) {
