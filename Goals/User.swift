@@ -14,6 +14,21 @@ class User: NSObject {
     
     //save user keys upon creating
     
+    
+    class func fetchAllUsers(completion: @escaping ([PFObject]?, Error?) -> ()) {
+        let query = PFQuery(className: "User")
+        query.order(byDescending: "createdAt")
+        
+        query.findObjectsInBackground { (loadedUsers: [PFObject]?, error:Error?) in
+            if error == nil {
+                completion(loadedUsers, nil)
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
+
+    
     class func fetchUserById(userId: String, withCompletion completion: @escaping (PFObject?, Error?) -> ()) {
         let query = PFUser.query()!
         

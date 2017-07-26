@@ -123,7 +123,6 @@ class AddCaptionViewController: UIViewController {
                         var newInteraction: [String: Any] = photoDictionary
                         newInteraction["type"] = "photo"
                         newInteraction["text"] = self.captionTextView?.text
-                        //newInteraction["image"] = Update.getPFFileFromImage(image: self.savedMedia as? UIImage)
 
                         newInteraction["createdAt"] = NSDate()
                         interactionsArray.append(newInteraction)
