@@ -87,6 +87,7 @@ class AddCaptionViewController: UIViewController {
                         var videoDictionary: [String: Any] = [:]
                         videoDictionary["sender"] = self.currentUser
                         videoDictionary["caption"] = self.captionTextView?.text
+                        //TODO: Retrieve the file in the temporary directory and make it usable for later?
                         videoDictionary["videoURL"] = "\(self.savedMedia as! URL)"
                         videoArray.append(videoDictionary)
                         self.currentUpdate?["videos"] = videoArray
