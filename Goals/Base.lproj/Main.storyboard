@@ -162,7 +162,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="All Active Goals" id="b0f-Zu-Isf">
-<<<<<<< HEAD
                         <barButtonItem key="rightBarButtonItem" image="menu" id="RkL-TN-m1c">
 
                             <connections>
