@@ -88,6 +88,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.transitionMode = .present
+        //TODO: get the correct positon
         transition.startingPoint = CGPoint(x: 0, y: 1) //barButtonView.center //goalMenuButton.value(forKey: "view") as! CGPoint
         transition.bubbleColor = UIColor(red:1.00, green:0.70, blue:0.88, alpha:1.0)
         return transition
@@ -95,6 +96,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.transitionMode = .dismiss
+        //TODO: get the correct positon
         transition.startingPoint = CGPoint(x: 1, y: 1)//barButtonView.center //goalMenuButton.value(forKey: "view") as! CGPoint
         transition.bubbleColor = UIColor(red:0.70, green:1.00, blue:0.96, alpha:1.0)
         return transition
