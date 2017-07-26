@@ -11,13 +11,14 @@ import Parse
 import ParseUI
 import Whisper
 
-class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate {
+class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate, DidPostUpdateDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
     var updates: [PFObject] = []
-    
     var usersObjectArray: [PFUser] = []
+    
+    var didPostUpdate: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,11 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     }
     
+    func postedUpdate(sentUpdate: Bool) {
+        print("should enter")
+        didPostUpdate = sentUpdate
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         let usersArray = PFUser.current()?["following"] as! [PFUser]
         
@@ -60,8 +66,13 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 print(error?.localizedDescription as Any)
             }
         }
+        //currently a notification you see if view appears
+        if didPostUpdate {
+            let message = Message(title: "Great update to your goal!", backgroundColor: UIColor(red:0.89, green:0.09, blue:0.44, alpha:1))
+            Whisper.show(whisper: message, to: navigationController!, action: .present)
+            hide(whisperFrom: navigationController!, after: 3)
+        }
         
-        //in app notification for every 1 update posted
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

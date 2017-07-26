@@ -37,15 +37,18 @@ class MediaCell: UICollectionViewCell {
                 let videoURL = URL(string: videoString as! String)
                 
                 if  videoURL != nil {
-                    print("made it here")
                     let player = AVPlayer(url: videoURL!)
                     let playerController = AVPlayerViewController()
                     playerController.player = player
-                    
                     playerController.view.frame = mediaImage.frame
                     self.mediaImage.addSubview(playerController.view)
-                    
                     player.play()
+                    
+//                    let player = AVPlayer(url: videoURL!)
+//                    let playerLayer = AVPlayerLayer(player: player)
+//                    playerLayer.frame = mediaImage.bounds
+//                    self.mediaImage.layer.addSublayer(playerLayer)
+//                    player.play()
                 } else {
                     print("video nil")
                 }

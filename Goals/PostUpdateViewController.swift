@@ -11,6 +11,10 @@ import Parse
 import ParseUI
 import RSKPlaceholderTextView
 
+protocol DidPostUpdateDelegate: class {
+    func postedUpdate(sentUpdate: Bool)
+}
+
 class PostUpdateViewController: UIViewController, UITextViewDelegate {
 
     var updateTextView: RSKPlaceholderTextView? = nil
@@ -18,6 +22,8 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var typeControl: UISegmentedControl!
 
     var currentGoal: PFObject?
+    
+    weak var delegate: DidPostUpdateDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,8 +54,9 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
             alertController.addAction(okAction)
             self.present(alertController, animated: true)
         } else {
+            self.delegate?.postedUpdate(sentUpdate: true)
             self.dismiss(animated: true, completion: nil)
-
+            
             // Data to post to Parse
             var data: [String: Any] = [:]
             data["text"] = updateTextView?.text
