@@ -15,28 +15,31 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var profileImageView: PFImageView!
+    @IBOutlet weak var profileIcon: PFImageView!
     @IBOutlet weak var bioLabel: UILabel!
+    
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var editProfileButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var followUserButton: UIButton!
     
-    var user: PFUser? = nil
-    var fromFeed: Bool = false
-    var allUserPosts: [PFObject]? = []
     
+    var user: PFUser? = nil
+    var allUserPosts: [PFObject]? = []
+    var fromFeed: Bool = false
     var isFollowing: Bool = false
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set up tableView
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         
+        // Hide/show buttons based on source
         if !fromFeed {
             self.user = PFUser.current()
             closeButton.isHidden = true
@@ -53,14 +56,22 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             editProfileButton.isHidden = true
             closeButton.isHidden = false
             followUserButton.isHidden = false
+            
+            let current = PFUser.current()
+            let following = current?["following"] as! [PFUser]
+            for item in following {
+                if item.objectId! == user?.objectId {
+                    toggleFollow()
+                }
+            }
         }
         
+        // Style buttons and images
         logoutButton.layer.cornerRadius = logoutButton.frame.height / 2
         closeButton.layer.cornerRadius = closeButton.frame.height / 2
         followUserButton.layer.cornerRadius = followUserButton.frame.height / 2
-        profileImageView.layer.cornerRadius = 35
+        profileIcon.layer.cornerRadius = 35
     }
-    
     
     override func viewDidAppear(_ animated: Bool) {
         // Fetch user updates
@@ -73,29 +84,26 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
         
+        // Populate view with user data
         usernameLabel.text = user?.username
         bioLabel.text = user?["bio"] as? String
         
-        if let profpic = user?["portrait"] as? PFFile {
-            profpic.getDataInBackground { (imageData: Data?, error: Error?) in
-                if error == nil {
-                    let profImage = UIImage(data: imageData!)
-                    self.profileImageView.image = profImage
-                }
-            }
-        }
-        
-        if fromFeed {
-            let current = PFUser.current()
-            let following = current?["following"] as! [PFUser]
-            for item in following {
-                if item.objectId! == user?.objectId {
-                    toggleFollow()
-                }
+        // Fetch user icon
+        let profpic = user?["portrait"] as? PFFile
+        profpic?.getDataInBackground { (imageData: Data?, error: Error?) in
+            if error == nil {
+                let profImage = UIImage(data: imageData!)
+                self.profileIcon.image = profImage
             }
         }
     }
     
+    // Light status bar colors
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    // Style following button based on following status
     func toggleFollow() {
         if !isFollowing {
             isFollowing = true
@@ -110,47 +118,29 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    
+    // Modify button, database on tapping follow button
     @IBAction func onFollowUser(_ sender: Any) {
+        toggleFollow()
         var followingArray = PFUser.current()?["following"] as! [PFUser]
         
-        if !isFollowing {
-            PFUser.current()?.incrementKey("followingCount", byAmount: 1)
-            followingArray.append(user!)
-        } else {
-            PFUser.current()?.incrementKey("followingCount", byAmount: -1)
+        if isFollowing {
             for (index, item) in followingArray.enumerated() {
                 if item.objectId! == user?.objectId {
                     followingArray.remove(at: index)
                 }
             }
+        } else {
+            followingArray.append(user!)
         }
-        
-        toggleFollow()
         
         PFUser.current()?["following"] = followingArray
         PFUser.current()?.saveInBackground()
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-    // Return amount of tableView cells
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allUserPosts!.count
-    }
-    
-    // Format cells
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
-        cell.goal = allUserPosts![indexPath.row]
-        cell.delegate = self
-        
-        return cell
-    }
-    
-    func profileCell(_ profileCell: ProfileCell, didTap goal: PFObject) {
-        performSegue(withIdentifier: "profileToTimeline", sender: goal)
+    // Exit view
+    @IBAction func didTapClose(_ sender: Any) {
+        self.dismiss(animated: true)
     }
     
     // Log user out
@@ -161,12 +151,24 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         NotificationCenter.default.post(name: NSNotification.Name("logoutNotification"), object: nil)
     }
     
-    @IBAction func didTapClose(_ sender: Any) {
-        self.dismiss(animated: true)
+    
+    // Return amount of tableView cells
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return allUserPosts!.count
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    // Format cells
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
+        
+        cell.goal = allUserPosts![indexPath.row]
+        cell.delegate = self
+        
+        return cell
+    }
+    
+    func profileCell(_ profileCell: ProfileCell, didTap goal: PFObject) {
+        performSegue(withIdentifier: "profileToTimeline", sender: goal)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -175,12 +177,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             let vc = segue.destination as! TimelineViewController
             vc.currentGoal = goal
             
-            Update.fetchUpdatesByGoal(goalid: goal.objectId!, withCompletion: { (updates: [PFObject]?, error: Error?) in
+            // Fetch updates before loading timeline
+            Update.fetchUpdatesByGoal(goalId: goal.objectId!, withCompletion: { (updates: [PFObject]?, error: Error?) in
                 if error == nil {
                     vc.updates = updates!
+                } else {
+                    print(error?.localizedDescription as Any)
                 }
             })
         }
     }
     
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
 }

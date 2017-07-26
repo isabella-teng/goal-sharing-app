@@ -30,7 +30,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // Set up tableView
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -65,8 +66,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        // Fetch feed based on followed users
         let usersArray = PFUser.current()?["following"] as! [PFUser]
-        
         Update.fetchUpdatesFromUserArray(userArray: usersArray) { (loadedUpdates: [PFObject]?, error: Error?) in
             if error == nil {
                 self.updates = loadedUpdates!
@@ -82,6 +83,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             hide(whisperFrom: navigationController!, after: 3)
         }
         
+
     }
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
@@ -98,25 +100,25 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return transition
     }
     
-    @IBAction func onMenuTap(_ sender: Any) {
-        print("entered")
-        performSegue(withIdentifier: "regularButtonSegue", sender: nil)
-    }
+ 
     
+    // Return amount of tableView cells
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return updates.count
     }
     
+    // Format tableView cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
         
         cell.delegate = self
         cell.update = updates[indexPath.row]
-
         
         return cell
     }
     
+    
+    // Control segues
     func feedCell(_ feedCell: FeedCell, didTap update: PFObject, tappedComment: Bool, tappedCamera: Bool, tappedUser: PFUser?) {
         if tappedComment {
             performSegue(withIdentifier: "commentSegue", sender: update)
@@ -127,9 +129,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else {
             performSegue(withIdentifier: "detailSegue", sender: update)
         }
-        
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "detailSegue") {
             let vc = segue.destination as! DetailViewController
@@ -148,18 +149,15 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let controller = segue.destination //as! AllGoalsViewController
             controller.transitioningDelegate = self
             controller.modalPresentationStyle = .custom
-        } else if (segue.identifier == "regularButtonSegue") {
-            let controller = segue.destination //as! AllGoalsViewController
-            controller.transitioningDelegate = self
-            controller.modalPresentationStyle = .custom
-        }
+
     }
     
-    @IBAction func backFromVC3(segue: UIStoryboardSegue) {
-    }
+    
+    // Return user to feed after posting update
+    @IBAction func backFromVC3(segue: UIStoryboardSegue) { }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
