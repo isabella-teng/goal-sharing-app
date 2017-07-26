@@ -9,6 +9,8 @@
 import UIKit
 import SwiftyCam
 import RSKPlaceholderTextView
+import AVKit
+import AVFoundation
 import Parse
 
 class AddCaptionViewController: UIViewController {
@@ -88,7 +90,8 @@ class AddCaptionViewController: UIViewController {
                         videoDictionary["sender"] = self.currentUser
                         videoDictionary["caption"] = self.captionTextView?.text
                         //TODO: Retrieve the file in the temporary directory and make it usable for later?
-                        videoDictionary["videoURL"] = "\(self.savedMedia as! URL)"
+                        let vid = NSData(contentsOf: self.savedMedia as! URL)
+                        videoDictionary["videoURL"] = PFFile(name: "video.mov", data: vid! as Data)
                         videoArray.append(videoDictionary)
                         self.currentUpdate?["videos"] = videoArray
                         
