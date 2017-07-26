@@ -27,7 +27,17 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 180
         
-        User.fetchUserById(userId: "s4wqDrTHOa") { (user: PFObject?, error: Error?) in
+        User.fetchUserById(userId: "qDFvLtw25n") { (user: PFObject?, error: Error?) in
+            if error == nil {
+                let me = PFUser.current()
+                var following = me?["following"] as! [PFUser]
+                following.append(user as! PFUser)
+                me?["following"] = following
+                me?.saveInBackground()
+            }
+        }
+        
+        User.fetchUserById(userId: "KHZ76Bw4Cr") { (user: PFObject?, error: Error?) in
             if error == nil {
                 let me = PFUser.current()
                 var following = me?["following"] as! [PFUser]

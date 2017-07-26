@@ -72,6 +72,7 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
             }
             
             let activityMedia = update?["activity"] as! [[String: Any]]
+            print(activityMedia)
             //let pictures = update?["pictures"] as! [[String: Any]]
             if activityMedia.count == 0 {
                 collectionView.isHidden = true
