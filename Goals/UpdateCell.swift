@@ -21,8 +21,8 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var nodeView: UIView!
     
-    @IBOutlet weak var mediaPostion: NSLayoutConstraint!
     @IBOutlet weak var mediaHeight: NSLayoutConstraint!
+    @IBOutlet weak var mediaPosition: NSLayoutConstraint!
     
     
     var media: [[String: Any]] = []
@@ -50,10 +50,8 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
             let comments = update?["comments"] as! [[String: Any]]
             if comments.count == 0 {
                 // Hide comment view if no comments
-                mediaPostion.constant = -71.5
                 commentBackground.isHidden = true
             } else {
-                mediaPostion.constant = 8
                 commentBackground.isHidden = false
                 
                 // Populate view with most recent comment
@@ -79,16 +77,24 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
             
             let activityMedia = update?["activity"] as! [[String: Any]]
             print(activityMedia)
-            //let pictures = update?["pictures"] as! [[String: Any]]
+            
             if activityMedia.count == 0 {
                 collectionView.isHidden = true
                 mediaHeight.constant = 0
-                mediaPostion.constant = 0
+                if comments.count == 0 {
+                    mediaPosition.constant = -71.5
+                } else {
+                    mediaPosition.constant = 0
+                }
             } else {
                 collectionView.isHidden = false
-                mediaHeight.constant = 190
-                mediaPostion.constant = 8
+                mediaHeight.constant = 219
                 media = activityMedia
+                if comments.count == 0 {
+                    mediaPosition.constant = -71.5
+                } else {
+                    mediaPosition.constant = 15
+                }
             }
         }
     }

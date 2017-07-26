@@ -39,26 +39,22 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate {
                 let videoURL = URL(fileURLWithPath: videoString as! String)
                 print(videoURL)
                 
-                if  videoURL != nil {
-                    let asset = AVAsset(url: videoURL)
-                    let item = AVPlayerItem(asset: asset)
-                    let player = AVPlayer(playerItem: item)
-                    //let player = AVPlayer(url: videoURL)
-                    let playerController = AVPlayerViewController()
-                    playerController.player = player
-                    playerController.view.frame = mediaImage.frame
-                    self.mediaImage.addSubview(playerController.view)
-                    player.play()
-                    print("should be playing")
-                    
-//                    let player = AVPlayer(url: videoURL!)
-//                    let playerLayer = AVPlayerLayer(player: player)
-//                    playerLayer.frame = mediaImage.bounds
-//                    self.mediaImage.layer.addSublayer(playerLayer)
-//                    player.play()
-                } else {
-                    print("video nil")
-                }
+                let asset = AVAsset(url: videoURL)
+                let item = AVPlayerItem(asset: asset)
+                let player = AVPlayer(playerItem: item)
+                //let player = AVPlayer(url: videoURL)
+                let playerController = AVPlayerViewController()
+                playerController.player = player
+                playerController.view.frame = mediaImage.frame
+                self.mediaImage.addSubview(playerController.view)
+                player.play()
+                print("should be playing")
+                
+//                let player = AVPlayer(url: videoURL!)
+//                let playerLayer = AVPlayerLayer(player: player)
+//                playerLayer.frame = mediaImage.bounds
+//                self.mediaImage.layer.addSublayer(playerLayer)
+//                player.play()
             }
         }
     }
