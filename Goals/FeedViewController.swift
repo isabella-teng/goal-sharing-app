@@ -149,7 +149,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let controller = segue.destination //as! AllGoalsViewController
             controller.transitioningDelegate = self
             controller.modalPresentationStyle = .custom
-
+        }
     }
     
     
