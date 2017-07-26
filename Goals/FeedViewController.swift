@@ -26,6 +26,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //TODO: fix the view location
     @IBOutlet weak var barButtonView: UIView!
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -84,16 +86,21 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.transitionMode = .present
-        transition.startingPoint = barButtonView.center //goalMenuButton.value(forKey: "view") as! CGPoint
+        transition.startingPoint = CGPoint(x: 0, y: 1) //barButtonView.center //goalMenuButton.value(forKey: "view") as! CGPoint
         transition.bubbleColor = UIColor(red:1.00, green:0.70, blue:0.88, alpha:1.0)
         return transition
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.transitionMode = .dismiss
-        transition.startingPoint = barButtonView.center //goalMenuButton.value(forKey: "view") as! CGPoint
+        transition.startingPoint = CGPoint(x: 1, y: 1)//barButtonView.center //goalMenuButton.value(forKey: "view") as! CGPoint
         transition.bubbleColor = UIColor(red:0.70, green:1.00, blue:0.96, alpha:1.0)
         return transition
+    }
+    
+    @IBAction func onMenuTap(_ sender: Any) {
+        print("entered")
+        performSegue(withIdentifier: "regularButtonSegue", sender: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -137,7 +144,11 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let vc = segue.destination as! ProfileViewController
             vc.user = sender as? PFUser
             vc.fromFeed = true
-        } else if (segue.identifier == "allGoalsSegue") {
+        } else if (segue.identifier == "barButtonSegue") {
+            let controller = segue.destination //as! AllGoalsViewController
+            controller.transitioningDelegate = self
+            controller.modalPresentationStyle = .custom
+        } else if (segue.identifier == "regularButtonSegue") {
             let controller = segue.destination //as! AllGoalsViewController
             controller.transitioningDelegate = self
             controller.modalPresentationStyle = .custom

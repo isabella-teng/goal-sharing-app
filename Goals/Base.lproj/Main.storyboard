@@ -163,13 +163,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="All Active Goals" id="b0f-Zu-Isf">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="kOU-4B-xhv">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="menu" id="ut6-MH-YSj">
+                            <color key="tintColor" red="0.9270021915435791" green="0.41587281227111816" blue="0.43535754084587097" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
-                                <action selector="onCancel:" destination="fjP-gN-c68" id="NKY-ha-T69"/>
+                                <action selector="onClose:" destination="fjP-gN-c68" id="hEP-9I-4hs"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="closeButton" destination="ut6-MH-YSj" id="vzC-OO-ZpU"/>
                         <outlet property="tableView" destination="Wdc-uB-5Ph" id="Dc4-hC-9rD"/>
                         <segue destination="OtZ-Tv-MZ9" kind="presentation" identifier="goalUpdateSegue" id="die-PK-ZT8"/>
                     </connections>
@@ -405,11 +407,11 @@
                         <rightBarButtonItems>
                             <barButtonItem image="menu" id="ZtU-yN-AxO">
                                 <connections>
-                                    <segue destination="VhF-kq-3KK" kind="presentation" identifier="allGoalsSegue" modalTransitionStyle="coverVertical" id="uvP-4o-G90"/>
+                                    <segue destination="VhF-kq-3KK" kind="presentation" identifier="barButtonSegue" id="teF-p4-Wsc"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem style="plain" id="mdG-oq-92b">
-                                <view key="customView" contentMode="scaleToFill" id="IPf-xt-iKh">
+                            <barButtonItem style="plain" id="1Xc-Lw-J8J">
+                                <view key="customView" contentMode="scaleToFill" id="stp-tB-P78">
                                     <rect key="frame" x="225" y="5" width="83" height="33"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -418,8 +420,8 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <outlet property="barButtonView" destination="IPf-xt-iKh" id="dMY-bI-aKB"/>
-                        <outlet property="goalMenuButton" destination="ZtU-yN-AxO" id="7W3-Qk-vmQ"/>
+                        <outlet property="barButtonView" destination="stp-tB-P78" id="GTw-dV-XZv"/>
+                        <outlet property="goalMenuButton" destination="ZtU-yN-AxO" id="BsB-rV-aT2"/>
                         <outlet property="tableView" destination="U5Q-49-VPy" id="QWD-nZ-y2D"/>
                     </connections>
                 </viewController>

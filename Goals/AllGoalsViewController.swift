@@ -13,6 +13,7 @@ import ParseUI
 class AllGoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GoalCellDelegate{
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var closeButton: UIBarButtonItem!
     
     var allGoals: [PFObject] = []
     
@@ -54,15 +55,23 @@ class AllGoalsViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
-    
-    @IBAction func onCancel(_ sender: Any) {
+    @IBAction func onClose(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
     
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        UIApplication.shared.setStatusBarStyle(.lightContent, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        UIApplication.shared.setStatusBarStyle(.default, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
