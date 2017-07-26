@@ -52,6 +52,22 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
         
         setChart(dataPoints: days, values: updatesMade)
         barChartView.notifyDataSetChanged()
+        
+        
+        let query = PFQuery(className: "Goal")
+        query.includeKey("createdAt")
+        query.findObjectsInBackground { (objects, error) in
+            if error == nil {
+                if let returnedobjects = objects {
+                    for object in returnedobjects {
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "MMM d, yyyy"
+                        let newDate = dateFormatter.string(from: object.createdAt!)
+                        print(newDate)
+                    }
+                }
+            }
+        }
     }
     
     func setChart(dataPoints: [String], values: [Double]) {
