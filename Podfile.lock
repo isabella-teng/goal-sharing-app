@@ -6,6 +6,7 @@ PODS:
   - Charts (3.0.2):
     - Charts/Core (= 3.0.2)
   - Charts/Core (3.0.2)
+  - DateToolsSwift (2.0.3)
   - Parse (1.14.4):
     - Bolts/Tasks (~> 1.8)
   - ParseUI (1.2.0):
@@ -23,6 +24,7 @@ PODS:
 DEPENDENCIES:
   - AlamofireImage (~> 3.1)
   - Charts
+  - DateToolsSwift
   - Parse
   - ParseUI
   - RealmSwift
@@ -35,6 +37,7 @@ SPEC CHECKSUMS:
   AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
+  DateToolsSwift: bf69bf9056d9e53c5c03f06e51f219b9b8b02f9e
   Parse: b0aa91d2c435e53d4a9af26e741e014c9b35c42e
   ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
   Realm: 3601ef091c8c499a31101d8563b991e75546cdce
@@ -43,6 +46,6 @@ SPEC CHECKSUMS:
   SwiftyCam: cb83b9a8e181f70fb741d30cea724c6b045a4549
   Whisper: 051f25e704bf8992641ffd28b20d5682ddc5f5d3
 
-PODFILE CHECKSUM: e48986ccffb42ce328095933689216da4ed197af
+PODFILE CHECKSUM: c95211c3724a7bbc7a48263551c1a4908c1870c6
 
 COCOAPODS: 1.2.1

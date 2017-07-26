@@ -14,6 +14,7 @@ target 'Goals' do
   pod 'Charts'
   pod 'RealmSwift'
   pod 'Whisper'
+  pod 'DateToolsSwift'
 
 
   target 'GoalsTests' do

@@ -50,6 +50,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     }
     
+    //TODO: Fix, is not entering
     func postedUpdate(sentUpdate: Bool) {
         print("should enter")
         didPostUpdate = sentUpdate
