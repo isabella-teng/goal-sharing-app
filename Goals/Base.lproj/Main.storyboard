@@ -668,10 +668,13 @@
                                     <segue destination="6dc-ye-LrG" kind="presentation" id="BV3-b2-3dH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9c-iV-bma">
-                                <rect key="frame" x="10" y="151" width="81" height="30"/>
-                                <state key="normal" title="Follow User"/>
-                                <state key="selected" title="Unfollow!"/>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9c-iV-bma">
+                                <rect key="frame" x="10" y="151" width="80" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="36W-qu-Hgw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Follow"/>
                                 <connections>
                                     <action selector="onFollowUser:" destination="1Dv-Of-Uq1" eventType="touchUpInside" id="iOM-5Z-JcK"/>
                                 </connections>
@@ -724,7 +727,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eTF-SU-lWR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2789.5999999999999" y="903.59820089955031"/>
+            <point key="canvasLocation" x="1960.8" y="138.98050974512745"/>
         </scene>
         <!--Edit Profile View Controller-->
         <scene sceneID="LlJ-fo-Pse">
@@ -846,7 +849,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U1B-wT-Abq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2789.5999999999999" y="1632.2338830584708"/>
+            <point key="canvasLocation" x="1961" y="945"/>
         </scene>
         <!--Progress View Controller-->
         <scene sceneID="8ez-F2-YTt">
@@ -890,7 +893,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cFB-ed-aqS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3692" y="1632"/>
+            <point key="canvasLocation" x="2790" y="945"/>
         </scene>
         <!--Post Comment View Controller-->
         <scene sceneID="lNc-tP-5XZ">
@@ -1367,7 +1370,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aEb-zQ-Ws6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3692" y="903.59820089955031"/>
+            <point key="canvasLocation" x="2790" y="139"/>
         </scene>
         <!--Home-->
         <scene sceneID="Jg3-2V-tVf">

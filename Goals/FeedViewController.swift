@@ -26,7 +26,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 180
-        
+
         User.fetchUserById(userId: "qDFvLtw25n") { (user: PFObject?, error: Error?) in
             if error == nil {
                 let me = PFUser.current()
@@ -46,6 +46,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 me?.saveInBackground()
             }
         }
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -66,8 +67,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return updates.count
     }
-    
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell

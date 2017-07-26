@@ -29,7 +29,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 if error == nil {
                     let profImage = UIImage(data: imageData!)
                     self.photoPreview.image = profImage
-                    self.imageButton.titleLabel?.text = ""
                 }
             }
         }

@@ -55,20 +55,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             followUserButton.isHidden = false
         }
         
-        usernameLabel.text = user?.username
-        bioLabel.text = user?["bio"] as? String
-        
-        if let profpic = user?["portrait"] as? PFFile {
-            profpic.getDataInBackground { (imageData: Data?, error: Error?) in
-                if error == nil {
-                    let profImage = UIImage(data: imageData!)
-                    self.profileImageView.image = profImage
-                }
-            }
-        }
-        
         logoutButton.layer.cornerRadius = logoutButton.frame.height / 2
         closeButton.layer.cornerRadius = closeButton.frame.height / 2
+        followUserButton.layer.cornerRadius = followUserButton.frame.height / 2
         profileImageView.layer.cornerRadius = 35
     }
     
@@ -84,41 +73,62 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
         
-        if fromFeed {
-            if (PFUser.current()?["following"] as! [PFUser]).contains(user!) {
-                followUserButton.isSelected = true
-                isFollowing = true
-            } else {
-                self.followUserButton.isSelected = false
+        usernameLabel.text = user?.username
+        bioLabel.text = user?["bio"] as? String
+        
+        if let profpic = user?["portrait"] as? PFFile {
+            profpic.getDataInBackground { (imageData: Data?, error: Error?) in
+                if error == nil {
+                    let profImage = UIImage(data: imageData!)
+                    self.profileImageView.image = profImage
+                }
             }
+        }
+        
+        if fromFeed {
+            let current = PFUser.current()
+            let following = current?["following"] as! [PFUser]
+            for item in following {
+                if item.objectId! == user?.objectId {
+                    toggleFollow()
+                }
+            }
+        }
+    }
+    
+    func toggleFollow() {
+        if !isFollowing {
+            isFollowing = true
+            followUserButton.setTitle("Unfollow", for: .normal)
+            followUserButton.backgroundColor = closeButton.backgroundColor
+            followUserButton.setTitleColor(UIColor.white, for: .normal)
+        } else {
+            isFollowing = false
+            followUserButton.setTitle("Follow", for: .normal)
+            followUserButton.backgroundColor = UIColor.white
+            followUserButton.setTitleColor(closeButton.backgroundColor, for: .normal)
         }
     }
     
     @IBAction func onFollowUser(_ sender: Any) {
         var followingArray = PFUser.current()?["following"] as! [PFUser]
-        var followersArray = user?["followers"] as! [PFUser]
         
-            if !isFollowing {
-                print("followed user")
-                followUserButton.isSelected = true
-                PFUser.current()?.incrementKey("followingCount", byAmount: 1)
-                followingArray.append(user!)
-                user?.incrementKey("followerCount", byAmount: 1)
-                followersArray.append(PFUser.current()!)
-                isFollowing = true
-            } else {
-                print("unfollowed user")
-                followUserButton.isSelected = false
-                PFUser.current()?.incrementKey("followingCount", byAmount: -1)
-                followingArray = followingArray.filter { $0 != user }
-                user?.incrementKey("followerCount", byAmount: -1)
-                followersArray = followersArray.filter { $0 != PFUser.current() }
-                isFollowing = false
+        if !isFollowing {
+            PFUser.current()?.incrementKey("followingCount", byAmount: 1)
+            followingArray.append(user!)
+        } else {
+            PFUser.current()?.incrementKey("followingCount", byAmount: -1)
+            for (index, item) in followingArray.enumerated() {
+                if item.objectId! == user?.objectId {
+                    followingArray.remove(at: index)
+                }
             }
-                PFUser.current()?["following"] = followingArray
-                user?["followers"] = followersArray
-                PFUser.current()?.saveInBackground()
-
+        }
+        
+        toggleFollow()
+        
+        PFUser.current()?["following"] = followingArray
+        PFUser.current()?.saveInBackground()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
