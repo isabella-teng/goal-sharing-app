@@ -20,6 +20,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var goalCreationDate: UILabel!
     @IBOutlet weak var goalView: UIView!
     
+    @IBOutlet weak var completionProgress: UIProgressView!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -27,6 +28,27 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        //percent on days left
+//        var goal: PFObject?
+//        
+//        let calendar = NSCalendar.current
+//        
+//        let completionDate = currentUpdate?["goalDate"] as! Date
+//        print(completionDate)
+//        let currentDay = Date()
+//        let updateCreation = currentUpdate?.createdAt as! Date
+//        print(currentDay)
+//        
+//        let date1 = calendar.startOfDay(for: completionDate)
+//        let date2 = calendar.startOfDay(for: currentDay)
+//        let date3 = calendar.startOfDay(for: updateCreation)
+//        
+//        let components1 = calendar.dateComponents([.day], from: date2, to: date1) //from goal creation to current date
+//        print(components1)
+//        let components2 = calendar.dateComponents([.day], from: <#T##Date#>)
+        
+        
 
     }
     

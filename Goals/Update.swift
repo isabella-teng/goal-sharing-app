@@ -48,7 +48,7 @@ class Update: NSObject {
         update["text"] = data["text"]
         update["goalId"] = data["goalId"]
         update["goalTitle"] = data["goalTitle"]
-        update["goalDate"] = data["goalDate"]
+        update["goalDate"] = data["goalDate"] //when goal was created
         update["type"] = data["type"] as! String
         update["likes"] = []
         update["likeCount"] = 0

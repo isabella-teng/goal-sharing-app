@@ -162,7 +162,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="All Active Goals" id="b0f-Zu-Isf">
-                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="RkL-TN-m1c">
+                        <barButtonItem key="rightBarButtonItem" image="menu" id="RkL-TN-m1c">
+
                             <connections>
                                 <action selector="onClose:" destination="fjP-gN-c68" id="zaG-oZ-gql"/>
                             </connections>
@@ -1479,6 +1480,7 @@
                     <navigationItem key="navigationItem" title="Goal" id="DhX-9Y-4zh"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="completionProgress" destination="88t-d1-OPP" id="ksi-gH-WRp"/>
                         <outlet property="goalCreationDate" destination="mNl-6T-E81" id="h7a-PP-iu8"/>
                         <outlet property="goalTitleLabel" destination="aFU-AR-v7q" id="flE-ga-opE"/>
                         <outlet property="goalView" destination="CJu-fF-lJb" id="YKO-Ug-tUY"/>
