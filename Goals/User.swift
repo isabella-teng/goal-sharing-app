@@ -16,7 +16,7 @@ class User: NSObject {
     
     
     class func fetchAllUsers(completion: @escaping ([PFObject]?, Error?) -> ()) {
-        let query = PFQuery(className: "User")
+        let query = PFUser.query()!
         query.order(byDescending: "createdAt")
         
         query.findObjectsInBackground { (loadedUsers: [PFObject]?, error:Error?) in

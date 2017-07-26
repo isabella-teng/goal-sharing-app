@@ -10,17 +10,33 @@ import UIKit
 import Parse
 import ParseUI
 
+protocol UserSearchCellDelegate: class {
+    func userSearchCell(_ userCell: UserSearchCell, didTap user: PFUser)
+}
+
 class UserSearchCell: UITableViewCell {
 
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var cellBackground: UIView!
+    
+    weak var delegate: UserSearchCellDelegate?
     
     var user: PFUser! {
         didSet {
             usernameLabel.text = user.username
         }
     }
+    
+    func didTapCell(_ sender: UITapGestureRecognizer) {
+        delegate?.userSearchCell(self, didTap: user)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCell(_:)))
+        cellBackground.addGestureRecognizer(cellTapGestureRecognizer)
+        cellBackground.isUserInteractionEnabled = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
