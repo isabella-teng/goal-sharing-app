@@ -89,7 +89,6 @@ class AddCaptionViewController: UIViewController {
                         var videoDictionary: [String: Any] = [:]
                         videoDictionary["sender"] = self.currentUser
                         videoDictionary["caption"] = self.captionTextView?.text
-                        //TODO: Retrieve the file in the temporary directory and make it usable for later?
                         let vid = NSData(contentsOf: self.savedMedia as! URL)
                         videoDictionary["videoURL"] = PFFile(name: "video.mov", data: vid! as Data)
                         videoArray.append(videoDictionary)
