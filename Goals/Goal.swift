@@ -53,7 +53,8 @@ class Goal: NSObject {
         // TODO: icons, progress, video replies
         goal["icon"] = NSNull()
         goal["updatesCount"] = 0 //the first one is not counted as an update
-        goal["updates"] = []
+        goal["updatesPerDay"] = [Double](repeating: 0.0, count: 7)//keeps track of the updates and on what day they were created
+        goal["updates"] = [] //stores the ids of the updates
 
         
         // Save object (following function will save the object in Parse asynchronously)
@@ -65,6 +66,7 @@ class Goal: NSObject {
                 updateData["goalTitle"] = goal["title"]
                 updateData["type"] = "initialGoalNoType"
                 updateData["goalDate"] = goal.createdAt
+                
                 Update.createUpdate(data: updateData)
             }
         }

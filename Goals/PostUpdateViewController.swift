@@ -64,11 +64,46 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
             data["goalTitle"] = currentGoal!["title"]
             data["goalDate"] = currentGoal?.createdAt
             
+            let updateDate = Date()
+            let formatter  = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            let currentDateString = formatter.string(from: updateDate)
+            let dayOfTheWeek = getDayOfWeek(currentDateString)
+            
+            var dateArray = currentGoal?["updatesPerDay"] as! [Int]
+            if dayOfTheWeek  == 1 {
+                dateArray[0] += 1
+            } else if dayOfTheWeek  == 2 {
+                dateArray[1] += 1
+            } else if dayOfTheWeek  == 3 {
+                dateArray[2] += 1
+            } else if dayOfTheWeek  == 4 {
+                dateArray[3] += 1
+            } else if dayOfTheWeek  == 5 {
+                dateArray[4] += 1
+            } else if dayOfTheWeek  == 6 {
+                dateArray[5] += 1
+            } else if dayOfTheWeek  == 7 {
+                dateArray[6] += 1
+            }
+
+            currentGoal?["updatesPerDay"] = dateArray
+            currentGoal?.saveInBackground()
+            
             let updateType = Update.returnUpdateType(index: typeControl.selectedSegmentIndex)
             data["type"] = updateType
             
             Update.createUpdate(data: data)
         }
+    }
+    
+    func getDayOfWeek(_ today:String) -> Int? {
+        let formatter  = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        guard let todayDate = formatter.date(from: today) else { return nil }
+        let myCalendar = Calendar(identifier: .gregorian) //Sunday is 0
+        let weekDay = myCalendar.component(.weekday, from: todayDate)
+        return weekDay - 1
     }
     
     override func didReceiveMemoryWarning() {
