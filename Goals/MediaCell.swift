@@ -19,7 +19,6 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate {
     var data: [String: Any] = [:] {
         didSet {
             if data["type"] as! String == "photo" {
-                print("is a picture")
                 if let urlString = data["image"] as? PFFile {
                     urlString.getDataInBackground { (imageData: Data?, error: Error?) in
                         if error == nil {
@@ -30,7 +29,6 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate {
                 }
                 
             } else if data["type"] as! String == "video" {
-                print("is a video")
                 mediaImage.backgroundColor = UIColor(red: 0.85, green: 0.30, blue: 0.30, alpha: 1.0)
                 
                 let videoFile = data["videoURL"] as? PFFile
@@ -43,36 +41,6 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate {
                 playerController.view.frame = self.mediaImage.frame
                 self.mediaImage.addSubview(playerController.view)
                 player.play()
-//                videoString?.getDataInBackground(block: { (videoData: Data?, error: Error?) in
-//                    if error == nil {
-//                        let asset = AVAsset(url: <#T##URL#>)
-//                        let item = AVPlayerItem(asset: asset)
-//                        let player = AVPlayer(playerItem: item)
-//                        let playerController = AVPlayerViewController()
-//                        playerController.player = player
-//                        playerController.view.frame = self.mediaImage.frame
-//                        self.mediaImage.addSubview(playerController.view)
-//                        player.play()
-//                    }
-//                })
-
-                
-//                let asset = AVAsset(url: videoURL)
-//                let item = AVPlayerItem(asset: asset)
-//                let player = AVPlayer(playerItem: item)
-//                //let player = AVPlayer(url: videoURL)
-//                let playerController = AVPlayerViewController()
-//                playerController.player = player
-//                playerController.view.frame = mediaImage.frame
-//                self.mediaImage.addSubview(playerController.view)
-//                player.play()
-//                print("should be playing")
-                
-//                let player = AVPlayer(url: videoURL!)
-//                let playerLayer = AVPlayerLayer(player: player)
-//                playerLayer.frame = mediaImage.bounds
-//                self.mediaImage.layer.addSublayer(playerLayer)
-//                player.play()
             }
         }
     }

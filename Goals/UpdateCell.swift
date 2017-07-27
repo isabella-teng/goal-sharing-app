@@ -76,8 +76,6 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
             }
             
             let activityMedia = update?["activity"] as! [[String: Any]]
-            print(activityMedia)
-            
             if activityMedia.count == 0 {
                 collectionView.isHidden = true
                 mediaHeight.constant = 0
@@ -88,7 +86,7 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
                 }
             } else {
                 collectionView.isHidden = false
-                mediaHeight.constant = 219
+                mediaHeight.constant = 294
                 media = activityMedia
                 if comments.count == 0 {
                     mediaPosition.constant = -71.5
