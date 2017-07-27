@@ -878,21 +878,28 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Goal Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z4T-eR-v3D">
-                                                    <rect key="frame" x="15" y="8" width="110" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal Category" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z4T-eR-v3D">
+                                                    <rect key="frame" x="7" y="16" width="358" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Goal Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFI-fH-23i">
-                                                    <rect key="frame" x="15" y="31" width="342" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFI-fH-23i">
+                                                    <rect key="frame" x="7" y="39" width="358" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Z4T-eR-v3D" secondAttribute="trailing" constant="10" id="5cJ-W8-arc"/>
+                                                <constraint firstItem="yFI-fH-23i" firstAttribute="top" secondItem="Z4T-eR-v3D" secondAttribute="bottom" constant="2" id="87A-Mz-bTN"/>
+                                                <constraint firstAttribute="trailing" secondItem="yFI-fH-23i" secondAttribute="trailing" constant="10" id="EUf-51-g4Q"/>
+                                                <constraint firstAttribute="bottom" secondItem="yFI-fH-23i" secondAttribute="bottom" constant="0.5" id="JDj-hL-PST"/>
+                                                <constraint firstItem="Z4T-eR-v3D" firstAttribute="leading" secondItem="Sob-nd-aqT" secondAttribute="leading" constant="7" id="n0e-8z-GEP"/>
+                                                <constraint firstItem="yFI-fH-23i" firstAttribute="top" secondItem="Z4T-eR-v3D" secondAttribute="bottom" constant="2" id="nVf-Bf-YRH"/>
+                                                <constraint firstItem="yFI-fH-23i" firstAttribute="leading" secondItem="Sob-nd-aqT" secondAttribute="leading" constant="7" id="zld-iW-j4w"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="cellBackground" destination="Sob-nd-aqT" id="h1y-7V-3Mc"/>
@@ -1518,7 +1525,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="116"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="usr-CH-lhy" id="Pzg-rP-hNg">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="116"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="115.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Creation/Updated Date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHg-0J-BUY">
