@@ -16,6 +16,13 @@ extension ExploreViewController: UISearchResultsUpdating {
     }
 }
 
+extension ExploreViewController: UISearchBarDelegate {
+    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        print("scope changed")
+        filterContentForSearchText(searchText: searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
+    }
+}
+
 class ExploreViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UserSearchCellDelegate {
 
     @IBOutlet weak var tableView: UITableView!
@@ -24,6 +31,9 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var allUsers: [PFUser] = []
     var filteredUsers: [PFUser] = []
+    
+    var allGoals: [PFObject] = []
+    var filteredGoals: [PFObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,16 +47,34 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
+        
+        //Adding different scopes
+        searchController.searchBar.scopeButtonTitles = ["Users", "Categories"]
+        searchController.searchBar.delegate = self
+        //searchController.searchBar.showsScopeBar = true
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        User.fetchAllUsers { (loadedUsers: [PFObject]?, error: Error?) in
-            if error == nil {
-                self.allUsers = loadedUsers as! [PFUser]
-                self.tableView.reloadData()
-            } else {
-                print(error?.localizedDescription)
+        if searchController.searchBar.selectedScopeButtonIndex == 0 {
+            User.fetchAllUsers { (loadedUsers: [PFObject]?, error: Error?) in
+                if error == nil {
+                    self.allUsers = loadedUsers as! [PFUser]
+                    self.tableView.reloadData()
+                } else {
+                    print(error?.localizedDescription)
+                }
             }
+        } else if searchController.searchBar.selectedScopeButtonIndex == 1 {
+            print("entered")
+            Goal.fetchAllGoals(completion: { (loadedGoals: [PFObject]?, error: Error?) in
+                if error == nil {
+                    self.allGoals = loadedGoals as! [PFObject]
+                    self.tableView.reloadData()
+                } else {
+                    print(error?.localizedDescription)
+                }
+            })
         }
     }
     
@@ -55,9 +83,13 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func filterContentForSearchText(searchText: String, scope: String = "All") {
-        filteredUsers = allUsers.filter({ (user: PFUser) -> Bool in
-            return (user.username?.lowercased().contains(searchText.lowercased()))!
-        })
+        tableView.reloadData()
+        if (searchController.searchBar.selectedScopeButtonIndex == 0) {
+            filteredUsers = allUsers.filter({ (user: PFUser) -> Bool in
+                return (user.username?.lowercased().contains(searchText.lowercased()))!
+            })
+        }
+        
         
         tableView.reloadData()
     }
@@ -67,24 +99,39 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController.isActive && searchController.searchBar.text != "" {
-            return filteredUsers.count
+        if searchController.searchBar.selectedScopeButtonIndex == 0 {
+            if searchController.isActive && searchController.searchBar.text != "" {
+                return filteredUsers.count
+            }
+            return allUsers.count
         }
-        return allUsers.count
+        
+        return allGoals.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UserSearchCell", for: indexPath) as! UserSearchCell
         
-        if searchController.isActive && searchController.searchBar.text != "" {
-            cell.user = filteredUsers[indexPath.row]
-        } else {
-            cell.user = allUsers[indexPath.row]
+        if searchController.searchBar.selectedScopeButtonIndex == 0 {
+            print("should not enter")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "UserSearchCell", for: indexPath) as! UserSearchCell
+            
+            if searchController.isActive && searchController.searchBar.text != "" {
+                cell.user = filteredUsers[indexPath.row]
+            } else {
+                cell.user = allUsers[indexPath.row]
+            }
+            cell.delegate = self
+            return cell
         }
-        cell.delegate = self
         
-        return cell
+        print("should be entered")
+        let categoryCell = tableView.dequeueReusableCell(withIdentifier: "GoalByCategoryCell", for: indexPath) as! GoalByCategoryCell
+        categoryCell.goal = allGoals[indexPath.row]
+        
+        return categoryCell
+        
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -37,6 +37,8 @@ class UserSearchCell: UITableViewCell {
         let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCell(_:)))
         cellBackground.addGestureRecognizer(cellTapGestureRecognizer)
         cellBackground.isUserInteractionEnabled = true
+        
+        cellBackground.backgroundColor = UIColor(red:0.97, green:0.88, blue:0.80, alpha:1.0)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
