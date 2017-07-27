@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import DateToolsSwift
 
 protocol FeedCellDelegate: class {
     func feedCell(_ feedCell: FeedCell, didTap update: PFObject, tappedComment: Bool, tappedCamera: Bool, tappedUser: PFUser?)
@@ -51,7 +52,9 @@ class FeedCell: UITableViewCell {
             let dateUpdated = update.createdAt! as Date
             let dateFormat = DateFormatter()
             dateFormat.dateFormat = "MM.dd.yy"
-            self.dateLabel.text = String(dateFormat.string(from: dateUpdated))
+            dateFormat.dateStyle = .short
+            dateFormat.timeStyle = .none
+            self.dateLabel.text = dateUpdated.shortTimeAgoSinceNow
             
             let goalDateUpdated = update["goalDate"] as! Date
             self.goalDateLabel.text = String(dateFormat.string(from: goalDateUpdated))

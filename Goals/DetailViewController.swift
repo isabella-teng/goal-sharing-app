@@ -20,6 +20,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var goalCreationDate: UILabel!
     @IBOutlet weak var goalView: UIView!
     
+    @IBOutlet weak var completionProgress: UIProgressView!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -27,6 +28,27 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        //percent on days left
+//        var goal: PFObject?
+//        
+//        let calendar = NSCalendar.current
+//        
+//        let completionDate = currentUpdate?["goalDate"] as! Date
+//        print(completionDate)
+//        let currentDay = Date()
+//        let updateCreation = currentUpdate?.createdAt as! Date
+//        print(currentDay)
+//        
+//        let date1 = calendar.startOfDay(for: completionDate)
+//        let date2 = calendar.startOfDay(for: currentDay)
+//        let date3 = calendar.startOfDay(for: updateCreation)
+//        
+//        let components1 = calendar.dateComponents([.day], from: date2, to: date1) //from goal creation to current date
+//        print(components1)
+//        let components2 = calendar.dateComponents([.day], from: <#T##Date#>)
+        
+        
 
     }
     
@@ -50,7 +72,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         goalView.layer.cornerRadius = 15
         goalView.backgroundColor = UIColor(red:0.53, green:0.76, blue:0.96, alpha:1.0)
         
-        Update.fetchUpdatesByGoal(goalid: goalid) { (loadedUpdates: [PFObject]?, error: Error?) in
+        Update.fetchUpdatesByGoal(goalId: goalid) { (loadedUpdates: [PFObject]?, error: Error?) in
 
             if error == nil {
                 self.updates = loadedUpdates!

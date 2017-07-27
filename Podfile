@@ -14,6 +14,8 @@ target 'Goals' do
   pod 'Charts'
   pod 'RealmSwift'
   pod 'Whisper'
+  pod 'DateToolsSwift'
+  pod 'BubbleTransition', '~> 2.0.0'
 
 
   target 'GoalsTests' do

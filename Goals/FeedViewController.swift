@@ -10,27 +10,43 @@ import UIKit
 import Parse
 import ParseUI
 import Whisper
+import BubbleTransition
 
-class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate {
+class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate, DidPostUpdateDelegate, UIViewControllerTransitioningDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
     var updates: [PFObject] = []
-    
     var usersObjectArray: [PFUser] = []
     
+    var didPostUpdate: Bool = false
+    
+    let transition = BubbleTransition()
+    @IBOutlet weak var goalMenuButton: UIBarButtonItem!
+    //TODO: fix the view location
+    @IBOutlet weak var barButtonView: UIView!
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // Set up tableView
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 180
     }
     
+    //TODO: Fix, is not entering
+    func postedUpdate(sentUpdate: Bool) {
+        print("should enter")
+        didPostUpdate = sentUpdate
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
+        // Fetch feed based on followed users
         let usersArray = PFUser.current()?["following"] as! [PFUser]
-        
+        print(usersArray)
         Update.fetchUpdatesFromUserArray(userArray: usersArray) { (loadedUpdates: [PFObject]?, error: Error?) in
             if error == nil {
                 self.updates = loadedUpdates!
@@ -39,26 +55,51 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 print(error?.localizedDescription as Any)
             }
         }
+        //currently a notification you see if view appears
+        if didPostUpdate {
+            let message = Message(title: "Great update to your goal!", backgroundColor: UIColor(red:0.89, green:0.09, blue:0.44, alpha:1))
+            Whisper.show(whisper: message, to: navigationController!, action: .present)
+            hide(whisperFrom: navigationController!, after: 3)
+        }
         
-        //in app notification for every 1 update posted
+
     }
     
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .present
+        //TODO: get the correct positon
+        transition.startingPoint = CGPoint(x: 325, y: 15) //barButtonView.center //goalMenuButton.value(forKey: "view") as! CGPoint
+        transition.bubbleColor = UIColor.white
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .dismiss
+        //TODO: get the correct positon
+        transition.startingPoint = CGPoint(x: 325, y: 15)//barButtonView.center //goalMenuButton.value(forKey: "view") as! CGPoint
+        transition.bubbleColor = UIColor.white
+        return transition
+    }
+    
+ 
+    
+    // Return amount of tableView cells
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return updates.count
     }
     
-    
-    
+    // Format tableView cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
         
         cell.delegate = self
         cell.update = updates[indexPath.row]
-
         
         return cell
     }
     
+    
+    // Control segues
     func feedCell(_ feedCell: FeedCell, didTap update: PFObject, tappedComment: Bool, tappedCamera: Bool, tappedUser: PFUser?) {
         if tappedComment {
             performSegue(withIdentifier: "commentSegue", sender: update)
@@ -69,9 +110,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else {
             performSegue(withIdentifier: "detailSegue", sender: update)
         }
-        
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "detailSegue") {
             let vc = segue.destination as! DetailViewController
@@ -86,14 +126,19 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let vc = segue.destination as! ProfileViewController
             vc.user = sender as? PFUser
             vc.fromFeed = true
+        } else if (segue.identifier == "barButtonSegue") {
+            let controller = segue.destination //as! AllGoalsViewController
+            controller.transitioningDelegate = self
+            controller.modalPresentationStyle = .custom
         }
     }
     
-    @IBAction func backFromVC3(segue: UIStoryboardSegue) {
-    }
+    
+    // Return user to feed after posting update
+    @IBAction func backFromVC3(segue: UIStoryboardSegue) { }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }

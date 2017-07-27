@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import AVFoundation
 
 //    * Likes
 //    * Comments
@@ -47,7 +48,7 @@ class Update: NSObject {
         update["text"] = data["text"]
         update["goalId"] = data["goalId"]
         update["goalTitle"] = data["goalTitle"]
-        update["goalDate"] = data["goalDate"]
+        update["goalDate"] = data["goalDate"] //when goal was created
         update["type"] = data["type"] as! String
         update["likes"] = []
         update["likeCount"] = 0
@@ -57,7 +58,7 @@ class Update: NSObject {
         update["videos"] = [] //will contain the caption string, video url string, and author
         update["pictures"] = [] //contain the caption string, picture url string, and author
         
-        update["activity"] = [] //this is for the interactions - update and its comments, videos, and pictures by date
+        update["activity"] = [] //this is only for the media - pictures and videos
 
         
         
@@ -144,11 +145,11 @@ class Update: NSObject {
     }
     
     // Add function that only gets the updates with given goal
-    class func fetchUpdatesByGoal(goalid: String, withCompletion completion: @escaping ([PFObject]?, Error?) -> ()) {
+    class func fetchUpdatesByGoal(goalId: String, withCompletion completion: @escaping ([PFObject]?, Error?) -> ()) {
         let query = PFQuery(className: "Update")
         
         query.order(byAscending: "createdAt")
-        query.whereKey("goalId", equalTo: goalid as Any)
+        query.whereKey("goalId", equalTo: goalId as Any)
         
         query.findObjectsInBackground { (loadedUpdates: [PFObject]?, error: Error?) in
             if error == nil {
