@@ -19,6 +19,7 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
     @IBOutlet weak var progressBackground: LineChartView!
     @IBOutlet weak var infoBackground: UIView!
     @IBOutlet weak var nodeView: UIView!
+    @IBOutlet weak var timestampLabel: UILabel!
     
     weak var axisFormatDelegate: IAxisValueFormatter?
     
@@ -28,10 +29,14 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
     var data: PFObject! {
         didSet {
             headerLabel.text = data?["title"] as? String
-            updatesMade = data?["updatesPerDay"] as! [Double]
+
             
-            setChart(dataPoints: days, values: updatesMade)
-            print(updatesMade)
+            // Set timestamp
+            let date = data?.createdAt!
+            let dateFormat = DateFormatter()
+            dateFormat.dateFormat = "M/d/yyyy"
+            let timestampString = String(dateFormat.string(from: date!))
+            timestampLabel.text = String("Began this goal on " + timestampString!)
         }
     }
    

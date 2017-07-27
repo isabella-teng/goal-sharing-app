@@ -17,14 +17,14 @@ extension ExploreViewController: UISearchResultsUpdating {
 }
 
 extension ExploreViewController: UISearchBarDelegate {
-    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         print("scope changed")
         filterContentForSearchText(searchText: searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
     }
 }
 
 class ExploreViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UserSearchCellDelegate {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     let searchController = UISearchController(searchResultsController: nil)
@@ -52,7 +52,7 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
         searchController.searchBar.scopeButtonTitles = ["Users", "Categories"]
         searchController.searchBar.delegate = self
         //searchController.searchBar.showsScopeBar = true
-
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -62,17 +62,18 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
                     self.allUsers = loadedUsers as! [PFUser]
                     self.tableView.reloadData()
                 } else {
-                    print(error?.localizedDescription)
+                    print(error?.localizedDescription as Any)
                 }
             }
+
         } else if searchController.searchBar.selectedScopeButtonIndex == 1 {
             print("entered")
             Goal.fetchAllGoals(completion: { (loadedGoals: [PFObject]?, error: Error?) in
                 if error == nil {
-                    self.allGoals = loadedGoals as! [PFObject]
+                    self.allGoals = loadedGoals!
                     self.tableView.reloadData()
                 } else {
-                    print(error?.localizedDescription)
+                    print(error?.localizedDescription as Any)
                 }
             })
         }
@@ -88,6 +89,7 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
             filteredUsers = allUsers.filter({ (user: PFUser) -> Bool in
                 return (user.username?.lowercased().contains(searchText.lowercased()))!
             })
+            tableView.reloadData()
         }
         
         
@@ -123,15 +125,19 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
             }
             cell.delegate = self
             return cell
-        }
+        } else {
         
         print("should be entered")
         let categoryCell = tableView.dequeueReusableCell(withIdentifier: "GoalByCategoryCell", for: indexPath) as! GoalByCategoryCell
+        
+            if searchController.isActive && searchController.searchBar.text != "" {
+//                categoryCell.goal = filteredGoals[indexPath.row]
+            }
         categoryCell.goal = allGoals[indexPath.row]
         
         return categoryCell
         
-        
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -141,12 +147,12 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
             vc.fromFeed = true
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    
+        
     }
     
-
+    
     
 }
