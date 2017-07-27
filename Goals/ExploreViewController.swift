@@ -65,6 +65,7 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
                     print(error?.localizedDescription as Any)
                 }
             }
+
         } else if searchController.searchBar.selectedScopeButtonIndex == 1 {
             print("entered")
             Goal.fetchAllGoals(completion: { (loadedGoals: [PFObject]?, error: Error?) in
@@ -88,6 +89,7 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
             filteredUsers = allUsers.filter({ (user: PFUser) -> Bool in
                 return (user.username?.lowercased().contains(searchText.lowercased()))!
             })
+            tableView.reloadData()
         }
         
         
@@ -123,15 +125,19 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
             }
             cell.delegate = self
             return cell
-        }
+        } else {
         
         print("should be entered")
         let categoryCell = tableView.dequeueReusableCell(withIdentifier: "GoalByCategoryCell", for: indexPath) as! GoalByCategoryCell
+        
+            if searchController.isActive && searchController.searchBar.text != "" {
+//                categoryCell.goal = filteredGoals[indexPath.row]
+            }
         categoryCell.goal = allGoals[indexPath.row]
         
         return categoryCell
         
-        
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
