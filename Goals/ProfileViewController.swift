@@ -124,7 +124,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         toggleFollow()
         var followingArray = PFUser.current()?["following"] as! [PFUser]
         
-        if isFollowing {
+        if !isFollowing {
             for (index, item) in followingArray.enumerated() {
                 if item.objectId! == user?.objectId {
                     followingArray.remove(at: index)
