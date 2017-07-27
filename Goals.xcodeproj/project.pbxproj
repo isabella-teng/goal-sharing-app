@@ -20,6 +20,7 @@
 		7ECD223A1F26C2A900D09608 /* MediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECD22391F26C2A900D09608 /* MediaCell.swift */; };
 		7EEEFB171F158A6E004A29EC /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEEFB161F158A6E004A29EC /* FeedViewController.swift */; };
 		7EF1FFD51F158598000DA708 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF1FFD41F158598000DA708 /* TimelineViewController.swift */; };
+		7EFBFC401F2AA4BF0052A81A /* DetailCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFBFC3F1F2AA4BF0052A81A /* DetailCommentCell.swift */; };
 		B84B22791F1EDB6F00E9482E /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84B22781F1EDB6F00E9482E /* ProgressViewController.swift */; };
 		B84B227D1F2019BE00E9482E /* xAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84B227C1F2019BE00E9482E /* xAxisValueFormatter.swift */; };
 		B87C87EE1F156E9300F58517 /* PostGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87ED1F156E9300F58517 /* PostGoalViewController.swift */; };
@@ -78,6 +79,7 @@
 		7ECD22391F26C2A900D09608 /* MediaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCell.swift; sourceTree = "<group>"; };
 		7EEEFB161F158A6E004A29EC /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		7EF1FFD41F158598000DA708 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
+		7EFBFC3F1F2AA4BF0052A81A /* DetailCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCommentCell.swift; sourceTree = "<group>"; };
 		8B1C5447CB4A291F000D9875 /* Pods-GoalsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsUITests/Pods-GoalsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A3870FB33249FFA01E80B856 /* Pods-GoalsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsTests/Pods-GoalsTests.release.xcconfig"; sourceTree = "<group>"; };
 		A9A37E25EFEFAC2CCC5DABED /* Pods_GoalsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoalsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -169,6 +171,7 @@
 				FACF12D11F156E8C00D505FE /* ProfileCell.swift */,
 				FAA6C8C41F1EB62D00FB8F26 /* SwiftyCamRecordButton.swift */,
 				7E4EE3411F1FDB4900BCFEA4 /* Timeline */,
+				7EFBFC3F1F2AA4BF0052A81A /* DetailCommentCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -380,7 +383,6 @@
 					FACF12971F15476200D505FE = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 3JE575EG34;
-						DevelopmentTeam = U253D4MY4D;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -614,6 +616,7 @@
 				7E38DFDB1F15813400DEF47C /* Update.swift in Sources */,
 				FAD3513A1F1597FE00998CCA /* User.swift in Sources */,
 				7ECD223A1F26C2A900D09608 /* MediaCell.swift in Sources */,
+				7EFBFC401F2AA4BF0052A81A /* DetailCommentCell.swift in Sources */,
 				7E1238AD1F22A79000DAF688 /* InfoCell.swift in Sources */,
 				B84B227D1F2019BE00E9482E /* xAxisValueFormatter.swift in Sources */,
 				FACF12D21F156E8C00D505FE /* ProfileCell.swift in Sources */,
@@ -776,7 +779,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3JE575EG34;
-				DEVELOPMENT_TEAM = U253D4MY4D;
 				INFOPLIST_FILE = Goals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Gerardo.com.Goals;
@@ -791,7 +793,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3JE575EG34;
-				DEVELOPMENT_TEAM = U253D4MY4D;
 				INFOPLIST_FILE = Goals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Gerardo.com.Goals;
