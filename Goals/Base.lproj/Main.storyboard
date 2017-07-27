@@ -875,7 +875,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="61"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4eo-GK-zI0" id="wl1-Pu-YPn">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="61"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9dS-er-3tZ">
@@ -1239,6 +1239,7 @@
                                             <outlet property="infoBackground" destination="NXd-wR-IyJ" id="JCr-Fl-iec"/>
                                             <outlet property="nodeView" destination="pAy-Yl-02w" id="hWZ-6J-3fD"/>
                                             <outlet property="progressBackground" destination="2nd-1J-i95" id="Dd8-rV-Tec"/>
+                                            <outlet property="timestampLabel" destination="cOt-Vo-nVw" id="9sP-eW-GvE"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UpdateCell" rowHeight="453" id="qj9-K4-YwY" customClass="UpdateCell" customModule="Goals" customModuleProvider="target">
