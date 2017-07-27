@@ -21,8 +21,7 @@ class xAxisValueFormatter: NSObject, IAxisValueFormatter {
         // FIXME:   an invalid index is sometimes encountered, report all indices here.
         //          Remove the defensive stuff once the bug is identified.
         xAxisValueFormatter.indexCount += 1
-        print( "\( xAxisValueFormatter.indexCount ). Value of index: \( index )")
-        
+
         if index < 0 || index >= xAxisValueFormatter.days.count { return "" }
         return xAxisValueFormatter.days[ index ]
     }
