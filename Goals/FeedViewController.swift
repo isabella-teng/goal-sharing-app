@@ -46,7 +46,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidAppear(_ animated: Bool) {
         // Fetch feed based on followed users
         let usersArray = PFUser.current()?["following"] as! [PFUser]
-        print(usersArray)
         Update.fetchUpdatesFromUserArray(userArray: usersArray) { (loadedUpdates: [PFObject]?, error: Error?) in
             if error == nil {
                 self.updates = loadedUpdates!

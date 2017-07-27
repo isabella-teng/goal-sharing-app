@@ -10,16 +10,20 @@ import UIKit
 import Parse
 import ParseUI
 
+extension ExploreViewController: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        filterContentForSearchText(searchText: searchController.searchBar.text!)
+    }
+}
 
 class ExploreViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UserSearchCellDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var searchType: UISegmentedControl!
     
     let searchController = UISearchController(searchResultsController: nil)
     
     var allUsers: [PFUser] = []
+    var filteredUsers: [PFUser] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +33,10 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         
-//        searchController.searchResultsUpdater = self
-//        searchController.dimsBackgroundDuringPresentation = false
-//        definesPresentationContext = true
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -45,18 +50,38 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchText: searchController.searchBar.text!)
+    }
+    
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
+        filteredUsers = allUsers.filter({ (user: PFUser) -> Bool in
+            return (user.username?.lowercased().contains(searchText.lowercased()))!
+        })
+        
+        tableView.reloadData()
+    }
+    
     func userSearchCell(_ userCell: UserSearchCell, didTap user: PFUser) {
         performSegue(withIdentifier: "searchToProfileSegue", sender: user)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchController.isActive && searchController.searchBar.text != "" {
+            return filteredUsers.count
+        }
         return allUsers.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserSearchCell", for: indexPath) as! UserSearchCell
-        cell.user = allUsers[indexPath.row]
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+            cell.user = filteredUsers[indexPath.row]
+        } else {
+            cell.user = allUsers[indexPath.row]
+        }
         cell.delegate = self
         
         return cell
