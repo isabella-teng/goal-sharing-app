@@ -19,8 +19,8 @@ class GoalByCategoryCell: UITableViewCell {
     
     var goal: PFObject! {
         didSet {
-            goalCategoryLabel.text = goal["categories"] as! String
-            goalTitleLabel.text = goal["title"] as! String
+            goalCategoryLabel.text = goal["categories"] as? String
+            goalTitleLabel.text = goal["title"] as? String
             
         }
     }

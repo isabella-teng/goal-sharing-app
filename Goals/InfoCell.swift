@@ -15,10 +15,18 @@ class InfoCell: UITableViewCell {
     @IBOutlet weak var progressBackground: UIView!
     @IBOutlet weak var infoBackground: UIView!
     @IBOutlet weak var nodeView: UIView!
+    @IBOutlet weak var timestampLabel: UILabel!
     
     var data: PFObject? = nil {
         didSet {
             headerLabel.text = data?["title"] as? String
+            
+            // Set timestamp
+            let date = data?.createdAt!
+            let dateFormat = DateFormatter()
+            dateFormat.dateFormat = "M/d/yyyy"
+            let timestampString = String(dateFormat.string(from: date!))
+            timestampLabel.text = String("Began this goal on " + timestampString!)
         }
     }
     
