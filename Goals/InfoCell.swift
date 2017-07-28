@@ -100,7 +100,7 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
         graphView.tintColor = UIColor.white
         graphView.xAxis.labelPosition = .bottom
         graphView.animate(xAxisDuration: 0.5, yAxisDuration: 0.5, easingOption: .easeInBounce)
-//        graphView.scaleYEnabled = false
+        graphView.scaleYEnabled = false
         graphView.scaleXEnabled = false
         graphView.pinchZoomEnabled = false
         graphView.doubleTapToZoomEnabled = false

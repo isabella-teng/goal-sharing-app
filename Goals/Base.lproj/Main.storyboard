@@ -1440,17 +1440,20 @@
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cBe-pT-iYF" customClass="LineChartView" customModule="Charts">
-                                                            <rect key="frame" x="16" y="33" width="329" height="128"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="cBe-pT-iYF" customClass="LineChartView" customModule="Charts">
+                                                            <rect key="frame" x="15" y="35" width="329" height="125"/>
                                                             <color key="backgroundColor" red="0.28882549169999999" green="0.71462563450000005" blue="0.37368109189999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.28882549169999999" green="0.71462563450000005" blue="0.37368109189999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="175" id="14n-Zx-3Pe"/>
+                                                        <constraint firstAttribute="bottom" secondItem="cBe-pT-iYF" secondAttribute="bottom" constant="15" id="3TO-Ug-oiT"/>
                                                         <constraint firstItem="OTH-DB-GV3" firstAttribute="leading" secondItem="2nd-1J-i95" secondAttribute="leading" constant="10" id="6qi-Cs-7cz"/>
+                                                        <constraint firstAttribute="trailing" secondItem="cBe-pT-iYF" secondAttribute="trailing" constant="15" id="Q0n-Cg-gqN"/>
+                                                        <constraint firstItem="cBe-pT-iYF" firstAttribute="top" secondItem="OTH-DB-GV3" secondAttribute="bottom" constant="10" id="TyK-w7-UVh"/>
                                                         <constraint firstItem="OTH-DB-GV3" firstAttribute="top" secondItem="2nd-1J-i95" secondAttribute="top" constant="10" id="eAe-gq-ZW3"/>
+                                                        <constraint firstItem="cBe-pT-iYF" firstAttribute="leading" secondItem="2nd-1J-i95" secondAttribute="leading" constant="15" id="f9z-ja-8IV"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -1989,7 +1992,13 @@
                         </connections>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Update" id="DhX-9Y-4zh"/>
+                    <navigationItem key="navigationItem" title="Update" id="DhX-9Y-4zh">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title=" " id="bDh-LZ-4Lt">
+                            <connections>
+                                <segue destination="OtZ-Tv-MZ9" kind="presentation" id="Q3w-fk-ISv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="yZf-IU-b2l" id="pr1-f9-6lD"/>
@@ -1999,6 +2008,7 @@
                         <outlet property="goalView" destination="CJu-fF-lJb" id="YKO-Ug-tUY"/>
                         <outlet property="tableView" destination="PC4-VB-t5c" id="1fI-y4-ewc"/>
                         <outlet property="timestampLabel" destination="mNl-6T-E81" id="a4Q-yB-odL"/>
+                        <outlet property="updateButton" destination="bDh-LZ-4Lt" id="u7T-dO-XAC"/>
                         <outlet property="updateLabel" destination="MI8-Zx-VK7" id="Vif-5T-wCS"/>
                         <outlet property="userIcon" destination="HO4-gH-BoK" id="xxz-hg-aM4"/>
                         <outlet property="usernameLabel" destination="a6c-JA-HhD" id="cAC-0r-yOs"/>
@@ -2140,7 +2150,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Lff-mb-4zB"/>
-        <segue reference="jvt-5C-kyF"/>
+        <segue reference="Q3w-fk-ISv"/>
+        <segue reference="Mng-1h-zUX"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

@@ -20,6 +20,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var goalCellEdges: UIView!
     @IBOutlet weak var goalLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
+    @IBOutlet weak var updateButton: UIBarButtonItem!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -28,6 +29,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var comments: [[String: Any]] = []
     var media: [[String: Any]] = []
     var currentUpdate: PFObject?
+    var goal: PFObject?
     var originalPos: CGFloat? = nil
     
     override func viewDidLoad() {
@@ -68,6 +70,14 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let author = currentUpdate?["author"] as! PFUser
         usernameLabel.text = author["username"] as? String
         
+        if author.objectId != PFUser.current()?.objectId {
+            updateButton.image = nil
+            updateButton.isEnabled = false
+        } else {
+            updateButton.image = #imageLiteral(resourceName: "pencil")
+            updateButton.isEnabled = true
+        }
+        
         let iconUrl = author["portrait"] as? PFFile
         iconUrl?.getDataInBackground { (image: Data?, error: Error?) in
             if error == nil {
@@ -86,6 +96,13 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let indexPath = IndexPath(row: comments.count, section: 0)
         self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        
+        let goalId = currentUpdate?["goalId"] as! String
+        Goal.fetchGoalWithId(id: goalId) { (loadedGoal: PFObject?, error: Error?) in
+            if error == nil {
+                self.goal = loadedGoal
+            }
+        }
     }
     
     @IBAction func didTapScreen(_ sender: Any) {
@@ -139,5 +156,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! PostUpdateViewController
+        vc.currentGoal = goal
     }
 }
