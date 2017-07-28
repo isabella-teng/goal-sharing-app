@@ -15,6 +15,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var bioField: UITextField!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var imageButton: UIButton!
     
     
@@ -100,6 +101,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         user?["bio"] = bioField.text
         user?["username"] = usernameField.text
+        user?["password"] = passwordField.text
         user?.saveInBackground()
         
         self.dismiss(animated: true, completion: nil)
