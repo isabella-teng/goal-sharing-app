@@ -9,13 +9,15 @@
 import UIKit
 import Parse
 import ParseUI
+import BubbleTransition
 
-class AllGoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GoalCellDelegate{
+class AllGoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GoalCellDelegate, UIViewControllerTransitioningDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var closeButton: UIBarButtonItem!
     
     var allGoals: [PFObject] = []
+    let transition = BubbleTransition()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,15 +55,24 @@ class AllGoalsViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
-    @IBAction func onClose(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .present
+        transition.startingPoint = CGPoint(x: 175, y: 350)
+        transition.duration = 0.25
+        transition.bubbleColor = UIColor.white
+        return transition
     }
     
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .dismiss
+        transition.startingPoint = CGPoint(x: 175, y: 350)
+        transition.duration = 0.25
+        transition.bubbleColor = UIColor.white
+        return transition
+    }
     
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func onClose(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -72,8 +83,13 @@ class AllGoalsViewController: UIViewController, UITableViewDelegate, UITableView
         if (segue.identifier == "goalUpdateSegue") {
             let vc = segue.destination as! PostUpdateViewController
             vc.currentGoal = sender as? PFObject
+            vc.transitioningDelegate = self
+            vc.modalPresentationStyle = .custom
         }
     }
+    
  
-
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
 }
