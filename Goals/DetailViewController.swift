@@ -128,6 +128,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailMediaCell", for: indexPath) as! MediaCell
         
         cell.data = media[indexPath.row]
+        cell.onDetails = true
         
         return cell
     }
@@ -135,7 +136,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

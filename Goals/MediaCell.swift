@@ -16,6 +16,8 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate {
     
     @IBOutlet weak var mediaImage: UIImageView!
     
+    var onDetails: Bool = false
+    
     var data: [String: Any] = [:] {
         didSet {
             if data["type"] as! String == "photo" {
@@ -41,6 +43,12 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate {
                 playerController.view.layer.cornerRadius = 10
                 self.addSubview(playerController.view)
             }
+        }
+    }
+    
+    override func awakeFromNib() {
+        if onDetails {
+            mediaImage.layer.cornerRadius = 10
         }
     }
 }
