@@ -39,14 +39,10 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate {
                 let playerController = AVPlayerViewController()
                 playerController.player = player
                 playerController.view.frame = self.mediaImage.frame
-                self.mediaImage.addSubview(playerController.view)
-                
-                player.play()
+                playerController.view.clipsToBounds = true
+                playerController.view.layer.cornerRadius = 10
+                self.addSubview(playerController.view)
             }
         }
-    }
-    
-    override func awakeFromNib() {
-        mediaImage.layer.cornerRadius = 10
     }
 }
