@@ -47,13 +47,17 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
         infoBackground.layer.cornerRadius = 10
         nodeView.layer.cornerRadius = nodeView.frame.height / 2
         
-        //Graph Setup
+        //Graph Data/Setup
         axisFormatDelegate = self as? IAxisValueFormatter
         days = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]
+//        let updatesMade = [1.0,7.0,4.0,6.0,2.0,6.0,9.0]
         
         let xAxis = progressBackground.xAxis
         xAxis.labelCount = xAxisValueFormatter.labelCount
         xAxis.valueFormatter = xAxisValueFormatter()
+        
+        //Call setChart Function
+//        setChart(dataPoints: days, values: updatesMade)
 
         progressBackground.notifyDataSetChanged()
     }
@@ -92,13 +96,13 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
         
         // Updates/Average Limit Lines
 //        let averageEstimate = ChartLimitLine(limit: average, label: "Est. Updates Per Week")
-//        averageEstimate.valueFont = UIFont(name: "Verdana", size: 10.0)!
+//        averageEstimate.valueFont = UIFont(name: "Verdana", size: 8.0)!
 //        averageEstimate.lineColor = UIColor.gray
 //        progressBackground.rightAxis.addLimitLine(averageEstimate)
-//        averageEstimate.labelPosition = .leftBottom
-        
+//        averageEstimate.labelPosition = .leftTop
+//        
 //        let actualAverage = ChartLimitLine(limit: average1, label: "Your average")
-//        actualAverage.valueFont = UIFont(name: "Verdana", size: 10.0)!
+//        actualAverage.valueFont = UIFont(name: "Verdana", size: 8.0)!
 //        if average1 > average {
 //            actualAverage.lineColor = UIColor.green
 //            progressBackground.rightAxis.addLimitLine(actualAverage)
