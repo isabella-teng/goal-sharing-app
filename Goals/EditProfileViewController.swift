@@ -101,7 +101,9 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         user?["bio"] = bioField.text
         user?["username"] = usernameField.text
-        user?["password"] = passwordField.text
+        if passwordField.text != "" && passwordField.text != nil{
+            user?.password = passwordField.text
+        }
         user?.saveInBackground()
         
         self.dismiss(animated: true, completion: nil)
