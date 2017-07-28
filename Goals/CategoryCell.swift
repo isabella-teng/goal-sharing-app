@@ -16,6 +16,7 @@ class CategoryCell: UITableViewCell {
 
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var cellBackground: UIView!
+    @IBOutlet weak var categoryIcon: UIImageView!
     
     weak var delegate: CategoryCellDelegate?
     
@@ -32,7 +33,7 @@ class CategoryCell: UITableViewCell {
         cellBackground.isUserInteractionEnabled = true
         
         cellBackground.layer.cornerRadius = 15
-        cellBackground.backgroundColor = UIColor(red:0.70, green:0.96, blue:0.84, alpha:1.0)
+        //cellBackground.backgroundColor = UIColor(red:0.70, green:0.96, blue:0.84, alpha:1.0)
         
     }
 

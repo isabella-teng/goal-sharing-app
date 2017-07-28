@@ -18,13 +18,23 @@ class GoalCategoryCell: UITableViewCell {
 
     @IBOutlet weak var cellBackground: UIView!
     @IBOutlet weak var goalTitle: UILabel!
+    @IBOutlet weak var profPic: UIImageView!
+    @IBOutlet weak var usernameLabel: UILabel!
     
     weak var delegate: GoalCategoryCellDelegate?
     
+    var author: PFUser? = nil
     var goal: PFObject! {
         didSet {
-            goalTitle.text = (goal["title"] as? String)!
+            self.goalTitle.text = (goal["title"] as? String)!
             
+            self.author = goal["author"] as? PFUser
+            self.usernameLabel.text = author?.username
+            
+            let iconURL = author?["portrait"] as? PFFile
+            iconURL?.getDataInBackground { (image: Data?, error: Error?) in
+                self.profPic.image = UIImage(data: image!)
+            }
         }
     }
     
