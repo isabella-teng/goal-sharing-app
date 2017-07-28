@@ -13,36 +13,44 @@ import Parse
 
 class LogCell: UITableViewCell {
     
-    
     @IBOutlet weak var cellBackground: UIView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var commenterIcon: UIImageView!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var commentLabel: UILabel!
     
     
-    var update: PFObject! {
+    var update: [String: Any] = [:] {
         didSet {
-            self.titleLabel.text = update["text"] as? String
+            // Set comment data
+            commentLabel.text = update["text"] as? String
             
-            //let dateUpdated = update.createdAt! as Date
-            let dateFormat = DateFormatter()
-            dateFormat.dateFormat = "MM.dd.yy"
-            let updateDate = update.createdAt!
-            self.dateLabel.text = String("Updated on " + dateFormat.string(from: updateDate))
+            // Load full commenter User
+            let commenter = update["author"] as! PFUser
+            commenter.fetchInBackground { (user: PFObject?, error: Error?) in
+                if error == nil {
+                    // Set commenter data
+                    self.usernameLabel.text = user?["username"] as? String
+                    let iconUrl = user?["portrait"] as? PFFile
+                   
+                    // Fetch commenter icon
+                    iconUrl?.getDataInBackground(block: { (image: Data?, error: Error?) in
+                        self.commenterIcon.image = UIImage(data: image!)
+                    })
+                }
+            }
         }
     }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        cellBackground.layer.cornerRadius = 10
-        cellBackground.backgroundColor = UIColor(red:0.99, green:0.77, blue:0.64, alpha:1.0)
+        // Style view image(s)
+        commenterIcon.layer.cornerRadius = commenterIcon.frame.height / 2
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
-    
 }
 

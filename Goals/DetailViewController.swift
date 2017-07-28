@@ -10,95 +10,129 @@ import Parse
 import ParseUI
 
 
-class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    var updates: [PFObject] = []
-    var currentUpdate: PFObject?
-
-    @IBOutlet weak var goalTitleLabel: UILabel!
-    @IBOutlet weak var goalCreationDate: UILabel!
     @IBOutlet weak var goalView: UIView!
+    @IBOutlet weak var userIcon: UIImageView!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var updateLabel: UILabel!
+    @IBOutlet weak var goalCellBg: UIView!
+    @IBOutlet weak var goalCellEdges: UIView!
+    @IBOutlet weak var goalLabel: UILabel!
+    @IBOutlet weak var timestampLabel: UILabel!
     
-    @IBOutlet weak var completionProgress: UIProgressView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    
+    var comments: [[String: Any]] = []
+    var media: [[String: Any]] = []
+    var currentUpdate: PFObject?
+    var originalPos: CGFloat? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set up tableView
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100
         
-        //percent on days left
-//        var goal: PFObject?
-//        
-//        let calendar = NSCalendar.current
-//        
-//        let completionDate = currentUpdate?["goalDate"] as! Date
-//        print(completionDate)
-//        let currentDay = Date()
-//        let updateCreation = currentUpdate?.createdAt as! Date
-//        print(currentDay)
-//        
-//        let date1 = calendar.startOfDay(for: completionDate)
-//        let date2 = calendar.startOfDay(for: currentDay)
-//        let date3 = calendar.startOfDay(for: updateCreation)
-//        
-//        let components1 = calendar.dateComponents([.day], from: date2, to: date1) //from goal creation to current date
-//        print(components1)
-//        let components2 = calendar.dateComponents([.day], from: <#T##Date#>)
+        collectionView.delegate = self
+        collectionView.dataSource = self
         
+        goalView.layer.cornerRadius = 10
+        goalCellBg.layer.cornerRadius = 10
+        userIcon.layer.cornerRadius = userIcon.frame.height / 2
         
-
+        let typeString = currentUpdate?["type"] as! String
+        if typeString == "positive" {
+            goalView.backgroundColor = UIColor(red:0.50, green:0.85, blue:0.60, alpha:1.0)
+            goalCellBg.backgroundColor = UIColor(red: 0.40, green: 0.75, blue: 0.45, alpha: 1.0)
+            goalCellEdges.backgroundColor = goalCellBg.backgroundColor
+        } else if typeString == "negative" {
+            goalView.backgroundColor = UIColor(red:0.95, green:0.45, blue:0.45, alpha:1.0)
+            goalCellBg.backgroundColor = UIColor(red: 0.85, green: 0.30, blue: 0.30, alpha: 1.0)
+            goalCellEdges.backgroundColor = goalCellBg.backgroundColor
+        } else {
+            goalView.backgroundColor = UIColor(red: 0.45, green: 0.50, blue: 0.90, alpha: 1.0)
+            goalCellBg.backgroundColor = UIColor(red: 0.35, green: 0.40, blue: 0.70, alpha: 1.0)
+            goalCellEdges.backgroundColor = goalCellBg.backgroundColor
+        }
+        
+        originalPos = tableView.frame.origin.y
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        goalTitleLabel.text = currentUpdate?["goalTitle"] as? String
+        let author = currentUpdate?["author"] as! PFUser
+        usernameLabel.text = author["username"] as? String
         
-        let dateFormat = DateFormatter()
-        dateFormat.dateFormat = "MM.dd.yy"
-        let goalDate = currentUpdate?["goalDate"] as! Date
-        self.goalCreationDate.text = String("Created goal on " + dateFormat.string(from: goalDate))
-        
-        //Fetch all user's updates for that goal
-        
-        var goalid: String = ""
-        if currentUpdate!.parseClassName == "Update" {
-            goalid = currentUpdate?["goalId"] as! String
-        } else if currentUpdate!.parseClassName == "Goal" {
-            goalid = (currentUpdate?.objectId!)!
-        }
-        
-        goalView.layer.cornerRadius = 15
-        goalView.backgroundColor = UIColor(red:0.53, green:0.76, blue:0.96, alpha:1.0)
-        
-        Update.fetchUpdatesByGoal(goalId: goalid) { (loadedUpdates: [PFObject]?, error: Error?) in
-
+        let iconUrl = author["portrait"] as? PFFile
+        iconUrl?.getDataInBackground { (image: Data?, error: Error?) in
             if error == nil {
-                self.updates = loadedUpdates!
-                self.tableView.reloadData()
-            } else {
-                print(error?.localizedDescription as Any)
+                self.userIcon.image = UIImage(data: image!)
             }
         }
-
+        
+        updateLabel.text = currentUpdate?["text"] as? String
+        goalLabel.text = currentUpdate?["goalTitle"] as? String
+        
+        media = currentUpdate?["activity"] as! [[String: Any]]
+        collectionView.reloadData()
+        
+        comments = currentUpdate?["comments"] as! [[String: Any]]
+        tableView.reloadData()
+        
+        let indexPath = IndexPath(row: comments.count, section: 0)
+        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+    }
+    
+    @IBAction func didTapScreen(_ sender: Any) {
+        self.view.endEditing(true)
+        UITableView.animate(withDuration: 0.3) {
+            var frame = self.tableView.frame
+            frame.origin.y = self.originalPos!
+            self.tableView.frame = frame
+        }
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return updates.count
+        return comments.count + 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == comments.count { 
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCommentCell", for: indexPath) as! DetailCommentCell
+            
+            cell.update = currentUpdate
+            cell.parent = self.tableView
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LogCell", for: indexPath) as! LogCell
+            
+            cell.update = comments[indexPath.row]
+            
+            return cell
+        }
     }
     
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LogCell", for: indexPath) as! LogCell
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return media.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailMediaCell", for: indexPath) as! MediaCell
         
-        cell.update = updates[indexPath.row]
+        cell.data = media[indexPath.row]
         
         return cell
     }
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -106,6 +140,4 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     }
-
-    
 }
