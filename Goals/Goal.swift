@@ -126,4 +126,21 @@ class Goal: NSObject {
         }
     }
     
+    //Fetch goals by category
+    class func fetchGoalsByCategory(category: String, withCompletion completion: @escaping ([PFObject]?, Error?) -> ()) {
+        let query = PFQuery(className: "Goal")
+        
+        query.order(byDescending: "createdAt")
+        query.whereKey("categories", equalTo: category as Any)
+        
+        query.findObjectsInBackground { (loadedGoals: [PFObject]?, error:Error?) in
+            if error == nil {
+                completion(loadedGoals, nil)
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
+
+    
 }
