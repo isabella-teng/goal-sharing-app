@@ -28,9 +28,7 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate {
                     }
                 }
                 
-            } else if data["type"] as! String == "video" {
-                mediaImage.backgroundColor = UIColor(red: 0.85, green: 0.30, blue: 0.30, alpha: 1.0)
-                
+            } else if data["type"] as! String == "video" {                
                 let videoFile = data["videoURL"] as? PFFile
                 let videoUrl = videoFile?.url
                 let asset = AVAsset(url: URL(string: videoUrl!)!)

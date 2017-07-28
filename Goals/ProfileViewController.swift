@@ -17,7 +17,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var profileIcon: PFImageView!
     @IBOutlet weak var bioLabel: UILabel!
-    @IBOutlet weak var tableViewTitle: UILabel!
     
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var editProfileButton: UIButton!
@@ -89,7 +88,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let username = user?.username!
         usernameLabel.text = username
         bioLabel.text = user?["bio"] as? String
-        tableViewTitle.text = (username?.capitalized)! + "'s Goals"
         
         // Fetch user icon
         let profpic = user?["portrait"] as? PFFile
