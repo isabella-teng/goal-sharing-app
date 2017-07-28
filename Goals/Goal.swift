@@ -55,6 +55,7 @@ class Goal: NSObject {
         goal["updatesCount"] = 0 //the first one is not counted as an update
         goal["updatesPerDay"] = [Double](repeating: 0.0, count: 7)//keeps track of the updates and on what day they were created
         goal["updates"] = [] //stores the ids of the updates
+        goal["isCompleted"] = false
 
         
         // Save object (following function will save the object in Parse asynchronously)
@@ -134,6 +135,22 @@ class Goal: NSObject {
         query.whereKey("categories", equalTo: category as Any)
         
         query.findObjectsInBackground { (loadedGoals: [PFObject]?, error:Error?) in
+            if error == nil {
+                completion(loadedGoals, nil)
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
+    
+    //fetch goals by completion
+    class func fetchGoalsByCompletion(isCompleted: Bool, withCompletion completion: @escaping ([PFObject]?, Error?) -> ()) {
+        let query = PFQuery(className: "Goal")
+        
+        query.order(byDescending: "createdAt")
+        query.whereKey("isCompleted", equalTo: isCompleted as Any)
+        
+        query.findObjectsInBackground { (loadedGoals: [PFObject]?, error: Error?) in
             if error == nil {
                 completion(loadedGoals, nil)
             } else {

@@ -9,8 +9,9 @@
 import UIKit
 import Parse
 import ParseUI
+import SwipeCellKit
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ProfileCellDelegate {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ProfileCellDelegate, SwipeTableViewCellDelegate {
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -23,12 +24,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var followUserButton: UIButton!
     
+    @IBOutlet weak var goalSelection: UISegmentedControl!
     
     var user: PFUser? = nil
     var allUserPosts: [PFObject]? = []
     var fromFeed: Bool = false
     var isFollowing: Bool = false
     
+    var defaultOptions = SwipeTableOptions()
+    var isSwipeRightEnabled = true
+    
+    var buttonStyle: ButtonStyle = .backgroundColor
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,15 +79,37 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         profileIcon.layer.cornerRadius = 35
     }
     
+    
+    @IBAction func onSegmentedSwitch(_ sender: Any) {
+        viewDidAppear(true)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         // Fetch user updates
-        Goal.fetchGoalsByUser(user: user!) { (loadedGoals: [PFObject]?, error: Error?) in
-            if error == nil {
-                self.allUserPosts = loadedGoals!
-                self.tableView.reloadData()
-            } else {
-                print(error?.localizedDescription as Any)
-            }
+//        Goal.fetchGoalsByUser(user: user!) { (loadedGoals: [PFObject]?, error: Error?) in
+//            if error == nil {
+//                self.allUserPosts = loadedGoals!
+//                self.tableView.reloadData()
+//            } else {
+//                print(error?.localizedDescription as Any)
+//            }
+//        }
+        
+        if goalSelection.selectedSegmentIndex == 0 {
+            Goal.fetchGoalsByCompletion(isCompleted: false, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
+                if error == nil {
+                    self.allUserPosts = loadedGoals
+                    self.tableView.reloadData()
+                }
+            })
+        } else {
+            Goal.fetchGoalsByCompletion(isCompleted: true, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
+                if error == nil {
+                    self.allUserPosts = loadedGoals
+                    self.tableView.reloadData()
+                }
+            })
+
         }
         
         // Populate view with user data
@@ -163,10 +191,57 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
         
         cell.goal = allUserPosts![indexPath.row]
+        cell.otherDelegate = self
         cell.delegate = self
         
         return cell
     }
+
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        if orientation == .right {
+            let completionAction = SwipeAction(style: .default, title: "Complete Goal") { action, indexPath in
+            // handle action by updating model with completion
+                print("Completed goal")
+                self.allUserPosts![indexPath.row]["isCompleted"] = true
+                self.allUserPosts![indexPath.row].saveInBackground()
+                //self.viewDidAppear(true)
+                tableView.reloadData()
+            }
+            completionAction.backgroundColor = UIColor.purple
+            completionAction.title = "Complete"
+        
+            return [completionAction]
+        } else {
+        //orientation is left, delete
+            let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+                print("delete")
+            // handle action by updating model with deletion
+            }
+        // customize the action appearance
+            deleteAction.title = "delete bish"
+        
+            return [deleteAction]
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
+        print("entered bish")
+        var options = SwipeTableOptions()
+        options.expansionStyle = orientation == .right ? .selection : .destructive
+        options.transitionStyle = defaultOptions.transitionStyle
+        
+        switch buttonStyle {
+        case .backgroundColor:
+            options.buttonSpacing = 11
+        case .circular:
+            options.buttonSpacing = 4
+            options.backgroundColor = #colorLiteral(red: 0.9467939734, green: 0.9468161464, blue: 0.9468042254, alpha: 1)
+        }
+        
+        return options
+    }
+
     
     func profileCell(_ profileCell: ProfileCell, didTap goal: PFObject) {
         performSegue(withIdentifier: "profileToTimeline", sender: goal)
@@ -192,5 +267,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    enum ButtonStyle {
+        case backgroundColor, circular
     }
 }

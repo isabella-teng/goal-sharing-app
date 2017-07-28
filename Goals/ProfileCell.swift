@@ -9,17 +9,18 @@
 import UIKit
 import Parse
 import ParseUI
+import SwipeCellKit
 
 protocol ProfileCellDelegate: class {
     func profileCell(_ profileCell: ProfileCell, didTap goal: PFObject)
 }
 
-class ProfileCell: UITableViewCell {
+class ProfileCell: SwipeTableViewCell {
 
     @IBOutlet weak var cellBackground: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     
-    weak var delegate: ProfileCellDelegate?
+    weak var otherDelegate: ProfileCellDelegate?
     
     var goal: PFObject! {
         didSet {
@@ -27,13 +28,25 @@ class ProfileCell: UITableViewCell {
         }
     }
     
+    var animator: Any?
+    
+    var indicatorView = IndicatorView(frame: .zero)
+    
+    var unread = false {
+        didSet {
+            indicatorView.transform = unread ? CGAffineTransform.identity : CGAffineTransform.init(scaleX: 0.001, y: 0.001)
+        }
+    }
+
+    
     func didTapCell(_ sender: UITapGestureRecognizer) {
         // Call method on delegate
-        delegate?.profileCell(self, didTap: goal)
+        otherDelegate?.profileCell(self, didTap: goal)
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupIndicatorView()
         
         cellBackground.layer.cornerRadius = 10
         let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCell(_:)))
@@ -41,9 +54,33 @@ class ProfileCell: UITableViewCell {
         cellBackground.addGestureRecognizer(cellTapGestureRecognizer)
         cellBackground.isUserInteractionEnabled = true
     }
+    
+    func setupIndicatorView() {
+        indicatorView.translatesAutoresizingMaskIntoConstraints = false
+        indicatorView.color = tintColor
+        indicatorView.backgroundColor = .clear
+        contentView.addSubview(indicatorView)
+        
+        let size: CGFloat = 12
+        indicatorView.widthAnchor.constraint(equalToConstant: size).isActive = true
+        indicatorView.heightAnchor.constraint(equalTo: indicatorView.widthAnchor).isActive = true
+        indicatorView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 12).isActive = true
+        indicatorView.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor).isActive = true
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
 
+}
+
+class IndicatorView: UIView {
+    var color = UIColor.clear {
+        didSet { setNeedsDisplay() }
+    }
+    
+    override func draw(_ rect: CGRect) {
+        color.set()
+        UIBezierPath(ovalIn: rect).fill()
+    }
 }

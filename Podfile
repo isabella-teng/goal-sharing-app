@@ -16,6 +16,7 @@ target 'Goals' do
   pod 'Whisper'
   pod 'DateToolsSwift'
   pod 'BubbleTransition', '~> 2.0.0'
+  pod 'SwipeCellKit'
 
 
   target 'GoalsTests' do

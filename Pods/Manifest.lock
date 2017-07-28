@@ -20,6 +20,7 @@ PODS:
     - Realm (= 2.8.3)
   - RSKPlaceholderTextView (2.0.0)
   - SwiftyCam (2.4.0)
+  - SwipeCellKit (1.9.0)
   - Whisper (5.0.0)
 
 DEPENDENCIES:
@@ -32,6 +33,7 @@ DEPENDENCIES:
   - RealmSwift
   - RSKPlaceholderTextView
   - SwiftyCam
+  - SwipeCellKit
   - Whisper
 
 SPEC CHECKSUMS:
@@ -47,8 +49,9 @@ SPEC CHECKSUMS:
   RealmSwift: 8183818515471b01a99abdd2970f8e4fd52b6f4a
   RSKPlaceholderTextView: 301f0f30e70e7c42fe4e941e3a08365ab0d890d5
   SwiftyCam: cb83b9a8e181f70fb741d30cea724c6b045a4549
+  SwipeCellKit: 893661973276ae3512a84ac0a47055923b10731e
   Whisper: 051f25e704bf8992641ffd28b20d5682ddc5f5d3
 
-PODFILE CHECKSUM: b0404f3d5fcfb82dda22da8b59cf6a80614df5a7
+PODFILE CHECKSUM: d68f92f344854d518946bb8f63094a8c49b5a676
 
 COCOAPODS: 1.2.1
