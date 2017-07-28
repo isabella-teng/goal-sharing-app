@@ -30,6 +30,7 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var goalDateLabel: UILabel!
     @IBOutlet weak var goalCellBg: UIView!
     @IBOutlet weak var goalCellEdges: UIView!
+    @IBOutlet weak var interactionBackground: UIView!
     
     var author: PFUser? = nil
     var update: PFObject! {
@@ -90,7 +91,6 @@ class FeedCell: UITableViewCell {
                 goalCellBg.backgroundColor = UIColor(red: 0.35, green: 0.40, blue: 0.70, alpha: 1.0)
                 goalCellEdges.backgroundColor = goalCellBg.backgroundColor
             }
-            
         }
     }
     
@@ -156,6 +156,7 @@ class FeedCell: UITableViewCell {
         
         cellBackground.layer.cornerRadius = 10
         goalCellBg.layer.cornerRadius = 10
+        interactionBackground.layer.cornerRadius = 10
         userProfPic.layer.cornerRadius = 20
         userProfPic.clipsToBounds = true
     }

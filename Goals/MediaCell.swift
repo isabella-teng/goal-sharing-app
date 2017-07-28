@@ -28,9 +28,7 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate {
                     }
                 }
                 
-            } else if data["type"] as! String == "video" {
-                mediaImage.backgroundColor = UIColor(red: 0.85, green: 0.30, blue: 0.30, alpha: 1.0)
-                
+            } else if data["type"] as! String == "video" {                
                 let videoFile = data["videoURL"] as? PFFile
                 let videoUrl = videoFile?.url
                 let asset = AVAsset(url: URL(string: videoUrl!)!)
@@ -39,14 +37,10 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate {
                 let playerController = AVPlayerViewController()
                 playerController.player = player
                 playerController.view.frame = self.mediaImage.frame
-                self.mediaImage.addSubview(playerController.view)
-                
-                player.play()
+                playerController.view.clipsToBounds = true
+                playerController.view.layer.cornerRadius = 10
+                self.addSubview(playerController.view)
             }
         }
-    }
-    
-    override func awakeFromNib() {
-        mediaImage.layer.cornerRadius = 10
     }
 }

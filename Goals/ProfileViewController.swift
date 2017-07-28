@@ -85,7 +85,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         
         // Populate view with user data
-        usernameLabel.text = user?.username
+        let username = user?.username!
+        usernameLabel.text = username
         bioLabel.text = user?["bio"] as? String
         
         // Fetch user icon
