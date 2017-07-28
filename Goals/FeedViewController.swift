@@ -60,22 +60,20 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             Whisper.show(whisper: message, to: navigationController!, action: .present)
             hide(whisperFrom: navigationController!, after: 3)
         }
-        
-
     }
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.transitionMode = .present
-        //TODO: get the correct positon
-        transition.startingPoint = CGPoint(x: 325, y: 15) //barButtonView.center //goalMenuButton.value(forKey: "view") as! CGPoint
+        transition.startingPoint = CGPoint(x: 175, y: 350)
+        transition.duration = 0.25
         transition.bubbleColor = UIColor.white
         return transition
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.transitionMode = .dismiss
-        //TODO: get the correct positon
-        transition.startingPoint = CGPoint(x: 325, y: 15)//barButtonView.center //goalMenuButton.value(forKey: "view") as! CGPoint
+        transition.startingPoint = CGPoint(x: 175, y: 350)
+        transition.duration = 0.25
         transition.bubbleColor = UIColor.white
         return transition
     }
@@ -118,6 +116,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else if (segue.identifier == "commentSegue") {
             let vc = segue.destination as! PostCommentViewController
             vc.currentUpdate = sender as? PFObject
+            vc.transitioningDelegate = self
+            vc.modalPresentationStyle = .custom
         } else if (segue.identifier == "cameraSegue") {
             let vc = segue.destination as! CameraViewController
             vc.currentUpdate = sender as? PFObject
@@ -125,10 +125,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let vc = segue.destination as! ProfileViewController
             vc.user = sender as? PFUser
             vc.fromFeed = true
-        } else if (segue.identifier == "barButtonSegue") {
-            let controller = segue.destination //as! AllGoalsViewController
-            controller.transitioningDelegate = self
-            controller.modalPresentationStyle = .custom
         }
     }
     

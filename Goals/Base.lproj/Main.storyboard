@@ -162,7 +162,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="All Active Goals" id="b0f-Zu-Isf">
-                        <barButtonItem key="rightBarButtonItem" image="menu" id="RkL-TN-m1c">
+                        <barButtonItem key="rightBarButtonItem" image="cross" id="RkL-TN-m1c">
                             <connections>
                                 <action selector="onClose:" destination="fjP-gN-c68" id="zaG-oZ-gql"/>
                             </connections>
@@ -205,14 +205,14 @@
                                                     <rect key="frame" x="5" y="170" width="365" height="30"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VyZ-3h-L0G">
-                                                            <rect key="frame" x="171" y="3" width="24" height="24"/>
+                                                            <rect key="frame" x="170.5" y="2.5" width="25" height="25"/>
                                                             <state key="normal" image="comment"/>
                                                             <connections>
                                                                 <segue destination="mMa-2P-jBS" kind="presentation" identifier="commentSegue" id="SVg-wM-ZPW"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0m-HP-TVd">
-                                                            <rect key="frame" x="321" y="3" width="24" height="24"/>
+                                                            <rect key="frame" x="320" y="2.5" width="25" height="25"/>
                                                             <state key="normal" image="photo"/>
                                                             <connections>
                                                                 <segue destination="V3S-Ul-3Sn" kind="presentation" identifier="cameraSegue" id="kNn-XA-D7B"/>
@@ -399,14 +399,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Feed" id="TXs-L2-SH2">
-                        <barButtonItem key="leftBarButtonItem" title="Post Goal" id="AFo-7Q-Wdj">
+                        <barButtonItem key="leftBarButtonItem" image="goal-ball" id="AFo-7Q-Wdj">
                             <connections>
                                 <segue destination="wh1-XR-JhU" kind="presentation" identifier="" id="GcN-JU-aZ0"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="menu" id="ZtU-yN-AxO">
                             <connections>
-                                <segue destination="VhF-kq-3KK" kind="presentation" identifier="barButtonSegue" id="teF-p4-Wsc"/>
+                                <segue destination="VhF-kq-3KK" kind="presentation" identifier="barButtonSegue" modalTransitionStyle="coverVertical" id="teF-p4-Wsc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -716,7 +716,7 @@
                             <constraint firstItem="Joj-Jw-deG" firstAttribute="centerX" secondItem="UhH-ks-eog" secondAttribute="centerX" id="oyv-Bu-dOl"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="goal-24" id="2zk-3K-4Ga"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="user" id="2zk-3K-4Ga"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="bioLabel" destination="T9S-bB-3I4" id="dZh-oO-odr"/>
@@ -1532,7 +1532,7 @@
         <scene sceneID="Jg3-2V-tVf">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HqN-zQ-mFw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="home-24" selectedImage="home-24" id="Mbq-Ia-ZTP"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home" selectedImage="home" id="Mbq-Ia-ZTP"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="uHu-1d-37X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1969,20 +1969,21 @@
     </scenes>
     <resources>
         <image name="ballons" width="1500" height="500"/>
-        <image name="comment" width="24" height="24"/>
+        <image name="comment" width="25" height="25"/>
         <image name="cross" width="25" height="25"/>
         <image name="explore" width="24" height="24"/>
-        <image name="goal-24" width="24" height="24"/>
-        <image name="home-24" width="24" height="24"/>
+        <image name="goal-ball" width="24" height="24"/>
+        <image name="home" width="25" height="25"/>
         <image name="info" width="16" height="16"/>
-        <image name="like" width="24" height="24"/>
-        <image name="like-red" width="24" height="24"/>
+        <image name="like" width="25" height="25"/>
+        <image name="like-red" width="25" height="25"/>
         <image name="menu" width="25" height="25"/>
-        <image name="photo" width="24" height="24"/>
+        <image name="photo" width="25" height="25"/>
+        <image name="user" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Lff-mb-4zB"/>
-        <segue reference="jvt-5C-kyF"/>
+        <segue reference="Mng-1h-zUX"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
