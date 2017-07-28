@@ -10,7 +10,7 @@ import Parse
 import ParseUI
 
 
-class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var goalView: UIView!
     @IBOutlet weak var userIcon: UIImageView!
@@ -21,9 +21,11 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var completionProgress: UIProgressView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     
     var comments: [[String: Any]] = []
+    var media: [[String: Any]] = []
     var currentUpdate: PFObject?
     
     override func viewDidLoad() {
@@ -34,6 +36,9 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
         
         goalView.layer.cornerRadius = 10
         userIcon.layer.cornerRadius = userIcon.frame.height / 2
@@ -62,14 +67,20 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         updateLabel.text = currentUpdate?["text"] as? String
         goalLabel.text = currentUpdate?["goalTitle"] as? String
         
+        media = currentUpdate?["activity"] as! [[String: Any]]
+        collectionView.reloadData()
+        
         comments = currentUpdate?["comments"] as! [[String: Any]]
         tableView.reloadData()
+        
+        let indexPath = IndexPath(row: comments.count, section: 0)
+        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return comments.count + 1
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == comments.count { 
@@ -88,6 +99,19 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return media.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailMediaCell", for: indexPath) as! MediaCell
+        
+        cell.data = media[indexPath.row]
+        
+        return cell
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -95,6 +119,4 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     }
-    
-    
 }

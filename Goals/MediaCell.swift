@@ -14,7 +14,7 @@ import AVFoundation
 
 class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate {
     
-    //let player = AVPlayer()
+    @IBOutlet weak var mediaImage: UIImageView!
     
     var data: [String: Any] = [:] {
         didSet {
@@ -40,10 +40,13 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate {
                 playerController.player = player
                 playerController.view.frame = self.mediaImage.frame
                 self.mediaImage.addSubview(playerController.view)
+                
                 player.play()
             }
         }
     }
     
-    @IBOutlet weak var mediaImage: UIImageView!
+    override func awakeFromNib() {
+        mediaImage.layer.cornerRadius = 10
+    }
 }
