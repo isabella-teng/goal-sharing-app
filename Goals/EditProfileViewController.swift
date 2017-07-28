@@ -14,6 +14,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var imagePreview: UIImageView!
     @IBOutlet weak var bioField: UITextField!
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var imageButton: UIButton!
     
     
@@ -27,6 +28,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         // Populate view with user data
         bioField.text = user?["bio"] as? String
         usernameLabel.text = user?["username"] as? String
+        usernameField.text = user?["username"] as? String
         
         // Fetch user icon
         let iconUrl = user?["portrait"] as? PFFile
@@ -97,6 +99,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         }
         
         user?["bio"] = bioField.text
+        user?["username"] = usernameField.text
         user?.saveInBackground()
         
         self.dismiss(animated: true, completion: nil)
