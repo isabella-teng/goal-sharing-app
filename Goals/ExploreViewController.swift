@@ -115,28 +115,9 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
         return allCategories.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 130.0
-    }
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomApplicationCell
-//        
-//        cell.contentView.backgroundColor = UIColor.clear
-//        
-//        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 120))
-//        
-//        whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
-//        whiteRoundedView.layer.masksToBounds = false
-//        whiteRoundedView.layer.cornerRadius = 2.0
-//        whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
-//        whiteRoundedView.layer.shadowOpacity = 0.2
-//        
-//        cell.contentView.addSubview(whiteRoundedView)
-//        cell.contentView.sendSubview(toBack: whiteRoundedView)
-//        
-//        return cell
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 130.0
 //    }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -172,6 +153,25 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
 //            }
         categoryCell.delegate = self
         categoryCell.categoryLabel.text = allCategories[indexPath.row]
+        
+        if indexPath.row == 0 {
+            categoryCell.categoryIcon.image = UIImage(named: "education")
+            categoryCell.cellBackground.backgroundColor = UIColor(red:0.99, green:0.47, blue:0.47, alpha:1.0)
+        } else if indexPath.row == 1 {
+            categoryCell.categoryIcon.image = UIImage(named: "health")
+            categoryCell.cellBackground.backgroundColor = UIColor(red:0.98, green:0.92, blue:0.55, alpha:1.0)
+        } else if indexPath.row == 2 {
+            categoryCell.categoryIcon.image = UIImage(named: "fun")
+            categoryCell.cellBackground.backgroundColor = UIColor(red:0.70, green:0.95, blue:0.65, alpha:1.0)
+        } else if indexPath.row == 3 {
+            categoryCell.cellBackground.backgroundColor = UIColor(red:0.43, green:0.75, blue:0.94, alpha:1.0)
+            categoryCell.categoryIcon.image = UIImage(named: "money")
+        } else if indexPath.row == 4 {
+            categoryCell.categoryIcon.image = UIImage(named: "spiritual")
+            categoryCell.cellBackground.backgroundColor = UIColor(red:0.80, green:0.71, blue:0.94, alpha:1.0)
+        }
+        //set icons 
+        
         
         return categoryCell 
     }
