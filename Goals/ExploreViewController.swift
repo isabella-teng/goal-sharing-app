@@ -45,6 +45,8 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
         
+        tableView.backgroundView = UIImageView(image: UIImage(named: "backgroundimg"))
+        
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
@@ -113,11 +115,46 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
         return allCategories.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 130.0
+    }
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomApplicationCell
+//        
+//        cell.contentView.backgroundColor = UIColor.clear
+//        
+//        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 120))
+//        
+//        whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
+//        whiteRoundedView.layer.masksToBounds = false
+//        whiteRoundedView.layer.cornerRadius = 2.0
+//        whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
+//        whiteRoundedView.layer.shadowOpacity = 0.2
+//        
+//        cell.contentView.addSubview(whiteRoundedView)
+//        cell.contentView.sendSubview(toBack: whiteRoundedView)
+//        
+//        return cell
+//    }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if searchType.selectedSegmentIndex == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "UserSearchCell", for: indexPath) as! UserSearchCell
+            
+            cell.contentView.backgroundColor = UIColor.clear
+            let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 120))
+            
+            whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
+            whiteRoundedView.layer.masksToBounds = false
+            whiteRoundedView.layer.cornerRadius = 2.0
+            whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
+            whiteRoundedView.layer.shadowOpacity = 0.2
+            
+            cell.contentView.addSubview(whiteRoundedView)
+            cell.contentView.sendSubview(toBack: whiteRoundedView)
+
             
             if searchController.isActive && searchController.searchBar.text != "" {
                 cell.user = filteredUsers[indexPath.row]
