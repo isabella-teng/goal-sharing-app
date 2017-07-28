@@ -16,10 +16,11 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var userIcon: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var updateLabel: UILabel!
+    @IBOutlet weak var goalCellBg: UIView!
+    @IBOutlet weak var goalCellEdges: UIView!
     @IBOutlet weak var goalLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
     
-    @IBOutlet weak var completionProgress: UIProgressView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -27,6 +28,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var comments: [[String: Any]] = []
     var media: [[String: Any]] = []
     var currentUpdate: PFObject?
+    var originalPos: CGFloat? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,16 +43,25 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         collectionView.dataSource = self
         
         goalView.layer.cornerRadius = 10
+        goalCellBg.layer.cornerRadius = 10
         userIcon.layer.cornerRadius = userIcon.frame.height / 2
         
         let typeString = currentUpdate?["type"] as! String
         if typeString == "positive" {
-            goalView.backgroundColor = UIColor(red: 0.40, green: 0.75, blue: 0.45, alpha: 1.0)
+            goalView.backgroundColor = UIColor(red:0.50, green:0.85, blue:0.60, alpha:1.0)
+            goalCellBg.backgroundColor = UIColor(red: 0.40, green: 0.75, blue: 0.45, alpha: 1.0)
+            goalCellEdges.backgroundColor = goalCellBg.backgroundColor
         } else if typeString == "negative" {
             goalView.backgroundColor = UIColor(red:0.95, green:0.45, blue:0.45, alpha:1.0)
+            goalCellBg.backgroundColor = UIColor(red: 0.85, green: 0.30, blue: 0.30, alpha: 1.0)
+            goalCellEdges.backgroundColor = goalCellBg.backgroundColor
         } else {
             goalView.backgroundColor = UIColor(red: 0.45, green: 0.50, blue: 0.90, alpha: 1.0)
+            goalCellBg.backgroundColor = UIColor(red: 0.35, green: 0.40, blue: 0.70, alpha: 1.0)
+            goalCellEdges.backgroundColor = goalCellBg.backgroundColor
         }
+        
+        originalPos = tableView.frame.origin.y
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -77,6 +88,15 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
     
+    @IBAction func didTapScreen(_ sender: Any) {
+        self.view.endEditing(true)
+        UITableView.animate(withDuration: 0.3) {
+            var frame = self.tableView.frame
+            frame.origin.y = self.originalPos!
+            self.tableView.frame = frame
+        }
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return comments.count + 1
@@ -98,6 +118,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return cell
         }
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return media.count
