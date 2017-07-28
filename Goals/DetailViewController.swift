@@ -66,17 +66,17 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.reloadData()
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return comments.count + 1
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == comments.count {
+        if indexPath.row == comments.count { 
             let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCommentCell", for: indexPath) as! DetailCommentCell
             
             cell.update = currentUpdate
+            cell.parent = self.tableView
             
             return cell
         } else {
@@ -87,7 +87,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return cell
         }
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

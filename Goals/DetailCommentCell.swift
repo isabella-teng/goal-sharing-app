@@ -15,6 +15,8 @@ class DetailCommentCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var commentField: UITextField!
     
     var update: PFObject? = nil
+    var parent: UITableView? = nil
+    var animationDistance: Int = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,6 +27,11 @@ class DetailCommentCell: UITableViewCell, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder() // Dismiss the keyboard
+        UITableView.animate(withDuration: 0.3) {
+            var frame = self.parent?.frame
+            frame?.origin.y += CGFloat(self.animationDistance)
+            self.parent?.frame = frame!
+        }
         
         var commentDict: [String: Any] = [:]
         commentDict["text"] = commentField.text!
@@ -38,6 +45,15 @@ class DetailCommentCell: UITableViewCell, UITextFieldDelegate {
         update?.saveInBackground()
         
         return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        UITableView.animate(withDuration: 0.3) {
+            var frame = self.parent?.frame
+            self.animationDistance = min(Int(self.frame.origin.y) , Int((self.parent?.frame.height)! - (self.frame.height)))
+            frame?.origin.y -= CGFloat(self.animationDistance)
+            self.parent?.frame = frame!
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
