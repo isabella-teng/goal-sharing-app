@@ -18,7 +18,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var updates: [PFObject] = []
     var usersObjectArray: [PFUser] = []
-    
     var didPostUpdate: Bool = false
     
     let transition = BubbleTransition()
