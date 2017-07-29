@@ -25,6 +25,20 @@ class ProfileCell: SwipeTableViewCell {
     var goal: PFObject! {
         didSet {
             titleLabel.text = goal["title"] as? String
+            
+            let category = goal["categories"] as! String
+            print(category)
+            if category == "Education" {
+                cellBackground.backgroundColor = UIColor(red: 0.95, green: 0.45, blue: 0.45, alpha: 1.0)
+            } else if category == "Money" {
+                cellBackground.backgroundColor = UIColor(red: 0.45, green: 0.85, blue: 0.55, alpha: 1.0)
+            } else if category == "Spiritual" {
+                cellBackground.backgroundColor = UIColor(red: 0.60, green: 0.45, blue: 0.85, alpha: 1.0)
+            } else if category == "Health" {
+                cellBackground.backgroundColor = UIColor(red: 0.45, green: 0.65, blue: 0.95, alpha: 1.0)
+            } else if category == "Fun" {
+                cellBackground.backgroundColor = UIColor(red: 0.45, green: 0.45, blue: 0.45, alpha: 1.0)
+            }
         }
     }
     

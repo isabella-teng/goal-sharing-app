@@ -16,7 +16,8 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
     //graph goes here
     
     @IBOutlet weak var headerLabel: UILabel!
-    @IBOutlet weak var progressBackground: LineChartView!
+    @IBOutlet weak var progressBackground: UIView!
+    @IBOutlet weak var graphView: LineChartView!
     @IBOutlet weak var infoBackground: UIView!
     @IBOutlet weak var nodeView: UIView!
     @IBOutlet weak var timestampLabel: UILabel!
@@ -29,7 +30,6 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
     var data: PFObject! {
         didSet {
             headerLabel.text = data?["title"] as? String
-
             
             // Set timestamp
             let date = data?.createdAt!
@@ -45,26 +45,27 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
    
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         // Style views
         infoBackground.layer.cornerRadius = 10
         nodeView.layer.cornerRadius = nodeView.frame.height / 2
-        progressBackground.layer.cornerRadius = 14
-        //Graph Data/Setup
-        axisFormatDelegate = self as? IAxisValueFormatter
-        days = ["M", "Tu", "W", "Th", "F", "Sa", "Su"]
+        progressBackground.layer.cornerRadius = 10
         
-        let xAxis = progressBackground.xAxis
-        print(xAxis)
+        // Set up graph
+        axisFormatDelegate = self as? IAxisValueFormatter
+        days = ["M", "T", "W", "T", "F", "S", "S"]
+        
+        let xAxis = graphView.xAxis
         xAxis.labelCount = xAxisValueFormatter.labelCount
         xAxis.valueFormatter = xAxisValueFormatter()
-        //print(xAxis.valueFormatter)
 
-        progressBackground.notifyDataSetChanged()
+        graphView.notifyDataSetChanged()
     }
     
     func setChart(dataPoints: [String], values: [Double]) {
-        progressBackground.chartDescription?.text = ""
-        progressBackground.backgroundColor = UIColor(red:0.60, green:0.68, blue:0.96, alpha:1.0)
+        graphView.chartDescription?.text = ""
+        graphView.backgroundColor = UIColor(red: 0.40, green: 0.75, blue: 0.45, alpha: 1.0)
+        progressBackground.backgroundColor = graphView.backgroundColor
         
         var dataEntries: [ChartDataEntry] = []
         
@@ -79,30 +80,38 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
             dataEntries.append(dataEntry)
         }
         
-        //convert data entry y values to ints
-        //print(dataEntries)
-        
         let chartDataSet = LineChartDataSet(values: dataEntries, label: "Updates Made")
         let chartData = LineChartData(dataSet: chartDataSet)
-        progressBackground.data = chartData
+        graphView.data = chartData
         
 //        let sum = values.reduce(0, +)
 //        let average = sum / 7
 //        let average1 = average - 1.02
         
-        //Settings for the Bar graph
-        chartDataSet.colors = [UIColor(red:0.77, green:0.97, blue:0.76, alpha:1.0)]
-        progressBackground.xAxis.labelPosition = .bottom
-        progressBackground.animate(xAxisDuration: 1.0, yAxisDuration: 1.0, easingOption: .easeInBounce)
-        progressBackground.scaleYEnabled = false
-        progressBackground.scaleXEnabled = false
-        progressBackground.pinchZoomEnabled = false
-        progressBackground.doubleTapToZoomEnabled = false
-        progressBackground.xAxis.drawGridLinesEnabled = false
-        progressBackground.leftAxis.drawGridLinesEnabled = false
-        progressBackground.rightAxis.drawGridLinesEnabled = false
-        progressBackground.rightAxis.drawLabelsEnabled = false
-        progressBackground.legend.enabled = true
+        // Settings for the graph
+        chartDataSet.colors = [UIColor.white]
+        chartDataSet.circleColors = [NSUIColor.white]
+        chartDataSet.circleHoleRadius = CGFloat(0)
+        chartDataSet.circleRadius = CGFloat(3)
+        chartDataSet.drawValuesEnabled = false
+        
+        graphView.xAxis.labelTextColor = UIColor.darkGray
+        graphView.xAxis.axisLineColor = UIColor.darkGray
+        graphView.tintColor = UIColor.white
+        graphView.xAxis.labelPosition = .bottom
+        graphView.animate(xAxisDuration: 0.5, yAxisDuration: 0.5, easingOption: .easeInBounce)
+        graphView.scaleYEnabled = false
+        graphView.scaleXEnabled = false
+        graphView.pinchZoomEnabled = false
+        graphView.doubleTapToZoomEnabled = false
+        graphView.xAxis.drawGridLinesEnabled = false
+        graphView.leftAxis.drawGridLinesEnabled = false
+        graphView.rightAxis.drawGridLinesEnabled = false
+        graphView.rightAxis.drawLabelsEnabled = false
+        graphView.legend.enabled = false
+        graphView.highlightPerTapEnabled = false
+        graphView.rightAxis.enabled = false
+        graphView.leftAxis.enabled = false
         
         // Updates/Average Limit Lines
 //        let averageEstimate = ChartLimitLine(limit: average, label: "Est. Updates Per Week")
@@ -123,8 +132,6 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
 //            actualAverage.lineColor = UIColor.green
 //            progressBackground.rightAxis.addLimitLine(actualAverage)
 //        }
-
-
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
