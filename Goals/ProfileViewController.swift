@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import ParseUI
 import SwipeCellKit
+import Whisper
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ProfileCellDelegate, SwipeTableViewCellDelegate {
     
@@ -85,31 +86,28 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        // Fetch user updates
-//        Goal.fetchGoalsByUser(user: user!) { (loadedGoals: [PFObject]?, error: Error?) in
-//            if error == nil {
-//                self.allUserPosts = loadedGoals!
-//                self.tableView.reloadData()
-//            } else {
-//                print(error?.localizedDescription as Any)
-//            }
-//        }
-        
         if goalSelection.selectedSegmentIndex == 0 {
-            Goal.fetchGoalsByCompletion(isCompleted: false, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
+            //print("entered")
+            Goal.fetchGoalsByCompletion(user: PFUser.current()!, isCompleted: false, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
                 if error == nil {
-                    self.allUserPosts = loadedGoals
+                    self.allUserPosts = loadedGoals!
+                    print(self.allUserPosts)
                     self.tableView.reloadData()
+                } else {
+                    print(error?.localizedDescription as Any)
                 }
             })
         } else {
-            Goal.fetchGoalsByCompletion(isCompleted: true, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
+            //print("dis one entered")
+            Goal.fetchGoalsByCompletion(user: PFUser.current()!, isCompleted: true, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
                 if error == nil {
-                    self.allUserPosts = loadedGoals
+                    self.allUserPosts = loadedGoals!
+//                    print(self.allUserPosts)
                     self.tableView.reloadData()
+                } else {
+                    print(error?.localizedDescription as Any)
                 }
             })
-
         }
         
         // Populate view with user data
@@ -188,8 +186,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // Format cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("entered??")
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
-        
         cell.goal = allUserPosts![indexPath.row]
         cell.otherDelegate = self
         cell.delegate = self

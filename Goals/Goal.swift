@@ -143,15 +143,18 @@ class Goal: NSObject {
         }
     }
     
-    //fetch goals by completion
-    class func fetchGoalsByCompletion(isCompleted: Bool, withCompletion completion: @escaping ([PFObject]?, Error?) -> ()) {
+    //fetch goals by completion & for current user
+    class func fetchGoalsByCompletion(user: PFUser, isCompleted: Bool, withCompletion completion: @escaping ([PFObject]?, Error?) -> ()) {
         let query = PFQuery(className: "Goal")
         
         query.order(byDescending: "createdAt")
+        query.includeKey("author")
+        query.whereKey("author", equalTo: user as Any)
         query.whereKey("isCompleted", equalTo: isCompleted as Any)
         
         query.findObjectsInBackground { (loadedGoals: [PFObject]?, error: Error?) in
             if error == nil {
+                print(loadedGoals)
                 completion(loadedGoals, nil)
             } else {
                 completion(nil, error)
