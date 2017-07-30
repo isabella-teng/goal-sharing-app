@@ -98,7 +98,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
             })
         } else {
-            //print("dis one entered")
             Goal.fetchGoalsByCompletion(user: PFUser.current()!, isCompleted: true, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
                 if error == nil {
                     self.allUserPosts = loadedGoals!
@@ -186,7 +185,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // Format cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("entered??")
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
         cell.goal = allUserPosts![indexPath.row]
         cell.otherDelegate = self

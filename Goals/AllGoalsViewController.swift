@@ -29,7 +29,7 @@ class AllGoalsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Goal.fetchGoalsByUser(user: PFUser.current()!) { (loadedGoals: [PFObject]?, error: Error?) in
+        Goal.fetchGoalsByCompletion(user: PFUser.current()!, isCompleted: false) { (loadedGoals: [PFObject]?, error: Error?) in
             if error == nil {
                 self.allGoals = loadedGoals!
                 self.tableView.reloadData()
