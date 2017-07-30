@@ -91,7 +91,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             Goal.fetchGoalsByCompletion(user: PFUser.current()!, isCompleted: false, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
                 if error == nil {
                     self.allUserPosts = loadedGoals!
-                    print(self.allUserPosts)
                     self.tableView.reloadData()
                 } else {
                     print(error?.localizedDescription as Any)
@@ -101,7 +100,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             Goal.fetchGoalsByCompletion(user: PFUser.current()!, isCompleted: true, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
                 if error == nil {
                     self.allUserPosts = loadedGoals!
-//                    print(self.allUserPosts)
                     self.tableView.reloadData()
                 } else {
                     print(error?.localizedDescription as Any)
@@ -200,12 +198,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 print("Completed goal")
                 self.allUserPosts![indexPath.row]["isCompleted"] = true
                 self.allUserPosts![indexPath.row].saveInBackground()
-                //self.viewDidAppear(true)
+                self.viewDidAppear(true)
+                self.completionNotification()
                 tableView.reloadData()
             }
             completionAction.backgroundColor = UIColor.purple
             completionAction.title = "Complete"
-        
+            
+            //completionNotification()
             return [completionAction]
         } else {
         //orientation is left, delete
@@ -234,10 +234,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             options.buttonSpacing = 4
             options.backgroundColor = #colorLiteral(red: 0.9467939734, green: 0.9468161464, blue: 0.9468042254, alpha: 1)
         }
-        
         return options
     }
+    
+    func completionNotification() {
+        let announcement = Announcement(title: "Yay for completing your goal!!")
+        Whisper.show(shout: announcement, to: self) {
+            print("yay")
+        }
+        
+        //hide(whisperFrom: navigationController!, after: 3)
+        print("woohooo")
 
+    }
     
     func profileCell(_ profileCell: ProfileCell, didTap goal: PFObject) {
         performSegue(withIdentifier: "profileToTimeline", sender: goal)

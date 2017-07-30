@@ -154,7 +154,6 @@ class Goal: NSObject {
         
         query.findObjectsInBackground { (loadedGoals: [PFObject]?, error: Error?) in
             if error == nil {
-                print(loadedGoals)
                 completion(loadedGoals, nil)
             } else {
                 completion(nil, error)
