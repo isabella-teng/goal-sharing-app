@@ -12,6 +12,10 @@ import ParseUI
 import SwipeCellKit
 import Whisper
 
+protocol GoalCompletionDelegate: class {
+    func goalComplete(goal: PFObject)
+}
+
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ProfileCellDelegate, SwipeTableViewCellDelegate {
     
     
@@ -32,10 +36,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var fromFeed: Bool = false
     var isFollowing: Bool = false
     
+    weak var delegate: GoalCompletionDelegate?
+    
     var defaultOptions = SwipeTableOptions()
     var isSwipeRightEnabled = true
     
     var buttonStyle: ButtonStyle = .backgroundColor
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -199,13 +206,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.allUserPosts![indexPath.row]["isCompleted"] = true
                 self.allUserPosts![indexPath.row].saveInBackground()
                 self.viewDidAppear(true)
-                self.completionNotification()
+                self.completionNotification(goal: self.allUserPosts![indexPath.row])
                 tableView.reloadData()
             }
             completionAction.backgroundColor = UIColor.purple
             completionAction.title = "Complete"
-            
-            //completionNotification()
             return [completionAction]
         } else {
         //orientation is left, delete
@@ -237,17 +242,64 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         return options
     }
     
-    func completionNotification() {
+    func completionNotification(goal: PFObject) {
         let announcement = Announcement(title: "Yay for completing your goal!!")
         Whisper.show(shout: announcement, to: self) {
             print("yay")
         }
+        //send this goal as an update back to the database, to feed view controller
+        var data: [String: Any] = [:]
+        data["text"] = "person completed a goal!!"
+        data["goalId"] = goal.objectId
+        data["goalTitle"] = goal["title"]
+        data["goalDate"] = goal.createdAt
         
-        //pass this goal back to the feed view controller
+        let updateDate = Date()
+        let formatter  = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let currentDateString = formatter.string(from: updateDate)
+        let dayOfTheWeek = getDayOfWeek(currentDateString)
+        
+        var dateArray = goal["updatesPerDay"] as! [Int]
+        if dayOfTheWeek  == 1 {
+            dateArray[0] += 1
+        } else if dayOfTheWeek  == 2 {
+            dateArray[1] += 1
+        } else if dayOfTheWeek  == 3 {
+            dateArray[2] += 1
+        } else if dayOfTheWeek  == 4 {
+            dateArray[3] += 1
+        } else if dayOfTheWeek  == 5 {
+            dateArray[4] += 1
+        } else if dayOfTheWeek  == 6 {
+            dateArray[5] += 1
+        } else if dayOfTheWeek  == 7 {
+            dateArray[6] += 1
+        }
+        
+        goal["updatesPerDay"] = dateArray
+        goal.saveInBackground()
+        
+        data["type"] = "Complete"
+        
+        Update.createUpdate(data: data)
+        self.delegate?.goalComplete(goal: goal)
     }
     
+    func getDayOfWeek(_ today:String) -> Int? {
+        let formatter  = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        guard let todayDate = formatter.date(from: today) else { return nil }
+        let myCalendar = Calendar(identifier: .gregorian) //Sunday is 0
+        let weekDay = myCalendar.component(.weekday, from: todayDate)
+        return weekDay - 1
+    }
+
+    
     func profileCell(_ profileCell: ProfileCell, didTap goal: PFObject) {
-        performSegue(withIdentifier: "profileToTimeline", sender: goal)
+    performSegue(withIdentifier: "profileToTimeline", sender: goal)
+
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

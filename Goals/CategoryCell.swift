@@ -33,7 +33,6 @@ class CategoryCell: UITableViewCell {
         cellBackground.isUserInteractionEnabled = true
         
         cellBackground.layer.cornerRadius = 15
-        //cellBackground.backgroundColor = UIColor(red:0.70, green:0.96, blue:0.84, alpha:1.0)
         
     }
 
