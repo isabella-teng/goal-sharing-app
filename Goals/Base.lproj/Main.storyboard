@@ -561,7 +561,7 @@
                         <viewControllerLayoutGuide type="bottom" id="spF-DR-v0x"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dWK-WH-8i0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ballons" translatesAutoresizingMaskIntoConstraints="NO" id="Vhs-6U-vie">
@@ -690,7 +690,7 @@
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="BTf-en-lJD">
-                                <rect key="frame" x="78" y="264" width="219" height="29"/>
+                                <rect key="frame" x="10" y="264" width="355" height="29"/>
                                 <segments>
                                     <segment title="Active Goals"/>
                                     <segment title="Completed Goals"/>
@@ -719,7 +719,7 @@
                             <constraint firstItem="spF-DR-v0x" firstAttribute="top" secondItem="bce-Sn-ehU" secondAttribute="bottom" id="LIa-Rt-Igc"/>
                             <constraint firstItem="Joj-Jw-deG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dWK-WH-8i0" secondAttribute="leading" constant="25" id="LR1-dg-PRF"/>
                             <constraint firstItem="UhH-ks-eog" firstAttribute="centerY" secondItem="Vhs-6U-vie" secondAttribute="bottom" id="LwB-va-3x8"/>
-                            <constraint firstItem="BTf-en-lJD" firstAttribute="leading" secondItem="dWK-WH-8i0" secondAttribute="leading" constant="78" id="N0C-eQ-v0J"/>
+                            <constraint firstItem="BTf-en-lJD" firstAttribute="leading" secondItem="dWK-WH-8i0" secondAttribute="leading" constant="10" id="N0C-eQ-v0J"/>
                             <constraint firstAttribute="trailing" secondItem="cf1-Vh-mKT" secondAttribute="trailing" constant="10" id="ODk-mE-DE5"/>
                             <constraint firstItem="UhH-ks-eog" firstAttribute="centerX" secondItem="dWK-WH-8i0" secondAttribute="centerX" id="OkU-fp-b2K"/>
                             <constraint firstAttribute="trailing" secondItem="bce-Sn-ehU" secondAttribute="trailing" id="PoD-A7-YAq"/>
@@ -729,14 +729,13 @@
                             <constraint firstItem="bce-Sn-ehU" firstAttribute="top" secondItem="BTf-en-lJD" secondAttribute="bottom" constant="8" id="WHb-0a-Kii"/>
                             <constraint firstItem="V9c-iV-bma" firstAttribute="bottom" secondItem="sAM-Vu-3Ir" secondAttribute="bottom" id="Wdo-Iv-BDD"/>
                             <constraint firstAttribute="trailing" secondItem="bce-Sn-ehU" secondAttribute="trailing" id="Yh4-y8-sjR"/>
-                            <constraint firstAttribute="trailing" secondItem="BTf-en-lJD" secondAttribute="trailing" constant="78" id="ZYl-RO-CBq"/>
+                            <constraint firstAttribute="trailing" secondItem="BTf-en-lJD" secondAttribute="trailing" constant="10" id="ZYl-RO-CBq"/>
                             <constraint firstItem="Vhs-6U-vie" firstAttribute="top" secondItem="dWK-WH-8i0" secondAttribute="top" id="Zc3-x7-8zw"/>
                             <constraint firstAttribute="trailing" secondItem="7uQ-Ca-qhr" secondAttribute="trailing" constant="10" id="aJ9-9c-Om0"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="T9S-bB-3I4" secondAttribute="trailing" constant="25" id="eW0-ly-Yuh"/>
                             <constraint firstItem="T9S-bB-3I4" firstAttribute="top" secondItem="Joj-Jw-deG" secondAttribute="bottom" id="hZG-P5-OTd"/>
                             <constraint firstItem="bce-Sn-ehU" firstAttribute="leading" secondItem="dWK-WH-8i0" secondAttribute="leading" id="l0q-ci-cDA"/>
                             <constraint firstItem="Joj-Jw-deG" firstAttribute="centerX" secondItem="UhH-ks-eog" secondAttribute="centerX" id="oyv-Bu-dOl"/>
-                            <constraint firstItem="bce-Sn-ehU" firstAttribute="centerX" secondItem="BTf-en-lJD" secondAttribute="centerX" priority="750" id="pA2-SL-qv6"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="user" id="2zk-3K-4Ga"/>
@@ -751,9 +750,11 @@
                         <outlet property="profileIcon" destination="UhH-ks-eog" id="ZWh-Fx-Suw"/>
                         <outlet property="tableView" destination="bce-Sn-ehU" id="XCp-h4-FhL"/>
                         <outlet property="usernameLabel" destination="Joj-Jw-deG" id="6ph-cg-m15"/>
+                        <segue destination="qeC-rD-0Ot" kind="unwind" identifier="goalBackfromProfileUnwindSegue" unwindAction="goalBackfromProfileWithSegue:" id="LQa-if-Kmt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eTF-SU-lWR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="qeC-rD-0Ot" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1960.8" y="138.98050974512745"/>
         </scene>
@@ -2158,8 +2159,8 @@
         <image name="user" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Lff-mb-4zB"/>
         <segue reference="Q3w-fk-ISv"/>
-        <segue reference="yqQ-IM-bYA"/>
         <segue reference="Mng-1h-zUX"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

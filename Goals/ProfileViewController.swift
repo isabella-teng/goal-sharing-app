@@ -12,6 +12,10 @@ import ParseUI
 import SwipeCellKit
 import Whisper
 
+protocol GoalCompletionDelegate: class {
+    func goalComplete(goal: PFObject)
+}
+
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ProfileCellDelegate, SwipeTableViewCellDelegate {
     
     
@@ -27,15 +31,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var goalSelection: UISegmentedControl!
     
+    
     var user: PFUser? = nil
     var allUserPosts: [PFObject]? = []
     var fromFeed: Bool = false
     var isFollowing: Bool = false
     
+    weak var delegate: GoalCompletionDelegate?
+    
     var defaultOptions = SwipeTableOptions()
     var isSwipeRightEnabled = true
     
     var buttonStyle: ButtonStyle = .backgroundColor
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,15 +88,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         profileIcon.layer.cornerRadius = 35
     }
     
-    
     @IBAction func onSegmentedSwitch(_ sender: Any) {
         viewDidAppear(true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         if goalSelection.selectedSegmentIndex == 0 {
-            //print("entered")
-            Goal.fetchGoalsByCompletion(user: PFUser.current()!, isCompleted: false, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
+            Goal.fetchGoalsByCompletion(user: user!, isCompleted: false, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
                 if error == nil {
                     self.allUserPosts = loadedGoals!
                     self.tableView.reloadData()
@@ -97,7 +103,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
             })
         } else {
-            Goal.fetchGoalsByCompletion(user: PFUser.current()!, isCompleted: true, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
+            Goal.fetchGoalsByCompletion(user: user!, isCompleted: true, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
                 if error == nil {
                     self.allUserPosts = loadedGoals!
                     self.tableView.reloadData()
@@ -190,35 +196,34 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        if orientation == .right {
+        if orientation == .right && allUserPosts![indexPath.row]["isCompleted"] as! Bool == false {
             let completionAction = SwipeAction(style: .default, title: "Complete Goal") { action, indexPath in
-            // handle action by updating model with completion
-                print("Completed goal")
-                self.allUserPosts![indexPath.row]["isCompleted"] = true
-                self.allUserPosts![indexPath.row].saveInBackground()
-                self.viewDidAppear(true)
-                self.completionNotification()
+                // handle action by updating model with completion
+                let current = self.allUserPosts![indexPath.row]
+                self.completionNotification(goal: self.allUserPosts![indexPath.row])
+                self.allUserPosts?.remove(at: indexPath.row)
                 tableView.reloadData()
+                current["isCompleted"] = true
+                current.saveInBackground()
             }
             completionAction.backgroundColor = UIColor.purple
             completionAction.title = "Complete"
-            
-            //completionNotification()
             return [completionAction]
-        } else {
-        //orientation is left, delete
+        } else if orientation == .left {
+            //orientation is left, delete
             let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
                 print("delete")
-            // handle action by updating model with deletion
+                // handle action by updating model with deletion
             }
-        // customize the action appearance
+            // customize the action appearance
             deleteAction.title = "delete bish"
-        
+            
             return [deleteAction]
+        } else {
+            return []
         }
-        
     }
     
     func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
@@ -237,14 +242,57 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         return options
     }
     
-    func completionNotification() {
-        let announcement = Announcement(title: "Yay for completing your goal!!")
-        Whisper.show(shout: announcement, to: self) {
-            print("yay")
+    func completionNotification(goal: PFObject) {
+        let announcement = Announcement(title: "Congratulations on completing your goal!")
+        Whisper.show(shout: announcement, to: self) { }
+        //send this goal as an update back to the database, to feed view controller
+        var data: [String: Any] = [:]
+        data["text"] = "person completed a goal!!"
+        data["goalId"] = goal.objectId
+        data["goalTitle"] = goal["title"]
+        data["goalDate"] = goal.createdAt
+        
+        let updateDate = Date()
+        let formatter  = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let currentDateString = formatter.string(from: updateDate)
+        let dayOfTheWeek = getDayOfWeek(currentDateString)
+        
+        var dateArray = goal["updatesPerDay"] as! [Int]
+        if dayOfTheWeek  == 1 {
+            dateArray[0] += 1
+        } else if dayOfTheWeek  == 2 {
+            dateArray[1] += 1
+        } else if dayOfTheWeek  == 3 {
+            dateArray[2] += 1
+        } else if dayOfTheWeek  == 4 {
+            dateArray[3] += 1
+        } else if dayOfTheWeek  == 5 {
+            dateArray[4] += 1
+        } else if dayOfTheWeek  == 6 {
+            dateArray[5] += 1
+        } else if dayOfTheWeek  == 7 {
+            dateArray[6] += 1
         }
         
-        //pass this goal back to the feed view controller
+        goal["updatesPerDay"] = dateArray
+        goal.saveInBackground()
+        
+        data["type"] = "Complete"
+        
+        Update.createUpdate(data: data)
+        self.delegate?.goalComplete(goal: goal)
     }
+    
+    func getDayOfWeek(_ today:String) -> Int? {
+        let formatter  = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        guard let todayDate = formatter.date(from: today) else { return nil }
+        let myCalendar = Calendar(identifier: .gregorian) //Sunday is 0
+        let weekDay = myCalendar.component(.weekday, from: todayDate)
+        return weekDay - 1
+    }
+    
     
     func profileCell(_ profileCell: ProfileCell, didTap goal: PFObject) {
         performSegue(withIdentifier: "profileToTimeline", sender: goal)

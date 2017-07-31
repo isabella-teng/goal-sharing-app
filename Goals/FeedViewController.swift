@@ -12,13 +12,15 @@ import ParseUI
 import Whisper
 import BubbleTransition
 
-class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate, DidPostUpdateDelegate, UIViewControllerTransitioningDelegate {
+class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate, DidPostUpdateDelegate, UIViewControllerTransitioningDelegate, GoalCompletionDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
     var updates: [PFObject] = []
     var usersObjectArray: [PFUser] = []
     var didPostUpdate: Bool = false
+    
+    var completedGoal: PFObject? = nil
     
     let transition = BubbleTransition()
     @IBOutlet weak var goalMenuButton: UIBarButtonItem!
@@ -77,6 +79,13 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return transition
     }
     
+    //Place completed goal at top of feed
+    func goalComplete(goal: PFObject) {
+        print("hallo")
+        print(goal)
+        updates.insert(goal, at: 0)
+        self.tableView.reloadData()
+    }
  
     
     // Return amount of tableView cells
@@ -93,7 +102,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         return cell
     }
-    
     
     // Control segues
     func feedCell(_ feedCell: FeedCell, didTap update: PFObject, tappedComment: Bool, tappedCamera: Bool, tappedUser: PFUser?) {
@@ -130,6 +138,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     // Return user to feed after posting update
     @IBAction func backFromVC3(segue: UIStoryboardSegue) { }
+    
+    //Return user to feed after completing a goal
+    @IBAction func goalBackfromProfile(segue: UIStoryboardSegue) {}
     
     
     override func didReceiveMemoryWarning() {
