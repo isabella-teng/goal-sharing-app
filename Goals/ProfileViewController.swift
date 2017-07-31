@@ -31,6 +31,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var goalSelection: UISegmentedControl!
     
+    
     var user: PFUser? = nil
     var allUserPosts: [PFObject]? = []
     var fromFeed: Bool = false
@@ -87,14 +88,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         profileIcon.layer.cornerRadius = 35
     }
     
-    
     @IBAction func onSegmentedSwitch(_ sender: Any) {
         viewDidAppear(true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         if goalSelection.selectedSegmentIndex == 0 {
-            //print("entered")
             Goal.fetchGoalsByCompletion(user: user!, isCompleted: false, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
                 if error == nil {
                     self.allUserPosts = loadedGoals!
@@ -250,7 +249,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             completionAction.title = "Complete Goal?"
             return [completionAction]
         } else if orientation == .left {
-        //orientation is left, delete
+            //orientation is left, delete
             let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
                 
                 
@@ -280,6 +279,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 //            } else {
 //                return []
 //            }
+
             return [deleteAction]
         } else {
             return []
@@ -309,10 +309,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func completionNotification(goal: PFObject) {
-        let announcement = Announcement(title: "Yay for completing your goal!!")
-        Whisper.show(shout: announcement, to: self) {
-            print("yay")
-        }
+        let announcement = Announcement(title: "Congratulations on completing your goal!")
+        Whisper.show(shout: announcement, to: self) { }
         //send this goal as an update back to the database, to feed view controller
         var data: [String: Any] = [:]
         data["text"] = "person completed a goal!!"
@@ -360,12 +358,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let weekDay = myCalendar.component(.weekday, from: todayDate)
         return weekDay - 1
     }
-
+    
     
     func profileCell(_ profileCell: ProfileCell, didTap goal: PFObject) {
-    performSegue(withIdentifier: "profileToTimeline", sender: goal)
-
-        
+        performSegue(withIdentifier: "profileToTimeline", sender: goal)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
