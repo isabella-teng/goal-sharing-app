@@ -132,10 +132,12 @@ class Goal: NSObject {
         let query = PFQuery(className: "Goal")
         
         query.order(byDescending: "createdAt")
+        query.includeKey("author")
         query.whereKey("categories", equalTo: category as Any)
         
         query.findObjectsInBackground { (loadedGoals: [PFObject]?, error:Error?) in
             if error == nil {
+                print(loadedGoals)
                 completion(loadedGoals, nil)
             } else {
                 completion(nil, error)
@@ -157,6 +159,21 @@ class Goal: NSObject {
                 completion(loadedGoals, nil)
             } else {
                 completion(nil, error)
+            }
+        }
+    }
+    
+    //delete goal by id
+    class func deleteGoalWithId(id: String) {
+        let query = PFQuery(className: "Goal")
+        query.whereKey("objectId", equalTo: id as Any)
+        
+        query.getObjectInBackground(withId: id) { (loadedGoal: PFObject?, error: Error?) in
+            if error == nil {
+                loadedGoal?.deleteInBackground()
+                print("deleted goal?")
+            } else {
+                print(error?.localizedDescription)
             }
         }
     }

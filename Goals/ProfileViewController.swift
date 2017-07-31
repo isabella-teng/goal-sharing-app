@@ -41,7 +41,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var defaultOptions = SwipeTableOptions()
     var isSwipeRightEnabled = true
-    
+    //var buttonDisplayMode: ButtonDisplayMode = .titleAndImage
     var buttonStyle: ButtonStyle = .backgroundColor
     
     
@@ -197,40 +197,106 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     
+    //Action buttons
+//    @IBAction func moreTapped(_ sender: Any) {
+//        let controller = UIAlertController(title: "Swipe Transition Style", message: nil, preferredStyle: .actionSheet)
+//        controller.addAction(UIAlertAction(title: "Border", style: .default, handler: { _ in self.defaultOptions.transitionStyle = .border }))
+//        controller.addAction(UIAlertAction(title: "Drag", style: .default, handler: { _ in self.defaultOptions.transitionStyle = .drag }))
+//        controller.addAction(UIAlertAction(title: "Reveal", style: .default, handler: { _ in self.defaultOptions.transitionStyle = .reveal }))
+//        controller.addAction(UIAlertAction(title: "\(isSwipeRightEnabled ? "Disable" : "Enable") Swipe Right", style: .default, handler: { _ in self.isSwipeRightEnabled = !self.isSwipeRightEnabled }))
+//        //controller.addAction(UIAlertAction(title: "Button Display Mode", style: .default, handler: { _ in self.buttonDisplayModeTapped() }))
+//        controller.addAction(UIAlertAction(title: "Button Style", style: .default, handler: { _ in self.buttonStyleTapped() }))
+//        controller.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//        present(controller, animated: true, completion: nil)
+//    }
+//    
+////    func buttonDisplayModeTapped() {
+////        let controller = UIAlertController(title: "Button Display Mode", message: nil, preferredStyle: .actionSheet)
+////        controller.addAction(UIAlertAction(title: "Image + Title", style: .default, handler: { _ in self.buttonDisplayModeTapped = .titleAndImage }))
+////        controller.addAction(UIAlertAction(title: "Image Only", style: .default, handler: { _ in self.buttonDisplayMode = .imageOnly }))
+////        controller.addAction(UIAlertAction(title: "Title Only", style: .default, handler: { _ in self.buttonDisplayMode = .titleOnly }))
+////        controller.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+////        present(controller, animated: true, completion: nil)
+////    }
+//    
+//    func buttonStyleTapped() {
+//        let controller = UIAlertController(title: "Button Style", message: nil, preferredStyle: .actionSheet)
+//        controller.addAction(UIAlertAction(title: "Background Color", style: .default, handler: { _ in
+//            self.buttonStyle = .backgroundColor
+//            self.defaultOptions.transitionStyle = .border
+//        }))
+//        controller.addAction(UIAlertAction(title: "Circular", style: .default, handler: { _ in
+//            self.buttonStyle = .circular
+//            self.defaultOptions.transitionStyle = .reveal
+//        }))
+//        controller.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//        present(controller, animated: true, completion: nil)
+//        
+//    }
+
+
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         if orientation == .right && allUserPosts![indexPath.row]["isCompleted"] as! Bool == false {
-            let completionAction = SwipeAction(style: .default, title: "Complete Goal") { action, indexPath in
-                // handle action by updating model with completion
-                let current = self.allUserPosts![indexPath.row]
+            let completionAction = SwipeAction(style: .default, title: "Complete Goal?") { action, indexPath in
+            // handle action by updating model with completion
+                self.allUserPosts![indexPath.row]["isCompleted"] = true
+                self.allUserPosts![indexPath.row].saveInBackground()
+                self.viewDidAppear(true)
                 self.completionNotification(goal: self.allUserPosts![indexPath.row])
-                self.allUserPosts?.remove(at: indexPath.row)
-                tableView.reloadData()
-                current["isCompleted"] = true
-                current.saveInBackground()
+                self.tableView.reloadData()
             }
             completionAction.backgroundColor = UIColor.purple
-            completionAction.title = "Complete"
+            completionAction.title = "Complete Goal?"
             return [completionAction]
         } else if orientation == .left {
             //orientation is left, delete
             let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-                print("delete")
-                // handle action by updating model with deletion
+                
+                
+                //TODO: add alert controller before deleting
+                let currentIndex = indexPath.row
+                var deleteGoal = self.allUserPosts![currentIndex]
+                self.allUserPosts!.remove(at: indexPath.row)
+                print(deleteGoal)
+                self.goalDeletionfromDatabase(goal: deleteGoal)
+                print(self.allUserPosts)
             }
-            // customize the action appearance
-            deleteAction.title = "delete bish"
+            deleteAction.title = "Delete Goal?"
             
+            //var confirmedDeletion: Bool = false
+            
+//            let alertController = UIAlertController(title: "Delete Goal?", message: "Confirm deletion?", preferredStyle: .alert)
+//            let okAction = UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+//                confirmedDeletion = true
+//            })
+//            let cancelAction = UIAlertAction(title: "No", style: .default, handler: nil)
+//            alertController.addAction(okAction)
+//            alertController.addAction(cancelAction)
+//            self.present(alertController, animated: true)
+//            
+//            if confirmedDeletion {
+//                return [deleteAction]
+//            } else {
+//                return []
+//            }
+
             return [deleteAction]
         } else {
             return []
         }
     }
     
+    func goalDeletionfromDatabase(goal: PFObject) {
+        let announcement = Announcement(title: "You've deleted your goal")
+        Whisper.show(shout: announcement, to: self)
+        Update.deleteUpdatesByGoal(goalId: goal.objectId!)
+        Goal.deleteGoalWithId(id: goal.objectId!)
+    }
+    
     func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
-        print("entered bish")
         var options = SwipeTableOptions()
         options.expansionStyle = orientation == .right ? .selection : .destructive
-        options.transitionStyle = defaultOptions.transitionStyle
+        options.transitionStyle = .border
         
         switch buttonStyle {
         case .backgroundColor:

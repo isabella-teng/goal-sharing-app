@@ -173,5 +173,21 @@ class Update: NSObject {
         }
     }
     
+    //Delete updates by goal
+    class func deleteUpdatesByGoal(goalId: String) {
+        let query = PFQuery(className: "Update")
+        query.whereKey("goalId", equalTo: goalId as Any)
+        
+        query.findObjectsInBackground { (loadedUpdates: [PFObject]?, error: Error?) in
+            if error == nil {
+                for update in loadedUpdates! {
+                    update.deleteInBackground()
+                }
+            } else {
+                print(error?.localizedDescription)
+            }
+        }
+    }
+    
 
 }
