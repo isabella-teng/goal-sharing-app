@@ -388,7 +388,7 @@
 				TargetAttributes = {
 					FACF12971F15476200D505FE = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 3JE575EG34;
+						DevelopmentTeam = NF7K8Y2LMW;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -786,10 +786,10 @@
 			baseConfigurationReference = 1FCD39C47ED1A6703B4F8F14 /* Pods-Goals.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3JE575EG34;
+				DEVELOPMENT_TEAM = NF7K8Y2LMW;
 				INFOPLIST_FILE = Goals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Gerardo.com.Goals;
+				PRODUCT_BUNDLE_IDENTIFIER = Isabella.com.Goalsaf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -800,10 +800,10 @@
 			baseConfigurationReference = CF3584AB59D862ECDED6FA78 /* Pods-Goals.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3JE575EG34;
+				DEVELOPMENT_TEAM = NF7K8Y2LMW;
 				INFOPLIST_FILE = Goals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Gerardo.com.Goals;
+				PRODUCT_BUNDLE_IDENTIFIER = Isabella.com.Goalsaf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

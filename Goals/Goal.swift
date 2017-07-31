@@ -132,10 +132,12 @@ class Goal: NSObject {
         let query = PFQuery(className: "Goal")
         
         query.order(byDescending: "createdAt")
+        query.includeKey("author")
         query.whereKey("categories", equalTo: category as Any)
         
         query.findObjectsInBackground { (loadedGoals: [PFObject]?, error:Error?) in
             if error == nil {
+                print(loadedGoals)
                 completion(loadedGoals, nil)
             } else {
                 completion(nil, error)
