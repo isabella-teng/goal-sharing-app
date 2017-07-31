@@ -95,7 +95,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidAppear(_ animated: Bool) {
         if goalSelection.selectedSegmentIndex == 0 {
             //print("entered")
-            Goal.fetchGoalsByCompletion(user: PFUser.current()!, isCompleted: false, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
+            Goal.fetchGoalsByCompletion(user: user!, isCompleted: false, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
                 if error == nil {
                     self.allUserPosts = loadedGoals!
                     self.tableView.reloadData()
@@ -104,7 +104,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
             })
         } else {
-            Goal.fetchGoalsByCompletion(user: PFUser.current()!, isCompleted: true, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
+            Goal.fetchGoalsByCompletion(user: user!, isCompleted: true, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
                 if error == nil {
                     self.allUserPosts = loadedGoals!
                     self.tableView.reloadData()
@@ -199,7 +199,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        if orientation == .right {
+        if orientation == .right && allUserPosts![indexPath.row]["isCompleted"] as! Bool == false {
             let completionAction = SwipeAction(style: .default, title: "Complete Goal") { action, indexPath in
             // handle action by updating model with completion
                 print("Completed goal")
@@ -212,7 +212,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             completionAction.backgroundColor = UIColor.purple
             completionAction.title = "Complete"
             return [completionAction]
-        } else {
+        } else if orientation == .left {
         //orientation is left, delete
             let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
                 print("delete")
@@ -222,8 +222,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             deleteAction.title = "delete bish"
         
             return [deleteAction]
+        } else {
+            return []
         }
-        
     }
     
     func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
