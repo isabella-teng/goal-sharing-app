@@ -92,8 +92,8 @@ class IndicatorView: UIView {
         didSet { setNeedsDisplay() }
     }
     
-    override func draw(_ rect: CGRect) {
-        color.set()
-        UIBezierPath(ovalIn: rect).fill()
-    }
+//    override func draw(_ rect: CGRect) {
+//        color.set()
+//        UIBezierPath(ovalIn: rect).fill()
+//    }
 }
