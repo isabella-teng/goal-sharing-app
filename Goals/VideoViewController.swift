@@ -50,33 +50,37 @@ class VideoViewController: UIViewController {
         playerController!.view.frame = view.frame
         NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidReachEnd), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player!.currentItem)
         
-        let cancelButton = UIButton(frame: CGRect(x: 10.0, y: 10.0, width: 30.0, height: 30.0))
-        cancelButton.setImage(#imageLiteral(resourceName: "cancel"), for: UIControlState())
+        
+        let origImage = #imageLiteral(resourceName: "cross-filled")
+        let tintedImage = origImage.withRenderingMode(.alwaysTemplate)
+        let cancelButton = UIButton(frame: CGRect(x: 10.0, y: 20.0, width: 45.0, height: 45.0))
+        cancelButton.imageView?.contentMode = UIViewContentMode.scaleAspectFill
+        cancelButton.setImage(tintedImage, for: UIControlState())
+        cancelButton.tintColor = UIColor.white
         cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         view.addSubview(cancelButton)
         
-        let test = CGFloat((view.frame.width - (view.frame.width / 2 + 37.5)) + ((view.frame.width / 2) - 37.5) - 9.0)
-        let editButton = UIButton(frame: CGRect(x: test, y: view.frame.height - 77.5, width: 32.0, height: 32.0))
-        editButton.setImage(#imageLiteral(resourceName: "edit"), for: UIControlState())
+        let editButton = UIButton(frame: CGRect(x: 0, y: view.frame.height - 65, width: view.frame.width, height: 65))
+        editButton.setTitle("Add a caption", for: UIControlState())
+        editButton.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 22)
+        editButton.backgroundColor = UIColor(red: 0.60, green: 0.40, blue: 0.70, alpha: 1.0)
         editButton.addTarget(self, action: #selector(edit), for: .touchUpInside)
         view.addSubview(editButton)
-
-
     }
-    
-    func edit() {
-        let newVC: UIViewController = AddCaptionViewController(mediaInfo: videoURL, update: currentUpdate!, mediaType: "video")
-        self.present(newVC, animated: true, completion: nil)
-    }
-
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         player?.play()
     }
     
+    
+    func edit() {
+        let newVC: UIViewController = AddCaptionViewController(mediaInfo: videoURL, update: currentUpdate!, mediaType: "video")
+        self.present(newVC, animated: true, completion: nil)
+    }
+    
     func cancel() {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: false, completion: nil)
     }
     
     @objc fileprivate func playerItemDidReachEnd(_ notification: Notification) {
@@ -88,5 +92,12 @@ class VideoViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! AddCaptionViewController
+        vc.media = "video"
+        vc.savedMedia = videoURL
+        vc.currentUpdate = currentUpdate!
     }
 }

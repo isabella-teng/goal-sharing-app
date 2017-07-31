@@ -20,6 +20,7 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var cellBackground: UIView!
+    @IBOutlet weak var updateImage: UIImageView!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var favoriteCount: UILabel!
     @IBOutlet weak var commentButton: UIButton!
@@ -31,6 +32,10 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var goalCellBg: UIView!
     @IBOutlet weak var goalCellEdges: UIView!
     @IBOutlet weak var interactionBackground: UIView!
+    
+    @IBOutlet weak var updateImageHeight: NSLayoutConstraint!
+    @IBOutlet weak var goalCellMargin: NSLayoutConstraint!
+    
     
     var author: PFUser? = nil
     var update: PFObject! {
@@ -46,6 +51,20 @@ class FeedCell: UITableViewCell {
                         self.userProfPic.image = profImage
                     }
                 }
+            }
+            
+            if let picture = update["image"] as? PFFile {
+                updateImageHeight.constant = 200
+                goalCellMargin.constant = 15
+                picture.getDataInBackground(block: { (data: Data?, error: Error?) in
+                    if error == nil {
+                        let image = UIImage(data: data!)
+                        self.updateImage.image = image
+                    }
+                })
+            } else {
+                updateImageHeight.constant = 0
+                goalCellMargin.constant = 0
             }
 
             self.goalTitleLabel.text = update["goalTitle"] as? String
@@ -162,7 +181,7 @@ class FeedCell: UITableViewCell {
         goalCellBg.layer.cornerRadius = 10
         interactionBackground.layer.cornerRadius = 10
         userProfPic.layer.cornerRadius = 20
-        userProfPic.clipsToBounds = true
+        updateImage.layer.cornerRadius = 10
     }
     
     

@@ -15,13 +15,16 @@ protocol DidPostUpdateDelegate: class {
     func postedUpdate(sentUpdate: Bool)
 }
 
-class PostUpdateViewController: UIViewController, UITextViewDelegate {
+class PostUpdateViewController: UIViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var updateTextView: RSKPlaceholderTextView? = nil
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var typeControl: UISegmentedControl!
+    @IBOutlet weak var newPostImage: UIImageView!
+    @IBOutlet weak var imageButton: UIButton!
 
     var currentGoal: PFObject?
+    let border = UIView(frame: CGRect(x: 70, y: 100, width: 1, height: 100))
     
     weak var delegate: DidPostUpdateDelegate?
     
@@ -29,17 +32,71 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         
         // Placeholder TextView
-        self.updateTextView = RSKPlaceholderTextView(frame: CGRect(x: 16, y: 69, width: self.view.frame.width - 32, height: 122))
+        self.updateTextView = RSKPlaceholderTextView(frame: CGRect(x: 80, y: 80, width: self.view.frame.width - 95, height: 120))
         self.updateTextView?.placeholder = "What's your update?"
         self.view.addSubview(self.updateTextView!)
         self.updateTextView?.becomeFirstResponder()
         self.updateTextView?.font = UIFont (name: "HelveticaNeue-Light", size: 22)
         
-        //create calendar (where to?)
+        border.backgroundColor = UIColor.lightGray
+        self.view.addSubview(border)
 
-        postButton.layer.cornerRadius = postButton.frame.height / 2
-    
+        postButton.layer.cornerRadius = 5
+        newPostImage.layer.cornerRadius = 10
     }
+    
+    
+    @IBAction func didTapImageButton(_ sender: Any) {
+        // Instantiate UIImagePickerController
+        let vc = UIImagePickerController()
+        vc.delegate = self
+        vc.allowsEditing = true
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: {
+            action in
+            vc.sourceType = .camera
+            self.present(vc, animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: {
+            action in
+            vc.sourceType = .photoLibrary
+            self.present(vc, animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    // Select image
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [String : Any]) {
+        // Get the image captured by the UIImagePickerController
+        let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
+        
+        imageButton.isHidden = true
+        border.isHidden = true
+        updateTextView?.frame = CGRect(x: (updateTextView?.frame.origin.x)! + 30, y: (updateTextView?.frame.origin.y)!, width: (updateTextView?.frame.width)!, height: (updateTextView?.frame.height)!)
+        newPostImage.image = editedImage
+        
+        // Dismiss UIImagePickerController to go back to your original view controller
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // Resize image
+    func resize(image: UIImage, newSize: CGSize) -> UIImage {
+        let zero: CGPoint = CGPoint(x: 0, y: 0)
+        let resizeImageView = UIImageView(frame: CGRect(origin: zero, size: newSize))
+        resizeImageView.contentMode = UIViewContentMode.scaleAspectFill
+        resizeImageView.image = image
+        
+        UIGraphicsBeginImageContext(resizeImageView.frame.size)
+        resizeImageView.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
+
+    
 
     @IBAction func didTapCancel(_ sender: Any) {
         self.view.endEditing(true)
@@ -63,6 +120,9 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate {
             data["goalId"] = currentGoal?.objectId
             data["goalTitle"] = currentGoal!["title"]
             data["goalDate"] = currentGoal?.createdAt
+            if newPostImage.image != nil {
+                data["image"] = Update.getPFFileFromImage(image: newPostImage.image)
+            }
             
             let updateDate = Date()
             let formatter  = DateFormatter()
