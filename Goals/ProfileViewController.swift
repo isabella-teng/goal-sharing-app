@@ -243,9 +243,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             print("yay")
         }
         
-        //hide(whisperFrom: navigationController!, after: 3)
-        print("woohooo")
-
+        //pass this goal back to the feed view controller
     }
     
     func profileCell(_ profileCell: ProfileCell, didTap goal: PFObject) {
