@@ -259,7 +259,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.allUserPosts!.remove(at: indexPath.row)
                 print(deleteGoal)
                 self.goalDeletionfromDatabase(goal: deleteGoal)
-                print(self.allUserPosts)
+                print(self.allUserPosts as Any)
             }
             deleteAction.title = "Delete Goal?"
             
