@@ -27,7 +27,6 @@ class ProfileCell: SwipeTableViewCell {
             titleLabel.text = goal["title"] as? String
             
             let category = goal["categories"] as! String
-            print(category)
             if category == "Education" {
                 cellBackground.backgroundColor = UIColor(red: 0.95, green: 0.45, blue: 0.45, alpha: 1.0)
             } else if category == "Money" {

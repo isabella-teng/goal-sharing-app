@@ -31,6 +31,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var goalSelection: UISegmentedControl!
     
+    
     var user: PFUser? = nil
     var allUserPosts: [PFObject]? = []
     var fromFeed: Bool = false
@@ -87,14 +88,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         profileIcon.layer.cornerRadius = 35
     }
     
-    
     @IBAction func onSegmentedSwitch(_ sender: Any) {
         viewDidAppear(true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         if goalSelection.selectedSegmentIndex == 0 {
-            //print("entered")
             Goal.fetchGoalsByCompletion(user: user!, isCompleted: false, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
                 if error == nil {
                     self.allUserPosts = loadedGoals!
@@ -197,30 +196,30 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         if orientation == .right && allUserPosts![indexPath.row]["isCompleted"] as! Bool == false {
             let completionAction = SwipeAction(style: .default, title: "Complete Goal") { action, indexPath in
-            // handle action by updating model with completion
-                print("Completed goal")
-                self.allUserPosts![indexPath.row]["isCompleted"] = true
-                self.allUserPosts![indexPath.row].saveInBackground()
-                self.viewDidAppear(true)
+                // handle action by updating model with completion
+                let current = self.allUserPosts![indexPath.row]
                 self.completionNotification(goal: self.allUserPosts![indexPath.row])
+                self.allUserPosts?.remove(at: indexPath.row)
                 tableView.reloadData()
+                current["isCompleted"] = true
+                current.saveInBackground()
             }
             completionAction.backgroundColor = UIColor.purple
             completionAction.title = "Complete"
             return [completionAction]
         } else if orientation == .left {
-        //orientation is left, delete
+            //orientation is left, delete
             let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
                 print("delete")
-            // handle action by updating model with deletion
+                // handle action by updating model with deletion
             }
-        // customize the action appearance
+            // customize the action appearance
             deleteAction.title = "delete bish"
-        
+            
             return [deleteAction]
         } else {
             return []
@@ -244,10 +243,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func completionNotification(goal: PFObject) {
-        let announcement = Announcement(title: "Yay for completing your goal!!")
-        Whisper.show(shout: announcement, to: self) {
-            print("yay")
-        }
+        let announcement = Announcement(title: "Congratulations on completing your goal!")
+        Whisper.show(shout: announcement, to: self) { }
         //send this goal as an update back to the database, to feed view controller
         var data: [String: Any] = [:]
         data["text"] = "person completed a goal!!"
@@ -295,12 +292,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let weekDay = myCalendar.component(.weekday, from: todayDate)
         return weekDay - 1
     }
-
+    
     
     func profileCell(_ profileCell: ProfileCell, didTap goal: PFObject) {
-    performSegue(withIdentifier: "profileToTimeline", sender: goal)
-
-        
+        performSegue(withIdentifier: "profileToTimeline", sender: goal)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
