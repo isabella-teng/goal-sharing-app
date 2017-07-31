@@ -160,6 +160,21 @@ class Goal: NSObject {
             }
         }
     }
+    
+    //delete goal by id
+    class func deleteGoalWithId(id: String) {
+        let query = PFQuery(className: "Goal")
+        query.whereKey("objectId", equalTo: id as Any)
+        
+        query.getObjectInBackground(withId: id) { (loadedGoal: PFObject?, error: Error?) in
+            if error == nil {
+                loadedGoal?.deleteInBackground()
+                print("deleted goal?")
+            } else {
+                print(error?.localizedDescription)
+            }
+        }
+    }
 
     
 }
