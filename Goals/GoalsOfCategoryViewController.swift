@@ -21,13 +21,14 @@ class GoalsOfCategoryViewController: UIViewController, UITableViewDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(goalCategory)
-        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
         Goal.fetchGoalsByCategory(category: goalCategory) { (loadedGoals:[PFObject]?, error: Error?) in
             if error == nil {
                 self.goals = loadedGoals!
@@ -35,9 +36,10 @@ class GoalsOfCategoryViewController: UIViewController, UITableViewDelegate, UITa
             } else {
                 print(error?.localizedDescription as Any)
             }
-        
+            
         }
     }
+    
     
     func goalCategoryCell(_ goalCategoryCell: GoalCategoryCell, didTap goal: PFObject) {
         performSegue(withIdentifier: "goalSearchtoTimelineSegue", sender: goal)

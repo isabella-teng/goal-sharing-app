@@ -71,12 +71,12 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate, UIImagePic
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [String : Any]) {
         // Get the image captured by the UIImagePickerController
-        let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
+        let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         
         imageButton.isHidden = true
         border.isHidden = true
         updateTextView?.frame = CGRect(x: (updateTextView?.frame.origin.x)! + 30, y: (updateTextView?.frame.origin.y)!, width: (updateTextView?.frame.width)!, height: (updateTextView?.frame.height)!)
-        newPostImage.image = editedImage
+        newPostImage.image = originalImage
         
         // Dismiss UIImagePickerController to go back to your original view controller
         dismiss(animated: true, completion: nil)

@@ -137,18 +137,27 @@ class FeedCell: UITableViewCell {
         let currentUser = PFUser.current()
         var likesArray = update["likes"] as! [PFUser]
         
-        if !liked {
-            favoriteButton.isSelected = true
-            update.incrementKey("likeCount", byAmount: 1)
-            liked = true
-            update["liked"] = true
-            likesArray.append(currentUser!)
+        if !liked && (PFUser.current() != nil){
+            if favoriteButton.isSelected == false {
+                favoriteButton.isSelected = true
+                update.incrementKey("likeCount", byAmount: 1)
+                liked = true
+                update["liked"] = true
+                likesArray.append(currentUser!)
+                print("Liked")
+            }
+//            favoriteButton.isSelected = true
+//            update.incrementKey("likeCount", byAmount: 1)
+//            liked = true
+//            update["liked"] = true
+//            likesArray.append(currentUser!)
         } else {
             favoriteButton.isSelected = false
             update.incrementKey("likeCount", byAmount: -1)
             liked = false
             update["liked"] = false
             likesArray = likesArray.filter { $0 != PFUser.current() }
+            print("UnLiked")
         }
         
         favoriteCount.text = String(describing: update["likeCount"]!)
