@@ -16,6 +16,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+//    @IBOutlet weak var repeatPasswordField: UITextField!
     @IBOutlet weak var imageButton: UIButton!
     
     
@@ -101,9 +102,27 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         user?["bio"] = bioField.text
         user?["username"] = usernameField.text
+
         if passwordField.text != "" && passwordField.text != nil{
             user?.password = passwordField.text
         }
+
+//        if (passwordField.text?.isEmpty)! || passwordField.text != repeatPasswordField.text {
+//            var myAlert = UIAlertController(title: "Alert", message: "Passwords do not match", preferredStyle: UIAlertControllerStyle.alert);
+//            
+//            let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil)
+//            myAlert.addAction(okAction);
+//            self.present(myAlert, animated: true, completion: nil)
+//            return;
+//        }
+//        
+//        if (passwordField.text != nil) {
+//            
+//            let userPassword = passwordField.text
+//            user?.password = userPassword
+//            
+//        }
+        
         user?.saveInBackground()
         
         self.dismiss(animated: true, completion: nil)

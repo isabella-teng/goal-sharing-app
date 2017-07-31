@@ -388,6 +388,7 @@
 				TargetAttributes = {
 					FACF12971F15476200D505FE = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = U253D4MY4D;
 						DevelopmentTeam = 3JE575EG34;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -786,6 +787,7 @@
 			baseConfigurationReference = 1FCD39C47ED1A6703B4F8F14 /* Pods-Goals.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = U253D4MY4D;
 				DEVELOPMENT_TEAM = 3JE575EG34;
 				INFOPLIST_FILE = Goals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -800,6 +802,7 @@
 			baseConfigurationReference = CF3584AB59D862ECDED6FA78 /* Pods-Goals.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = U253D4MY4D;
 				DEVELOPMENT_TEAM = 3JE575EG34;
 				INFOPLIST_FILE = Goals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
