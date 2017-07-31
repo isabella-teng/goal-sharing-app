@@ -86,10 +86,14 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
         filterContentForSearchText(searchText: searchController.searchBar.text!)
     }
     
+    var newUser: PFUser? = nil
     func filterContentForSearchText(searchText: String, scope: String = "All") {
         if (searchType.selectedSegmentIndex == 0) {
             filteredUsers = allUsers.filter({ (user: PFUser) -> Bool in
-                return (user.username?.lowercased().contains(searchText.lowercased()))!
+                user.fetchIfNeededInBackground(block: { (loaded: PFObject?, error: Error?) in
+                    self.newUser = loaded as? PFUser
+                })
+                return (newUser!.username?.lowercased().contains(searchText.lowercased()))!
             })
             tableView.reloadData()
         }
