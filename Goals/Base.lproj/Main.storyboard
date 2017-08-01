@@ -604,7 +604,7 @@
                                     <segue destination="lKG-hx-w8f" kind="presentation" id="lbq-9r-zO0"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UhH-ks-eog" customClass="PFImageView">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default" translatesAutoresizingMaskIntoConstraints="NO" id="UhH-ks-eog" customClass="PFImageView">
                                 <rect key="frame" x="140" y="98" width="95" height="95"/>
                                 <color key="backgroundColor" red="0.52924247558581983" green="0.46170997447153939" blue="0.8257455583593909" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -2152,6 +2152,7 @@
         <image name="ballons" width="1500" height="500"/>
         <image name="comment" width="25" height="25"/>
         <image name="cross" width="25" height="25"/>
+        <image name="default" width="32" height="32"/>
         <image name="explore" width="24" height="24"/>
         <image name="goal-ball" width="24" height="24"/>
         <image name="home" width="25" height="25"/>
@@ -2164,8 +2165,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="7nc-FM-ics"/>
-        <segue reference="jvt-5C-kyF"/>
         <segue reference="Q3w-fk-ISv"/>
+        <segue reference="Mng-1h-zUX"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
