@@ -21,6 +21,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var goalLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var updateButton: UIBarButtonItem!
+    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var favoriteCount: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -31,6 +33,10 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var currentUpdate: PFObject?
     var goal: PFObject?
     var originalPos: CGFloat? = nil
+    var author: PFUser? = nil
+    
+    var likesArray: [PFUser]? = nil
+    var liked = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,10 +73,10 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let author = currentUpdate?["author"] as! PFUser
-        usernameLabel.text = author["username"] as? String
+        author = currentUpdate?["author"] as? PFUser
+        usernameLabel.text = author?["username"] as? String
         
-        if author.objectId != PFUser.current()?.objectId || goal?["isCompleted"] as! Bool == true {
+        if author?.objectId != PFUser.current()?.objectId || goal?["isCompleted"] as! Bool == true {
             updateButton.image = nil
             updateButton.isEnabled = false
         } else {
@@ -79,7 +85,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
         }
         
-        let iconUrl = author["portrait"] as? PFFile
+        let iconUrl = author?["portrait"] as? PFFile
         iconUrl?.getDataInBackground { (image: Data?, error: Error?) in
             if error == nil {
                 self.userIcon.image = UIImage(data: image!)
@@ -94,16 +100,62 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         comments = currentUpdate?["comments"] as! [[String: Any]]
         tableView.reloadData()
-//        Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.onTimer), userInfo: nil, repeats: true)
+        //        Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.onTimer), userInfo: nil, repeats: true)
         
         let indexPath = IndexPath(row: comments.count, section: 0)
         self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        
+        likesArray = currentUpdate?["likes"] as? [PFUser]
+        
+        let currentLikeCount = currentUpdate?["likeCount"] as! Int
+        self.favoriteCount.text = String(currentLikeCount)
+        
+        if isLiked() {
+            self.favoriteButton.isSelected = true
+            liked = true
+        } else {
+            self.favoriteButton.isSelected = false
+            liked = false
+        }
     }
     
-//    func onTimer() {
-//        comments = currentUpdate?["comments"] as! [[String: Any]]
-//        tableView.reloadData()
-//    }
+    
+    func isLiked() -> Bool {
+        for liker in likesArray! {
+            if PFUser.current()?.objectId! == liker.objectId {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func removeLike() {
+        for (index, liker) in likesArray!.enumerated() {
+            if PFUser.current()?.objectId == liker.objectId {
+                likesArray?.remove(at: index)
+            }
+        }
+    }
+    
+    @IBAction func onFavorite(_ sender: Any) {
+        if liked {
+            favoriteButton.isSelected = false
+            currentUpdate?.incrementKey("likeCount", byAmount: -1)
+            liked = false
+            removeLike()
+        } else {
+            favoriteButton.isSelected = true
+            currentUpdate?.incrementKey("likeCount", byAmount: 1)
+            liked = true
+            likesArray!.append(PFUser.current()!)
+        }
+        
+        favoriteCount.text = String(currentUpdate?["likeCount"] as! Int)
+        
+        currentUpdate?["likes"] = likesArray
+        currentUpdate?.saveInBackground()
+    }
+    
     
     @IBAction func didTapScreen(_ sender: Any) {
         self.view.endEditing(true)
@@ -120,7 +172,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == comments.count { 
+        if indexPath.row == comments.count {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCommentCell", for: indexPath) as! DetailCommentCell
             
             cell.update = currentUpdate
@@ -158,7 +210,12 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc = segue.destination as! PostUpdateViewController
-        vc.currentGoal = goal
+        if segue.identifier == "updateDetailSegue" {
+            let vc = segue.destination as! PostUpdateViewController
+            vc.currentGoal = goal
+        } else if segue.identifier == "snapDetailSegue" {
+            let vc = segue.destination as! CameraViewController
+            vc.currentUpdate = currentUpdate!
+        }
     }
 }
