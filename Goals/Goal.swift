@@ -68,6 +68,9 @@ class Goal: NSObject {
                 updateData["type"] = "initialGoalNoType"
                 updateData["goalDate"] = goal.createdAt
                 
+                // TODO: Change to a goal creation image?
+                updateData["image"] = NSNull()
+                
                 Update.createUpdate(data: updateData)
             }
         }
@@ -137,7 +140,7 @@ class Goal: NSObject {
         
         query.findObjectsInBackground { (loadedGoals: [PFObject]?, error:Error?) in
             if error == nil {
-                print(loadedGoals)
+                print(loadedGoals as Any)
                 completion(loadedGoals, nil)
             } else {
                 completion(nil, error)
@@ -173,7 +176,7 @@ class Goal: NSObject {
                 loadedGoal?.deleteInBackground()
                 print("deleted goal?")
             } else {
-                print(error?.localizedDescription)
+                print(error?.localizedDescription as Any)
             }
         }
     }

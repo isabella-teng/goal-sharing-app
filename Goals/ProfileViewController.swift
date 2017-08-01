@@ -12,9 +12,9 @@ import ParseUI
 import SwipeCellKit
 import Whisper
 
-protocol GoalCompletionDelegate: class {
-    func goalComplete(goal: PFObject)
-}
+//protocol GoalCompletionDelegate: class {
+//    func goalComplete(goal: PFObject)
+//}
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ProfileCellDelegate, SwipeTableViewCellDelegate {
     
@@ -29,6 +29,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var followUserButton: UIButton!
     
+    @IBOutlet weak var myWeek: UIButton!
     @IBOutlet weak var goalSelection: UISegmentedControl!
     
     
@@ -37,7 +38,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var fromFeed: Bool = false
     var isFollowing: Bool = false
     
-    weak var delegate: GoalCompletionDelegate?
+    //weak var delegate: GoalCompletionDelegate?
     
     var defaultOptions = SwipeTableOptions()
     var isSwipeRightEnabled = true
@@ -47,6 +48,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        myWeek.isHidden = true
         
         // Set up tableView
         tableView.dataSource = self
@@ -92,6 +95,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         viewDidAppear(true)
     }
     
+    //todo: fix and don't need to fetch everytime
     override func viewDidAppear(_ animated: Bool) {
         if goalSelection.selectedSegmentIndex == 0 {
             Goal.fetchGoalsByCompletion(user: user!, isCompleted: false, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
@@ -239,11 +243,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if orientation == .right && allUserPosts![indexPath.row]["isCompleted"] as! Bool == false {
             let completionAction = SwipeAction(style: .default, title: "Complete Goal?") { action, indexPath in
             // handle action by updating model with completion
-                self.allUserPosts![indexPath.row]["isCompleted"] = true
-                self.allUserPosts![indexPath.row].saveInBackground()
-                self.viewDidAppear(true)
+                let current = self.allUserPosts![indexPath.row]
                 self.completionNotification(goal: self.allUserPosts![indexPath.row])
-                self.tableView.reloadData()
+                self.allUserPosts?.remove(at: indexPath.row)
+                tableView.reloadData()
+                current["isCompleted"] = true
+                current.saveInBackground()
             }
             completionAction.backgroundColor = UIColor.purple
             completionAction.title = "Complete Goal?"
@@ -255,11 +260,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
                 //TODO: add alert controller before deleting
                 let currentIndex = indexPath.row
-                var deleteGoal = self.allUserPosts![currentIndex]
+                let deleteGoal = self.allUserPosts![currentIndex]
                 self.allUserPosts!.remove(at: indexPath.row)
                 print(deleteGoal)
                 self.goalDeletionfromDatabase(goal: deleteGoal)
-                print(self.allUserPosts)
+                print(self.allUserPosts as Any)
             }
             deleteAction.title = "Delete Goal?"
             
@@ -313,10 +318,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         Whisper.show(shout: announcement, to: self) { }
         //send this goal as an update back to the database, to feed view controller
         var data: [String: Any] = [:]
-        data["text"] = "person completed a goal!!"
+        let username = user?.username!
+        data["text"] = (username?.capitalized)! + " accomplished this goal!"
         data["goalId"] = goal.objectId
         data["goalTitle"] = goal["title"]
         data["goalDate"] = goal.createdAt
+        data["image"] = NSNull()
         
         let updateDate = Date()
         let formatter  = DateFormatter()
@@ -347,7 +354,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         data["type"] = "Complete"
         
         Update.createUpdate(data: data)
-        self.delegate?.goalComplete(goal: goal)
+        //self.delegate?.goalComplete(goal: goal)
     }
     
     func getDayOfWeek(_ today:String) -> Int? {

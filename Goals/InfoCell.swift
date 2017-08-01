@@ -110,6 +110,7 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
         graphView.rightAxis.drawLabelsEnabled = false
         graphView.legend.enabled = false
         graphView.highlightPerTapEnabled = false
+        graphView.dragEnabled = false
         graphView.rightAxis.enabled = false
         graphView.leftAxis.enabled = false
         

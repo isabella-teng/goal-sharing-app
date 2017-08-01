@@ -20,6 +20,7 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var cellBackground: UIView!
+    @IBOutlet weak var updateImage: UIImageView!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var favoriteCount: UILabel!
     @IBOutlet weak var commentButton: UIButton!
@@ -31,6 +32,10 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var goalCellBg: UIView!
     @IBOutlet weak var goalCellEdges: UIView!
     @IBOutlet weak var interactionBackground: UIView!
+    
+    @IBOutlet weak var updateImageHeight: NSLayoutConstraint!
+    @IBOutlet weak var goalCellMargin: NSLayoutConstraint!
+    
     
     var author: PFUser? = nil
     var update: PFObject! {
@@ -46,6 +51,41 @@ class FeedCell: UITableViewCell {
                         self.userProfPic.image = profImage
                     }
                 }
+            }
+            
+            // Change background of cell based on the good or bad update: http://uicolor.xyz/#/rgb-to-ui
+            let typeString = update["type"] as! String
+            if typeString == "positive" {
+                cellBackground.backgroundColor = UIColor(red:0.50, green:0.85, blue:0.60, alpha:1.0)
+                goalCellBg.backgroundColor = UIColor(red: 0.40, green: 0.75, blue: 0.45, alpha: 1.0)
+                goalCellEdges.backgroundColor = goalCellBg.backgroundColor
+            } else if typeString == "negative" {
+                cellBackground.backgroundColor = UIColor(red:0.95, green:0.45, blue:0.45, alpha:1.0)
+                goalCellBg.backgroundColor = UIColor(red: 0.85, green: 0.30, blue: 0.30, alpha: 1.0)
+                goalCellEdges.backgroundColor = goalCellBg.backgroundColor
+            } else if typeString == "Complete" {
+                cellBackground.backgroundColor = UIColor(red:0.99, green:0.67, blue:0.94, alpha:1.0)
+                goalCellBg.backgroundColor = UIColor(red:0.98, green:0.59, blue:0.93, alpha:1.0)
+                goalCellEdges.backgroundColor = goalCellBg.backgroundColor
+                update["image"] = Update.getPFFileFromImage(image: #imageLiteral(resourceName: "ballons"))
+            } else {
+                cellBackground.backgroundColor = UIColor(red: 0.45, green: 0.50, blue: 0.90, alpha: 1.0)
+                goalCellBg.backgroundColor = UIColor(red: 0.35, green: 0.40, blue: 0.70, alpha: 1.0)
+                goalCellEdges.backgroundColor = goalCellBg.backgroundColor
+            }
+            
+            if let picture = update["image"] as? PFFile {
+                updateImageHeight.constant = 200
+                goalCellMargin.constant = 15
+                picture.getDataInBackground(block: { (data: Data?, error: Error?) in
+                    if error == nil {
+                        let image = UIImage(data: data!)
+                        self.updateImage.image = image
+                    }
+                })
+            } else {
+                updateImageHeight.constant = 0
+                goalCellMargin.constant = 0
             }
 
             self.goalTitleLabel.text = update["goalTitle"] as? String
@@ -72,28 +112,6 @@ class FeedCell: UITableViewCell {
                 self.favoriteButton.isSelected = true
             } else {
                 self.favoriteButton.isSelected = false
-            }
-            
-            //change background of cell based on the good or bad update
-            //http://uicolor.xyz/#/rgb-to-ui
-            
-            let typeString = update["type"] as! String
-            if typeString == "positive" {
-                cellBackground.backgroundColor = UIColor(red:0.50, green:0.85, blue:0.60, alpha:1.0)
-                goalCellBg.backgroundColor = UIColor(red: 0.40, green: 0.75, blue: 0.45, alpha: 1.0)
-                goalCellEdges.backgroundColor = goalCellBg.backgroundColor
-            } else if typeString == "negative" {
-                cellBackground.backgroundColor = UIColor(red:0.95, green:0.45, blue:0.45, alpha:1.0)
-                goalCellBg.backgroundColor = UIColor(red: 0.85, green: 0.30, blue: 0.30, alpha: 1.0)
-                goalCellEdges.backgroundColor = goalCellBg.backgroundColor
-            } else if typeString == "Complete" {
-                cellBackground.backgroundColor = UIColor(red:0.99, green:0.67, blue:0.94, alpha:1.0)
-                goalCellBg.backgroundColor = UIColor(red:0.98, green:0.59, blue:0.93, alpha:1.0)
-                goalCellEdges.backgroundColor = goalCellBg.backgroundColor
-            } else {
-                cellBackground.backgroundColor = UIColor(red: 0.45, green: 0.50, blue: 0.90, alpha: 1.0)
-                goalCellBg.backgroundColor = UIColor(red: 0.35, green: 0.40, blue: 0.70, alpha: 1.0)
-                goalCellEdges.backgroundColor = goalCellBg.backgroundColor
             }
         }
     }
@@ -171,7 +189,7 @@ class FeedCell: UITableViewCell {
         goalCellBg.layer.cornerRadius = 10
         interactionBackground.layer.cornerRadius = 10
         userProfPic.layer.cornerRadius = 20
-        userProfPic.clipsToBounds = true
+        updateImage.layer.cornerRadius = 10
     }
     
     

@@ -59,13 +59,7 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     @IBAction func onSegmentedChange(_ sender: Any) {
-//        if searchType.selectedSegmentIndex == 1 {
-//            searchController.searchBar.isHidden = true
-//        } else {
-//            searchController.searchBar.isHidden = false
-//        }
         tableView.reloadData()
-        viewDidAppear(true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -146,6 +140,21 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
             } else {
                 cell.user = allUsers[indexPath.row]
             }
+            
+//            if let profPic = cell.user["portrait"] as? PFFile {
+//                profPic.getDataInBackground{ (imageData: Data?, error: Error?) in
+//                    if error == nil {
+//                        let profImage = UIImage(data: imageData!)
+//                        //self.userProfPic.image = profImage
+//                        cell.userImage = profImage
+//                    }
+//                }
+//            } else { //default image
+//                //userProfPic.image = UIImage(named: "default")
+//                cell.userImage = UIImage(named: "default")
+//            }
+
+            
             cell.delegate = self
             return cell
         } //else {

@@ -12,7 +12,7 @@ import ParseUI
 import Whisper
 import BubbleTransition
 
-class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate, DidPostUpdateDelegate, UIViewControllerTransitioningDelegate, GoalCompletionDelegate {
+class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate, DidPostUpdateDelegate, UIViewControllerTransitioningDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -24,7 +24,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     let transition = BubbleTransition()
     @IBOutlet weak var goalMenuButton: UIBarButtonItem!
-    //TODO: fix the view location
     @IBOutlet weak var barButtonView: UIView!
     
 
@@ -36,15 +35,19 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 180
-    }
-    
-    //TODO: Fix, is not entering
-    func postedUpdate(sentUpdate: Bool) {
-        print("should enter")
-        didPostUpdate = sentUpdate
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
+//        if let presenting = self.presentedViewController as?  PostUpdateViewController {
+//            print("entered!")
+//            didPostUpdate = true
+//            
+//        }
+        
+        print(didPostUpdate)
+        
         // Fetch feed based on followed users
         let usersArray = PFUser.current()?["following"] as! [PFUser]
         Update.fetchUpdatesFromUserArray(userArray: usersArray) { (loadedUpdates: [PFObject]?, error: Error?) in
@@ -61,6 +64,12 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             Whisper.show(whisper: message, to: navigationController!, action: .present)
             hide(whisperFrom: navigationController!, after: 3)
         }
+    }
+    
+    //TODO: Fix, is not entering
+    func postedUpdate(sentUpdate: Bool) {
+        print("should enter")
+        didPostUpdate = sentUpdate
     }
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
@@ -80,12 +89,12 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     //Place completed goal at top of feed
-    func goalComplete(goal: PFObject) {
-        print("hallo")
-        print(goal)
-        updates.insert(goal, at: 0)
-        self.tableView.reloadData()
-    }
+//    func goalComplete(goal: PFObject) {
+//        print("hallo")
+//        print(goal)
+//        updates.insert(goal, at: 0)
+//        self.tableView.reloadData()
+//    }
  
     
     // Return amount of tableView cells
@@ -120,6 +129,14 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if (segue.identifier == "detailSegue") {
             let vc = segue.destination as! DetailViewController
             vc.currentUpdate = sender as? PFObject
+            
+            let goalId = vc.currentUpdate?["goalId"] as! String
+            Goal.fetchGoalWithId(id: goalId) { (loadedGoal: PFObject?, error: Error?) in
+                if error == nil {
+                    vc.goal = loadedGoal
+                }
+            }
+
         } else if (segue.identifier == "commentSegue") {
             let vc = segue.destination as! PostCommentViewController
             vc.currentUpdate = sender as? PFObject
@@ -132,6 +149,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let vc = segue.destination as! ProfileViewController
             vc.user = sender as? PFUser
             vc.fromFeed = true
+            
+            //vc.usernameLabel.text = vc.user?.username
         }
     }
     

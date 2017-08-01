@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Webp.net-resizeimage (1).png",
+      "filename" : "iconmonstr-user-20-48.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Webp.net-resizeimage.png",
+      "filename" : "iconmonstr-user-20-64.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "left-arrow.png",
+      "filename" : "iconmonstr-user-20-72.png",
       "scale" : "3x"
     }
   ],

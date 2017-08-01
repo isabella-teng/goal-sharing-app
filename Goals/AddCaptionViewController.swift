@@ -13,9 +13,7 @@ import AVKit
 import AVFoundation
 import Parse
 
-class AddCaptionViewController: UIViewController {
-
-    //@IBOutlet weak var postButton: UIButton!
+class AddCaptionViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var captionTextView: RSKPlaceholderTextView? = nil
     
@@ -36,37 +34,60 @@ class AddCaptionViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Media view
+        let mediaView = UIImageView(frame: CGRect(x: 15, y: 60, width: 100, height: 160))
+        mediaView.backgroundColor = UIColor.black
+        mediaView.contentMode = UIViewContentMode.scaleAspectFill
+        mediaView.clipsToBounds = true
+        mediaView.layer.cornerRadius = 10
+        if media == "photo" {
+            mediaView.image = savedMedia as? UIImage
+        }
+        self.view.addSubview(mediaView)
+        
         // Placeholder TextView
-        self.captionTextView = RSKPlaceholderTextView(frame: CGRect(x: 16, y: 69, width: self.view.frame.width - 32, height: 122))
+        self.captionTextView = RSKPlaceholderTextView(frame: CGRect(x: 130, y: 60, width: self.view.frame.width - 145, height: 160))
         self.captionTextView?.placeholder = "What's your message?"
-        self.view.addSubview(self.captionTextView!)
-        self.captionTextView?.becomeFirstResponder()
         self.captionTextView?.font = UIFont (name: "HelveticaNeue-Light", size: 22)
-
-        self.view.backgroundColor = UIColor.gray
+        self.captionTextView?.becomeFirstResponder()
+        self.view.addSubview(self.captionTextView!)
         
+        let border = UIView(frame: CGRect(x: 15, y: 250, width: view.frame.width - 30, height: 1))
+        border.backgroundColor = UIColor.lightGray
+        self.view.addSubview(border)
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        let test = CGFloat((view.frame.width - (view.frame.width / 2 + 37.5)) + ((view.frame.width / 2) - 37.5) - 9.0)
+        // Cancel button
+        let cancelButton = UIButton(frame: CGRect(x: 15, y: 280, width: view.frame.width / 2 - 22.5, height: 55.0))
+        cancelButton.layer.cornerRadius = 5
+        cancelButton.setTitle("Cancel", for: UIControlState())
+        cancelButton.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 22)
+        cancelButton.backgroundColor = UIColor(red: 0.95, green: 0.35, blue: 0.40, alpha: 1.0)
+        cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
+        self.view.addSubview(cancelButton)
         
-        let postButton = UIButton(frame: CGRect(x: test, y: view.frame.height - 350, width: 30.0, height: 40.0))
-
-        postButton.setImage(#imageLiteral(resourceName: "send"), for: UIControlState())
+        // Post button
+        let postButton = UIButton(frame: CGRect(x: view.frame.width / 2 + 7.5, y: 280, width: view.frame.width / 2 - 22.5, height: 55.0))
+        postButton.layer.cornerRadius = 5
+        postButton.setTitle("Send", for: UIControlState())
+        postButton.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 22)
+        postButton.backgroundColor = UIColor(red: 0.60, green: 0.40, blue: 0.70, alpha: 1.0)
         postButton.addTarget(self, action: #selector(post), for: .touchUpInside)
         self.view.addSubview(postButton)
-
+        
+        self.view.backgroundColor = UIColor.white
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func cancel () {
+        self.view.endEditing(true)
+        dismiss(animated: true, completion: nil)
     }
     
     //TODO: clean up this code, add into the object classes functions
