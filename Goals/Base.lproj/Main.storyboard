@@ -2260,6 +2260,10 @@
         <scene sceneID="ahZ-RM-Gh5">
             <objects>
                 <viewController id="Cdf-1N-kUs" customClass="UserViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="p5N-DU-hfc"/>
+                        <viewControllerLayoutGuide type="bottom" id="RL8-co-VZO"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="YU3-gB-B8l">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2269,7 +2273,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContainerCell" rowHeight="90" id="Vod-g8-upy" customClass="ContainerCell" customModule="Goals" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContainerCell" rowHeight="90" id="Vod-g8-upy" customClass="UserSearchCell" customModule="Goals" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vod-g8-upy" id="WbI-2d-cfU">
@@ -2311,6 +2315,10 @@
         <scene sceneID="nuo-rv-4OY">
             <objects>
                 <viewController id="cU6-0B-VRK" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AZ1-AY-dMx"/>
+                        <viewControllerLayoutGuide type="bottom" id="DOd-Go-HRP"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="sRM-5U-Sj0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2347,15 +2355,12 @@
         <image name="user" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Lff-mb-4zB"/>
-        <segue reference="ZpT-ic-j8z"/>
-        <segue reference="kNn-XA-D7B"/>
-        <segue reference="Mng-1h-zUX"/>
-        <segue reference="8VS-EP-q6V"/>
-        <segue reference="Q3w-fk-ISv"/>
-        <segue reference="haI-YF-ab4"/>
-        <segue reference="ZeU-bb-uMv"/>
         <segue reference="jvt-5C-kyF"/>
+        <segue reference="8VS-EP-q6V"/>
+        <segue reference="haI-YF-ab4"/>
+        <segue reference="Q3w-fk-ISv"/>
+        <segue reference="ZeU-bb-uMv"/>
+        <segue reference="Lff-mb-4zB"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
