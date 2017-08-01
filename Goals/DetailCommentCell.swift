@@ -20,6 +20,7 @@ class DetailCommentCell: UITableViewCell, UITextFieldDelegate {
     
     var update: PFObject? = nil
     var parent: UITableView? = nil
+    var vc: DetailViewController? = nil
     var animationDistance: Int = 0
     
     override func awakeFromNib() {
@@ -44,6 +45,11 @@ class DetailCommentCell: UITableViewCell, UITextFieldDelegate {
         var commentsArray = update?["comments"] as! [[String: Any]]
         commentsArray.append(commentDict)
         update?["comments"] = commentsArray
+        
+        self.vc?.comments.append(["author": PFUser.current()!, "text": self.commentField.text!])
+        self.parent?.reloadData()
+        let indexPath = IndexPath(row:  (vc?.comments.count)!, section: 0)
+        self.parent?.scrollToRow(at: indexPath, at: .bottom, animated: true)
         
         commentField.text = ""
         update?.saveInBackground()

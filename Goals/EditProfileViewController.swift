@@ -36,11 +36,13 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         iconUrl?.getDataInBackground { (imageData: Data?, error: Error?) in
             if error == nil {
                 self.imagePreview.image = UIImage(data: imageData!)
+                self.imageButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.35)
             }
         }
         
         // Set up view controller image(s)
         imagePreview.layer.cornerRadius = 35
+        imageButton.layer.cornerRadius = 35
     }
     
     
@@ -49,6 +51,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
         
         imageButton.setTitle("", for: .normal)
+        imageButton.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0)
         imagePreview.image = editedImage
         
         // Dismiss UIImagePickerController and return to view controller

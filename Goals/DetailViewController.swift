@@ -80,7 +80,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         author = currentUpdate?["author"] as? PFUser
         usernameLabel.text = author?["username"] as? String
         
-        if author?.objectId != PFUser.current()?.objectId || goal?["isCompleted"] as! Bool == true {
+        if author?.objectId != PFUser.current()?.objectId || goal?["isCompleted"] != nil {
             updateButton.image = nil
             updateButton.isEnabled = false
         } else {
@@ -170,7 +170,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return comments.count + 1
     }
@@ -181,6 +180,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             cell.update = currentUpdate
             cell.parent = self.tableView
+            cell.vc = self
             
             //insert comment into comment array and then reload table
             

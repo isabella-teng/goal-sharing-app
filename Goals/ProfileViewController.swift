@@ -18,6 +18,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var profileIcon: PFImageView!
+    @IBOutlet weak var iconBorder: UIView!
     @IBOutlet weak var bioLabel: UILabel!
     
     @IBOutlet weak var logoutButton: UIButton!
@@ -51,6 +52,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         
+        closeButton.setImage(#imageLiteral(resourceName: "cross-filled").withRenderingMode(.alwaysTemplate), for: .normal)
+        closeButton.tintColor = UIColor.white
+        logoutButton.setImage(#imageLiteral(resourceName: "power").withRenderingMode(.alwaysTemplate), for: .normal)
+        logoutButton.tintColor = UIColor.white
+        editProfileButton.setImage(#imageLiteral(resourceName: "settings").withRenderingMode(.alwaysTemplate), for: .normal)
+        editProfileButton.tintColor = UIColor.white
+        followUserButton.setImage(#imageLiteral(resourceName: "add").withRenderingMode(.alwaysTemplate), for: .normal)
+        followUserButton.tintColor = UIColor.white
+        
         // Hide/show buttons based on source
         if !fromFeed {
             self.user = PFUser.current()
@@ -60,7 +70,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             followUserButton.isHidden = true
         } else if fromFeed && (user?.objectId == PFUser.current()?.objectId) {
             logoutButton.isHidden = true
-            editProfileButton.isHidden = false
+            editProfileButton.isHidden = true
             closeButton.isHidden = false
             followUserButton.isHidden = true
         } else {
@@ -81,9 +91,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Style buttons and images
         logoutButton.layer.cornerRadius = logoutButton.frame.height / 2
         closeButton.layer.cornerRadius = closeButton.frame.height / 2
-        followUserButton.layer.cornerRadius = followUserButton.frame.height / 2
+        followUserButton.layer.cornerRadius = 5
         profileIcon.layer.cornerRadius = 35
-        
+        iconBorder.layer.cornerRadius = (profileIcon.layer.cornerRadius / profileIcon.frame.width) * iconBorder.frame.width
     }
     
     @IBAction func onSegmentedSwitch(_ sender: Any) {
@@ -136,14 +146,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func toggleFollow() {
         if !isFollowing {
             isFollowing = true
-            followUserButton.setTitle("Unfollow", for: .normal)
-            followUserButton.backgroundColor = closeButton.backgroundColor
-            followUserButton.setTitleColor(UIColor.white, for: .normal)
+            followUserButton.setImage(#imageLiteral(resourceName: "added").withRenderingMode(.alwaysTemplate), for: .normal)
+            followUserButton.tintColor = self.view.tintColor
+            followUserButton.backgroundColor = UIColor.white
         } else {
             isFollowing = false
-            followUserButton.setTitle("Follow", for: .normal)
-            followUserButton.backgroundColor = UIColor.white
-            followUserButton.setTitleColor(closeButton.backgroundColor, for: .normal)
+            followUserButton.setImage(#imageLiteral(resourceName: "add").withRenderingMode(.alwaysTemplate), for: .normal)
+            followUserButton.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0)
+            followUserButton.tintColor = UIColor.white
         }
     }
     
