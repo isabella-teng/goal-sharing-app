@@ -1748,7 +1748,7 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PC4-VB-t5c">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PC4-VB-t5c">
                                 <rect key="frame" x="0.0" y="144" width="375" height="257.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1992,6 +1992,9 @@
                                 </constraints>
                                 <state key="normal" image="like"/>
                                 <state key="selected" image="like-red"/>
+                                <connections>
+                                    <action selector="onFavorite:" destination="cBe-TT-v37" eventType="touchUpInside" id="cso-yI-u7Q"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MqF-W0-GMW">
                                 <rect key="frame" x="10" y="501" width="50" height="50"/>
@@ -1999,6 +2002,9 @@
                                     <constraint firstAttribute="height" constant="50" id="AoR-kV-HiY"/>
                                 </constraints>
                                 <state key="normal" image="photo"/>
+                                <connections>
+                                    <segue destination="V3S-Ul-3Sn" kind="presentation" identifier="snapDetailSegue" id="haI-YF-ab4"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQC-DY-4lv">
                                 <rect key="frame" x="31" y="469.5" width="9" height="18"/>
@@ -2042,13 +2048,15 @@
                     <navigationItem key="navigationItem" title="Update" id="DhX-9Y-4zh">
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title=" " id="bDh-LZ-4Lt">
                             <connections>
-                                <segue destination="OtZ-Tv-MZ9" kind="presentation" id="Q3w-fk-ISv"/>
+                                <segue destination="OtZ-Tv-MZ9" kind="presentation" identifier="updateDetailSegue" id="Q3w-fk-ISv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="yZf-IU-b2l" id="pr1-f9-6lD"/>
+                        <outlet property="favoriteButton" destination="v2K-Fb-txE" id="SBi-KT-K7D"/>
+                        <outlet property="favoriteCount" destination="IQC-DY-4lv" id="GXh-hF-gbT"/>
                         <outlet property="goalCellBg" destination="d8F-te-lVh" id="hNs-id-4Wp"/>
                         <outlet property="goalCellEdges" destination="qag-Dy-x9C" id="ZgW-gx-UnK"/>
                         <outlet property="goalLabel" destination="aFU-AR-v7q" id="BkG-wO-NZ3"/>
@@ -2216,13 +2224,12 @@
         <image name="user" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Lff-mb-4zB"/>
+        <segue reference="ZeU-bb-uMv"/>
+        <segue reference="haI-YF-ab4"/>
         <segue reference="ZpT-ic-j8z"/>
         <segue reference="Lff-mb-4zB"/>
+        <segue reference="Mng-1h-zUX"/>
         <segue reference="Q3w-fk-ISv"/>
-        <segue reference="Mng-1h-zUX"/>
-        <segue reference="ZeU-bb-uMv"/>
-        <segue reference="Mng-1h-zUX"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
