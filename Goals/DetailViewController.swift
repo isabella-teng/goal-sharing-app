@@ -93,6 +93,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         comments = currentUpdate?["comments"] as! [[String: Any]]
         tableView.reloadData()
+        Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.onTimer), userInfo: nil, repeats: true)
         
         let indexPath = IndexPath(row: comments.count, section: 0)
         self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
@@ -103,6 +104,11 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.goal = loadedGoal
             }
         }
+    }
+    
+    func onTimer() {
+        comments = currentUpdate?["comments"] as! [[String: Any]]
+        tableView.reloadData()
     }
     
     @IBAction func didTapScreen(_ sender: Any) {
