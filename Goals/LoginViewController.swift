@@ -56,7 +56,7 @@ class LoginViewController: UIViewController {
                 // User must follow self to see own posts in feed
                 let user = PFUser.current()
                 user?["following"] = [PFUser.current()!]
-                //user?["portrait"]
+                user?["portrait"] = Update.getPFFileFromImage(image: #imageLiteral(resourceName: "default"))
                 user?.saveInBackground()
             } else {
                 self.createAlert(message: (error?.localizedDescription)!)

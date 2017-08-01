@@ -48,12 +48,6 @@ class GoalCell: UITableViewCell {
         let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCell(_:)))
         cellBackground.addGestureRecognizer(cellTapGestureRecognizer)
         cellBackground.isUserInteractionEnabled = true
-        
-        // Change close button tint
-        let origImage = #imageLiteral(resourceName: "info")
-        let tintedImage = origImage.withRenderingMode(.alwaysTemplate)
-        dateImage.setImage(tintedImage, for: .normal)
-        dateImage.tintColor = goalStartDateLabel.textColor
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
