@@ -38,6 +38,8 @@ class FeedCell: UITableViewCell {
     
     
     var author: PFUser? = nil
+    var likesArray: [PFUser]? = nil
+    var liked = false
     var update: PFObject! {
         didSet {
             self.titleLabel.text = update["text"] as? String
@@ -100,18 +102,18 @@ class FeedCell: UITableViewCell {
             let goalDateUpdated = update["goalDate"] as! Date
             self.goalDateLabel.text = String(dateFormat.string(from: goalDateUpdated))
             
-            //FIX SMALL BUG WHEN NO GOALS THIS CRASHES HERE
+            
+            likesArray = update["likes"] as? [PFUser]
+            
             let currentLikeCount = update["likeCount"] as! Int
-            if (currentLikeCount != 0) {
-                self.favoriteCount.text = String(describing: update["likeCount"]!)
-            }
+            self.favoriteCount.text = String(currentLikeCount)
             
-            let liked = update.value(forKey: "liked") as! Bool
-            
-            if liked {
+            if isLiked() {
                 self.favoriteButton.isSelected = true
+                liked = true
             } else {
                 self.favoriteButton.isSelected = false
+                liked = false
             }
         }
     }
@@ -130,36 +132,29 @@ class FeedCell: UITableViewCell {
         delegate?.feedCell(self, didTap: update, tappedComment: false, tappedCamera: true, tappedUser: nil)
     }
     
-    @IBAction func onFavorite(_ sender: Any) {
-        var liked = update["liked"] as! Bool
-        
-        let currentUser = PFUser.current()
-        var likesArray = update["likes"] as! [PFUser]
-        
-        if !liked && (PFUser.current() != nil){
-            if favoriteButton.isSelected == false {
-                favoriteButton.isSelected = true
-                update.incrementKey("likeCount", byAmount: 1)
-                liked = true
-                update["liked"] = true
-                likesArray.append(currentUser!)
-                print("Liked")
+    func isLiked() -> Bool {
+        for liker in likesArray! {
+            if PFUser.current()?.objectId! == liker.objectId {
+                return true
             }
-//            favoriteButton.isSelected = true
-//            update.incrementKey("likeCount", byAmount: 1)
-//            liked = true
-//            update["liked"] = true
-//            likesArray.append(currentUser!)
-        } else {
+        }
+        return false
+    }
+    
+    @IBAction func onFavorite(_ sender: Any) {
+        if liked {
             favoriteButton.isSelected = false
             update.incrementKey("likeCount", byAmount: -1)
             liked = false
-            update["liked"] = false
-            likesArray = likesArray.filter { $0 != PFUser.current() }
-            print("UnLiked")
+            likesArray = likesArray?.filter { $0 != PFUser.current() }
+        } else {
+            favoriteButton.isSelected = true
+            update.incrementKey("likeCount", byAmount: 1)
+            liked = true
+            likesArray!.append(PFUser.current()!)
         }
         
-        favoriteCount.text = String(describing: update["likeCount"]!)
+        favoriteCount.text = String(update["likeCount"] as! Int)
         
         update["likes"] = likesArray
         update.saveInBackground()

@@ -16,13 +16,13 @@ protocol DidPostUpdateDelegate: class {
 }
 
 class PostUpdateViewController: UIViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
     var updateTextView: RSKPlaceholderTextView? = nil
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var typeControl: UISegmentedControl!
     @IBOutlet weak var newPostImage: UIImageView!
     @IBOutlet weak var imageButton: UIButton!
-
+    
     var currentGoal: PFObject?
     let border = UIView(frame: CGRect(x: 70, y: 100, width: 1, height: 100))
     
@@ -40,7 +40,7 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate, UIImagePic
         
         border.backgroundColor = UIColor.lightGray
         self.view.addSubview(border)
-
+        
         postButton.layer.cornerRadius = 5
         newPostImage.layer.cornerRadius = 10
     }
@@ -95,9 +95,9 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate, UIImagePic
         UIGraphicsEndImageContext()
         return newImage!
     }
-
     
-
+    
+    
     @IBAction func didTapCancel(_ sender: Any) {
         self.view.endEditing(true)
         self.dismiss(animated: true)
@@ -112,11 +112,7 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate, UIImagePic
             self.present(alertController, animated: true)
         } else {
             self.delegate?.postedUpdate(sentUpdate: true)
-            self.dismiss(animated: true, completion: { 
-//                if let presenting = UIViewController() as? FeedViewController {
-//                    presenting.didPostUpdate = true
-//                    //presenting.didPostUpdate = self
-//                }
+            self.dismiss(animated: true, completion: {
             })
             
             
@@ -154,7 +150,7 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate, UIImagePic
             } else if dayOfTheWeek  == 7 {
                 dateArray[6] += 1
             }
-
+            
             currentGoal?["updatesPerDay"] = dateArray
             currentGoal?.saveInBackground()
             
@@ -178,5 +174,5 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate, UIImagePic
         super.didReceiveMemoryWarning()
     }
     
-
+    
 }

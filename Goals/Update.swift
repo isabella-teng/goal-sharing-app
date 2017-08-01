@@ -52,7 +52,6 @@ class Update: NSObject {
         update["image"] = data["image"]
         update["likes"] = []
         update["likeCount"] = 0
-        update["liked"] = false //should also have in the user
         update["comments"] = [] //will have sender and text
         update["commentCount"] = 0
         update["videos"] = [] //will contain the caption string, video url string, and author
