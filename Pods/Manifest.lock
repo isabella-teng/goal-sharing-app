@@ -8,6 +8,7 @@ PODS:
     - Charts/Core (= 3.0.2)
   - Charts/Core (3.0.2)
   - DateToolsSwift (2.0.3)
+  - NVActivityIndicatorView (3.6.1)
   - Parse (1.14.4):
     - Bolts/Tasks (~> 1.8)
   - ParseUI (1.2.0):
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - BubbleTransition (~> 2.0.0)
   - Charts
   - DateToolsSwift
+  - NVActivityIndicatorView
   - Parse
   - ParseUI
   - RealmSwift
@@ -43,6 +45,7 @@ SPEC CHECKSUMS:
   BubbleTransition: 7d98ed7d56f0940e83f350a98103ad473491c769
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
   DateToolsSwift: bf69bf9056d9e53c5c03f06e51f219b9b8b02f9e
+  NVActivityIndicatorView: 9f52a7f84bf5c6a798722c450fe3c198e01c56ed
   Parse: b0aa91d2c435e53d4a9af26e741e014c9b35c42e
   ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
   Realm: 3601ef091c8c499a31101d8563b991e75546cdce
@@ -52,6 +55,6 @@ SPEC CHECKSUMS:
   SwipeCellKit: 893661973276ae3512a84ac0a47055923b10731e
   Whisper: 051f25e704bf8992641ffd28b20d5682ddc5f5d3
 
-PODFILE CHECKSUM: d68f92f344854d518946bb8f63094a8c49b5a676
+PODFILE CHECKSUM: 354bd871d0a84918ff99ca5185203e86d787d82d
 
 COCOAPODS: 1.2.1
