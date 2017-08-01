@@ -132,6 +132,7 @@ class FeedCell: UITableViewCell {
         delegate?.feedCell(self, didTap: update, tappedComment: false, tappedCamera: true, tappedUser: nil)
     }
     
+    
     func isLiked() -> Bool {
         for liker in likesArray! {
             if PFUser.current()?.objectId! == liker.objectId {
@@ -141,12 +142,20 @@ class FeedCell: UITableViewCell {
         return false
     }
     
+    func removeLike() {
+        for (index, liker) in likesArray!.enumerated() {
+            if PFUser.current()?.objectId == liker.objectId {
+                likesArray?.remove(at: index)
+            }
+        }
+    }
+    
     @IBAction func onFavorite(_ sender: Any) {
         if liked {
             favoriteButton.isSelected = false
             update.incrementKey("likeCount", byAmount: -1)
             liked = false
-            likesArray = likesArray?.filter { $0 != PFUser.current() }
+            removeLike()
         } else {
             favoriteButton.isSelected = true
             update.incrementKey("likeCount", byAmount: 1)
@@ -159,6 +168,7 @@ class FeedCell: UITableViewCell {
         update["likes"] = likesArray
         update.saveInBackground()
     }
+    
     
     @IBAction func didTapUser(_ sender: Any) {
         delegate?.feedCell(self, didTap: update, tappedComment: false, tappedCamera: false, tappedUser: author)
