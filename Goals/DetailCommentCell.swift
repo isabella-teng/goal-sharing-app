@@ -44,6 +44,7 @@ class DetailCommentCell: UITableViewCell, UITextFieldDelegate {
         var commentsArray = update?["comments"] as! [[String: Any]]
         commentsArray.append(commentDict)
         update?["comments"] = commentsArray
+        update?.incrementKey("commentCount", byAmount: 1)
         
         commentField.text = ""
         update?.saveInBackground()

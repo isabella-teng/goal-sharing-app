@@ -32,6 +32,7 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var goalCellBg: UIView!
     @IBOutlet weak var goalCellEdges: UIView!
     @IBOutlet weak var interactionBackground: UIView!
+    @IBOutlet weak var commentCount: UILabel!
     
     @IBOutlet weak var updateImageHeight: NSLayoutConstraint!
     @IBOutlet weak var goalCellMargin: NSLayoutConstraint!
@@ -107,6 +108,9 @@ class FeedCell: UITableViewCell {
             
             let currentLikeCount = update["likeCount"] as! Int
             self.favoriteCount.text = String(currentLikeCount)
+            
+            let commentLikeCount = update["commentCount"] as! Int
+            self.commentCount.text = String(commentLikeCount)
             
             if isLiked() {
                 self.favoriteButton.isSelected = true
