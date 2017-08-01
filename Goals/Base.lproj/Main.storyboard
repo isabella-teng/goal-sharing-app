@@ -398,6 +398,7 @@
                                             <outlet property="goalTitleLabel" destination="nxp-WH-xAJ" id="GWr-8o-pUE"/>
                                             <outlet property="interactionBackground" destination="On0-kS-fqa" id="rk2-wd-lYz"/>
                                             <outlet property="titleLabel" destination="OOF-Nk-awF" id="tVp-gf-8Q4"/>
+                                            <outlet property="updateDescription" destination="NQp-eP-zhe" id="8Fu-u9-k5I"/>
                                             <outlet property="updateImage" destination="LqN-nY-Cl6" id="zMh-6o-P6E"/>
                                             <outlet property="updateImageHeight" destination="NeM-MW-5Ba" id="yO5-Me-jiq"/>
                                             <outlet property="userProfPic" destination="Ght-UI-sHp" id="J3i-zz-reM"/>
@@ -717,7 +718,7 @@
                                     <segue destination="6dc-ye-LrG" kind="presentation" id="BV3-b2-3dH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9c-iV-bma">
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9c-iV-bma">
                                 <rect key="frame" x="272" y="57" width="50" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="2lb-J7-gqT"/>
@@ -857,7 +858,7 @@
                                     <constraint firstAttribute="height" constant="1" id="mAt-Q9-38z"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JKQ-y4-Z5x">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JKQ-y4-Z5x">
                                 <rect key="frame" x="140" y="80" width="95" height="95"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <state key="normal" title="Select image">
@@ -2241,12 +2242,12 @@
         <image name="user" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7nc-FM-ics"/>
+        <segue reference="kNn-XA-D7B"/>
         <segue reference="ZpT-ic-j8z"/>
+        <segue reference="Lff-mb-4zB"/>
         <segue reference="Q3w-fk-ISv"/>
-        <segue reference="haI-YF-ab4"/>
-        <segue reference="ZeU-bb-uMv"/>
         <segue reference="Mng-1h-zUX"/>
+        <segue reference="ZeU-bb-uMv"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

@@ -16,6 +16,8 @@ import NVActivityIndicatorView
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate, DidPostUpdateDelegate, UIViewControllerTransitioningDelegate, NVActivityIndicatorViewable {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var goalMenuButton: UIBarButtonItem!
+    @IBOutlet weak var barButtonView: UIView!
     
     var updates: [PFObject] = []
     var usersObjectArray: [PFUser] = []
@@ -24,8 +26,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var completedGoal: PFObject? = nil
     
     let transition = BubbleTransition()
-    @IBOutlet weak var goalMenuButton: UIBarButtonItem!
-    @IBOutlet weak var barButtonView: UIView!
+    
     
     var refreshControl: UIRefreshControl!
     var activityIndicatorView: NVActivityIndicatorView?

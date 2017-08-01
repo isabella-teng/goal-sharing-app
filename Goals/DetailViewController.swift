@@ -67,6 +67,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             goalView.backgroundColor = UIColor(red:0.93, green:0.71, blue:0.13, alpha:1.0)
             goalCellBg.backgroundColor = UIColor(red:0.93, green:0.61, blue:0.12, alpha:1.0)
             goalCellEdges.backgroundColor = goalCellBg.backgroundColor
+            
         } else {
             goalView.backgroundColor = UIColor(red: 0.45, green: 0.50, blue: 0.90, alpha: 1.0)
             goalCellBg.backgroundColor = UIColor(red: 0.35, green: 0.40, blue: 0.70, alpha: 1.0)
@@ -80,7 +81,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         author = currentUpdate?["author"] as? PFUser
         usernameLabel.text = author?["username"] as? String
         
-        if author?.objectId != PFUser.current()?.objectId || goal?["isCompleted"] != nil {
+        if author?.objectId != PFUser.current()?.objectId || goal?["isCompleted"] as! Bool {
             updateButton.image = nil
             updateButton.isEnabled = false
         } else {
