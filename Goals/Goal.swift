@@ -68,6 +68,9 @@ class Goal: NSObject {
                 updateData["type"] = "initialGoalNoType"
                 updateData["goalDate"] = goal.createdAt
                 
+                // TODO: Change to a goal creation image?
+                updateData["image"] = NSNull()
+                
                 Update.createUpdate(data: updateData)
             }
         }

@@ -38,6 +38,8 @@ class FeedCell: UITableViewCell {
     
     
     var author: PFUser? = nil
+    var likesArray: [PFUser]? = nil
+    var liked = false
     var update: PFObject! {
         didSet {
             self.titleLabel.text = update["text"] as? String
@@ -51,6 +53,27 @@ class FeedCell: UITableViewCell {
                         self.userProfPic.image = profImage
                     }
                 }
+            }
+            
+            // Change background of cell based on the good or bad update: http://uicolor.xyz/#/rgb-to-ui
+            let typeString = update["type"] as! String
+            if typeString == "positive" {
+                cellBackground.backgroundColor = UIColor(red:0.50, green:0.85, blue:0.60, alpha:1.0)
+                goalCellBg.backgroundColor = UIColor(red: 0.40, green: 0.75, blue: 0.45, alpha: 1.0)
+                goalCellEdges.backgroundColor = goalCellBg.backgroundColor
+            } else if typeString == "negative" {
+                cellBackground.backgroundColor = UIColor(red:0.95, green:0.45, blue:0.45, alpha:1.0)
+                goalCellBg.backgroundColor = UIColor(red: 0.85, green: 0.30, blue: 0.30, alpha: 1.0)
+                goalCellEdges.backgroundColor = goalCellBg.backgroundColor
+            } else if typeString == "Complete" {
+                cellBackground.backgroundColor = UIColor(red:0.99, green:0.67, blue:0.94, alpha:1.0)
+                goalCellBg.backgroundColor = UIColor(red:0.98, green:0.59, blue:0.93, alpha:1.0)
+                goalCellEdges.backgroundColor = goalCellBg.backgroundColor
+                update["image"] = Update.getPFFileFromImage(image: #imageLiteral(resourceName: "ballons"))
+            } else {
+                cellBackground.backgroundColor = UIColor(red: 0.45, green: 0.50, blue: 0.90, alpha: 1.0)
+                goalCellBg.backgroundColor = UIColor(red: 0.35, green: 0.40, blue: 0.70, alpha: 1.0)
+                goalCellEdges.backgroundColor = goalCellBg.backgroundColor
             }
             
             if let picture = update["image"] as? PFFile {
@@ -79,40 +102,18 @@ class FeedCell: UITableViewCell {
             let goalDateUpdated = update["goalDate"] as! Date
             self.goalDateLabel.text = String(dateFormat.string(from: goalDateUpdated))
             
-            //FIX SMALL BUG WHEN NO GOALS THIS CRASHES HERE
+            
+            likesArray = update["likes"] as? [PFUser]
+            
             let currentLikeCount = update["likeCount"] as! Int
-            if (currentLikeCount != 0) {
-                self.favoriteCount.text = String(describing: update["likeCount"]!)
-            }
+            self.favoriteCount.text = String(currentLikeCount)
             
-            let liked = update.value(forKey: "liked") as! Bool
-            
-            if liked {
+            if isLiked() {
                 self.favoriteButton.isSelected = true
+                liked = true
             } else {
                 self.favoriteButton.isSelected = false
-            }
-            
-            //change background of cell based on the good or bad update
-            //http://uicolor.xyz/#/rgb-to-ui
-            
-            let typeString = update["type"] as! String
-            if typeString == "positive" {
-                cellBackground.backgroundColor = UIColor(red:0.50, green:0.85, blue:0.60, alpha:1.0)
-                goalCellBg.backgroundColor = UIColor(red: 0.40, green: 0.75, blue: 0.45, alpha: 1.0)
-                goalCellEdges.backgroundColor = goalCellBg.backgroundColor
-            } else if typeString == "negative" {
-                cellBackground.backgroundColor = UIColor(red:0.95, green:0.45, blue:0.45, alpha:1.0)
-                goalCellBg.backgroundColor = UIColor(red: 0.85, green: 0.30, blue: 0.30, alpha: 1.0)
-                goalCellEdges.backgroundColor = goalCellBg.backgroundColor
-            } else if typeString == "Complete" {
-                cellBackground.backgroundColor = UIColor(red:0.99, green:0.67, blue:0.94, alpha:1.0)
-                goalCellBg.backgroundColor = UIColor(red:0.98, green:0.59, blue:0.93, alpha:1.0)
-                goalCellEdges.backgroundColor = goalCellBg.backgroundColor
-            } else {
-                cellBackground.backgroundColor = UIColor(red: 0.45, green: 0.50, blue: 0.90, alpha: 1.0)
-                goalCellBg.backgroundColor = UIColor(red: 0.35, green: 0.40, blue: 0.70, alpha: 1.0)
-                goalCellEdges.backgroundColor = goalCellBg.backgroundColor
+                liked = false
             }
         }
     }
@@ -131,36 +132,29 @@ class FeedCell: UITableViewCell {
         delegate?.feedCell(self, didTap: update, tappedComment: false, tappedCamera: true, tappedUser: nil)
     }
     
-    @IBAction func onFavorite(_ sender: Any) {
-        var liked = update["liked"] as! Bool
-        
-        let currentUser = PFUser.current()
-        var likesArray = update["likes"] as! [PFUser]
-        
-        if !liked && (PFUser.current() != nil){
-            if favoriteButton.isSelected == false {
-                favoriteButton.isSelected = true
-                update.incrementKey("likeCount", byAmount: 1)
-                liked = true
-                update["liked"] = true
-                likesArray.append(currentUser!)
-                print("Liked")
+    func isLiked() -> Bool {
+        for liker in likesArray! {
+            if PFUser.current()?.objectId! == liker.objectId {
+                return true
             }
-//            favoriteButton.isSelected = true
-//            update.incrementKey("likeCount", byAmount: 1)
-//            liked = true
-//            update["liked"] = true
-//            likesArray.append(currentUser!)
-        } else {
+        }
+        return false
+    }
+    
+    @IBAction func onFavorite(_ sender: Any) {
+        if liked {
             favoriteButton.isSelected = false
             update.incrementKey("likeCount", byAmount: -1)
             liked = false
-            update["liked"] = false
-            likesArray = likesArray.filter { $0 != PFUser.current() }
-            print("UnLiked")
+            likesArray = likesArray?.filter { $0 != PFUser.current() }
+        } else {
+            favoriteButton.isSelected = true
+            update.incrementKey("likeCount", byAmount: 1)
+            liked = true
+            likesArray!.append(PFUser.current()!)
         }
         
-        favoriteCount.text = String(describing: update["likeCount"]!)
+        favoriteCount.text = String(update["likeCount"] as! Int)
         
         update["likes"] = likesArray
         update.saveInBackground()
