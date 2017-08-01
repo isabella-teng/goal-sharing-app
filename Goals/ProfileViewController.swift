@@ -12,9 +12,9 @@ import ParseUI
 import SwipeCellKit
 import Whisper
 
-protocol GoalCompletionDelegate: class {
-    func goalComplete(goal: PFObject)
-}
+//protocol GoalCompletionDelegate: class {
+//    func goalComplete(goal: PFObject)
+//}
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ProfileCellDelegate, SwipeTableViewCellDelegate {
     
@@ -29,6 +29,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var followUserButton: UIButton!
     
+    @IBOutlet weak var myWeek: UIButton!
     @IBOutlet weak var goalSelection: UISegmentedControl!
     
     
@@ -37,7 +38,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var fromFeed: Bool = false
     var isFollowing: Bool = false
     
-    weak var delegate: GoalCompletionDelegate?
+    //weak var delegate: GoalCompletionDelegate?
     
     var defaultOptions = SwipeTableOptions()
     var isSwipeRightEnabled = true
@@ -47,6 +48,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        myWeek.isHidden = true
         
         // Set up tableView
         tableView.dataSource = self
@@ -92,6 +95,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         viewDidAppear(true)
     }
     
+    //todo: fix and don't need to fetch everytime
     override func viewDidAppear(_ animated: Bool) {
         if goalSelection.selectedSegmentIndex == 0 {
             Goal.fetchGoalsByCompletion(user: user!, isCompleted: false, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
@@ -350,7 +354,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         data["type"] = "Complete"
         
         Update.createUpdate(data: data)
-        self.delegate?.goalComplete(goal: goal)
+        //self.delegate?.goalComplete(goal: goal)
     }
     
     func getDayOfWeek(_ today:String) -> Int? {

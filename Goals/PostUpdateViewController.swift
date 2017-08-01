@@ -112,7 +112,13 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate, UIImagePic
             self.present(alertController, animated: true)
         } else {
             self.delegate?.postedUpdate(sentUpdate: true)
-            self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true, completion: { 
+//                if let presenting = UIViewController() as? FeedViewController {
+//                    presenting.didPostUpdate = true
+//                    //presenting.didPostUpdate = self
+//                }
+            })
+            
             
             // Data to post to Parse
             var data: [String: Any] = [:]

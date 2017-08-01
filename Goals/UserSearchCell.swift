@@ -22,15 +22,24 @@ class UserSearchCell: UITableViewCell {
     
     weak var delegate: UserSearchCellDelegate?
     
+//    var userImage: UIImage! {
+//        didSet {
+//            self.userProfPic.image = userImage
+//        }
+//    }
+    
     var user: PFUser! {
         didSet {
             usernameLabel.text = user.username
-            let profPic = user["portrait"] as? PFFile
-            profPic?.getDataInBackground{ (imageData: Data?, error: Error?) in
-                if error == nil {
-                    let profImage = UIImage(data: imageData!)
-                    self.userProfPic.image = profImage
+            if let profPic = user["portrait"] as? PFFile {
+                profPic.getDataInBackground{ (imageData: Data?, error: Error?) in
+                    if error == nil {
+                        let profImage = UIImage(data: imageData!)
+                        self.userProfPic.image = profImage
+                    }
                 }
+            } else { //default image
+                userProfPic.image = UIImage(named: "default")
             }
         }
     }
@@ -41,26 +50,10 @@ class UserSearchCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-//       cellBackground.layer.cornerRadius = 10
-//        cellBackground.backgroundColor = UIColor.clear
-//        let whiteRoundedView: UIView = UIView(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 120)
-//        
-//        whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
-//        whiteRoundedView.layer.masksToBounds = false
-//        whiteRoundedView.layer.cornerRadius = 2.0
-//        whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
-//        whiteRoundedView.layer.shadowOpacity = 0.2
-//        
-//        cellBackground.addSubview(whiteRoundedView)
-//        cellBackground.sendSubview(toBack: whiteRoundedView)
         
         let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCell(_:)))
         cellBackground.addGestureRecognizer(cellTapGestureRecognizer)
         cellBackground.isUserInteractionEnabled = true
-        
-        //cellBackground.backgroundColor = UIColor(red:0.97, green:0.88, blue:0.80, alpha:1.0)
-
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
