@@ -29,6 +29,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var refreshControl: UIRefreshControl!
     var activityIndicatorView: NVActivityIndicatorView?
+    var didPullToRefresh: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,17 +47,20 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         refreshControl.addTarget(self, action: #selector(FeedViewController.didPullToRefresh(_:)), for: .valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
         
+        
+    }
+    
+    func didPullToRefresh(_ refreshControl: UIRefreshControl) {
+        
         let width = Int(self.view.frame.width / 12)
         let height = Int(self.view.frame.height / 12)
-    
+        
         activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: Int(self.view.frame.width / 2.2), y:0, width: width, height: height), type: .ballTrianglePath, color: .black)
         refreshControl.addSubview(activityIndicatorView!)
         activityIndicatorView?.startAnimating()
 
-    }
-    
-    func didPullToRefresh(_ refreshControl: UIRefreshControl) {
-        refreshControl.endRefreshing()
+        didPullToRefresh = true
+        viewDidAppear(true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -67,7 +71,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //            
 //        }
         
-        print(didPostUpdate)
+        //print(didPostUpdate)
         
         // Fetch feed based on followed users
         let usersArray = PFUser.current()?["following"] as! [PFUser]
@@ -78,6 +82,13 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             } else {
                 print(error?.localizedDescription as Any)
             }
+            
+            if (self.didPullToRefresh) {
+                self.refreshControl.endRefreshing()
+                self.activityIndicatorView?.stopAnimating()
+                self.didPullToRefresh = false
+            }
+            
         }
         //currently a notification you see if view appears
         if didPostUpdate {
