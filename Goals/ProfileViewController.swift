@@ -12,10 +12,6 @@ import ParseUI
 import SwipeCellKit
 import Whisper
 
-//protocol GoalCompletionDelegate: class {
-//    func goalComplete(goal: PFObject)
-//}
-
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ProfileCellDelegate, SwipeTableViewCellDelegate {
     
     
@@ -37,8 +33,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var allUserPosts: [PFObject]? = []
     var fromFeed: Bool = false
     var isFollowing: Bool = false
-    
-    //weak var delegate: GoalCompletionDelegate?
     
     var defaultOptions = SwipeTableOptions()
     var isSwipeRightEnabled = true
@@ -89,6 +83,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         closeButton.layer.cornerRadius = closeButton.frame.height / 2
         followUserButton.layer.cornerRadius = followUserButton.frame.height / 2
         profileIcon.layer.cornerRadius = 35
+        
     }
     
     @IBAction func onSegmentedSwitch(_ sender: Any) {

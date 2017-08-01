@@ -11,8 +11,9 @@ import Parse
 import ParseUI
 import Whisper
 import BubbleTransition
+import NVActivityIndicatorView
 
-class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate, DidPostUpdateDelegate, UIViewControllerTransitioningDelegate {
+class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate, DidPostUpdateDelegate, UIViewControllerTransitioningDelegate, NVActivityIndicatorViewable {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -26,6 +27,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var goalMenuButton: UIBarButtonItem!
     @IBOutlet weak var barButtonView: UIView!
     
+    var refreshControl: UIRefreshControl!
+    var activityIndicatorView: NVActivityIndicatorView? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +39,16 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 180
         
+        //Setup refreshcontrol
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(FeedViewController.didPullToRefresh(_:)), for: .valueChanged)
+        tableView.insertSubview(refreshControl, at: 0)
+        activityIndicatorView = NVActivityIndicatorView(frame: refreshControl.frame)
+
+    }
+    
+    func didPullToRefresh(_ refreshControl: UIRefreshControl) {
+        activityIndicatorView?.startAnimating()
     }
     
     override func viewDidAppear(_ animated: Bool) {

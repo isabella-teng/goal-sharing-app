@@ -17,6 +17,7 @@ target 'Goals' do
   pod 'DateToolsSwift'
   pod 'BubbleTransition', '~> 2.0.0'
   pod 'SwipeCellKit'
+  pod 'NVActivityIndicatorView'
 
 
   target 'GoalsTests' do
