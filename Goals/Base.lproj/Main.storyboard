@@ -2058,6 +2058,7 @@
                         <outlet property="goalCellBg" destination="d8F-te-lVh" id="hNs-id-4Wp"/>
                         <outlet property="goalCellEdges" destination="qag-Dy-x9C" id="ZgW-gx-UnK"/>
                         <outlet property="goalLabel" destination="aFU-AR-v7q" id="BkG-wO-NZ3"/>
+                        <outlet property="goalTopConstraint" destination="HVs-bF-75F" id="dWJ-YF-YJM"/>
                         <outlet property="goalView" destination="CJu-fF-lJb" id="YKO-Ug-tUY"/>
                         <outlet property="tableView" destination="PC4-VB-t5c" id="1fI-y4-ewc"/>
                         <outlet property="timestampLabel" destination="mNl-6T-E81" id="a4Q-yB-odL"/>
