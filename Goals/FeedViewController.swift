@@ -55,10 +55,10 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let width = Int(self.view.frame.width / 12)
         let height = Int(self.view.frame.height / 12)
         
-        activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: Int(self.view.frame.width / 2.2), y:0, width: width, height: height), type: .ballTrianglePath, color: .black)
+        activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: Int(self.view.frame.width / 2.2), y:0, width: width, height: height), type: .pacman, color: .black)
         refreshControl.addSubview(activityIndicatorView!)
         activityIndicatorView?.startAnimating()
-
+        
         didPullToRefresh = true
         viewDidAppear(true)
     }

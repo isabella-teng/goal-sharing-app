@@ -45,6 +45,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         myWeek.isHidden = true
         
+        //if new user without portrait and bio
+        
         // Set up tableView
         tableView.dataSource = self
         tableView.delegate = self

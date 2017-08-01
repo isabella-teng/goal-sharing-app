@@ -63,6 +63,10 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        let backgroundImage = UIImage(named: "backgroundimg")
+        let imageView = UIImageView(image: backgroundImage)
+        self.tableView.backgroundView = imageView
+        
         if searchType.selectedSegmentIndex == 0 {
             User.fetchAllUsers { (loadedUsers: [PFObject]?, error: Error?) in
                 if error == nil {
@@ -113,9 +117,7 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
         return allCategories.count
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 130.0
-//    }
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -133,6 +135,7 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
             
             cell.contentView.addSubview(whiteRoundedView)
             cell.contentView.sendSubview(toBack: whiteRoundedView)
+            cell.backgroundColor = UIColor.clear
 
             
             if searchController.isActive && searchController.searchBar.text != "" {
@@ -160,10 +163,7 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
         } //else {
 
         let categoryCell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! CategoryCell
-        
-//            if searchController.isActive && searchController.searchBar.text != "" {
-//                //categoryCell.goal = filteredGoals[indexPath.row]
-//            }
+        categoryCell.backgroundColor = UIColor.clear
         categoryCell.delegate = self
         categoryCell.categoryLabel.text = allCategories[indexPath.row]
         
