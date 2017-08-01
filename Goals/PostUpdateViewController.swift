@@ -76,7 +76,7 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate, UIImagePic
         imageButton.isHidden = true
         border.isHidden = true
         updateTextView?.frame = CGRect(x: (updateTextView?.frame.origin.x)! + 30, y: (updateTextView?.frame.origin.y)!, width: (updateTextView?.frame.width)!, height: (updateTextView?.frame.height)!)
-        newPostImage.image = originalImage
+        newPostImage.image = resize(image: originalImage, newSize: CGSize(width: 700, height: 700))
         
         // Dismiss UIImagePickerController to go back to your original view controller
         dismiss(animated: true, completion: nil)
@@ -122,6 +122,8 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate, UIImagePic
             data["goalDate"] = currentGoal?.createdAt
             if newPostImage.image != nil {
                 data["image"] = Update.getPFFileFromImage(image: newPostImage.image)
+            } else {
+                data["image"] = NSNull()
             }
             
             let updateDate = Date()

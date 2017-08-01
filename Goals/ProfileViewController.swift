@@ -239,11 +239,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if orientation == .right && allUserPosts![indexPath.row]["isCompleted"] as! Bool == false {
             let completionAction = SwipeAction(style: .default, title: "Complete Goal?") { action, indexPath in
             // handle action by updating model with completion
-                self.allUserPosts![indexPath.row]["isCompleted"] = true
-                self.allUserPosts![indexPath.row].saveInBackground()
-                self.viewDidAppear(true)
+                let current = self.allUserPosts![indexPath.row]
                 self.completionNotification(goal: self.allUserPosts![indexPath.row])
-                self.tableView.reloadData()
+                self.allUserPosts?.remove(at: indexPath.row)
+                tableView.reloadData()
+                current["isCompleted"] = true
+                current.saveInBackground()
             }
             completionAction.backgroundColor = UIColor.purple
             completionAction.title = "Complete Goal?"
@@ -313,10 +314,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         Whisper.show(shout: announcement, to: self) { }
         //send this goal as an update back to the database, to feed view controller
         var data: [String: Any] = [:]
-        data["text"] = "person completed a goal!!"
+        let username = user?.username!
+        data["text"] = (username?.capitalized)! + " accomplished this goal!"
         data["goalId"] = goal.objectId
         data["goalTitle"] = goal["title"]
         data["goalDate"] = goal.createdAt
+        data["image"] = NSNull()
         
         let updateDate = Date()
         let formatter  = DateFormatter()
