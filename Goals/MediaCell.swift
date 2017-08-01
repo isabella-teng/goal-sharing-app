@@ -47,6 +47,7 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate {
                 playerController.player = player
                 playerController.view.frame = self.mediaImage.frame
                 playerController.view.clipsToBounds = true
+                playerController.view.contentMode = UIViewContentMode.scaleAspectFill
                 playerController.view.layer.cornerRadius = 10
                 self.addSubview(playerController.view)
             }

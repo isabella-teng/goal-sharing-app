@@ -31,7 +31,7 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         self.descriptionTextView = RSKPlaceholderTextView(frame: CGRect(x: 16, y: 106, width: self.view.frame.width - 32, height: 65))
         self.descriptionTextView?.placeholder = "Briefly describe your goal"
         self.view.addSubview(self.descriptionTextView!)
-        self.descriptionTextView?.font = UIFont (name: "HelveticaNeue-Light", size: 18)
+        self.descriptionTextView?.font = UIFont(name: "HelveticaNeue-Light", size: 18)
         
         // Set up datePicker
         datePickerView.datePickerMode = UIDatePickerMode.date

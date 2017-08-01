@@ -49,6 +49,7 @@ class Update: NSObject {
         update["goalTitle"] = data["goalTitle"]
         update["goalDate"] = data["goalDate"] //when goal was created
         update["type"] = data["type"] as! String
+        update["image"] = data["image"]
         update["likes"] = []
         update["likeCount"] = 0
         update["liked"] = false //should also have in the user
@@ -184,7 +185,7 @@ class Update: NSObject {
                     update.deleteInBackground()
                 }
             } else {
-                print(error?.localizedDescription)
+                print(error?.localizedDescription as Any)
             }
         }
     }

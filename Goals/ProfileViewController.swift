@@ -256,11 +256,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
                 //TODO: add alert controller before deleting
                 let currentIndex = indexPath.row
-                var deleteGoal = self.allUserPosts![currentIndex]
+                let deleteGoal = self.allUserPosts![currentIndex]
                 self.allUserPosts!.remove(at: indexPath.row)
                 print(deleteGoal)
                 self.goalDeletionfromDatabase(goal: deleteGoal)
-                print(self.allUserPosts)
+                print(self.allUserPosts as Any)
             }
             deleteAction.title = "Delete Goal?"
             

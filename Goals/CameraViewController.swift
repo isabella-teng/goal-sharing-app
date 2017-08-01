@@ -28,7 +28,6 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
         allowAutoRotate = true
         audioEnabled = true
         addButtons()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -45,13 +44,12 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
         // Returns a UIImage captured from the current session
         
         let vc = PhotoViewController(image: photo, update: self.currentUpdate!)
-        self.present(vc, animated: true, completion: nil)
+        self.present(vc, animated: false, completion: nil)
     }
     
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didBeginRecordingVideo camera: SwiftyCamViewController.CameraSelection) {
         // Called when startVideoRecording() is called
         // Called if a SwiftyCamButton begins a long press gesture
-        print("Did Begin Recording")
         captureButton.growButton()
         UIView.animate(withDuration: 0.25, animations: {
             self.flashButton.alpha = 0.0
@@ -62,7 +60,6 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFinishRecordingVideo camera: SwiftyCamViewController.CameraSelection) {
         // Called when stopVideoRecording() is called
         // Called if a SwiftyCamButton ends a long press gesture
-        print("Did finish Recording")
         captureButton.shrinkButton()
         UIView.animate(withDuration: 0.25, animations: {
             self.flashButton.alpha = 1.0
@@ -75,8 +72,7 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
         // Returns a URL in the temporary directory where video is stored
         
         let newVC = VideoViewController(videoURL: url, update: self.currentUpdate!)
-        self.present(newVC, animated: true, completion: nil)
-        
+        self.present(newVC, animated: false, completion: nil)
     }
     
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFocusAtPoint point: CGPoint) {
@@ -106,13 +102,11 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
         // Called when a user initiates a pinch gesture on the preview layer
         // Will only be called if pinchToZoomn = true
         // Returns a CGFloat of the current zoom level
-        print(zoom)
     }
     
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didSwitchCameras camera: SwiftyCamViewController.CameraSelection) {
         // Called when user switches between cameras
-        // Returns current camera selection 
-        print(camera)
+        // Returns current camera selection
     }
     
 
@@ -135,9 +129,7 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
         }
     }
     
-    
 
-    
     func addButtons() {
         captureButton = SwiftyCamRecordButton(frame: CGRect(x: view.frame.midX - 37.5, y: view.frame.height - 100.0, width: 75.0, height: 75.0))
         self.view.addSubview(captureButton)
@@ -155,12 +147,11 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
         flashButton.addTarget(self, action: #selector(toggleFlashAction(_:)), for: .touchUpInside)
         self.view.addSubview(flashButton)
         
-        let cancelButton = UIButton(frame: CGRect(x: 15.0, y: 15.0, width: 24.0, height: 40.0))
+        let cancelButton = UIButton(frame: CGRect(x: 10.0, y: 20.0, width: 40.0, height: 35.0))
+        cancelButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         cancelButton.setImage(#imageLiteral(resourceName: "left-arrow"), for: UIControlState())
         cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         view.addSubview(cancelButton)
-
-
     }
     
     func cancel() {
