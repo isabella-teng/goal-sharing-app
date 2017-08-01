@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TimelineUpdateCellDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -48,8 +48,13 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             // Set up UpdateCells with update information
             let cell = (tableView.dequeueReusableCell(withIdentifier: "UpdateCell", for: indexPath) as! UpdateCell)
             cell.update = updates[indexPath.row - 1]
+            cell.delegate = self
             return cell
         }
+    }
+    
+    func timelineUpdateCell(_ updateCell: UpdateCell, didTap update: PFObject) {
+        performSegue(withIdentifier: "timelineToDetailSegue", sender: update)
     }
     
     @IBAction func didTapClose(_ sender: Any) {
@@ -61,9 +66,16 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        TODO
-//        let cell = sender as! UpdateCell
-//        let vc = segue.destination as! DetailViewController
-//        vc.currentUpdate = cell.update!
+        if (segue.identifier == "timelineToDetailSegue") {
+            let vc = segue.destination as! DetailViewController
+            vc.currentUpdate = sender as? PFObject
+            
+            let goalId = vc.currentUpdate?["goalId"] as! String
+            Goal.fetchGoalWithId(id: goalId, withCompletion: { (loadedGoal: PFObject?, error: Error?) in
+                if error == nil {
+                    vc.goal = loadedGoal
+                }
+            })
+        }
     }
 }

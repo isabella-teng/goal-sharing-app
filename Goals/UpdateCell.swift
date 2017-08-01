@@ -9,6 +9,10 @@
 import UIKit
 import Parse
 
+protocol TimelineUpdateCellDelegate: class {
+    func timelineUpdateCell(_ updateCell: UpdateCell, didTap update: PFObject)
+}
+
 class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var updateBackground: UIView!
@@ -24,6 +28,7 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
     @IBOutlet weak var mediaHeight: NSLayoutConstraint!
     @IBOutlet weak var mediaPosition: NSLayoutConstraint!
     
+    weak var delegate: TimelineUpdateCellDelegate?
     
     var media: [[String: Any]] = []
     var update: PFObject? = nil {
@@ -97,6 +102,10 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
         }
     }
     
+    func didTapUpdate(_ sender: UITapGestureRecognizer) {
+        delegate?.timelineUpdateCell(self, didTap: update!)
+    }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -112,6 +121,10 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
         commentBackground.layer.cornerRadius = 10
         nodeView.layer.cornerRadius = nodeView.frame.height / 2
         commenterIcon.layer.cornerRadius = commenterIcon.frame.height / 2
+        
+        let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapUpdate(_:)))
+        updateBackground.addGestureRecognizer(cellTapGestureRecognizer)
+        updateBackground.isUserInteractionEnabled = true
     }
     
     
