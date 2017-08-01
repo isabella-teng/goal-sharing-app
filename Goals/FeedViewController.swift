@@ -28,8 +28,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var barButtonView: UIView!
     
     var refreshControl: UIRefreshControl!
-    var activityIndicatorView: NVActivityIndicatorView? = nil
-
+    var activityIndicatorView: NVActivityIndicatorView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,14 +41,22 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         //Setup refreshcontrol
         refreshControl = UIRefreshControl()
+        refreshControl.backgroundColor = UIColor.clear
+        refreshControl.tintColor = UIColor.clear
         refreshControl.addTarget(self, action: #selector(FeedViewController.didPullToRefresh(_:)), for: .valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
-        activityIndicatorView = NVActivityIndicatorView(frame: refreshControl.frame)
+        
+        let width = Int(self.view.frame.width / 12)
+        let height = Int(self.view.frame.height / 12)
+    
+        activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: Int(self.view.frame.width / 2.2), y:0, width: width, height: height), type: .ballTrianglePath, color: .black)
+        refreshControl.addSubview(activityIndicatorView!)
+        activityIndicatorView?.startAnimating()
 
     }
     
     func didPullToRefresh(_ refreshControl: UIRefreshControl) {
-        activityIndicatorView?.startAnimating()
+        refreshControl.endRefreshing()
     }
     
     override func viewDidAppear(_ animated: Bool) {
