@@ -34,7 +34,6 @@
 		FA3E2F2C1F2AFC1D009DAF56 /* GoalCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3E2F2B1F2AFC1D009DAF56 /* GoalCategoryCell.swift */; };
 		FA58362D1F2936730023AA88 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA58362C1F2936730023AA88 /* ExploreViewController.swift */; };
 		FA58362F1F293F3B0023AA88 /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA58362E1F293F3B0023AA88 /* UserSearchCell.swift */; };
-		FA6ACD281F30492900D24CAE /* CustomLoadingIndicator.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6ACD271F30492900D24CAE /* CustomLoadingIndicator.xib */; };
 		FAA6C8C31F1EA79900FB8F26 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6C8C21F1EA79900FB8F26 /* CameraViewController.swift */; };
 		FAA6C8C51F1EB62D00FB8F26 /* SwiftyCamRecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6C8C41F1EB62D00FB8F26 /* SwiftyCamRecordButton.swift */; };
 		FAA6C8C81F1EB97E00FB8F26 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6C8C71F1EB97E00FB8F26 /* PhotoViewController.swift */; };
@@ -105,7 +104,6 @@
 		FA3E2F2B1F2AFC1D009DAF56 /* GoalCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalCategoryCell.swift; sourceTree = "<group>"; };
 		FA58362C1F2936730023AA88 /* ExploreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 		FA58362E1F293F3B0023AA88 /* UserSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
-		FA6ACD271F30492900D24CAE /* CustomLoadingIndicator.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomLoadingIndicator.xib; sourceTree = "<group>"; };
 		FAA6C8C21F1EA79900FB8F26 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		FAA6C8C41F1EB62D00FB8F26 /* SwiftyCamRecordButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyCamRecordButton.swift; sourceTree = "<group>"; };
 		FAA6C8C71F1EB97E00FB8F26 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
@@ -175,16 +173,14 @@
 		7E8642021F156FCA00EE968A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B8FB62E41F3129E90065B508 /* ContainerCell.swift */,
+				FACD857A1F31430D007A6D8A /* Explore Cells */,
 				FA3E2F2B1F2AFC1D009DAF56 /* GoalCategoryCell.swift */,
-				FA3E2F271F2AB484009DAF56 /* CategoryCell.swift */,
 				7EFBFC3F1F2AA4BF0052A81A /* DetailCommentCell.swift */,
 				7E1FCE611F16D6E9009C0AF1 /* FeedCell.swift */,
 				FAD351491F1838D500998CCA /* GoalCell.swift */,
 				FAD3513D1F16D49A00998CCA /* LogCell.swift */,
 				FACF12D11F156E8C00D505FE /* ProfileCell.swift */,
 				FAA6C8C41F1EB62D00FB8F26 /* SwiftyCamRecordButton.swift */,
-				FA58362E1F293F3B0023AA88 /* UserSearchCell.swift */,
 				7E4EE3411F1FDB4900BCFEA4 /* Timeline */,
 			);
 			name = Views;
@@ -231,6 +227,27 @@
 				FAA6C8CB1F1ED64800FB8F26 /* AddCaptionViewController.swift */,
 			);
 			name = "Camera VCs ";
+			sourceTree = "<group>";
+		};
+		FACD85791F3142F2007A6D8A /* Explore VCs */ = {
+			isa = PBXGroup;
+			children = (
+				B8FB62E21F3121340065B508 /* ContainerViewController.swift */,
+				FA58362C1F2936730023AA88 /* ExploreViewController.swift */,
+				FA3E2F291F2ABC07009DAF56 /* GoalsOfCategoryViewController.swift */,
+				B8FB62EE1F312EE70065B508 /* UserViewController.swift */,
+			);
+			name = "Explore VCs";
+			sourceTree = "<group>";
+		};
+		FACD857A1F31430D007A6D8A /* Explore Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B8FB62E41F3129E90065B508 /* ContainerCell.swift */,
+				FA3E2F271F2AB484009DAF56 /* CategoryCell.swift */,
+				FA58362E1F293F3B0023AA88 /* UserSearchCell.swift */,
+			);
+			name = "Explore Cells";
 			sourceTree = "<group>";
 		};
 		FACF128F1F15476200D505FE = {
@@ -292,10 +309,8 @@
 		FACF12CB1F154A4600D505FE /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B8FB62E21F3121340065B508 /* ContainerViewController.swift */,
+				FACD85791F3142F2007A6D8A /* Explore VCs */,
 				FAD351411F182FC500998CCA /* AllGoalsViewController.swift */,
-				FA58362C1F2936730023AA88 /* ExploreViewController.swift */,
-				FA3E2F291F2ABC07009DAF56 /* GoalsOfCategoryViewController.swift */,
 				B87C87EF1F159AE100F58517 /* DetailViewController.swift */,
 				7EEEFB161F158A6E004A29EC /* FeedViewController.swift */,
 				FACF12C91F154A3D00D505FE /* LoginViewController.swift */,
@@ -304,7 +319,6 @@
 				7E1FCE631F16E6DC009C0AF1 /* PostUpdateViewController.swift */,
 				B84B22781F1EDB6F00E9482E /* ProgressViewController.swift */,
 				7EF1FFD41F158598000DA708 /* TimelineViewController.swift */,
-				B8FB62EE1F312EE70065B508 /* UserViewController.swift */,
 				FAA6C8C61F1EB94D00FB8F26 /* Camera VCs  */,
 				FA2258511F27B286008CDBCC /* Profile VCs */,
 			);
@@ -316,7 +330,6 @@
 			children = (
 				7E6B47FE1F169CE00079AC1F /* Goal.swift */,
 				7E38DFDA1F15813400DEF47C /* Update.swift */,
-				FA6ACD271F30492900D24CAE /* CustomLoadingIndicator.xib */,
 				FAD351391F1597FE00998CCA /* User.swift */,
 				B84B227C1F2019BE00E9482E /* xAxisValueFormatter.swift */,
 			);
@@ -400,7 +413,7 @@
 				TargetAttributes = {
 					FACF12971F15476200D505FE = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 3JE575EG34;
+						DevelopmentTeam = NF7K8Y2LMW;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -446,7 +459,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FACF12A61F15476200D505FE /* LaunchScreen.storyboard in Resources */,
-				FA6ACD281F30492900D24CAE /* CustomLoadingIndicator.xib in Resources */,
 				FAD3513C1F16A8CC00998CCA /* Assets.xcassets in Resources */,
 				FACF12A11F15476200D505FE /* Main.storyboard in Resources */,
 			);
@@ -802,10 +814,10 @@
 			baseConfigurationReference = 1FCD39C47ED1A6703B4F8F14 /* Pods-Goals.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3JE575EG34;
+				DEVELOPMENT_TEAM = NF7K8Y2LMW;
 				INFOPLIST_FILE = Goals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Gerardo.com.Goals;
+				PRODUCT_BUNDLE_IDENTIFIER = Isabella.com.Goalsaf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -817,10 +829,10 @@
 			baseConfigurationReference = CF3584AB59D862ECDED6FA78 /* Pods-Goals.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3JE575EG34;
+				DEVELOPMENT_TEAM = NF7K8Y2LMW;
 				INFOPLIST_FILE = Goals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Gerardo.com.Goals;
+				PRODUCT_BUNDLE_IDENTIFIER = Isabella.com.Goalsaf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

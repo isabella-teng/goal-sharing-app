@@ -47,8 +47,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         refreshControl.tintColor = UIColor.clear
         refreshControl.addTarget(self, action: #selector(FeedViewController.didPullToRefresh(_:)), for: .valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
-        
-        
+
     }
     
     func didPullToRefresh(_ refreshControl: UIRefreshControl) {

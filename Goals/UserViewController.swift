@@ -7,18 +7,35 @@
 //
 
 import UIKit
+import Parse
+import ParseUI
 
 class UserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
+    
+    var allUsers: [PFUser] = []
+    var filteredUsers: [PFUser] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 200
+
     }
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        User.fetchAllUsers { (loadedUsers: [PFObject]?, error: Error?) in
+            if error == nil {
+                self.allUsers = loadedUsers as! [PFUser]
+                self.tableView.reloadData()
+            } else {
+                print(error?.localizedDescription as Any)
+            }
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -26,22 +43,15 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return allUsers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserSearchCell", for: indexPath) as! UserSearchCell
+        cell.user = allUsers[indexPath.row]
         return cell
     }
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

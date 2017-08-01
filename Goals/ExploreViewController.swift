@@ -144,19 +144,6 @@ class ExploreViewController: UIViewController, UITableViewDataSource, UITableVie
                 cell.user = allUsers[indexPath.row]
             }
             
-//            if let profPic = cell.user["portrait"] as? PFFile {
-//                profPic.getDataInBackground{ (imageData: Data?, error: Error?) in
-//                    if error == nil {
-//                        let profImage = UIImage(data: imageData!)
-//                        //self.userProfPic.image = profImage
-//                        cell.userImage = profImage
-//                    }
-//                }
-//            } else { //default image
-//                //userProfPic.image = UIImage(named: "default")
-//                cell.userImage = UIImage(named: "default")
-//            }
-
             
             cell.delegate = self
             return cell
