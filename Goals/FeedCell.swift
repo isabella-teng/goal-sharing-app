@@ -33,6 +33,7 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var goalCellEdges: UIView!
     @IBOutlet weak var interactionBackground: UIView!
     @IBOutlet weak var commentCount: UILabel!
+    @IBOutlet weak var updateDescription: UILabel!
     
     @IBOutlet weak var updateImageHeight: NSLayoutConstraint!
     @IBOutlet weak var goalCellMargin: NSLayoutConstraint!
@@ -46,6 +47,7 @@ class FeedCell: UITableViewCell {
             self.titleLabel.text = update["text"] as? String
             self.author = update["author"] as? PFUser
             self.authorLabel.text = author?.username
+            self.goalTitleLabel.text = update["goalTitle"] as? String
             
             if let profpic = author?["portrait"] as? PFFile {
                 profpic.getDataInBackground { (imageData: Data?, error: Error?) in
@@ -67,10 +69,13 @@ class FeedCell: UITableViewCell {
                 goalCellBg.backgroundColor = UIColor(red: 0.85, green: 0.30, blue: 0.30, alpha: 1.0)
                 goalCellEdges.backgroundColor = goalCellBg.backgroundColor
             } else if typeString == "Complete" {
-                cellBackground.backgroundColor = UIColor(red:0.99, green:0.67, blue:0.94, alpha:1.0)
-                goalCellBg.backgroundColor = UIColor(red:0.98, green:0.59, blue:0.93, alpha:1.0)
+                cellBackground.backgroundColor = UIColor(red:0.93, green:0.71, blue:0.13, alpha:1.0)
+                goalCellBg.backgroundColor = UIColor(red:0.93, green:0.61, blue:0.12, alpha:1.0)
                 goalCellEdges.backgroundColor = goalCellBg.backgroundColor
                 update["image"] = Update.getPFFileFromImage(image: #imageLiteral(resourceName: "ballons"))
+                updateDescription.text = "completed a goal!"
+                titleLabel.text = update["goalTitle"] as? String
+                goalTitleLabel.text = "Congratulate " + (author?.username)!.capitalized + "!"
             } else {
                 cellBackground.backgroundColor = UIColor(red: 0.45, green: 0.50, blue: 0.90, alpha: 1.0)
                 goalCellBg.backgroundColor = UIColor(red: 0.35, green: 0.40, blue: 0.70, alpha: 1.0)
@@ -90,8 +95,6 @@ class FeedCell: UITableViewCell {
                 updateImageHeight.constant = 0
                 goalCellMargin.constant = 0
             }
-
-            self.goalTitleLabel.text = update["goalTitle"] as? String
             
             let dateUpdated = update.createdAt! as Date
             let dateFormat = DateFormatter()
