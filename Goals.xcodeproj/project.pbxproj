@@ -26,6 +26,9 @@
 		B87C87EE1F156E9300F58517 /* PostGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87ED1F156E9300F58517 /* PostGoalViewController.swift */; };
 		B87C87F01F159AE100F58517 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87EF1F159AE100F58517 /* DetailViewController.swift */; };
 		B87C87F21F169B5500F58517 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87F11F169B5500F58517 /* EditProfileViewController.swift */; };
+		B8FB62E31F3121340065B508 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FB62E21F3121340065B508 /* ContainerViewController.swift */; };
+		B8FB62E51F3129E90065B508 /* ContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FB62E41F3129E90065B508 /* ContainerCell.swift */; };
+		B8FB62EF1F312EE70065B508 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FB62EE1F312EE70065B508 /* UserViewController.swift */; };
 		FA3E2F281F2AB484009DAF56 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3E2F271F2AB484009DAF56 /* CategoryCell.swift */; };
 		FA3E2F2A1F2ABC07009DAF56 /* GoalsOfCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3E2F291F2ABC07009DAF56 /* GoalsOfCategoryViewController.swift */; };
 		FA3E2F2C1F2AFC1D009DAF56 /* GoalCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3E2F2B1F2AFC1D009DAF56 /* GoalCategoryCell.swift */; };
@@ -91,6 +94,9 @@
 		B87C87ED1F156E9300F58517 /* PostGoalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostGoalViewController.swift; sourceTree = "<group>"; };
 		B87C87EF1F159AE100F58517 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B87C87F11F169B5500F58517 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		B8FB62E21F3121340065B508 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		B8FB62E41F3129E90065B508 /* ContainerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerCell.swift; sourceTree = "<group>"; };
+		B8FB62EE1F312EE70065B508 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		CB4F6A01BA5261F1C95C9952 /* Pods-GoalsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsTests/Pods-GoalsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CF3584AB59D862ECDED6FA78 /* Pods-Goals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Goals.release.xcconfig"; path = "Pods/Target Support Files/Pods-Goals/Pods-Goals.release.xcconfig"; sourceTree = "<group>"; };
 		E339925FD6B14DCCACECDAC9 /* Pods_GoalsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoalsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -229,6 +235,7 @@
 		FACF128F1F15476200D505FE = {
 			isa = PBXGroup;
 			children = (
+				B8FB62E41F3129E90065B508 /* ContainerCell.swift */,
 				FACF129A1F15476200D505FE /* Goals */,
 				FACF12AF1F15476300D505FE /* GoalsTests */,
 				FACF12BA1F15476300D505FE /* GoalsUITests */,
@@ -285,6 +292,7 @@
 		FACF12CB1F154A4600D505FE /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B8FB62E21F3121340065B508 /* ContainerViewController.swift */,
 				FAD351411F182FC500998CCA /* AllGoalsViewController.swift */,
 				FA58362C1F2936730023AA88 /* ExploreViewController.swift */,
 				FA3E2F291F2ABC07009DAF56 /* GoalsOfCategoryViewController.swift */,
@@ -296,6 +304,7 @@
 				7E1FCE631F16E6DC009C0AF1 /* PostUpdateViewController.swift */,
 				B84B22781F1EDB6F00E9482E /* ProgressViewController.swift */,
 				7EF1FFD41F158598000DA708 /* TimelineViewController.swift */,
+				B8FB62EE1F312EE70065B508 /* UserViewController.swift */,
 				FAA6C8C61F1EB94D00FB8F26 /* Camera VCs  */,
 				FA2258511F27B286008CDBCC /* Profile VCs */,
 			);
@@ -604,6 +613,7 @@
 			files = (
 				B87C87EE1F156E9300F58517 /* PostGoalViewController.swift in Sources */,
 				7E1FCE621F16D6E9009C0AF1 /* FeedCell.swift in Sources */,
+				B8FB62E31F3121340065B508 /* ContainerViewController.swift in Sources */,
 				7E949C081F18108800449DA0 /* PostCommentViewController.swift in Sources */,
 				FACF12CA1F154A3D00D505FE /* LoginViewController.swift in Sources */,
 				FA3E2F281F2AB484009DAF56 /* CategoryCell.swift in Sources */,
@@ -618,10 +628,12 @@
 				FACF12CF1F154A8700D505FE /* ProfileViewController.swift in Sources */,
 				7EF1FFD51F158598000DA708 /* TimelineViewController.swift in Sources */,
 				FACF129C1F15476200D505FE /* AppDelegate.swift in Sources */,
+				B8FB62E51F3129E90065B508 /* ContainerCell.swift in Sources */,
 				FAD3514A1F1838D500998CCA /* GoalCell.swift in Sources */,
 				FAA6C8C81F1EB97E00FB8F26 /* PhotoViewController.swift in Sources */,
 				B87C87F01F159AE100F58517 /* DetailViewController.swift in Sources */,
 				FAA6C8C51F1EB62D00FB8F26 /* SwiftyCamRecordButton.swift in Sources */,
+				B8FB62EF1F312EE70065B508 /* UserViewController.swift in Sources */,
 				B87C87F21F169B5500F58517 /* EditProfileViewController.swift in Sources */,
 				7E38DFDB1F15813400DEF47C /* Update.swift in Sources */,
 				FA3E2F2A1F2ABC07009DAF56 /* GoalsOfCategoryViewController.swift in Sources */,
