@@ -66,8 +66,8 @@ class FeedCell: UITableViewCell {
                 goalCellBg.backgroundColor = UIColor(red: 0.85, green: 0.30, blue: 0.30, alpha: 1.0)
                 goalCellEdges.backgroundColor = goalCellBg.backgroundColor
             } else if typeString == "Complete" {
-                cellBackground.backgroundColor = UIColor(red:0.99, green:0.67, blue:0.94, alpha:1.0)
-                goalCellBg.backgroundColor = UIColor(red:0.98, green:0.59, blue:0.93, alpha:1.0)
+                cellBackground.backgroundColor = UIColor(red:0.93, green:0.71, blue:0.13, alpha:1.0)
+                goalCellBg.backgroundColor = UIColor(red:0.93, green:0.61, blue:0.12, alpha:1.0)
                 goalCellEdges.backgroundColor = goalCellBg.backgroundColor
                 update["image"] = Update.getPFFileFromImage(image: #imageLiteral(resourceName: "ballons"))
             } else {
