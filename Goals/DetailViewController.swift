@@ -27,7 +27,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    
     var comments: [[String: Any]] = []
     var media: [[String: Any]] = []
     var currentUpdate: PFObject?
@@ -37,6 +36,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var likesArray: [PFUser]? = nil
     var liked = false
+    var isFromTimeline: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +70,12 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         originalPos = tableView.frame.origin.y
+        
+        if isFromTimeline {
+            let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
+            self.view.addSubview(navBar)
+            navBar.isTranslucent = false
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

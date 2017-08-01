@@ -69,6 +69,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         if (segue.identifier == "timelineToDetailSegue") {
             let vc = segue.destination as! DetailViewController
             vc.currentUpdate = sender as? PFObject
+            vc.isFromTimeline = true
             
             let goalId = vc.currentUpdate?["goalId"] as! String
             Goal.fetchGoalWithId(id: goalId, withCompletion: { (loadedGoal: PFObject?, error: Error?) in
