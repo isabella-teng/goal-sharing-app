@@ -147,6 +147,7 @@ class Update: NSObject {
     class func fetchUpdatesByGoal(goalId: String, withCompletion completion: @escaping ([PFObject]?, Error?) -> ()) {
         let query = PFQuery(className: "Update")
         
+        query.includeKey("author")
         query.order(byAscending: "createdAt")
         query.whereKey("goalId", equalTo: goalId as Any)
         
@@ -164,6 +165,8 @@ class Update: NSObject {
     class func fetchUpdateById(updateId: String, withCompletion completion: @escaping (PFObject?, Error?) -> ()) {
         let query = PFQuery(className: "Update")
         
+        query.includeKey("author")
+        
         query.getObjectInBackground(withId: updateId) { (update: PFObject?, error: Error?) in
             if error == nil {
                 completion(update, nil)
@@ -177,6 +180,7 @@ class Update: NSObject {
     class func deleteUpdatesByGoal(goalId: String) {
         let query = PFQuery(className: "Update")
         query.whereKey("goalId", equalTo: goalId as Any)
+        query.includeKey("author")
         
         query.findObjectsInBackground { (loadedUpdates: [PFObject]?, error: Error?) in
             if error == nil {

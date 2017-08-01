@@ -27,7 +27,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    
     var comments: [[String: Any]] = []
     var media: [[String: Any]] = []
     var currentUpdate: PFObject?
@@ -37,6 +36,11 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var likesArray: [PFUser]? = nil
     var liked = false
+    var isFromTimeline: Bool = false
+    
+    var doneItem: UIBarButtonItem? = nil
+
+    @IBOutlet weak var goalTopConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,13 +74,38 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         originalPos = tableView.frame.origin.y
+        
+        if isFromTimeline {
+            let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60))
+            self.view.addSubview(navBar)
+            
+            let navItem = UINavigationItem(title: "Update");
+            doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: nil, action: #selector(done));
+            navItem.rightBarButtonItem = doneItem;
+            navBar.setItems([navItem], animated: false);
+        
+            //tableView.frame = CGRect(x: tableView.frame.origin.x, y: 60, width: tableView.frame.size.width, height: tableView.frame.size.height)
+            
+            //navBar.isTranslucent = false
+            
+            //tableView.contentInset = UIEdgeInsetsMake(-50, 0, 0, 0)
+            goalTopConstraint.constant = 60
+        }
+    }
+    
+    func done() {
+        self.dismiss(animated: true, completion: nil)
+    }
+
+    @IBAction func onClose(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         author = currentUpdate?["author"] as? PFUser
         usernameLabel.text = author?["username"] as? String
         
-        if author?.objectId != PFUser.current()?.objectId || goal?["isCompleted"] as! Bool == true {
+        if author?.objectId != PFUser.current()?.objectId || goal?["isCompleted"] != nil {
             updateButton.image = nil
             updateButton.isEnabled = false
         } else {
