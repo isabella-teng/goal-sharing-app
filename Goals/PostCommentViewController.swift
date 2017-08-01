@@ -67,14 +67,6 @@ class PostCommentViewController: UIViewController {
                     self.currentUpdate?["comments"] = commentsArray
                     self.currentUpdate?.incrementKey("commentCount", byAmount: 1)
                     
-                    //Save updates activity array. chose not to have comments in the activity list
-//                    var interactionsArray = self.currentUpdate?["activity"] as! [[String: Any]]
-//                    var newInteraction: [String: Any] = commentsDictionary
-//                    newInteraction["type"] = "comment"
-//                    newInteraction["createdAt"] = NSDate()
-//                    interactionsArray.append(newInteraction)
-//                    self.currentUpdate?["activity"] = interactionsArray
-                    
                     self.currentUpdate?.saveInBackground()
                 } else {
                     print(error?.localizedDescription as Any)

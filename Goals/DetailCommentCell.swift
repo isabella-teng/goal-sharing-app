@@ -9,6 +9,10 @@
 import UIKit
 import Parse
 
+//protocol didPostCommentDelegate: class {
+//    func didComment(comment: PFObject)
+//}
+
 class DetailCommentCell: UITableViewCell, UITextFieldDelegate {
 
     @IBOutlet weak var cellBackground: UIView!

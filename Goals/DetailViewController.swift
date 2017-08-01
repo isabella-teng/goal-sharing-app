@@ -94,23 +94,16 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         comments = currentUpdate?["comments"] as! [[String: Any]]
         tableView.reloadData()
-        Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.onTimer), userInfo: nil, repeats: true)
+//        Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.onTimer), userInfo: nil, repeats: true)
         
         let indexPath = IndexPath(row: comments.count, section: 0)
         self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-        
-//        let goalId = currentUpdate?["goalId"] as! String
-//        Goal.fetchGoalWithId(id: goalId) { (loadedGoal: PFObject?, error: Error?) in
-//            if error == nil {
-//                self.goal = loadedGoal
-//            }
-//        }
     }
     
-    func onTimer() {
-        comments = currentUpdate?["comments"] as! [[String: Any]]
-        tableView.reloadData()
-    }
+//    func onTimer() {
+//        comments = currentUpdate?["comments"] as! [[String: Any]]
+//        tableView.reloadData()
+//    }
     
     @IBAction func didTapScreen(_ sender: Any) {
         self.view.endEditing(true)
@@ -132,6 +125,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             cell.update = currentUpdate
             cell.parent = self.tableView
+            
+            //insert comment into comment array and then reload table
             
             return cell
         } else {

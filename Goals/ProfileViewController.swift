@@ -235,7 +235,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        if orientation == .right && allUserPosts![indexPath.row]["isCompleted"] as! Bool == false {
+        if orientation == .right && allUserPosts![indexPath.row]["isCompleted"] as! Bool == false && user?.objectId == PFUser.current()?.objectId {
             let completionAction = SwipeAction(style: .default, title: "Complete Goal?") { action, indexPath in
             // handle action by updating model with completion
                 let current = self.allUserPosts![indexPath.row]
@@ -248,7 +248,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             completionAction.backgroundColor = UIColor.purple
             completionAction.title = "Complete Goal?"
             return [completionAction]
-        } else if orientation == .left {
+        } else if orientation == .left && user?.objectId == PFUser.current()?.objectId {
             //orientation is left, delete
             let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
                 
