@@ -29,6 +29,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var followUserButton: UIButton!
     
+    @IBOutlet weak var myWeek: UIButton!
     @IBOutlet weak var goalSelection: UISegmentedControl!
     
     
@@ -47,6 +48,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        myWeek.isHidden = true
         
         // Set up tableView
         tableView.dataSource = self

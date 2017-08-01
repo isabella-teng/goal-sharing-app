@@ -608,10 +608,9 @@
                                     <action selector="didTapLogout:" destination="1Dv-Of-Uq1" eventType="touchUpInside" id="kYA-O2-niv"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sAM-Vu-3Ir">
-                                <rect key="frame" x="10" y="151" width="73" height="30"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                <state key="normal" title="Edit Profile"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sAM-Vu-3Ir">
+                                <rect key="frame" x="10" y="151" width="24" height="30"/>
+                                <state key="normal" image="settings"/>
                                 <connections>
                                     <segue destination="lKG-hx-w8f" kind="presentation" id="lbq-9r-zO0"/>
                                 </connections>
@@ -683,7 +682,7 @@
                                     <action selector="didTapClose:" destination="1Dv-Of-Uq1" eventType="touchUpInside" id="ocl-Rp-Lak"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7uQ-Ca-qhr">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7uQ-Ca-qhr">
                                 <rect key="frame" x="302" y="151" width="63" height="30"/>
                                 <state key="normal" title="My Week"/>
                                 <connections>
@@ -759,6 +758,7 @@
                         <outlet property="followUserButton" destination="V9c-iV-bma" id="BIm-Wz-XWW"/>
                         <outlet property="goalSelection" destination="BTf-en-lJD" id="tJs-d3-y81"/>
                         <outlet property="logoutButton" destination="cf1-Vh-mKT" id="oEu-0e-Jpg"/>
+                        <outlet property="myWeek" destination="7uQ-Ca-qhr" id="A0b-IE-spd"/>
                         <outlet property="profileIcon" destination="UhH-ks-eog" id="ZWh-Fx-Suw"/>
                         <outlet property="tableView" destination="bce-Sn-ehU" id="XCp-h4-FhL"/>
                         <outlet property="usernameLabel" destination="Joj-Jw-deG" id="6ph-cg-m15"/>
@@ -2183,16 +2183,15 @@
         <image name="like-red" width="25" height="25"/>
         <image name="menu" width="25" height="25"/>
         <image name="photo" width="25" height="25"/>
+        <image name="settings" width="24" height="24"/>
         <image name="user" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7nc-FM-ics"/>
-        <segue reference="Q3w-fk-ISv"/>
-        <segue reference="Mng-1h-zUX"/>
         <segue reference="yqQ-IM-bYA"/>
+        <segue reference="Mng-1h-zUX"/>
         <segue reference="ZpT-ic-j8z"/>
+        <segue reference="Q3w-fk-ISv"/>
         <segue reference="ZeU-bb-uMv"/>
-        <segue reference="jvt-5C-kyF"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
