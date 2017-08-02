@@ -30,7 +30,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var refreshControl: UIRefreshControl!
     var activityIndicatorView: NVActivityIndicatorView?
-    var didPullToRefresh: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,19 +46,23 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         refreshControl.tintColor = UIColor.clear
         refreshControl.addTarget(self, action: #selector(FeedViewController.didPullToRefresh(_:)), for: .valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
+        
+        let width = Int(self.view.frame.width / 12)
+        let height = Int(self.view.frame.height / 12)
+        activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: Int(self.view.frame.width / 2.2), y:0, width: width, height: height), type: .pacman, color: .black)
+        refreshControl.addSubview(activityIndicatorView!)
 
     }
     
     func didPullToRefresh(_ refreshControl: UIRefreshControl) {
-        
-        let width = Int(self.view.frame.width / 12)
-        let height = Int(self.view.frame.height / 12)
-        
-        activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: Int(self.view.frame.width / 2.2), y:0, width: width, height: height), type: .pacman, color: .black)
-        refreshControl.addSubview(activityIndicatorView!)
+    
         activityIndicatorView?.startAnimating()
         
-        didPullToRefresh = true
+        let when = DispatchTime.now() + 2
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            self.activityIndicatorView?.stopAnimating()
+            self.refreshControl.endRefreshing()
+        }
         viewDidAppear(true)
     }
     
@@ -82,12 +85,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             } else {
                 print(error?.localizedDescription as Any)
             }
-            
-            if (self.didPullToRefresh) {
-                self.refreshControl.endRefreshing()
-                self.activityIndicatorView?.stopAnimating()
-                self.didPullToRefresh = false
-            }
+
             
         }
         //currently a notification you see if view appears

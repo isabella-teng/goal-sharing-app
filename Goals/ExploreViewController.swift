@@ -177,10 +177,11 @@ class ExploreViewController: UIViewController { //, UITableViewDataSource, UITab
             let vc = segue.destination as! ProfileViewController
             vc.user = sender as? PFUser
             vc.fromFeed = true
-        } else if (segue.identifier == "categorytoGoalsSegue") {
-            let vc = segue.destination as! GoalsOfCategoryViewController
-            vc.goalCategory = sender as! String
         }
+//        } else if (segue.identifier == "categorytoGoalsSegue") {
+//            //let vc = segue.destination as! GoalsOfCategoryViewController
+//            vc.goalCategory = sender as! String
+//        }
     }
     
     override func didReceiveMemoryWarning() {

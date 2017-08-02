@@ -28,7 +28,6 @@
 		B87C87F21F169B5500F58517 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C87F11F169B5500F58517 /* EditProfileViewController.swift */; };
 		B8FB62E31F3121340065B508 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FB62E21F3121340065B508 /* ContainerViewController.swift */; };
 		B8FB62EF1F312EE70065B508 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FB62EE1F312EE70065B508 /* UserViewController.swift */; };
-		FA3E2F2A1F2ABC07009DAF56 /* GoalsOfCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3E2F291F2ABC07009DAF56 /* GoalsOfCategoryViewController.swift */; };
 		FA3E2F2C1F2AFC1D009DAF56 /* GoalCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3E2F2B1F2AFC1D009DAF56 /* GoalCategoryCell.swift */; };
 		FA58362D1F2936730023AA88 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA58362C1F2936730023AA88 /* ExploreViewController.swift */; };
 		FA58362F1F293F3B0023AA88 /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA58362E1F293F3B0023AA88 /* UserSearchCell.swift */; };
@@ -99,7 +98,6 @@
 		CB4F6A01BA5261F1C95C9952 /* Pods-GoalsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsTests/Pods-GoalsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CF3584AB59D862ECDED6FA78 /* Pods-Goals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Goals.release.xcconfig"; path = "Pods/Target Support Files/Pods-Goals/Pods-Goals.release.xcconfig"; sourceTree = "<group>"; };
 		E339925FD6B14DCCACECDAC9 /* Pods_GoalsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoalsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FA3E2F291F2ABC07009DAF56 /* GoalsOfCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalsOfCategoryViewController.swift; sourceTree = "<group>"; };
 		FA3E2F2B1F2AFC1D009DAF56 /* GoalCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalCategoryCell.swift; sourceTree = "<group>"; };
 		FA58362C1F2936730023AA88 /* ExploreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 		FA58362E1F293F3B0023AA88 /* UserSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
@@ -182,6 +180,7 @@
 				FAD3513D1F16D49A00998CCA /* LogCell.swift */,
 				FACF12D11F156E8C00D505FE /* ProfileCell.swift */,
 				FAA6C8C41F1EB62D00FB8F26 /* SwiftyCamRecordButton.swift */,
+				FACD85891F318EE0007A6D8A /* Dead Old Explore Stuff */,
 				7E4EE3411F1FDB4900BCFEA4 /* Timeline */,
 			);
 			name = Views;
@@ -237,8 +236,6 @@
 				B8FB62EE1F312EE70065B508 /* UserViewController.swift */,
 				FACD857B1F314D7B007A6D8A /* AllCategoriesViewController.swift */,
 				FACD85831F318819007A6D8A /* Category'sGoalsViewController.swift */,
-				FA58362C1F2936730023AA88 /* ExploreViewController.swift */,
-				FA3E2F291F2ABC07009DAF56 /* GoalsOfCategoryViewController.swift */,
 			);
 			name = "Explore VCs";
 			sourceTree = "<group>";
@@ -251,6 +248,14 @@
 				FA58362E1F293F3B0023AA88 /* UserSearchCell.swift */,
 			);
 			name = "Explore Cells";
+			sourceTree = "<group>";
+		};
+		FACD85891F318EE0007A6D8A /* Dead Old Explore Stuff */ = {
+			isa = PBXGroup;
+			children = (
+				FA58362C1F2936730023AA88 /* ExploreViewController.swift */,
+			);
+			name = "Dead Old Explore Stuff";
 			sourceTree = "<group>";
 		};
 		FACF128F1F15476200D505FE = {
@@ -652,7 +657,6 @@
 				B8FB62EF1F312EE70065B508 /* UserViewController.swift in Sources */,
 				B87C87F21F169B5500F58517 /* EditProfileViewController.swift in Sources */,
 				7E38DFDB1F15813400DEF47C /* Update.swift in Sources */,
-				FA3E2F2A1F2ABC07009DAF56 /* GoalsOfCategoryViewController.swift in Sources */,
 				FAD3513A1F1597FE00998CCA /* User.swift in Sources */,
 				7ECD223A1F26C2A900D09608 /* MediaCell.swift in Sources */,
 				7EFBFC401F2AA4BF0052A81A /* DetailCommentCell.swift in Sources */,
