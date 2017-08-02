@@ -39,6 +39,13 @@
 		FACD857C1F314D7B007A6D8A /* AllCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACD857B1F314D7B007A6D8A /* AllCategoriesViewController.swift */; };
 		FACD85821F317DD9007A6D8A /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACD85811F317DD9007A6D8A /* CategoryCell.swift */; };
 		FACD85841F318819007A6D8A /* Category'sGoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACD85831F318819007A6D8A /* Category'sGoalsViewController.swift */; };
+		FACD85921F323190007A6D8A /* Quicksand_Bold_Oblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = FACD858B1F323190007A6D8A /* Quicksand_Bold_Oblique.otf */; };
+		FACD85931F323190007A6D8A /* Quicksand_Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FACD858C1F323190007A6D8A /* Quicksand_Bold.otf */; };
+		FACD85941F323190007A6D8A /* Quicksand_Book_Oblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = FACD858D1F323190007A6D8A /* Quicksand_Book_Oblique.otf */; };
+		FACD85951F323190007A6D8A /* Quicksand_Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = FACD858E1F323190007A6D8A /* Quicksand_Book.otf */; };
+		FACD85961F323190007A6D8A /* Quicksand_Dash.otf in Resources */ = {isa = PBXBuildFile; fileRef = FACD858F1F323190007A6D8A /* Quicksand_Dash.otf */; };
+		FACD85971F323190007A6D8A /* Quicksand_Light_Oblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = FACD85901F323190007A6D8A /* Quicksand_Light_Oblique.otf */; };
+		FACD85981F323190007A6D8A /* Quicksand_Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = FACD85911F323190007A6D8A /* Quicksand_Light.otf */; };
 		FACF129C1F15476200D505FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF129B1F15476200D505FE /* AppDelegate.swift */; };
 		FACF12A11F15476200D505FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACF129F1F15476200D505FE /* Main.storyboard */; };
 		FACF12A61F15476200D505FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACF12A41F15476200D505FE /* LaunchScreen.storyboard */; };
@@ -110,6 +117,13 @@
 		FACD857B1F314D7B007A6D8A /* AllCategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCategoriesViewController.swift; sourceTree = "<group>"; };
 		FACD85811F317DD9007A6D8A /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		FACD85831F318819007A6D8A /* Category'sGoalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Category'sGoalsViewController.swift"; sourceTree = "<group>"; };
+		FACD858B1F323190007A6D8A /* Quicksand_Bold_Oblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Quicksand_Bold_Oblique.otf; sourceTree = "<group>"; };
+		FACD858C1F323190007A6D8A /* Quicksand_Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Quicksand_Bold.otf; sourceTree = "<group>"; };
+		FACD858D1F323190007A6D8A /* Quicksand_Book_Oblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Quicksand_Book_Oblique.otf; sourceTree = "<group>"; };
+		FACD858E1F323190007A6D8A /* Quicksand_Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Quicksand_Book.otf; sourceTree = "<group>"; };
+		FACD858F1F323190007A6D8A /* Quicksand_Dash.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Quicksand_Dash.otf; sourceTree = "<group>"; };
+		FACD85901F323190007A6D8A /* Quicksand_Light_Oblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Quicksand_Light_Oblique.otf; sourceTree = "<group>"; };
+		FACD85911F323190007A6D8A /* Quicksand_Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Quicksand_Light.otf; sourceTree = "<group>"; };
 		FACF12981F15476200D505FE /* Goals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Goals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACF129B1F15476200D505FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FACF12A01F15476200D505FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -257,6 +271,20 @@
 			name = "Dead Old Explore Stuff";
 			sourceTree = "<group>";
 		};
+		FACD858A1F323169007A6D8A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FACD858B1F323190007A6D8A /* Quicksand_Bold_Oblique.otf */,
+				FACD858C1F323190007A6D8A /* Quicksand_Bold.otf */,
+				FACD858D1F323190007A6D8A /* Quicksand_Book_Oblique.otf */,
+				FACD858E1F323190007A6D8A /* Quicksand_Book.otf */,
+				FACD858F1F323190007A6D8A /* Quicksand_Dash.otf */,
+				FACD85901F323190007A6D8A /* Quicksand_Light_Oblique.otf */,
+				FACD85911F323190007A6D8A /* Quicksand_Light.otf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		FACF128F1F15476200D505FE = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +313,7 @@
 				FAA6C8CD1F200EE900FB8F26 /* Goals.entitlements */,
 				FACF129B1F15476200D505FE /* AppDelegate.swift */,
 				FACF129F1F15476200D505FE /* Main.storyboard */,
+				FACD858A1F323169007A6D8A /* Resources */,
 				FACF12D31F156F3F00D505FE /* Models */,
 				FACF12CB1F154A4600D505FE /* View Controllers */,
 				7E8642021F156FCA00EE968A /* Views */,
@@ -466,7 +495,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FACD85941F323190007A6D8A /* Quicksand_Book_Oblique.otf in Resources */,
+				FACD85921F323190007A6D8A /* Quicksand_Bold_Oblique.otf in Resources */,
+				FACD85951F323190007A6D8A /* Quicksand_Book.otf in Resources */,
+				FACD85971F323190007A6D8A /* Quicksand_Light_Oblique.otf in Resources */,
+				FACD85981F323190007A6D8A /* Quicksand_Light.otf in Resources */,
+				FACD85961F323190007A6D8A /* Quicksand_Dash.otf in Resources */,
 				FACF12A61F15476200D505FE /* LaunchScreen.storyboard in Resources */,
+				FACD85931F323190007A6D8A /* Quicksand_Bold.otf in Resources */,
 				FAD3513C1F16A8CC00998CCA /* Assets.xcassets in Resources */,
 				FACF12A11F15476200D505FE /* Main.storyboard in Resources */,
 			);

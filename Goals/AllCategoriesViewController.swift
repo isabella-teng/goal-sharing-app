@@ -20,6 +20,8 @@ class AllCategoriesViewController: UIViewController, UICollectionViewDelegate, U
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        collectionView.backgroundView = UIImageView(image: UIImage(named: "backgroundimg"))
+        
 
     }
     
