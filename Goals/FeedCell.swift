@@ -15,7 +15,6 @@ protocol FeedCellDelegate: class {
 }
 
 class FeedCell: UITableViewCell {
-    weak var delegate : FeedCellDelegate?
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
@@ -38,6 +37,8 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var updateImageHeight: NSLayoutConstraint!
     @IBOutlet weak var goalCellMargin: NSLayoutConstraint!
     
+    
+    weak var delegate : FeedCellDelegate?
     
     var author: PFUser? = nil
     var likesArray: [PFUser]? = nil

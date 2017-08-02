@@ -9,8 +9,7 @@ import UIKit
 import Parse
 import ParseUI
 
-
-class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
+class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, MediaCellDelegate {
     
     @IBOutlet weak var goalView: UIView!
     @IBOutlet weak var userIcon: UIImageView!
@@ -39,7 +38,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var isFromTimeline: Bool = false
     
     var doneItem: UIBarButtonItem? = nil
-
+    
     @IBOutlet weak var goalTopConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
@@ -88,7 +87,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: nil, action: #selector(done));
             navItem.rightBarButtonItem = doneItem;
             navBar.setItems([navItem], animated: false);
-        
+            
             //tableView.frame = CGRect(x: tableView.frame.origin.x, y: 60, width: tableView.frame.size.width, height: tableView.frame.size.height)
             
             //navBar.isTranslucent = false
@@ -101,7 +100,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func done() {
         self.dismiss(animated: true, completion: nil)
     }
-
+    
     @IBAction func onClose(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -232,10 +231,15 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailMediaCell", for: indexPath) as! MediaCell
         
+        cell.delegate = self
         cell.data = media[indexPath.row]
         cell.onDetails = true
         
         return cell
+    }
+    
+    func mediaCell(_ mediaCell: MediaCell, didTap image: UIImage) {
+        performSegue(withIdentifier: "fullMediaSegue", sender: image)
     }
     
     
@@ -250,6 +254,9 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else if segue.identifier == "snapDetailSegue" {
             let vc = segue.destination as! CameraViewController
             vc.currentUpdate = currentUpdate!
+        } else if segue.identifier == "fullMediaSegue" {
+            let vc = segue.destination as! FullMediaViewController
+            vc.media = sender as? UIImage
         }
     }
 }

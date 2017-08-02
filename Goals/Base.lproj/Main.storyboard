@@ -1337,7 +1337,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gVm-Cf-UlK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5182" y="-291"/>
+            <point key="canvasLocation" x="5244" y="-296"/>
         </scene>
         <!--Video View Controller-->
         <scene sceneID="NoL-BZ-Nin">
@@ -1358,7 +1358,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eas-3K-Tpt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5182" y="-980"/>
+            <point key="canvasLocation" x="5244" y="-982"/>
         </scene>
         <!--Add Caption View Controller-->
         <scene sceneID="By4-pq-uxA">
@@ -1380,7 +1380,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sYw-oa-RL8" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="7Hk-JC-pfQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="6080.8000000000002" y="-647.22638680659679"/>
+            <point key="canvasLocation" x="6079" y="-648"/>
         </scene>
         <!--Timeline View Controller-->
         <scene sceneID="HQI-JE-X9N">
@@ -1900,12 +1900,21 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FRB-Aa-Ehp">
                                                     <rect key="frame" x="16" y="0.0" width="98" height="120"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <gestureRecognizers/>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oct-OS-L7z">
                                                     <rect key="frame" x="129" y="5" width="1" height="110"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FDK-ni-BcU">
+                                                    <rect key="frame" x="16" y="0.0" width="98" height="120"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="didTapImage:" destination="NNx-YI-HOn" eventType="touchUpInside" id="GDe-ri-i6Q"/>
+                                                        <segue destination="Lob-lL-ME8" kind="presentation" identifier="fullMediaSegue" id="Ugs-Kx-bhx"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <connections>
@@ -2093,7 +2102,34 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="4095.1999999999998" y="160.56971514242881"/>
+            <point key="canvasLocation" x="3692" y="138.98050974512745"/>
+        </scene>
+        <!--Full Media View Controller-->
+        <scene sceneID="RMs-BP-tSs">
+            <objects>
+                <viewController id="Lob-lL-ME8" customClass="FullMediaViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="v0p-mL-NvN"/>
+                        <viewControllerLayoutGuide type="bottom" id="Hr2-tV-BE9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xLJ-Z6-xiy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mqr-5s-1Zm">
+                                <rect key="frame" x="0.0" y="49" width="376" height="506"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="mediaView" destination="mqr-5s-1Zm" id="beF-Jt-wki"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fIe-yy-kh1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4464.8000000000002" y="138.98050974512745"/>
         </scene>
         <!--Post Update View Controller-->
         <scene sceneID="c1R-uH-3V0">
@@ -2277,6 +2313,10 @@
         <scene sceneID="ahZ-RM-Gh5">
             <objects>
                 <viewController id="Cdf-1N-kUs" customClass="UserViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Fsw-wc-h19"/>
+                        <viewControllerLayoutGuide type="bottom" id="kbM-Ee-UAi"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="YU3-gB-B8l">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2290,7 +2330,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vod-g8-upy" id="WbI-2d-cfU">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ny2-4x-80X">
@@ -2322,12 +2362,16 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fLT-pd-Uiw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="221.59999999999999" y="1012.8935532233884"/>
+            <point key="canvasLocation" x="222" y="996"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="nuo-rv-4OY">
             <objects>
                 <viewController id="cU6-0B-VRK" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="84H-ke-uXm"/>
+                        <viewControllerLayoutGuide type="bottom" id="c9f-QO-vQC"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="sRM-5U-Sj0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2345,7 +2389,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZkS-iL-soI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="221.59999999999999" y="1587.256371814093"/>
+            <point key="canvasLocation" x="222" y="1606"/>
         </scene>
     </scenes>
     <resources>
@@ -2366,17 +2410,12 @@
         <image name="user" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="die-PK-ZT8"/>
-        <segue reference="7nc-FM-ics"/>
-        <segue reference="Lff-mb-4zB"/>
         <segue reference="ZpT-ic-j8z"/>
-        <segue reference="kNn-XA-D7B"/>
-        <segue reference="Mng-1h-zUX"/>
-        <segue reference="8VS-EP-q6V"/>
+        <segue reference="jvt-5C-kyF"/>
+        <segue reference="Lff-mb-4zB"/>
         <segue reference="Q3w-fk-ISv"/>
         <segue reference="haI-YF-ab4"/>
         <segue reference="ZeU-bb-uMv"/>
-        <segue reference="jvt-5C-kyF"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
