@@ -39,6 +39,7 @@
 		FAA6C8CC1F1ED64800FB8F26 /* AddCaptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6C8CB1F1ED64800FB8F26 /* AddCaptionViewController.swift */; };
 		FACD857C1F314D7B007A6D8A /* AllCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACD857B1F314D7B007A6D8A /* AllCategoriesViewController.swift */; };
 		FACD85821F317DD9007A6D8A /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACD85811F317DD9007A6D8A /* CategoryCell.swift */; };
+		FACD85841F318819007A6D8A /* Category'sGoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACD85831F318819007A6D8A /* Category'sGoalsViewController.swift */; };
 		FACF129C1F15476200D505FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF129B1F15476200D505FE /* AppDelegate.swift */; };
 		FACF12A11F15476200D505FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACF129F1F15476200D505FE /* Main.storyboard */; };
 		FACF12A61F15476200D505FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FACF12A41F15476200D505FE /* LaunchScreen.storyboard */; };
@@ -110,6 +111,7 @@
 		FAA6C8CD1F200EE900FB8F26 /* Goals.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Goals.entitlements; sourceTree = "<group>"; };
 		FACD857B1F314D7B007A6D8A /* AllCategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCategoriesViewController.swift; sourceTree = "<group>"; };
 		FACD85811F317DD9007A6D8A /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		FACD85831F318819007A6D8A /* Category'sGoalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Category'sGoalsViewController.swift"; sourceTree = "<group>"; };
 		FACF12981F15476200D505FE /* Goals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Goals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACF129B1F15476200D505FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FACF12A01F15476200D505FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -174,7 +176,6 @@
 			isa = PBXGroup;
 			children = (
 				FACD857A1F31430D007A6D8A /* Explore Cells */,
-				FA3E2F2B1F2AFC1D009DAF56 /* GoalCategoryCell.swift */,
 				7EFBFC3F1F2AA4BF0052A81A /* DetailCommentCell.swift */,
 				7E1FCE611F16D6E9009C0AF1 /* FeedCell.swift */,
 				FAD351491F1838D500998CCA /* GoalCell.swift */,
@@ -235,6 +236,7 @@
 				B8FB62E21F3121340065B508 /* ContainerViewController.swift */,
 				B8FB62EE1F312EE70065B508 /* UserViewController.swift */,
 				FACD857B1F314D7B007A6D8A /* AllCategoriesViewController.swift */,
+				FACD85831F318819007A6D8A /* Category'sGoalsViewController.swift */,
 				FA58362C1F2936730023AA88 /* ExploreViewController.swift */,
 				FA3E2F291F2ABC07009DAF56 /* GoalsOfCategoryViewController.swift */,
 			);
@@ -245,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				FACD85811F317DD9007A6D8A /* CategoryCell.swift */,
+				FA3E2F2B1F2AFC1D009DAF56 /* GoalCategoryCell.swift */,
 				FA58362E1F293F3B0023AA88 /* UserSearchCell.swift */,
 			);
 			name = "Explore Cells";
@@ -309,7 +312,6 @@
 		FACF12CB1F154A4600D505FE /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FACD85791F3142F2007A6D8A /* Explore VCs */,
 				FAD351411F182FC500998CCA /* AllGoalsViewController.swift */,
 				B87C87EF1F159AE100F58517 /* DetailViewController.swift */,
 				7EEEFB161F158A6E004A29EC /* FeedViewController.swift */,
@@ -319,6 +321,7 @@
 				7E1FCE631F16E6DC009C0AF1 /* PostUpdateViewController.swift */,
 				B84B22781F1EDB6F00E9482E /* ProgressViewController.swift */,
 				7EF1FFD41F158598000DA708 /* TimelineViewController.swift */,
+				FACD85791F3142F2007A6D8A /* Explore VCs */,
 				FAA6C8C61F1EB94D00FB8F26 /* Camera VCs  */,
 				FA2258511F27B286008CDBCC /* Profile VCs */,
 			);
@@ -634,6 +637,7 @@
 				FA58362D1F2936730023AA88 /* ExploreViewController.swift in Sources */,
 				FAA6C8CA1F1EC24300FB8F26 /* VideoViewController.swift in Sources */,
 				FAA6C8CC1F1ED64800FB8F26 /* AddCaptionViewController.swift in Sources */,
+				FACD85841F318819007A6D8A /* Category'sGoalsViewController.swift in Sources */,
 				FAD351421F182FC500998CCA /* AllGoalsViewController.swift in Sources */,
 				FA58362F1F293F3B0023AA88 /* UserSearchCell.swift in Sources */,
 				7E124C951F1EA8EF00858D35 /* UpdateCell.swift in Sources */,

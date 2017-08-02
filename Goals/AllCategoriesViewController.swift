@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AllCategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class AllCategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CategoryCellDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -27,9 +27,15 @@ class AllCategoriesViewController: UIViewController, UICollectionViewDelegate, U
         return allCategories.count
     }
     
+    func categoryCell(_ categoryCell: CategoryCell, didTap categoryName: String) {
+        performSegue(withIdentifier: "categorytoGoalsSegue", sender: categoryName)
+    }
+
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as! CategoryCell
         cell.categoryLabel.text = allCategories[indexPath.item]
+        cell.delegate = self
         
         return cell
         
@@ -38,6 +44,13 @@ class AllCategoriesViewController: UIViewController, UICollectionViewDelegate, U
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
 
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "categorytoGoalsSegue") {
+            let vc = segue.destination as! Category_sGoalsViewController
+            vc.goalCategory = sender as! String
+        }
     }
     
 
