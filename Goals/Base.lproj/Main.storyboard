@@ -1470,7 +1470,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Update"/>
                                 <connections>
-                                    <segue destination="OtZ-Tv-MZ9" kind="presentation" id="R0s-BN-VmY"/>
+                                    <action selector="didTapUpdate:" destination="TQZ-eh-Uwv" eventType="touchUpInside" id="ZKe-Da-SvI"/>
+                                    <segue destination="OtZ-Tv-MZ9" kind="presentation" identifier="timelineToUpdateSegue" id="R0s-BN-VmY"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fql-dt-jnj">
@@ -1544,7 +1545,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PC4-VB-t5c">
-                                <rect key="frame" x="0.0" y="144" width="375" height="257.5"/>
+                                <rect key="frame" x="0.0" y="144" width="375" height="321.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LogCell" rowHeight="77" id="usr-CH-lhy" customClass="LogCell" customModule="Goals" customModuleProvider="target">
@@ -2341,6 +2342,10 @@
         <segue reference="die-PK-ZT8"/>
         <segue reference="ZeU-bb-uMv"/>
         <segue reference="Mng-1h-zUX"/>
+        <segue reference="Lff-mb-4zB"/>
+        <segue reference="Xv1-fV-UCi"/>
+        <segue reference="R0s-BN-VmY"/>
+        <segue reference="8VS-EP-q6V"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
