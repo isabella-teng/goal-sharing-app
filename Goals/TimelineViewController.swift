@@ -11,9 +11,12 @@ import Parse
 
 class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TimelineUpdateCellDelegate {
     
+    @IBOutlet weak var updateButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     var currentGoal: PFObject?
+    var author: PFUser? = nil
+    var goal: PFObject?
     var updates: [PFObject] = [] {
         didSet {
             tableView.reloadData()
@@ -28,6 +31,17 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        author = currentGoal?["author"] as? PFUser
+        if author?.objectId != PFUser.current()?.objectId {
+            updateButton.isEnabled = false
+//            updateButton.isHidden = true
+        } else {
+            updateButton.isEnabled = true
+//            updateButton.isHidden = false
+        }
     }
     
     // Return amount of cells
