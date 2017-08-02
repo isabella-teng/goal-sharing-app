@@ -69,6 +69,11 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         performSegue(withIdentifier: "timelineToDetailSegue", sender: update)
     }
     
+    @IBAction func didTapUpdate(_ sender: Any) {
+        performSegue(withIdentifier: "timelineToUpdateSegue", sender: currentGoal)
+    }
+    
+    
     @IBAction func didTapClose(_ sender: Any) {
         self.dismiss(animated: true)
     }
@@ -89,6 +94,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                     vc.goal = loadedGoal
                 }
             })
+        } else if (segue.identifier == "timelineToUpdateSegue") {
+            let vc = segue.destination as! PostUpdateViewController
+            vc.currentGoal = sender as? PFObject
         }
     }
 }
