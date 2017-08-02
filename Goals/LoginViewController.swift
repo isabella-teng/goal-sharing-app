@@ -47,6 +47,8 @@ class LoginViewController: UIViewController {
         newUser.username = usernameField.text
         newUser.password = passwordField.text
         newUser["following"] = []
+        newUser["activeGoalCount"] = 0
+        newUser["completedGoalCount"] = 0
         
         // Post user to database
         newUser.signUpInBackground { (success: Bool, error:Error?) in

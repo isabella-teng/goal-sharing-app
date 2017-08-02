@@ -16,6 +16,7 @@
 		7E1FCE641F16E6DC009C0AF1 /* PostUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1FCE631F16E6DC009C0AF1 /* PostUpdateViewController.swift */; };
 		7E38DFDB1F15813400DEF47C /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E38DFDA1F15813400DEF47C /* Update.swift */; };
 		7E6B47FF1F169CE00079AC1F /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6B47FE1F169CE00079AC1F /* Goal.swift */; };
+		7E8422F71F3142F20000B9C1 /* FullMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8422F61F3142F20000B9C1 /* FullMediaViewController.swift */; };
 		7E949C081F18108800449DA0 /* PostCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E949C071F18108800449DA0 /* PostCommentViewController.swift */; };
 		7ECD223A1F26C2A900D09608 /* MediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECD22391F26C2A900D09608 /* MediaCell.swift */; };
 		7EEEFB171F158A6E004A29EC /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEEFB161F158A6E004A29EC /* FeedViewController.swift */; };
@@ -87,6 +88,7 @@
 		7E1FCE631F16E6DC009C0AF1 /* PostUpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostUpdateViewController.swift; sourceTree = "<group>"; };
 		7E38DFDA1F15813400DEF47C /* Update.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
 		7E6B47FE1F169CE00079AC1F /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
+		7E8422F61F3142F20000B9C1 /* FullMediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullMediaViewController.swift; sourceTree = "<group>"; };
 		7E949C071F18108800449DA0 /* PostCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCommentViewController.swift; sourceTree = "<group>"; };
 		7ECD22391F26C2A900D09608 /* MediaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCell.swift; sourceTree = "<group>"; };
 		7EEEFB161F158A6E004A29EC /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 		B87C87EF1F159AE100F58517 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B87C87F11F169B5500F58517 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		B8FB62E21F3121340065B508 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		B8FB62E41F3129E90065B508 /* ContainerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerCell.swift; path = ../ContainerCell.swift; sourceTree = "<group>"; };
 		B8FB62EE1F312EE70065B508 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		CB4F6A01BA5261F1C95C9952 /* Pods-GoalsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsTests/Pods-GoalsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CF3584AB59D862ECDED6FA78 /* Pods-Goals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Goals.release.xcconfig"; path = "Pods/Target Support Files/Pods-Goals/Pods-Goals.release.xcconfig"; sourceTree = "<group>"; };
@@ -188,8 +191,10 @@
 			isa = PBXGroup;
 			children = (
 				FACD857A1F31430D007A6D8A /* Explore Cells */,
+				B8FB62E41F3129E90065B508 /* ContainerCell.swift */,
 				7EFBFC3F1F2AA4BF0052A81A /* DetailCommentCell.swift */,
 				7E1FCE611F16D6E9009C0AF1 /* FeedCell.swift */,
+				FA3E2F2B1F2AFC1D009DAF56 /* GoalCategoryCell.swift */,
 				FAD351491F1838D500998CCA /* GoalCell.swift */,
 				FAD3513D1F16D49A00998CCA /* LogCell.swift */,
 				FACF12D11F156E8C00D505FE /* ProfileCell.swift */,
@@ -245,7 +250,6 @@
 		FACD85791F3142F2007A6D8A /* Explore VCs */ = {
 			isa = PBXGroup;
 			children = (
-				B8FB62E21F3121340065B508 /* ContainerViewController.swift */,
 				B8FB62EE1F312EE70065B508 /* UserViewController.swift */,
 				FACD857B1F314D7B007A6D8A /* AllCategoriesViewController.swift */,
 				FACD85831F318819007A6D8A /* Category'sGoalsViewController.swift */,
@@ -257,7 +261,6 @@
 			isa = PBXGroup;
 			children = (
 				FACD85811F317DD9007A6D8A /* CategoryCell.swift */,
-				FA3E2F2B1F2AFC1D009DAF56 /* GoalCategoryCell.swift */,
 				FA58362E1F293F3B0023AA88 /* UserSearchCell.swift */,
 			);
 			name = "Explore Cells";
@@ -347,8 +350,10 @@
 			isa = PBXGroup;
 			children = (
 				FAD351411F182FC500998CCA /* AllGoalsViewController.swift */,
+				B8FB62E21F3121340065B508 /* ContainerViewController.swift */,
 				B87C87EF1F159AE100F58517 /* DetailViewController.swift */,
 				7EEEFB161F158A6E004A29EC /* FeedViewController.swift */,
+				7E8422F61F3142F20000B9C1 /* FullMediaViewController.swift */,
 				FACF12C91F154A3D00D505FE /* LoginViewController.swift */,
 				7E949C071F18108800449DA0 /* PostCommentViewController.swift */,
 				B87C87ED1F156E9300F58517 /* PostGoalViewController.swift */,
@@ -450,7 +455,7 @@
 				TargetAttributes = {
 					FACF12971F15476200D505FE = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = NF7K8Y2LMW;
+						DevelopmentTeam = 3JE575EG34;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -667,6 +672,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E8422F71F3142F20000B9C1 /* FullMediaViewController.swift in Sources */,
 				B87C87EE1F156E9300F58517 /* PostGoalViewController.swift in Sources */,
 				7E1FCE621F16D6E9009C0AF1 /* FeedCell.swift in Sources */,
 				FACD85821F317DD9007A6D8A /* CategoryCell.swift in Sources */,
@@ -858,10 +864,10 @@
 			baseConfigurationReference = 1FCD39C47ED1A6703B4F8F14 /* Pods-Goals.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = NF7K8Y2LMW;
+				DEVELOPMENT_TEAM = 3JE575EG34;
 				INFOPLIST_FILE = Goals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Isabella.com.Goalsaf;
+				PRODUCT_BUNDLE_IDENTIFIER = Gerardo.com.Goals;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -873,10 +879,10 @@
 			baseConfigurationReference = CF3584AB59D862ECDED6FA78 /* Pods-Goals.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = NF7K8Y2LMW;
+				DEVELOPMENT_TEAM = 3JE575EG34;
 				INFOPLIST_FILE = Goals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Isabella.com.Goalsaf;
+				PRODUCT_BUNDLE_IDENTIFIER = Gerardo.com.Goals;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
