@@ -1,8 +1,8 @@
 //
-//  GoalsOfCategoryViewController.swift
+//  Category'sGoalsViewController.swift
 //  Goals
 //
-//  Created by Isabella Teng on 7/27/17.
+//  Created by Isabella Teng on 8/1/17.
 //  Copyright © 2017 Isabella Teng. All rights reserved.
 //
 
@@ -10,14 +10,12 @@ import UIKit
 import Parse
 import ParseUI
 
-class GoalsOfCategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GoalCategoryCellDelegate {
+class Category_sGoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GoalCategoryCellDelegate {
     
     var goalCategory: String = ""
-    
     var goals: [PFObject] = []
-    
+
     @IBOutlet weak var tableView: UITableView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,9 +23,9 @@ class GoalsOfCategoryViewController: UIViewController, UITableViewDelegate, UITa
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
-        
-    }
 
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         Goal.fetchGoalsByCategory(category: goalCategory) { (loadedGoals:[PFObject]?, error: Error?) in
             if error == nil {
@@ -40,11 +38,9 @@ class GoalsOfCategoryViewController: UIViewController, UITableViewDelegate, UITa
         }
     }
     
-    
     func goalCategoryCell(_ goalCategoryCell: GoalCategoryCell, didTap goal: PFObject) {
         performSegue(withIdentifier: "goalSearchtoTimelineSegue", sender: goal)
     }
- 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return goals.count
@@ -74,9 +70,12 @@ class GoalsOfCategoryViewController: UIViewController, UITableViewDelegate, UITa
         }
     }
 
+
+
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
-
 }
