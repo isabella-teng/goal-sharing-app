@@ -180,7 +180,6 @@
 				FAD3513D1F16D49A00998CCA /* LogCell.swift */,
 				FACF12D11F156E8C00D505FE /* ProfileCell.swift */,
 				FAA6C8C41F1EB62D00FB8F26 /* SwiftyCamRecordButton.swift */,
-				FACD85891F318EE0007A6D8A /* Dead Old Explore Stuff */,
 				7E4EE3411F1FDB4900BCFEA4 /* Timeline */,
 			);
 			name = Views;
@@ -289,6 +288,7 @@
 				FACF12D31F156F3F00D505FE /* Models */,
 				FACF12CB1F154A4600D505FE /* View Controllers */,
 				7E8642021F156FCA00EE968A /* Views */,
+				FACD85891F318EE0007A6D8A /* Dead Old Explore Stuff */,
 				FACF12A41F15476200D505FE /* LaunchScreen.storyboard */,
 				FACF12A71F15476200D505FE /* Info.plist */,
 				FAD3513B1F16A8CC00998CCA /* Assets.xcassets */,
