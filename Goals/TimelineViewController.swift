@@ -37,10 +37,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         author = currentGoal?["author"] as? PFUser
         if author?.objectId != PFUser.current()?.objectId {
             updateButton.isEnabled = false
-//            updateButton.isHidden = true
         } else {
             updateButton.isEnabled = true
-//            updateButton.isHidden = false
         }
     }
     
