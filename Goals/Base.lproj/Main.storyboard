@@ -2138,7 +2138,7 @@
         <!--User View Controller-->
         <scene sceneID="ahZ-RM-Gh5">
             <objects>
-                <viewController id="Cdf-1N-kUs" customClass="UserViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="Cdf-1N-kUs" customClass="UserViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="p5N-DU-hfc"/>
                         <viewControllerLayoutGuide type="bottom" id="RL8-co-VZO"/>
@@ -2401,9 +2401,12 @@
     <inferredMetricsTieBreakers>
         <segue reference="Lff-mb-4zB"/>
         <segue reference="Mng-1h-zUX"/>
+        <segue reference="TYF-kI-a5j"/>
         <segue reference="8VS-EP-q6V"/>
         <segue reference="haI-YF-ab4"/>
         <segue reference="Q3w-fk-ISv"/>
+        <segue reference="R0s-BN-VmY"/>
+        <segue reference="haI-YF-ab4"/>
         <segue reference="ZeU-bb-uMv"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
