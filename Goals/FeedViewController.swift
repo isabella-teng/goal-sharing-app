@@ -67,6 +67,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func loadMoreData() {
+        print("fetching!!!!")
         Goal.fetchAllGoals { (loadedGoals: [PFObject]?, error: Error?) in
             if error == nil {
                 self.allGoals = loadedGoals!

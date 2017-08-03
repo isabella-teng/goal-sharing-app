@@ -19,6 +19,8 @@ class ProfileCell: SwipeTableViewCell {
 
     @IBOutlet weak var cellBackground: UIView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var detailBackground: UIView!
+    @IBOutlet weak var detailEdges: UIView!
     
     weak var otherDelegate: ProfileCellDelegate?
     
@@ -29,14 +31,24 @@ class ProfileCell: SwipeTableViewCell {
             let category = goal["categories"] as! String
             if category == "Education" {
                 cellBackground.backgroundColor = UIColor(red: 0.95, green: 0.45, blue: 0.45, alpha: 1.0)
+                detailBackground.backgroundColor = UIColor(red: 0.85, green: 0.35, blue: 0.35, alpha: 1.0)
+                detailEdges.backgroundColor = detailBackground.backgroundColor
             } else if category == "Money" {
                 cellBackground.backgroundColor = UIColor(red: 0.45, green: 0.85, blue: 0.55, alpha: 1.0)
+                detailBackground.backgroundColor = UIColor(red: 0.35, green: 0.75, blue: 0.45, alpha: 1.0)
+                detailEdges.backgroundColor = detailBackground.backgroundColor
             } else if category == "Spiritual" {
                 cellBackground.backgroundColor = UIColor(red: 0.60, green: 0.45, blue: 0.85, alpha: 1.0)
+                detailBackground.backgroundColor = UIColor(red: 0.50, green: 0.35, blue: 0.75, alpha: 1.0)
+                detailEdges.backgroundColor = detailBackground.backgroundColor
             } else if category == "Health" {
                 cellBackground.backgroundColor = UIColor(red: 0.45, green: 0.65, blue: 0.95, alpha: 1.0)
+                detailBackground.backgroundColor = UIColor(red: 0.35, green: 0.55, blue: 0.85, alpha: 1.0)
+                detailEdges.backgroundColor = detailBackground.backgroundColor
             } else if category == "Fun" {
                 cellBackground.backgroundColor = UIColor(red: 0.45, green: 0.45, blue: 0.45, alpha: 1.0)
+                detailBackground.backgroundColor = UIColor(red: 0.35, green: 0.35, blue: 0.35, alpha: 1.0)
+                detailEdges.backgroundColor = detailBackground.backgroundColor
             }
         }
     }
@@ -62,6 +74,7 @@ class ProfileCell: SwipeTableViewCell {
         setupIndicatorView()
         
         cellBackground.layer.cornerRadius = 10
+        detailBackground.layer.cornerRadius = 10
         let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCell(_:)))
 
         cellBackground.addGestureRecognizer(cellTapGestureRecognizer)

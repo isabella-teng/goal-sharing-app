@@ -19,6 +19,8 @@ class UserSearchCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var cellBackground: UIView!
     @IBOutlet weak var userProfPic: PFImageView!
+    @IBOutlet weak var activeCount: UILabel!
+    @IBOutlet weak var completedCount: UILabel!
     
     weak var delegate: UserSearchCellDelegate?
     
@@ -38,9 +40,10 @@ class UserSearchCell: UITableViewCell {
                         self.userProfPic.image = profImage
                     }
                 }
-            } else { //default image
-                userProfPic.image = UIImage(named: "default")
             }
+            
+            activeCount.text = String(user["activeGoalCount"] as? Int ?? 0)
+            completedCount.text = String(user["completedGoalCount"] as? Int ?? 0)
         }
     }
     
@@ -54,6 +57,9 @@ class UserSearchCell: UITableViewCell {
         let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCell(_:)))
         cellBackground.addGestureRecognizer(cellTapGestureRecognizer)
         cellBackground.isUserInteractionEnabled = true
+        
+        userProfPic.layer.cornerRadius = userProfPic.frame.height / 2
+        cellBackground.layer.cornerRadius = 10
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -61,21 +67,3 @@ class UserSearchCell: UITableViewCell {
     }
 
 }
-
-
-//    
-//    cell.contentView.backgroundColor = UIColor.clear
-//    
-//    let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 120))
-//    
-//    whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
-//    whiteRoundedView.layer.masksToBounds = false
-//    whiteRoundedView.layer.cornerRadius = 2.0
-//    whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
-//    whiteRoundedView.layer.shadowOpacity = 0.2
-//    
-//    cell.contentView.addSubview(whiteRoundedView)
-//    cell.contentView.sendSubview(toBack: whiteRoundedView)
-//    
-//    return cell
-//}
