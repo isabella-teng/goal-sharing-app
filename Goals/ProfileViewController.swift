@@ -11,6 +11,7 @@ import Parse
 import ParseUI
 import SwipeCellKit
 import Whisper
+import SAConfettiView
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ProfileCellDelegate, SwipeTableViewCellDelegate {
     
@@ -39,6 +40,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var isSwipeRightEnabled = true
     //var buttonDisplayMode: ButtonDisplayMode = .titleAndImage
     var buttonStyle: ButtonStyle = .backgroundColor
+    
+    var confettiView: SAConfettiView? = nil
     
     
     override func viewDidLoad() {
@@ -96,6 +99,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         followUserButton.layer.cornerRadius = 5
         profileIcon.layer.cornerRadius = 35
         iconBorder.layer.cornerRadius = (profileIcon.layer.cornerRadius / profileIcon.frame.width) * iconBorder.frame.width
+        
+        
+        confettiView = SAConfettiView(frame: self.view.bounds)
+        confettiView?.isUserInteractionEnabled = false
+        self.view.addSubview(confettiView!)
+        confettiView?.type = .confetti
+        confettiView?.colors = [UIColor.red, UIColor.green, UIColor.blue, UIColor.yellow, UIColor.orange, UIColor.purple]
+        confettiView?.intensity = 0.75
     }
     
     @IBAction func onSegmentedSwitch(_ sender: Any) {
@@ -247,6 +258,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        
         if orientation == .right && allUserPosts![indexPath.row]["isCompleted"] as! Bool == false && user?.objectId == PFUser.current()?.objectId {
             let completionAction = SwipeAction(style: .default, title: "Complete Goal?") { action, indexPath in
             // handle action by updating model with completion
@@ -256,6 +268,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 tableView.reloadData()
                 current["isCompleted"] = true
                 current.saveInBackground()
+                
+                self.confettiView?.startConfetti()
+                let when = DispatchTime.now() + 5
+                DispatchQueue.main.asyncAfter(deadline: when) {
+                    self.confettiView?.stopConfetti()
+                }
             }
             completionAction.backgroundColor = UIColor.purple
             completionAction.title = "Complete Goal?"
@@ -263,39 +281,25 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else if orientation == .left && user?.objectId == PFUser.current()?.objectId {
             //orientation is left, delete
             let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-                
-                
                 //TODO: add alert controller before deleting
-                let currentIndex = indexPath.row
-                let deleteGoal = self.allUserPosts![currentIndex]
-                self.allUserPosts!.remove(at: indexPath.row)
-                print(deleteGoal)
-                self.goalDeletionfromDatabase(goal: deleteGoal)
-                print(self.allUserPosts as Any)
+                let alertController = UIAlertController(title: "Delete goal?", message: "Confirm", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+                    let currentIndex = indexPath.row
+                    let deleteGoal = self.allUserPosts![currentIndex]
+                    self.allUserPosts!.remove(at: indexPath.row)
+                    tableView.reloadData()
+                    print(deleteGoal)
+                    self.goalDeletionfromDatabase(goal: deleteGoal)
+                    print(self.allUserPosts as Any)
+                })
+                let cancelAction = UIAlertAction(title: "No", style: .default, handler: nil)
+                alertController.addAction(okAction)
+                alertController.addAction(cancelAction)
+                self.present(alertController, animated: true)
             }
-            deleteAction.title = "Delete Goal?"
-            
-            //var confirmedDeletion: Bool = false
-            
-//            let alertController = UIAlertController(title: "Delete Goal?", message: "Confirm deletion?", preferredStyle: .alert)
-//            let okAction = UIAlertAction(title: "Yes", style: .default, handler: { (action) in
-//                confirmedDeletion = true
-//            })
-//            let cancelAction = UIAlertAction(title: "No", style: .default, handler: nil)
-//            alertController.addAction(okAction)
-//            alertController.addAction(cancelAction)
-//            self.present(alertController, animated: true)
-//            
-//            if confirmedDeletion {
-//                return [deleteAction]
-//            } else {
-//                return []
-//            }
-
             return [deleteAction]
-        } else {
-            return []
         }
+        return []
     }
     
     func goalDeletionfromDatabase(goal: PFObject) {
@@ -307,7 +311,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
         var options = SwipeTableOptions()
-        options.expansionStyle = orientation == .right ? .selection : .destructive
+        options.expansionStyle = .selection
         options.transitionStyle = .border
         
         switch buttonStyle {

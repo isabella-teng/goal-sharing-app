@@ -13,13 +13,14 @@ import Whisper
 import BubbleTransition
 import NVActivityIndicatorView
 
-class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate, DidPostUpdateDelegate, UIViewControllerTransitioningDelegate, NVActivityIndicatorViewable {
+class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate, DidPostUpdateDelegate, UIViewControllerTransitioningDelegate, NVActivityIndicatorViewable, UIScrollViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var goalMenuButton: UIBarButtonItem!
     @IBOutlet weak var barButtonView: UIView!
     
     var updates: [PFObject] = []
+    var allGoals: [PFObject] = []
     var usersObjectArray: [PFUser] = []
     var didPostUpdate: Bool = false
     
@@ -30,6 +31,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var refreshControl: UIRefreshControl!
     var activityIndicatorView: NVActivityIndicatorView?
+    var isMoreDataLoading = false
+    var loadingMoreView: InfiniteScrollActivityView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +54,50 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let height = Int(self.view.frame.height / 12)
         activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: Int(self.view.frame.width / 2.2), y:0, width: width, height: height), type: .pacman, color: .black)
         refreshControl.addSubview(activityIndicatorView!)
-
+        
+        // Sets up Infinite Scroll loading indicator
+        let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: InfiniteScrollActivityView.defaultHeight)
+        loadingMoreView = InfiniteScrollActivityView(frame: frame)
+        loadingMoreView.isHidden = true
+        tableView.addSubview(loadingMoreView)
+        
+        var insets = tableView.contentInset
+        insets.bottom += InfiniteScrollActivityView.defaultHeight
+        tableView.contentInset = insets
+    }
+    
+    func loadMoreData() {
+        Goal.fetchAllGoals { (loadedGoals: [PFObject]?, error: Error?) in
+            if error == nil {
+                self.allGoals = loadedGoals!
+                self.isMoreDataLoading = false
+                self.loadingMoreView!.stopAnimating()
+                self.tableView.reloadData()
+            } else {
+                print(error?.localizedDescription as Any)
+            }
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (!isMoreDataLoading) {
+            
+            // The threshold where the data is requested
+            let scrollViewContentHeight = tableView.contentSize.height
+            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height / 2
+            
+            // When the user has scrolled past the threshold, start requesting
+            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging){
+                isMoreDataLoading = true
+                
+                // Update position of loadingMoreView, and start loading indicator
+                let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: InfiniteScrollActivityView.defaultHeight)
+                loadingMoreView.frame = frame
+                loadingMoreView.startAnimating()
+                
+                loadMoreData()
+            }
+        }
     }
     
     func didPullToRefresh(_ refreshControl: UIRefreshControl) {
@@ -191,5 +237,40 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    class InfiniteScrollActivityView: UIView {
+        var activityIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView()
+        static let defaultHeight:CGFloat = 60.0
+        
+        required init?(coder aDecoder: NSCoder) {
+            super.init(coder: aDecoder)
+            setupActivityIndicator()
+        }
+        
+        override init(frame aRect: CGRect) {
+            super.init(frame: aRect)
+            setupActivityIndicator()
+        }
+        
+        override func layoutSubviews() {
+            super.layoutSubviews()
+            activityIndicatorView.center = CGPoint(x: self.bounds.size.width/2, y: self.bounds.size.height/2)
+        }
+        
+        func setupActivityIndicator() {
+            activityIndicatorView.activityIndicatorViewStyle = .gray
+            activityIndicatorView.hidesWhenStopped = true
+            self.addSubview(activityIndicatorView)
+        }
+        
+        func stopAnimating() {
+            self.activityIndicatorView.stopAnimating()
+            self.isHidden = true
+        }
+        
+        func startAnimating() {
+            self.isHidden = false
+            self.activityIndicatorView.startAnimating()
+        }
     }
 }

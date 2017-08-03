@@ -248,6 +248,7 @@
 		FACD85791F3142F2007A6D8A /* Explore VCs */ = {
 			isa = PBXGroup;
 			children = (
+				B8FB62E21F3121340065B508 /* ContainerViewController.swift */,
 				B8FB62EE1F312EE70065B508 /* UserViewController.swift */,
 				FACD857B1F314D7B007A6D8A /* AllCategoriesViewController.swift */,
 				FACD85831F318819007A6D8A /* Category'sGoalsViewController.swift */,
@@ -348,7 +349,6 @@
 			isa = PBXGroup;
 			children = (
 				FAD351411F182FC500998CCA /* AllGoalsViewController.swift */,
-				B8FB62E21F3121340065B508 /* ContainerViewController.swift */,
 				B87C87EF1F159AE100F58517 /* DetailViewController.swift */,
 				7EEEFB161F158A6E004A29EC /* FeedViewController.swift */,
 				7E8422F61F3142F20000B9C1 /* FullMediaViewController.swift */,
@@ -453,7 +453,7 @@
 				TargetAttributes = {
 					FACF12971F15476200D505FE = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 3JE575EG34;
+						DevelopmentTeam = NF7K8Y2LMW;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -862,10 +862,10 @@
 			baseConfigurationReference = 1FCD39C47ED1A6703B4F8F14 /* Pods-Goals.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3JE575EG34;
+				DEVELOPMENT_TEAM = NF7K8Y2LMW;
 				INFOPLIST_FILE = Goals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Gerardo.com.Goals;
+				PRODUCT_BUNDLE_IDENTIFIER = Isabella.com.Goalsaf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -877,10 +877,10 @@
 			baseConfigurationReference = CF3584AB59D862ECDED6FA78 /* Pods-Goals.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3JE575EG34;
+				DEVELOPMENT_TEAM = NF7K8Y2LMW;
 				INFOPLIST_FILE = Goals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Gerardo.com.Goals;
+				PRODUCT_BUNDLE_IDENTIFIER = Isabella.com.Goalsaf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
