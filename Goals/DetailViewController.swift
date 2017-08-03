@@ -238,8 +238,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell
     }
     
-    func mediaCell(_ mediaCell: MediaCell, didTap image: UIImage) {
-        performSegue(withIdentifier: "fullMediaSegue", sender: image)
+    func mediaCell(_ mediaCell: MediaCell, didTap data: [String: Any]) {
+        performSegue(withIdentifier: "fullMediaSegue", sender: data)
     }
     
     
@@ -256,7 +256,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             vc.currentUpdate = currentUpdate!
         } else if segue.identifier == "fullMediaSegue" {
             let vc = segue.destination as! FullMediaViewController
-            vc.media = sender as? UIImage
+
+            vc.data = sender as? [String : Any]
         }
     }
 }

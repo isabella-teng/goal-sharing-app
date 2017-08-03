@@ -166,7 +166,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     vc.goal = loadedGoal
                 }
             }
-
         } else if (segue.identifier == "commentSegue") {
             let vc = segue.destination as! PostCommentViewController
             vc.currentUpdate = sender as? PFObject
@@ -179,8 +178,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let vc = segue.destination as! ProfileViewController
             vc.user = sender as? PFUser
             vc.fromFeed = true
-            
-            //vc.usernameLabel.text = vc.user?.username
         }
     }
     

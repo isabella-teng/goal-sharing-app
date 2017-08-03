@@ -103,7 +103,6 @@
 		B87C87EF1F159AE100F58517 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B87C87F11F169B5500F58517 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		B8FB62E21F3121340065B508 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
-		B8FB62E41F3129E90065B508 /* ContainerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerCell.swift; path = ../ContainerCell.swift; sourceTree = "<group>"; };
 		B8FB62EE1F312EE70065B508 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		CB4F6A01BA5261F1C95C9952 /* Pods-GoalsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsTests/Pods-GoalsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CF3584AB59D862ECDED6FA78 /* Pods-Goals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Goals.release.xcconfig"; path = "Pods/Target Support Files/Pods-Goals/Pods-Goals.release.xcconfig"; sourceTree = "<group>"; };
@@ -191,7 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				FACD857A1F31430D007A6D8A /* Explore Cells */,
-				B8FB62E41F3129E90065B508 /* ContainerCell.swift */,
 				7EFBFC3F1F2AA4BF0052A81A /* DetailCommentCell.swift */,
 				7E1FCE611F16D6E9009C0AF1 /* FeedCell.swift */,
 				FA3E2F2B1F2AFC1D009DAF56 /* GoalCategoryCell.swift */,

@@ -12,7 +12,7 @@ import AVKit
 import AVFoundation
 
 protocol MediaCellDelegate: class {
-    func mediaCell(_ mediaCell: MediaCell, didTap image: UIImage)
+    func mediaCell(_ mediaCell: MediaCell, didTap data: [String: Any])
 }
 
 class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate {
@@ -31,6 +31,7 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate {
     
     var data: [String: Any] = [:] {
         didSet {
+            toPass = data
             if data["type"] as! String == "photo" {
                 if let urlString = data["image"] as? PFFile {
                     urlString.getDataInBackground { (imageData: Data?, error: Error?) in
@@ -59,8 +60,10 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate {
         }
     }
     
+    var toPass: [String: Any] = [:]
+    
     @IBAction func didTapImage(_ sender: Any) {
-        delegate?.mediaCell(self, didTap: mediaImage.image!)
+        delegate?.mediaCell(self, didTap: toPass)
     }
     
     func imageRotatedByDegrees(oldImage: UIImage, deg degrees: CGFloat) -> UIImage {
