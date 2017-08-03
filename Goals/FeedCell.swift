@@ -15,7 +15,6 @@ protocol FeedCellDelegate: class {
 }
 
 class FeedCell: UITableViewCell {
-    weak var delegate : FeedCellDelegate?
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
@@ -38,6 +37,8 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var updateImageHeight: NSLayoutConstraint!
     @IBOutlet weak var goalCellMargin: NSLayoutConstraint!
     
+    
+    weak var delegate : FeedCellDelegate?
     
     var author: PFUser? = nil
     var likesArray: [PFUser]? = nil
@@ -80,6 +81,7 @@ class FeedCell: UITableViewCell {
                 cellBackground.backgroundColor = UIColor(red: 0.45, green: 0.50, blue: 0.90, alpha: 1.0)
                 goalCellBg.backgroundColor = UIColor(red: 0.35, green: 0.40, blue: 0.70, alpha: 1.0)
                 goalCellEdges.backgroundColor = goalCellBg.backgroundColor
+                updateDescription.text = "started a new goal!"
             }
             
             if let picture = update["image"] as? PFFile {

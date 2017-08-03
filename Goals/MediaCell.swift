@@ -11,11 +11,16 @@ import Parse
 import AVKit
 import AVFoundation
 
+protocol MediaCellDelegate: class {
+    func mediaCell(_ mediaCell: MediaCell, didTap image: UIImage)
+}
 
 class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate {
     
     @IBOutlet weak var mediaImage: UIImageView!
     
+    
+    weak var delegate: MediaCellDelegate?
     var onDetails: Bool? = nil {
         didSet {
             if onDetails != nil {
@@ -52,6 +57,10 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate {
                 self.addSubview(playerController.view)
             }
         }
+    }
+    
+    @IBAction func didTapImage(_ sender: Any) {
+        delegate?.mediaCell(self, didTap: mediaImage.image!)
     }
     
     func imageRotatedByDegrees(oldImage: UIImage, deg degrees: CGFloat) -> UIImage {

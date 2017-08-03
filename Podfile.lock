@@ -20,6 +20,7 @@ PODS:
   - RealmSwift (2.8.3):
     - Realm (= 2.8.3)
   - RSKPlaceholderTextView (2.0.0)
+  - SAConfettiView (0.1.8)
   - SwiftyCam (2.4.0)
   - SwipeCellKit (1.9.0)
   - Whisper (5.0.0)
@@ -34,9 +35,20 @@ DEPENDENCIES:
   - ParseUI
   - RealmSwift
   - RSKPlaceholderTextView
+  - SAConfettiView (from `https://github.com/gokhanakkurt/SAConfettiView`, branch `swift3`)
   - SwiftyCam
   - SwipeCellKit
   - Whisper
+
+EXTERNAL SOURCES:
+  SAConfettiView:
+    :branch: swift3
+    :git: https://github.com/gokhanakkurt/SAConfettiView
+
+CHECKOUT OPTIONS:
+  SAConfettiView:
+    :commit: 9035108df456b02589e1bcdb16f178fcae0d31f4
+    :git: https://github.com/gokhanakkurt/SAConfettiView
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
@@ -51,10 +63,11 @@ SPEC CHECKSUMS:
   Realm: 3601ef091c8c499a31101d8563b991e75546cdce
   RealmSwift: 8183818515471b01a99abdd2970f8e4fd52b6f4a
   RSKPlaceholderTextView: 301f0f30e70e7c42fe4e941e3a08365ab0d890d5
+  SAConfettiView: c87031a2280659261b730fce3669fb10e73636ee
   SwiftyCam: cb83b9a8e181f70fb741d30cea724c6b045a4549
   SwipeCellKit: 893661973276ae3512a84ac0a47055923b10731e
   Whisper: 051f25e704bf8992641ffd28b20d5682ddc5f5d3
 
-PODFILE CHECKSUM: 354bd871d0a84918ff99ca5185203e86d787d82d
+PODFILE CHECKSUM: 462f81316fe1d44c2db5fd2275fafd6dd7083ff9
 
 COCOAPODS: 1.2.1
