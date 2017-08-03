@@ -18,6 +18,7 @@ target 'Goals' do
   pod 'BubbleTransition', '~> 2.0.0'
   pod 'SwipeCellKit'
   pod 'NVActivityIndicatorView'
+  pod 'SAConfettiView', :git => 'https://github.com/gokhanakkurt/SAConfettiView', :branch => 'swift3'
 
 
   target 'GoalsTests' do

@@ -11,6 +11,7 @@ import Parse
 import ParseUI
 import SwipeCellKit
 import Whisper
+import SAConfettiView
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ProfileCellDelegate, SwipeTableViewCellDelegate {
     
@@ -39,6 +40,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var isSwipeRightEnabled = true
     //var buttonDisplayMode: ButtonDisplayMode = .titleAndImage
     var buttonStyle: ButtonStyle = .backgroundColor
+    
+    var confettiView: SAConfettiView? = nil
     
     
     override func viewDidLoad() {
@@ -96,6 +99,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         followUserButton.layer.cornerRadius = 5
         profileIcon.layer.cornerRadius = 35
         iconBorder.layer.cornerRadius = (profileIcon.layer.cornerRadius / profileIcon.frame.width) * iconBorder.frame.width
+        
+        
+        confettiView = SAConfettiView(frame: self.view.bounds)
+        confettiView?.isUserInteractionEnabled = false
+        self.view.addSubview(confettiView!)
+        confettiView?.type = .confetti
+        confettiView?.colors = [UIColor.red, UIColor.green, UIColor.blue, UIColor.yellow, UIColor.orange, UIColor.purple]
+        confettiView?.intensity = 0.75
     }
     
     @IBAction func onSegmentedSwitch(_ sender: Any) {
@@ -256,6 +267,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 tableView.reloadData()
                 current["isCompleted"] = true
                 current.saveInBackground()
+                
+                self.confettiView?.startConfetti()
+                let when = DispatchTime.now() + 5
+                DispatchQueue.main.asyncAfter(deadline: when) {
+                    self.confettiView?.stopConfetti()
+                }
             }
             completionAction.backgroundColor = UIColor.purple
             completionAction.title = "Complete Goal?"

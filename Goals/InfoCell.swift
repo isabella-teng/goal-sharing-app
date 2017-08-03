@@ -21,7 +21,12 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
     @IBOutlet weak var infoBackground: UIView!
     @IBOutlet weak var nodeView: UIView!
     @IBOutlet weak var timestampLabel: UILabel!
+    @IBOutlet weak var authorLabel: UILabel!
     
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var updatesCountLabel: UILabel!
+    
+    @IBOutlet weak var completionDate: UILabel!
     weak var axisFormatDelegate: IAxisValueFormatter?
     
     var days: [String] = []
@@ -40,6 +45,9 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
             
             updatesMade = data["updatesPerDay"] as! [Double]
             setChart(dataPoints: days, values: updatesMade)
+            
+            let author = data["author"] as! PFUser
+            authorLabel.text = author.username
         }
     }
    
