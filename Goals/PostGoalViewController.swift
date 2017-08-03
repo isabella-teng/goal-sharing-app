@@ -65,8 +65,12 @@ class PostGoalViewController: UIViewController, UITextViewDelegate, UITextFieldD
             let goalCategory = Goal.returnCategory(index: categoryControl.selectedSegmentIndex)
             data["categories"] = goalCategory
             
+            PFUser.current()?.incrementKey("activeGoalCount")
+            
             // Send request
             Goal.createGoal(data: data)
+            
+            PFUser.current()?.saveInBackground()
         }
     }
     
