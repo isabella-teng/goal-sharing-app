@@ -36,6 +36,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
+        //tableView.addSubview(searchController.searchBar)
     }
     
     override func viewDidAppear(_ animated: Bool) {
