@@ -258,6 +258,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        
         if orientation == .right && allUserPosts![indexPath.row]["isCompleted"] as! Bool == false && user?.objectId == PFUser.current()?.objectId {
             let completionAction = SwipeAction(style: .default, title: "Complete Goal?") { action, indexPath in
             // handle action by updating model with completion
@@ -280,39 +281,25 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else if orientation == .left && user?.objectId == PFUser.current()?.objectId {
             //orientation is left, delete
             let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-                
-                
                 //TODO: add alert controller before deleting
-                let currentIndex = indexPath.row
-                let deleteGoal = self.allUserPosts![currentIndex]
-                self.allUserPosts!.remove(at: indexPath.row)
-                print(deleteGoal)
-                self.goalDeletionfromDatabase(goal: deleteGoal)
-                print(self.allUserPosts as Any)
+                let alertController = UIAlertController(title: "Delete goal?", message: "Confirm", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+                    let currentIndex = indexPath.row
+                    let deleteGoal = self.allUserPosts![currentIndex]
+                    self.allUserPosts!.remove(at: indexPath.row)
+                    tableView.reloadData()
+                    print(deleteGoal)
+                    self.goalDeletionfromDatabase(goal: deleteGoal)
+                    print(self.allUserPosts as Any)
+                })
+                let cancelAction = UIAlertAction(title: "No", style: .default, handler: nil)
+                alertController.addAction(okAction)
+                alertController.addAction(cancelAction)
+                self.present(alertController, animated: true)
             }
-            deleteAction.title = "Delete Goal?"
-            
-            //var confirmedDeletion: Bool = false
-            
-//            let alertController = UIAlertController(title: "Delete Goal?", message: "Confirm deletion?", preferredStyle: .alert)
-//            let okAction = UIAlertAction(title: "Yes", style: .default, handler: { (action) in
-//                confirmedDeletion = true
-//            })
-//            let cancelAction = UIAlertAction(title: "No", style: .default, handler: nil)
-//            alertController.addAction(okAction)
-//            alertController.addAction(cancelAction)
-//            self.present(alertController, animated: true)
-//            
-//            if confirmedDeletion {
-//                return [deleteAction]
-//            } else {
-//                return []
-//            }
-
             return [deleteAction]
-        } else {
-            return []
         }
+        return []
     }
     
     func goalDeletionfromDatabase(goal: PFObject) {
@@ -324,7 +311,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
         var options = SwipeTableOptions()
-        options.expansionStyle = orientation == .right ? .selection : .destructive
+        options.expansionStyle = .selection
         options.transitionStyle = .border
         
         switch buttonStyle {
