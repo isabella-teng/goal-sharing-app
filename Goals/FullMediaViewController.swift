@@ -12,15 +12,14 @@ import Parse
 class FullMediaViewController: UIViewController {
 
     @IBOutlet weak var mediaView: UIImageView!
+    @IBOutlet weak var captionLabel: UILabel!
     
     
-    var media: UIImage? = nil
-    
+    var data: [String: Any]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mediaView.image = media!
     }
     
 
