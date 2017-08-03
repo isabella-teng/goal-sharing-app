@@ -66,10 +66,11 @@ class SwiftyCamRecordButton: SwiftyCamButton {
 //            self.innerCircle.removeFromSuperview()
 //            self.innerCircle = nil
 //        })
+
         if self.innerCircle == nil {
             innerCircle = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
             innerCircle.center = CGPoint(x: self.bounds.midX, y: self.bounds.midY)
-            innerCircle.backgroundColor = UIColor.red
+            innerCircle.backgroundColor = UIColor.blue
             innerCircle.layer.cornerRadius = innerCircle.frame.size.width / 2
             innerCircle.clipsToBounds = true
             self.addSubview(innerCircle)

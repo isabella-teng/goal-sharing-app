@@ -240,6 +240,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func mediaCell(_ mediaCell: MediaCell, didTap data: [String: Any]) {
         performSegue(withIdentifier: "fullMediaSegue", sender: data)
+        print(data)
     }
     
     
@@ -256,7 +257,24 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             vc.currentUpdate = currentUpdate!
         } else if segue.identifier == "fullMediaSegue" {
             let vc = segue.destination as! FullMediaViewController
-
+            
+//            let data = sender as? [String : Any]
+//            
+//            var fullImg: UIImage? = nil
+//            if data?["type"] as! String == "photo" {
+//                if let urlString = data?["image"] as? PFFile {
+//                    urlString.getDataInBackground(block: { (imageData: Data?, error: Error?) in
+//                        if error == nil {
+//                            fullImg = UIImage(data: imageData!)!
+//                        }
+//                    })
+//                }
+//            }
+//            
+//            vc.image = fullImg
+//            
+            
+            
             vc.data = sender as? [String : Any]
         }
     }

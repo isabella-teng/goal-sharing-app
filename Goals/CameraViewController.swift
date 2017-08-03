@@ -11,7 +11,7 @@ import SwiftyCam
 import Parse
 import ParseUI
 
-class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
+class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDelegate, SwiftyCamButtonDelegate {
     
     var currentUpdate: PFObject?
 
