@@ -55,7 +55,14 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate {
                 playerController.view.clipsToBounds = true
                 playerController.view.contentMode = UIViewContentMode.scaleAspectFill
                 playerController.view.layer.cornerRadius = 10
+                playerController.videoGravity = AVLayerVideoGravityResizeAspectFill
+                //player.automaticallyWaitsToMinimizeStalling = false
+                //playerController.player?.play()
                 self.addSubview(playerController.view)
+                
+                if playerController.isBeingDismissed {
+                    print("hello")
+                }
             }
         }
     }
