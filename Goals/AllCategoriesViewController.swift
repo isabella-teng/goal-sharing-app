@@ -39,6 +39,20 @@ class AllCategoriesViewController: UIViewController, UICollectionViewDelegate, U
         cell.categoryLabel.text = allCategories[indexPath.item]
         cell.delegate = self
         
+        if indexPath.item == 0 {
+            cell.categoryIcon.image = UIImage(named: "education")
+        } else  if indexPath.item == 1 {
+            cell.categoryIcon.image = UIImage(named: "health")
+        }  else if indexPath.item == 2 {
+            cell.categoryIcon.image = UIImage(named: "fun")
+        }  else if indexPath.item == 3 {
+            cell.categoryIcon.image = UIImage(named: "money")
+        } else if indexPath.item == 4 {
+            cell.categoryIcon.image = UIImage(named: "spiritual")
+        } else {
+            
+        }
+        
         return cell
         
     }

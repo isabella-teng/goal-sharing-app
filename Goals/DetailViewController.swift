@@ -109,7 +109,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         author = currentUpdate?["author"] as? PFUser
         usernameLabel.text = author?["username"] as? String
         
-        if author?.objectId != PFUser.current()?.objectId || goal?["isCompleted"] as! Bool {
+        if author?.objectId != PFUser.current()?.objectId || goal?["isCompleted"] as! Bool == true {
             updateButton.image = nil
             updateButton.isEnabled = false
         } else {

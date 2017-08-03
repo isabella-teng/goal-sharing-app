@@ -81,6 +81,7 @@ class FeedCell: UITableViewCell {
                 cellBackground.backgroundColor = UIColor(red: 0.45, green: 0.50, blue: 0.90, alpha: 1.0)
                 goalCellBg.backgroundColor = UIColor(red: 0.35, green: 0.40, blue: 0.70, alpha: 1.0)
                 goalCellEdges.backgroundColor = goalCellBg.backgroundColor
+                updateDescription.text = "started a new goal!"
             }
             
             if let picture = update["image"] as? PFFile {

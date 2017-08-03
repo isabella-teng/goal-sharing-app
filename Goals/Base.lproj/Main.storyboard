@@ -1212,9 +1212,8 @@
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="38"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOa-6V-p7N">
-                                                            <rect key="frame" x="143" y="72" width="89" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOa-6V-p7N">
+                                                            <rect key="frame" x="5" y="5" width="79" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1225,8 +1224,10 @@
                                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="kJZ-63-aBx" secondAttribute="bottom" constant="25" id="3yl-4Y-Xpd"/>
                                                         <constraint firstAttribute="trailing" secondItem="kJZ-63-aBx" secondAttribute="trailing" constant="16" id="4N4-XB-2Ot"/>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="CEJ-FY-U3e"/>
+                                                        <constraint firstItem="gOa-6V-p7N" firstAttribute="leading" secondItem="GYz-3f-7Ev" secondAttribute="leading" constant="5" id="GQN-4A-vYX"/>
                                                         <constraint firstItem="kJZ-63-aBx" firstAttribute="top" secondItem="GYz-3f-7Ev" secondAttribute="top" constant="25" id="dsW-jV-Vxk"/>
                                                         <constraint firstItem="kJZ-63-aBx" firstAttribute="leading" secondItem="GYz-3f-7Ev" secondAttribute="leading" constant="16" id="hLu-jy-mbi"/>
+                                                        <constraint firstItem="gOa-6V-p7N" firstAttribute="top" secondItem="GYz-3f-7Ev" secondAttribute="top" constant="5" id="te0-OW-zTJ"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="2nd-1J-i95">
@@ -2225,7 +2226,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="health" translatesAutoresizingMaskIntoConstraints="NO" id="Emm-fy-TdB">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Emm-fy-TdB">
                                                             <rect key="frame" x="60" y="28" width="60" height="60"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
@@ -2235,6 +2236,7 @@
                                             </subviews>
                                         </view>
                                         <connections>
+                                            <outlet property="categoryIcon" destination="Emm-fy-TdB" id="RO0-NU-R1A"/>
                                             <outlet property="categoryLabel" destination="ZMe-gY-gjc" id="u9s-wg-Bq0"/>
                                             <outlet property="cellBackground" destination="XyH-FC-mdl" id="la2-WO-JrH"/>
                                         </connections>
@@ -2357,7 +2359,6 @@
         <image name="cross-filled" width="25" height="25"/>
         <image name="explore" width="24" height="24"/>
         <image name="goal-ball" width="24" height="24"/>
-        <image name="health" width="24" height="24"/>
         <image name="home" width="25" height="25"/>
         <image name="like" width="25" height="25"/>
         <image name="like-red" width="25" height="25"/>
@@ -2369,12 +2370,11 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Xv1-fV-UCi"/>
-        <segue reference="kNn-XA-D7B"/>
-        <segue reference="ZeU-bb-uMv"/>
-        <segue reference="TYF-kI-a5j"/>
         <segue reference="8VS-EP-q6V"/>
         <segue reference="R0s-BN-VmY"/>
         <segue reference="Lff-mb-4zB"/>
+        <segue reference="kNn-XA-D7B"/>
+        <segue reference="ZeU-bb-uMv"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
