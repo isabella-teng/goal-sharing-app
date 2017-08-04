@@ -267,6 +267,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.allUserPosts?.remove(at: indexPath.row)
                 tableView.reloadData()
                 current["isCompleted"] = true
+                current["actualCompletionDate"] = Date()
                 current.saveInBackground()
                 
                 PFUser.current()?.incrementKey("activeGoalCount", byAmount: -1)
