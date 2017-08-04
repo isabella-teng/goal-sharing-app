@@ -28,6 +28,7 @@ class ProfileCell: SwipeTableViewCell {
     @IBOutlet weak var progressView: UIProgressView!
     
     @IBOutlet weak var streakCount: UILabel!
+    @IBOutlet weak var streakIcon: UILabel!
     
     weak var otherDelegate: ProfileCellDelegate?
     
@@ -88,6 +89,11 @@ class ProfileCell: SwipeTableViewCell {
             
             streakCount.text = String(goal["streakCount"] as! Int)
             
+            let completed = goal["isCompleted"] as! Bool
+            if completed {
+                streakCount.isHidden = true
+                streakIcon.text = "⭐️"
+            }
         }
     }
     
