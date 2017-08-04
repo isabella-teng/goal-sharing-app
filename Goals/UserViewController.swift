@@ -92,6 +92,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else {
             cell.user = allUsers[indexPath.row]
         }
+        cell.backgroundColor = UIColor.clear
         cell.delegate = self
         return cell
     }

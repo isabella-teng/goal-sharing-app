@@ -152,6 +152,31 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate, UIImagePic
             }
             
             currentGoal?["updatesPerDay"] = dateArray
+            
+            //keep track of streaks
+            let streakDay = currentGoal?["firstUpdateDay"] as! Date
+            currentGoal?["lastUpdateDay"] = Date()
+            
+            let didPostToday = currentGoal?["postedUpdateToday"] as! Bool
+            
+            if let diff = Calendar.current.dateComponents([.hour], from: streakDay, to: Date()).hour, diff < 1 {
+                if !didPostToday {
+                    print("Not entered?")
+                    currentGoal?.incrementKey("streakCount", byAmount: 1)
+                }
+            } else {
+                currentGoal?.setValue(0, forKey: "streakCount")
+                currentGoal?["postedUpdateToday"] = true
+            }
+            
+            if Calendar.current.isDate(streakDay, inSameDayAs: Date()) {
+                print("entered")
+                currentGoal?["postedUpdateToday"] = true
+            } else {
+                currentGoal?["postedUpdateToday"] = false
+            }
+            
+            currentGoal?["firstUpdateDay"] = currentGoal?["lastUpdateDay"]
             currentGoal?.saveInBackground()
             
             let updateType = Update.returnUpdateType(index: typeControl.selectedSegmentIndex)

@@ -47,7 +47,6 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
             setChart(dataPoints: days, values: updatesMade)
             
             let author = data["author"] as! PFUser
-//            descriptionLabel.text = "Description: " + (data["description"] as! String)
             authorLabel.text = "Author: " + author.username!
             updatesCountLabel.text = "Total Updates: " + (String(data["updatesCount"] as! Int))
             categoryLabel.text = data["categories"] as? String

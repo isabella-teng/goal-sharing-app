@@ -27,6 +27,8 @@ class ProfileCell: SwipeTableViewCell {
     
     @IBOutlet weak var progressView: UIProgressView!
     
+    @IBOutlet weak var streakCount: UILabel!
+    
     weak var otherDelegate: ProfileCellDelegate?
     
     var goal: PFObject! {
@@ -73,6 +75,18 @@ class ProfileCell: SwipeTableViewCell {
                 let startToCompletion = calculateDaysBetweenTwoDates(start: goal.createdAt!, end: goal["completionDate"] as! Date)
                 progressView.progress = Float(startToCurrent) / Float(startToCompletion)
             }
+            
+            
+            //check if last update date is less than 24 hours since current time
+            if let lastUpdate = goal["lastUpdateDay"] as? Date {
+                if let diff = Calendar.current.dateComponents([.hour], from: lastUpdate, to: Date()).hour, diff > 1 {
+                    goal.setValue(0, forKey: "streakCount")
+                }
+            }
+            
+            
+            
+            streakCount.text = String(goal["streakCount"] as! Int)
             
         }
     }
