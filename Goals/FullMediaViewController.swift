@@ -11,19 +11,45 @@ import Parse
 import AVKit
 import AVFoundation
 
-class FullMediaViewController: UIViewController {
-
+class FullMediaViewController: UIViewController, UIScrollViewDelegate {
+    
     @IBOutlet weak var mediaView: UIImageView!
     @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var authorIcon: UIImageView!
+    @IBOutlet weak var authorUsername: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     
     var data: [String: Any]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        scrollView.minimumZoomScale = 1.0
+        scrollView.maximumZoomScale = 3.0
+        scrollView.delegate = self
     }
     
+    
     override func viewDidAppear(_ animated: Bool) {
+        let author = data?["sender"] as! PFUser
+        author.fetchIfNeededInBackground { (authorObject: PFObject?, error: Error?) in
+            if error == nil {
+                let loadedAuthor = authorObject as! PFUser
+                
+                let iconUrl = loadedAuthor["portrait"] as? PFFile
+                iconUrl?.getDataInBackground(block: { (data: Data?, error: Error?) in
+                    if error == nil {
+                        self.authorIcon.image = UIImage(data: data!)
+                    }
+                })
+                
+                self.authorUsername.text = loadedAuthor.username!
+            }
+        }
+        
+        captionLabel.text = data?["caption"] as? String
+        
         if data?["type"] as! String == "photo" {
             if let urlString = data?["image"] as? PFFile {
                 urlString.getDataInBackground(block: { (imageData: Data?, error: Error?) in
@@ -34,23 +60,25 @@ class FullMediaViewController: UIViewController {
                     }
                 })
             }
-      }
-//        } else if data?["type"] as! String == "video" {
-//         let videoFile = data?["videoURL"] as? PFFile
-//         let videoUrl = videoFile?.url
-//         let asset = AVAsset(url: URL(string: videoUrl!)!)
-//         let item = AVPlayerItem(asset: asset)
-//         let player = AVPlayer(playerItem: item)
-//         let playerController = AVPlayerViewController()
-//         playerController.player = player
-//         playerController.view.frame = self.mediaView.frame
-//         playerController.view.clipsToBounds = true
-//         playerController.view.contentMode = UIViewContentMode.scaleAspectFill
-//         playerController.view.layer.cornerRadius = 10
-//         //self.addSubview(playerController.view)
-//      }
+        }
+        //        } else if data?["type"] as! String == "video" {
+        //         let videoFile = data?["videoURL"] as? PFFile
+        //         let videoUrl = videoFile?.url
+        //         let asset = AVAsset(url: URL(string: videoUrl!)!)
+        //         let item = AVPlayerItem(asset: asset)
+        //         let player = AVPlayer(playerItem: item)
+        //         let playerController = AVPlayerViewController()
+        //         playerController.player = player
+        //         playerController.view.frame = self.mediaView.frame
+        //         playerController.view.clipsToBounds = true
+        //         playerController.view.contentMode = UIViewContentMode.scaleAspectFill
+        //         playerController.view.layer.cornerRadius = 10
+        //         //self.addSubview(playerController.view)
+        //      }
+        
+        authorIcon.layer.cornerRadius = 10
     }
-   
+    
     func imageRotatedByDegrees(oldImage: UIImage, deg degrees: CGFloat) -> UIImage {
         //Calculate the size of the rotated view's containing box for our drawing space
         let rotatedViewBox: UIView = UIView(frame: CGRect(x: 0, y: 0, width: oldImage.size.width, height: oldImage.size.height))
@@ -71,12 +99,15 @@ class FullMediaViewController: UIViewController {
         UIGraphicsEndImageContext()
         return newImage
     }
-
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return mediaView
+    }
     
     @IBAction func onCancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

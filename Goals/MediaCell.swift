@@ -15,7 +15,7 @@ protocol MediaCellDelegate: class {
     func mediaCell(_ mediaCell: MediaCell, didTap data: [String: Any])
 }
 
-class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate {
+class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate, AVAudioPlayerDelegate {
     
     @IBOutlet weak var mediaImage: UIImageView!
     
@@ -56,13 +56,9 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate {
                 playerController.view.contentMode = UIViewContentMode.scaleAspectFill
                 playerController.view.layer.cornerRadius = 10
                 playerController.videoGravity = AVLayerVideoGravityResizeAspectFill
-                //player.automaticallyWaitsToMinimizeStalling = false
-                //playerController.player?.play()
+                playerController.delegate = self
                 self.addSubview(playerController.view)
-                
-                if playerController.isBeingDismissed {
-                    print("hello")
-                }
+                player.play()
             }
         }
     }
