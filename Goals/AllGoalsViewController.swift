@@ -10,7 +10,6 @@ import UIKit
 import Parse
 import ParseUI
 import BubbleTransition
-import Hero
 
 class AllGoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GoalCellDelegate, UIViewControllerTransitioningDelegate {
 

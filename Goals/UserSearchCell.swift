@@ -24,12 +24,6 @@ class UserSearchCell: UITableViewCell {
     
     weak var delegate: UserSearchCellDelegate?
     
-//    var userImage: UIImage! {
-//        didSet {
-//            self.userProfPic.image = userImage
-//        }
-//    }
-    
     var user: PFUser! {
         didSet {
             usernameLabel.text = user.username
@@ -42,8 +36,8 @@ class UserSearchCell: UITableViewCell {
                 }
             }
             
-            activeCount.text = String(user["activeGoalCount"] as? Int ?? 0)
-            completedCount.text = String(user["completedGoalCount"] as? Int ?? 0)
+            activeCount.text = "Active Goals: " + String(user["activeGoalCount"] as? Int ?? 0)
+            completedCount.text = "Completed Goals: " + String(user["completedGoalCount"] as? Int ?? 0)
         }
     }
     

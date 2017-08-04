@@ -2,17 +2,15 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "iconmonstr-smiley-2-32.png",
+      "filename" : "icons8-Party Baloons Filled_100.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "iconmonstr-smiley-2-48.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "iconmonstr-smiley-2-64.png",
       "scale" : "3x"
     }
   ],

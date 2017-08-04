@@ -50,9 +50,9 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
             let author = data["author"] as! PFUser
             authorLabel.text = author.username
             
-            descriptionLabel.text = data["description"] as! String
+            descriptionLabel.text = data["description"] as? String
             updatesCountLabel.text = String(data["updatesCount"] as! Int)
-            categoryLabel.text = data["categories"] as! String
+            categoryLabel.text = data["categories"] as? String
             
             if (data["isCompleted"] as! Bool == true) {
                 let completedString = String(dateFormat.string(from: data["actualCompletionDate"] as! Date))

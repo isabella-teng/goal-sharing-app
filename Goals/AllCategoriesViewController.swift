@@ -12,7 +12,7 @@ class AllCategoriesViewController: UIViewController, UICollectionViewDelegate, U
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var allCategories: [String] = ["Education", "Health", "Fun", "Money", "Spiritual", "Other"] //other is just a filler for aesthetics
+    var allCategories: [String] = ["Education", "Health", "Fun", "Money", "Spiritual", "Other"] // other is just a filler for aesthetics
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,9 +20,7 @@ class AllCategoriesViewController: UIViewController, UICollectionViewDelegate, U
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        collectionView.backgroundView = UIImageView(image: UIImage(named: "backgroundimg"))
-        
-
+        collectionView.backgroundView = UIImageView(image: #imageLiteral(resourceName: "backgroundimg"))
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -40,21 +38,20 @@ class AllCategoriesViewController: UIViewController, UICollectionViewDelegate, U
         cell.delegate = self
         
         if indexPath.item == 0 {
-            cell.categoryIcon.image = UIImage(named: "education")
+            cell.categoryIcon.image = #imageLiteral(resourceName: "education").withRenderingMode(.alwaysTemplate)
         } else  if indexPath.item == 1 {
-            cell.categoryIcon.image = UIImage(named: "health")
+            cell.categoryIcon.image = #imageLiteral(resourceName: "health").withRenderingMode(.alwaysTemplate)
         }  else if indexPath.item == 2 {
-            cell.categoryIcon.image = UIImage(named: "fun")
+            cell.categoryIcon.image = #imageLiteral(resourceName: "fun").withRenderingMode(.alwaysTemplate)
         }  else if indexPath.item == 3 {
-            cell.categoryIcon.image = UIImage(named: "money")
+            cell.categoryIcon.image = #imageLiteral(resourceName: "money").withRenderingMode(.alwaysTemplate)
         } else if indexPath.item == 4 {
-            cell.categoryIcon.image = UIImage(named: "spiritual")
+            cell.categoryIcon.image = #imageLiteral(resourceName: "spiritual").withRenderingMode(.alwaysTemplate)
         } else {
-            
+            cell.categoryIcon.image = #imageLiteral(resourceName: "other").withRenderingMode(.alwaysTemplate)
         }
         
         return cell
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,6 +65,4 @@ class AllCategoriesViewController: UIViewController, UICollectionViewDelegate, U
             vc.goalCategory = sender as! String
         }
     }
-    
-
 }
