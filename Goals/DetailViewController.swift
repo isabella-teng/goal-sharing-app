@@ -117,13 +117,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             updateButton.isEnabled = true
         }
         
-        let iconUrl = author?["portrait"] as? PFFile
-        iconUrl?.getDataInBackground { (image: Data?, error: Error?) in
-            if error == nil {
-                self.userIcon.image = UIImage(data: image!)
-            }
-        }
-        
         updateLabel.text = currentUpdate?["text"] as? String
         goalLabel.text = currentUpdate?["goalTitle"] as? String
         
@@ -148,6 +141,13 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else {
             self.favoriteButton.isSelected = false
             liked = false
+        }
+        
+        let iconUrl = author?["portrait"] as? PFFile
+        iconUrl?.getDataInBackground { (image: Data?, error: Error?) in
+            if error == nil {
+                self.userIcon.image = UIImage(data: image!)
+            }
         }
     }
     

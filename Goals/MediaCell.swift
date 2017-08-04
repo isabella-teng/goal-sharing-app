@@ -66,6 +66,7 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate, AVAudioPl
     var toPass: [String: Any] = [:]
     
     @IBAction func didTapImage(_ sender: Any) {
+        print("hi")
         delegate?.mediaCell(self, didTap: toPass)
     }
     
