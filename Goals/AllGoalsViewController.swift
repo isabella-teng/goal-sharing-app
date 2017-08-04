@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import ParseUI
 import BubbleTransition
+import Hero
 
 class AllGoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GoalCellDelegate, UIViewControllerTransitioningDelegate {
 
@@ -18,6 +19,8 @@ class AllGoalsViewController: UIViewController, UITableViewDelegate, UITableView
     
     var allGoals: [PFObject] = []
     let transition = BubbleTransition()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
