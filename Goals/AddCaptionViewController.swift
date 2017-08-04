@@ -157,10 +157,8 @@ class AddCaptionViewController: UIViewController, UIGestureRecognizerDelegate {
 
             }
             
-            
-            
-            let alertController = UIAlertController(title: "Message Sent!", message: "Thank you for sending an encouraging message!", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Yay!", style: .default, handler: { (action) in
+            let alertController = UIAlertController(title: "Message sent", message: "Thanks for that encouraging message!", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
                 self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: false, completion: nil)
             })
             alertController.addAction(okAction)

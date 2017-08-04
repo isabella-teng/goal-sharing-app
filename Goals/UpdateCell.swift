@@ -10,10 +10,10 @@ import UIKit
 import Parse
 
 protocol TimelineUpdateCellDelegate: class {
-    func timelineUpdateCell(_ updateCell: UpdateCell, didTap update: PFObject)
+    func timelineUpdateCell(_ updateCell: UpdateCell, didTap update: PFObject, tapped media: [String: Any]?)
 }
 
-class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
+class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, MediaCellDelegate {
     
     @IBOutlet weak var updateBackground: UIView!
     @IBOutlet weak var updateLabel: UILabel!
@@ -92,6 +92,19 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
                     mediaPosition.constant = 0
                 }
             } else {
+                let count = UIView(frame: CGRect(x: 150, y: 66, width: 25, height: 20))
+                count.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
+                count.layer.cornerRadius = count.frame.height / 2
+                
+                let countLabel = UILabel(frame: CGRect(x: 0, y: 0, width: count.frame.width, height: count.frame.height))
+                countLabel.textColor = UIColor.white
+                countLabel.font = UIFont(name: "HelveticaNeue", size: 14)
+                countLabel.textAlignment = NSTextAlignment.center
+                countLabel.text = String(activityMedia.count)
+                
+                count.addSubview(countLabel)
+                self.addSubview(count)
+                
                 collectionView.isHidden = false
                 mediaHeight.constant = 294
                 media = activityMedia
@@ -105,7 +118,12 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
     }
     
     func didTapUpdate(_ sender: UITapGestureRecognizer) {
-        delegate?.timelineUpdateCell(self, didTap: update!)
+        delegate?.timelineUpdateCell(self, didTap: update!, tapped: nil)
+    }
+    
+    func mediaCell(_ mediaCell: MediaCell, didTap data: [String : Any]) {
+        print(data)
+        delegate?.timelineUpdateCell(self, didTap: update!, tapped: data)
     }
 
     override func awakeFromNib() {
@@ -137,8 +155,9 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
     // Format collectionView cell
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MediaCell", for: indexPath) as! MediaCell
+        
+        cell.delegate = self
         cell.data = media[indexPath.item]
-        cell.delegate = parent as! TimelineViewController
 
         return cell
     }
