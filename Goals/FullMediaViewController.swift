@@ -33,6 +33,7 @@ class FullMediaViewController: UIViewController, UIScrollViewDelegate {
     
     
     override func viewDidAppear(_ animated: Bool) {
+        //print(data)
         let author = data?["sender"] as! PFUser
         author.fetchIfNeededInBackground { (authorObject: PFObject?, error: Error?) in
             if error == nil {

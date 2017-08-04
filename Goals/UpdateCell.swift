@@ -30,6 +30,8 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
     
     weak var delegate: TimelineUpdateCellDelegate?
     
+    var parent: UIViewController?
+    
     var media: [[String: Any]] = []
     var update: PFObject? = nil {
         didSet {
@@ -105,8 +107,7 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
     func didTapUpdate(_ sender: UITapGestureRecognizer) {
         delegate?.timelineUpdateCell(self, didTap: update!)
     }
-    
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -137,6 +138,8 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MediaCell", for: indexPath) as! MediaCell
         cell.data = media[indexPath.item]
+        cell.delegate = parent as! TimelineViewController
+
         return cell
     }
     

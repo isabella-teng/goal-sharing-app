@@ -12,7 +12,7 @@ import ParseUI
 import Whisper
 import BubbleTransition
 import NVActivityIndicatorView
-import Hero
+
 
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate, DidPostUpdateDelegate, UIViewControllerTransitioningDelegate, NVActivityIndicatorViewable, UIScrollViewDelegate {
 

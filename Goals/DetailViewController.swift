@@ -240,7 +240,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func mediaCell(_ mediaCell: MediaCell, didTap data: [String: Any]) {
         performSegue(withIdentifier: "fullMediaSegue", sender: data)
-        print(data)
     }
     
     
