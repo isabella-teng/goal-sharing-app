@@ -109,13 +109,12 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         author = currentUpdate?["author"] as? PFUser
         usernameLabel.text = author?["username"] as? String
         
-        if author?.objectId != PFUser.current()?.objectId || goal?["isCompleted"] as! Bool == true { //CRASH HERE
+        if author?.objectId != PFUser.current()?.objectId || goal?["isCompleted"] as! Bool {
             updateButton.image = nil
             updateButton.isEnabled = false
         } else {
             updateButton.image = #imageLiteral(resourceName: "pencil")
             updateButton.isEnabled = true
-            
         }
         
         let iconUrl = author?["portrait"] as? PFFile

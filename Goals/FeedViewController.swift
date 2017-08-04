@@ -13,7 +13,6 @@ import Whisper
 import BubbleTransition
 import NVActivityIndicatorView
 
-
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate, DidPostUpdateDelegate, UIViewControllerTransitioningDelegate, NVActivityIndicatorViewable, UIScrollViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!

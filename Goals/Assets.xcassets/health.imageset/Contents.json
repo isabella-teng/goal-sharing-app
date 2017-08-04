@@ -2,17 +2,15 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "iconmonstr-favorite-9-32.png",
+      "filename" : "icons8-Heart with Pulse Filled_100.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "iconmonstr-favorite-9-48.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "iconmonstr-favorite-9-64.png",
       "scale" : "3x"
     }
   ],

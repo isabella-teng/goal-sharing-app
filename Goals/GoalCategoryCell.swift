@@ -20,6 +20,7 @@ class GoalCategoryCell: UITableViewCell {
     @IBOutlet weak var goalTitle: UILabel!
     @IBOutlet weak var profPic: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var detailsBackground: UIView!
     
     weak var delegate: GoalCategoryCellDelegate?
     
@@ -45,17 +46,16 @@ class GoalCategoryCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        profPic.layer.cornerRadius = profPic.frame.height / 2
+        detailsBackground.layer.cornerRadius = 10
+        
         cellBackground.layer.cornerRadius = 10
         let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCell(_:)))
-        
         cellBackground.addGestureRecognizer(cellTapGestureRecognizer)
         cellBackground.isUserInteractionEnabled = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-
 }

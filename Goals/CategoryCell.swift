@@ -31,12 +31,9 @@ class CategoryCell: UICollectionViewCell {
         cellBackground.addGestureRecognizer(cellTapGestureRecognizer)
         cellBackground.isUserInteractionEnabled = true
         
-        cellBackground.layer.cornerRadius = 15
-        
+        cellBackground.layer.cornerRadius = 5
+        categoryIcon.tintColor = categoryLabel.textColor
     }
-    
-    
-    
 }
 
 

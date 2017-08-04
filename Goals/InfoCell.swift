@@ -50,7 +50,7 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
 //            descriptionLabel.text = "Description: " + (data["description"] as! String)
             authorLabel.text = "Author: " + author.username!
             updatesCountLabel.text = "Total Updates: " + (String(data["updatesCount"] as! Int))
-            categoryLabel.text = data["categories"] as! String
+            categoryLabel.text = data["categories"] as? String
             
             if (data["isCompleted"] as! Bool == true) {
                 let completedString = String(dateFormat.string(from: data["actualCompletionDate"] as! Date))
