@@ -92,6 +92,19 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
                     mediaPosition.constant = 0
                 }
             } else {
+                let count = UIView(frame: CGRect(x: 150, y: 66, width: 25, height: 20))
+                count.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
+                count.layer.cornerRadius = count.frame.height / 2
+                
+                let countLabel = UILabel(frame: CGRect(x: 0, y: 0, width: count.frame.width, height: count.frame.height))
+                countLabel.textColor = UIColor.white
+                countLabel.font = UIFont(name: "HelveticaNeue", size: 14)
+                countLabel.textAlignment = NSTextAlignment.center
+                countLabel.text = String(activityMedia.count)
+                
+                count.addSubview(countLabel)
+                self.addSubview(count)
+                
                 collectionView.isHidden = false
                 mediaHeight.constant = 294
                 media = activityMedia
