@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TimelineUpdateCellDelegate, MediaCellDelegate {
+class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TimelineUpdateCellDelegate {
     
     @IBOutlet weak var updateButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -66,15 +66,13 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    
-    func mediaCell(_ mediaCell: MediaCell, didTap data: [String : Any]) {
-        print(data)
-        performSegue(withIdentifier: "timelineToFullMediaSegue", sender: data)
-    }
-    
   
-    func timelineUpdateCell(_ updateCell: UpdateCell, didTap update: PFObject) {
-        performSegue(withIdentifier: "timelineToDetailSegue", sender: update)
+    func timelineUpdateCell(_ updateCell: UpdateCell, didTap update: PFObject, tapped: [String: Any]?) {
+        if tapped == nil {
+            performSegue(withIdentifier: "timelineToDetailSegue", sender: update)
+        } else {
+            performSegue(withIdentifier: "timelineToFullMediaSegue", sender: tapped!)
+        }
     }
     
     @IBAction func didTapUpdate(_ sender: Any) {
@@ -108,7 +106,6 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         } else if (segue.identifier == "timelineToFullMediaSegue") {
             let vc = segue.destination as! FullMediaViewController
             vc.data = sender as? [String: Any]
-            print("made it")
         }
     }
 }

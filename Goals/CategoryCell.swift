@@ -17,6 +17,7 @@ class CategoryCell: UICollectionViewCell {
     @IBOutlet weak var cellBackground: UIView!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var categoryIcon: UIImageView!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     weak var delegate: CategoryCellDelegate?
 
