@@ -108,9 +108,29 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if goalSelection.selectedSegmentIndex == 0 {
             allUserPosts = activeGoals
             tableView.reloadData()
+            
+            Goal.fetchGoalsByCompletion(user: user!, isCompleted: false, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
+                if error == nil {
+                    self.activeGoals = loadedGoals!
+                    self.allUserPosts = self.activeGoals
+                    self.tableView.reloadData()
+                } else {
+                    print(error?.localizedDescription as Any)
+                }
+            })
         } else {
             allUserPosts = completedGoals
             tableView.reloadData()
+            
+            Goal.fetchGoalsByCompletion(user: user!, isCompleted: true, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
+                if error == nil {
+                    self.completedGoals = loadedGoals!
+                    self.allUserPosts = self.completedGoals
+                    self.tableView.reloadData()
+                } else {
+                    print(error?.localizedDescription as Any)
+                }
+            })
         }
     }
     
