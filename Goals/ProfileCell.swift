@@ -77,22 +77,20 @@ class ProfileCell: SwipeTableViewCell {
                 progressView.progress = Float(startToCurrent) / Float(startToCompletion)
             }
             
-            
-            //check if last update date is less than 24 hours since current time
-            if let lastUpdate = goal["lastUpdateDay"] as? Date {
-                if let diff = Calendar.current.dateComponents([.hour], from: lastUpdate, to: Date()).hour, diff > 1 {
-                    goal.setValue(0, forKey: "streakCount")
-                }
-            }
-            
-            
-            
-            streakCount.text = String(goal["streakCount"] as! Int)
-            
             let completed = goal["isCompleted"] as! Bool
             if completed {
                 streakCount.isHidden = true
                 streakIcon.text = "⭐️"
+            } else {
+                //check if last update date is less than 24 hours since current time
+                if let lastUpdate = goal["lastUpdateDay"] as? Date {
+                    if let diff = Calendar.current.dateComponents([.hour], from: lastUpdate, to: Date()).hour, diff > 1 {
+                        goal.setValue(0, forKey: "streakCount")
+                    }
+                }
+                streakCount.isHidden = false
+                streakCount.text = String(goal["streakCount"] as! Int)
+                streakIcon.text = "🔥"
             }
         }
     }
