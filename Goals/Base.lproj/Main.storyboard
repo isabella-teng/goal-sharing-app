@@ -709,6 +709,7 @@
                                             <outlet property="remainingDays" destination="GFU-Vc-MN0" id="XOb-1f-52e"/>
                                             <outlet property="startDateToNow" destination="y6W-h4-gkW" id="Mwk-ua-9Qm"/>
                                             <outlet property="streakCount" destination="NLb-pH-ALw" id="2TZ-ep-xtc"/>
+                                            <outlet property="streakIcon" destination="MRF-Ao-suV" id="8Id-GS-TLp"/>
                                             <outlet property="titleLabel" destination="eBR-kB-CaX" id="FWY-Sl-YiP"/>
                                         </connections>
                                     </tableViewCell>
@@ -1578,7 +1579,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="uHu-1d-37X">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="uHu-1d-37X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2177,7 +2178,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="0Zf-dD-PwB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="0Zf-dD-PwB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2589,7 +2590,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="U1N-J6-1Pu">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="U1N-J6-1Pu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2641,13 +2642,6 @@
         <image name="user" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ydZ-wS-uFS"/>
-        <segue reference="kNn-XA-D7B"/>
-        <segue reference="ZpT-ic-j8z"/>
-        <segue reference="rWw-4p-v87"/>
-        <segue reference="die-PK-ZT8"/>
-        <segue reference="5S3-em-M3C"/>
-        <segue reference="b2e-3H-KtS"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
