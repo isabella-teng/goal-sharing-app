@@ -11,7 +11,7 @@ import Parse
 
 class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TimelineUpdateCellDelegate {
     
-    @IBOutlet weak var updateButton: UIButton!
+    @IBOutlet weak var updateButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     
     var currentGoal: PFObject?
@@ -92,7 +92,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         if (segue.identifier == "timelineToDetailSegue") {
             let vc = segue.destination as! DetailViewController
             vc.currentUpdate = sender as? PFObject
-            vc.isFromTimeline = true
+//            vc.isFromTimeline = true
             
             let goalId = vc.currentUpdate?["goalId"] as! String
             Goal.fetchGoalWithId(id: goalId, withCompletion: { (loadedGoal: PFObject?, error: Error?) in
