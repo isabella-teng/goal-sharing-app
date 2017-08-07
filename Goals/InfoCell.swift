@@ -23,9 +23,11 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
     @IBOutlet weak var timestampLabel: UILabel!
     
     @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var authorIcon: UIImageView!
     @IBOutlet weak var updatesCountLabel: UILabel!
     @IBOutlet weak var completionDate: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var categoryIcon: UIImageView!
     
     weak var axisFormatDelegate: IAxisValueFormatter?
     
@@ -47,16 +49,42 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
             setChart(dataPoints: days, values: updatesMade)
             
             let author = data["author"] as! PFUser
-            authorLabel.text = "Author: " + author.username!
-            updatesCountLabel.text = "Total Updates: " + (String(data["updatesCount"] as! Int))
+            authorLabel.text = author.username!
+            let iconUrl = author["portrait"] as? PFFile
+            iconUrl?.getDataInBackground(block: { (image: Data?, error: Error?) in
+                if error == nil {
+                    self.authorIcon.image = UIImage(data: image!)
+                }
+            })
+            updatesCountLabel.text = String(data["updatesCount"] as! Int) + " Updates"
             categoryLabel.text = data["categories"] as? String
+            
+            if categoryLabel.text! == "Education" {
+                categoryIcon.image = #imageLiteral(resourceName: "education").withRenderingMode(.alwaysTemplate)
+                categoryIcon.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
+            } else if categoryLabel.text! == "Health" {
+                categoryIcon.image = #imageLiteral(resourceName: "health").withRenderingMode(.alwaysTemplate)
+                categoryIcon.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
+            } else if categoryLabel.text! == "Fun" {
+                categoryIcon.image = #imageLiteral(resourceName: "fun").withRenderingMode(.alwaysTemplate)
+                categoryIcon.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
+            } else if categoryLabel.text! == "Money" {
+                categoryIcon.image = #imageLiteral(resourceName: "money").withRenderingMode(.alwaysTemplate)
+                categoryIcon.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
+            } else if categoryLabel.text! == "Spiritual" {
+                categoryIcon.image = #imageLiteral(resourceName: "spiritual").withRenderingMode(.alwaysTemplate)
+                categoryIcon.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
+            }else if categoryLabel.text! == "Other" {
+                categoryIcon.image = #imageLiteral(resourceName: "other").withRenderingMode(.alwaysTemplate)
+                categoryIcon.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
+            }
             
             if (data["isCompleted"] as! Bool == true) {
                 let completedString = String(dateFormat.string(from: data["actualCompletionDate"] as! Date))
-                completionDate.text = "Finished goal on " + completedString!
+                completionDate.text = "Completed " + completedString!
             } else {
                 let completedString = String(dateFormat.string(from: data["completionDate"] as! Date))
-                completionDate.text = "Intended Completion Date: " + completedString!
+                completionDate.text = "Due " + completedString!
             }
             
         }
@@ -69,6 +97,7 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
         infoBackground.layer.cornerRadius = 10
         nodeView.layer.cornerRadius = nodeView.frame.height / 2
         progressBackground.layer.cornerRadius = 10
+        authorIcon.layer.cornerRadius = authorIcon.frame.height / 2
         
         // Set up graph
         axisFormatDelegate = self as? IAxisValueFormatter
