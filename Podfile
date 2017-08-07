@@ -18,6 +18,8 @@ target 'Goals' do
   pod 'SwipeCellKit'
   pod 'NVActivityIndicatorView'
   pod 'SAConfettiView', :git => 'https://github.com/gokhanakkurt/SAConfettiView', :branch => 'swift3'
+  source 'https://github.com/CocoaPods/Specs.git'
+  pod 'PeekPop', '~> 1.0'
 
 
   target 'GoalsTests' do

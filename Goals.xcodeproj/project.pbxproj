@@ -32,6 +32,7 @@
 		FA3E2F2C1F2AFC1D009DAF56 /* GoalCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3E2F2B1F2AFC1D009DAF56 /* GoalCategoryCell.swift */; };
 		FA58362D1F2936730023AA88 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA58362C1F2936730023AA88 /* ExploreViewController.swift */; };
 		FA58362F1F293F3B0023AA88 /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA58362E1F293F3B0023AA88 /* UserSearchCell.swift */; };
+		FA5F55071F37FE260059ED5D /* PeekViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5F55061F37FE260059ED5D /* PeekViewViewController.swift */; };
 		FA91CC791F33C854008C4ACC /* SwiftyCamButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA91CC781F33C854008C4ACC /* SwiftyCamButton.swift */; };
 		FAA6C8C31F1EA79900FB8F26 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6C8C21F1EA79900FB8F26 /* CameraViewController.swift */; };
 		FAA6C8C51F1EB62D00FB8F26 /* SwiftyCamRecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6C8C41F1EB62D00FB8F26 /* SwiftyCamRecordButton.swift */; };
@@ -111,6 +112,7 @@
 		FA3E2F2B1F2AFC1D009DAF56 /* GoalCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalCategoryCell.swift; sourceTree = "<group>"; };
 		FA58362C1F2936730023AA88 /* ExploreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 		FA58362E1F293F3B0023AA88 /* UserSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
+		FA5F55061F37FE260059ED5D /* PeekViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeekViewViewController.swift; sourceTree = "<group>"; };
 		FA91CC781F33C854008C4ACC /* SwiftyCamButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyCamButton.swift; sourceTree = "<group>"; };
 		FAA6C8C21F1EA79900FB8F26 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		FAA6C8C41F1EB62D00FB8F26 /* SwiftyCamRecordButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyCamRecordButton.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 		FACF12CB1F154A4600D505FE /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA5F55061F37FE260059ED5D /* PeekViewViewController.swift */,
 				FAD351411F182FC500998CCA /* AllGoalsViewController.swift */,
 				B87C87EF1F159AE100F58517 /* DetailViewController.swift */,
 				7EEEFB161F158A6E004A29EC /* FeedViewController.swift */,
@@ -695,6 +698,7 @@
 				FACD857C1F314D7B007A6D8A /* AllCategoriesViewController.swift in Sources */,
 				FAD3514A1F1838D500998CCA /* GoalCell.swift in Sources */,
 				FAA6C8C81F1EB97E00FB8F26 /* PhotoViewController.swift in Sources */,
+				FA5F55071F37FE260059ED5D /* PeekViewViewController.swift in Sources */,
 				B87C87F01F159AE100F58517 /* DetailViewController.swift in Sources */,
 				FAA6C8C51F1EB62D00FB8F26 /* SwiftyCamRecordButton.swift in Sources */,
 				B8FB62EF1F312EE70065B508 /* UserViewController.swift in Sources */,

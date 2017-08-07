@@ -459,6 +459,34 @@
             </objects>
             <point key="canvasLocation" x="2797.5999999999999" y="-648.12593703148434"/>
         </scene>
+        <!--Peek View View Controller-->
+        <scene sceneID="AgD-bN-GNw">
+            <objects>
+                <viewController storyboardIdentifier="PeekViewViewController" id="8lI-rE-L4D" customClass="PeekViewViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fTz-kc-EYQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="zUN-NL-bxh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TER-1h-3uX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xmV-FJ-4uq">
+                                <rect key="frame" x="47" y="193" width="280" height="280"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.8019107152723397" green="0.77088169233348958" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="peekImageView" destination="xmV-FJ-4uq" id="a5S-7l-hd5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HsK-yF-GzI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2733.5999999999999" y="-1343.4782608695652"/>
+        </scene>
         <!--Post Goal View Controller-->
         <scene sceneID="BvD-io-799">
             <objects>
@@ -595,7 +623,7 @@
                         <viewControllerLayoutGuide type="bottom" id="spF-DR-v0x"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dWK-WH-8i0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="confetti" translatesAutoresizingMaskIntoConstraints="NO" id="Vhs-6U-vie">
@@ -630,7 +658,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="157" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bce-Sn-ehU">
-                                <rect key="frame" x="0.0" y="264.5" width="375" height="353.5"/>
+                                <rect key="frame" x="0.0" y="264.5" width="375" height="402.5"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ProfileCell" rowHeight="157" id="6HF-en-oc3" customClass="ProfileCell" customModule="Goals" customModuleProvider="target">
@@ -1621,7 +1649,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="uHu-1d-37X">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="uHu-1d-37X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2667,12 +2695,12 @@
         <image name="user" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yqQ-IM-bYA"/>
-        <segue reference="Mng-1h-zUX"/>
-        <segue reference="b2e-3H-KtS"/>
         <segue reference="ZpT-ic-j8z"/>
         <segue reference="kNn-XA-D7B"/>
+        <segue reference="Lff-mb-4zB"/>
         <segue reference="rWw-4p-v87"/>
+        <segue reference="Mng-1h-zUX"/>
+        <segue reference="b2e-3H-KtS"/>
         <segue reference="die-PK-ZT8"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
