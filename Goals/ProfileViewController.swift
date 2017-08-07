@@ -151,23 +151,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
         
-        Goal.fetchGoalsByCompletion(user: user!, isCompleted: false, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
-            if error == nil {
-                self.activeGoals = loadedGoals!
-                self.allUserPosts = self.activeGoals
-                self.tableView.reloadData()
-            } else {
-                print(error?.localizedDescription as Any)
-            }
-        })
-        
-        Goal.fetchGoalsByCompletion(user: user!, isCompleted: true, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
-            if error == nil {
-                self.completedGoals = loadedGoals!
-            } else {
-                print(error?.localizedDescription as Any)
-            }
-        })
+        onSegmentedSwitch(self)
     }
     
     // Light status bar colors

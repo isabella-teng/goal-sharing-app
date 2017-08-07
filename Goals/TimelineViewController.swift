@@ -48,7 +48,11 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     // Return amount of cells
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return updates.count + 1
+        if currentGoal?["isCompleted"] as! Bool {
+            return updates.count + 1
+        } else {
+            return updates.count
+        }
     }
     
     // Format tableView cells
