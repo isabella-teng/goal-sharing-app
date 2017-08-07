@@ -24,8 +24,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var editProfileButton: UIButton!
-    @IBOutlet weak var closeButton: UIButton!
-    @IBOutlet weak var followUserButton: UIButton!
+    @IBOutlet weak var followUserButton: UIBarButtonItem!
     
     @IBOutlet weak var myWeek: UIButton!
     @IBOutlet weak var goalSelection: UISegmentedControl!
@@ -33,6 +32,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var user: PFUser? = nil
     var allUserPosts: [PFObject]? = []
+    var activeGoals: [PFObject] = []
+    var completedGoals: [PFObject] = []
     var fromFeed: Bool = false
     var isFollowing: Bool = false
     
@@ -48,41 +49,32 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         
         myWeek.isHidden = true
-        
-        //if new user without portrait and bio
-        
-        // Set up tableView
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 100
-        
-        closeButton.setImage(#imageLiteral(resourceName: "cross-filled").withRenderingMode(.alwaysTemplate), for: .normal)
-        closeButton.tintColor = UIColor.white
-        logoutButton.setImage(#imageLiteral(resourceName: "power").withRenderingMode(.alwaysTemplate), for: .normal)
-        logoutButton.tintColor = UIColor.white
-        editProfileButton.setImage(#imageLiteral(resourceName: "settings").withRenderingMode(.alwaysTemplate), for: .normal)
-        editProfileButton.tintColor = UIColor.white
-        followUserButton.setImage(#imageLiteral(resourceName: "add").withRenderingMode(.alwaysTemplate), for: .normal)
-        followUserButton.tintColor = UIColor.white
+        self.title = user?.username?.capitalized
         
         // Hide/show buttons based on source
         if !fromFeed {
             self.user = PFUser.current()
-            closeButton.isHidden = true
             logoutButton.isHidden = false
-            editProfileButton.isHidden = false
-            followUserButton.isHidden = true
+            logoutButton.setImage(#imageLiteral(resourceName: "power").withRenderingMode(.alwaysTemplate), for: .normal)
+            logoutButton.isEnabled = true
+            editProfileButton.setImage(#imageLiteral(resourceName: "settings").withRenderingMode(.alwaysTemplate), for: .normal)
+            editProfileButton.isEnabled = true
+            followUserButton.width = 0
+            followUserButton.title = ""
+            followUserButton.isEnabled = false
         } else if fromFeed && (user?.objectId == PFUser.current()?.objectId) {
             logoutButton.isHidden = true
+            logoutButton.isEnabled = false
             editProfileButton.isHidden = true
-            closeButton.isHidden = false
-            followUserButton.isHidden = true
+            editProfileButton.isEnabled = false
+            followUserButton.title = ""
+            followUserButton.isEnabled = false
         } else {
+            followUserButton.isEnabled = true
             logoutButton.isHidden = true
+            logoutButton.isEnabled = false
             editProfileButton.isHidden = true
-            closeButton.isHidden = false
-            followUserButton.isHidden = false
+            editProfileButton.isEnabled = false
             
             let current = PFUser.current()
             let following = current?["following"] as! [PFUser]
@@ -93,10 +85,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
         
+        // Set up tableView
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100
+        
         // Style buttons and images
-        logoutButton.layer.cornerRadius = logoutButton.frame.height / 2
-        closeButton.layer.cornerRadius = closeButton.frame.height / 2
-        followUserButton.layer.cornerRadius = 5
         profileIcon.layer.cornerRadius = 35
         iconBorder.layer.cornerRadius = (profileIcon.layer.cornerRadius / profileIcon.frame.width) * iconBorder.frame.width
         
@@ -110,30 +105,37 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @IBAction func onSegmentedSwitch(_ sender: Any) {
-        viewDidAppear(true)
-    }
-    
-    //todo: fix and don't need to fetch everytime
-    override func viewDidAppear(_ animated: Bool) {
         if goalSelection.selectedSegmentIndex == 0 {
+            allUserPosts = activeGoals
+            tableView.reloadData()
+            
             Goal.fetchGoalsByCompletion(user: user!, isCompleted: false, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
                 if error == nil {
-                    self.allUserPosts = loadedGoals!
+                    self.activeGoals = loadedGoals!
+                    self.allUserPosts = self.activeGoals
                     self.tableView.reloadData()
                 } else {
                     print(error?.localizedDescription as Any)
                 }
             })
         } else {
+            allUserPosts = completedGoals
+            tableView.reloadData()
+            
             Goal.fetchGoalsByCompletion(user: user!, isCompleted: true, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
                 if error == nil {
-                    self.allUserPosts = loadedGoals!
+                    self.completedGoals = loadedGoals!
+                    self.allUserPosts = self.completedGoals
                     self.tableView.reloadData()
                 } else {
                     print(error?.localizedDescription as Any)
                 }
             })
         }
+    }
+    
+    //todo: fix and don't need to fetch everytime
+    override func viewDidAppear(_ animated: Bool) {
         
         // Populate view with user data
         let username = user?.username!
@@ -148,6 +150,24 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.profileIcon.image = profImage
             }
         }
+        
+        Goal.fetchGoalsByCompletion(user: user!, isCompleted: false, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
+            if error == nil {
+                self.activeGoals = loadedGoals!
+                self.allUserPosts = self.activeGoals
+                self.tableView.reloadData()
+            } else {
+                print(error?.localizedDescription as Any)
+            }
+        })
+        
+        Goal.fetchGoalsByCompletion(user: user!, isCompleted: true, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
+            if error == nil {
+                self.completedGoals = loadedGoals!
+            } else {
+                print(error?.localizedDescription as Any)
+            }
+        })
     }
     
     // Light status bar colors
@@ -159,14 +179,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func toggleFollow() {
         if !isFollowing {
             isFollowing = true
-            followUserButton.setImage(#imageLiteral(resourceName: "added").withRenderingMode(.alwaysTemplate), for: .normal)
-            followUserButton.tintColor = self.view.tintColor
-            followUserButton.backgroundColor = UIColor.white
+            followUserButton.title = "Following"
         } else {
             isFollowing = false
-            followUserButton.setImage(#imageLiteral(resourceName: "add").withRenderingMode(.alwaysTemplate), for: .normal)
-            followUserButton.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0)
-            followUserButton.tintColor = UIColor.white
+            followUserButton.title = "Follow"
         }
     }
     
@@ -188,11 +204,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         PFUser.current()?["following"] = followingArray
         PFUser.current()?.saveInBackground()
-    }
-    
-    // Exit view
-    @IBAction func didTapClose(_ sender: Any) {
-        self.dismiss(animated: true)
     }
     
     // Log user out

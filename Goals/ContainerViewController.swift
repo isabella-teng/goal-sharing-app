@@ -18,6 +18,8 @@ class ContainerViewController: UIViewController {
     }
     
     @IBAction func viewSwitcher(_ sender: UISegmentedControl) {
+        view.endEditing(true)
+        
         if sender.selectedSegmentIndex == 0 {
             UIView.animate(withDuration: 0.5, animations: { 
                 self.containerViewA.alpha = 1
