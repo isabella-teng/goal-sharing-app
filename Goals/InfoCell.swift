@@ -28,6 +28,8 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
     @IBOutlet weak var completionDate: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var categoryIcon: UIImageView!
+    @IBOutlet weak var descriptionBackground: UIView!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     weak var axisFormatDelegate: IAxisValueFormatter?
     
@@ -87,9 +89,10 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
                 completionDate.text = "Due " + completedString!
             }
             
+            descriptionLabel.text = data["description"] as? String
         }
     }
-   
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -98,6 +101,7 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
         nodeView.layer.cornerRadius = nodeView.frame.height / 2
         progressBackground.layer.cornerRadius = 10
         authorIcon.layer.cornerRadius = authorIcon.frame.height / 2
+        descriptionBackground.layer.cornerRadius = 10
         
         // Set up graph
         axisFormatDelegate = self as? IAxisValueFormatter
@@ -106,7 +110,7 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
         let xAxis = graphView.xAxis
         xAxis.labelCount = xAxisValueFormatter.labelCount
         xAxis.valueFormatter = xAxisValueFormatter()
-
+        
         graphView.notifyDataSetChanged()
     }
     
@@ -117,11 +121,11 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
         
         var dataEntries: [ChartDataEntry] = []
         
-//        var intValues: [Int] = []
-//        for i in values {
-//            intValues.append(Int(values[i]))
-//        }
-    
+        //        var intValues: [Int] = []
+        //        for i in values {
+        //            intValues.append(Int(values[i]))
+        //        }
+        
         
         for i in 0..<dataPoints.count {
             let dataEntry = ChartDataEntry(x: Double(i), y: values[i])
@@ -132,9 +136,9 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
         let chartData = LineChartData(dataSet: chartDataSet)
         graphView.data = chartData
         
-//        let sum = values.reduce(0, +)
-//        let average = sum / 7
-//        let average1 = average - 1.02
+        //        let sum = values.reduce(0, +)
+        //        let average = sum / 7
+        //        let average1 = average - 1.02
         
         // Settings for the graph
         chartDataSet.colors = [UIColor.white]
@@ -163,24 +167,24 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
         graphView.leftAxis.enabled = false
         
         // Updates/Average Limit Lines
-//        let averageEstimate = ChartLimitLine(limit: average, label: "Est. Updates Per Week")
-//        averageEstimate.valueFont = UIFont(name: "Verdana", size: 8.0)!
-//        averageEstimate.lineColor = UIColor.gray
-//        progressBackground.rightAxis.addLimitLine(averageEstimate)
-//        averageEstimate.labelPosition = .leftTop
-//        
-//        let actualAverage = ChartLimitLine(limit: average1, label: "Your average")
-//        actualAverage.valueFont = UIFont(name: "Verdana", size: 8.0)!
-//        if average1 > average {
-//            actualAverage.lineColor = UIColor.green
-//            progressBackground.rightAxis.addLimitLine(actualAverage)
-//        } else if average1 < average {
-//            actualAverage.lineColor = UIColor.red
-//            progressBackground.rightAxis.addLimitLine(actualAverage)
-//        } else if average1 == average {
-//            actualAverage.lineColor = UIColor.green
-//            progressBackground.rightAxis.addLimitLine(actualAverage)
-//        }
+        //        let averageEstimate = ChartLimitLine(limit: average, label: "Est. Updates Per Week")
+        //        averageEstimate.valueFont = UIFont(name: "Verdana", size: 8.0)!
+        //        averageEstimate.lineColor = UIColor.gray
+        //        progressBackground.rightAxis.addLimitLine(averageEstimate)
+        //        averageEstimate.labelPosition = .leftTop
+        //
+        //        let actualAverage = ChartLimitLine(limit: average1, label: "Your average")
+        //        actualAverage.valueFont = UIFont(name: "Verdana", size: 8.0)!
+        //        if average1 > average {
+        //            actualAverage.lineColor = UIColor.green
+        //            progressBackground.rightAxis.addLimitLine(actualAverage)
+        //        } else if average1 < average {
+        //            actualAverage.lineColor = UIColor.red
+        //            progressBackground.rightAxis.addLimitLine(actualAverage)
+        //        } else if average1 == average {
+        //            actualAverage.lineColor = UIColor.green
+        //            progressBackground.rightAxis.addLimitLine(actualAverage)
+        //        }
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

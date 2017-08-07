@@ -24,9 +24,12 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var nodeView: UIView!
+    @IBOutlet weak var updateImage: UIImageView!
+    @IBOutlet weak var updateImageBackground: UIView!
     
     @IBOutlet weak var mediaHeight: NSLayoutConstraint!
     @IBOutlet weak var mediaPosition: NSLayoutConstraint!
+    @IBOutlet weak var imageHeight: NSLayoutConstraint!
     
     weak var delegate: TimelineUpdateCellDelegate?
     
@@ -44,6 +47,7 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
             } else {
                 updateBackground.backgroundColor = UIColor(red: 0.45, green: 0.50, blue: 0.90, alpha: 1.0)
             }
+            updateImageBackground.backgroundColor = updateBackground.backgroundColor
             
             updateLabel.text = update?["text"] as? String
             
@@ -80,6 +84,17 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
                         print(error?.localizedDescription as Any)
                     }
                 })
+            }
+            
+            if let picture = update?["image"] as? PFFile {
+                imageHeight.constant = 200
+                picture.getDataInBackground(block: { (data: Data?, error: Error?) in
+                    if error == nil {
+                        self.updateImage.image = UIImage(data: data!)
+                    }
+                })
+            } else {
+                imageHeight.constant = 0
             }
             
             let activityMedia = update?["activity"] as! [[String: Any]]
@@ -153,6 +168,8 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
         commentBackground.layer.cornerRadius = 10
         nodeView.layer.cornerRadius = nodeView.frame.height / 2
         commenterIcon.layer.cornerRadius = commenterIcon.frame.height / 2
+        updateImageBackground.layer.cornerRadius = 10
+        updateImage.layer.cornerRadius = 10
         
         let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapUpdate(_:)))
         updateBackground.addGestureRecognizer(cellTapGestureRecognizer)
