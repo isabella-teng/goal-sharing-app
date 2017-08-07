@@ -15,6 +15,7 @@
 		7E1FCE641F16E6DC009C0AF1 /* PostUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1FCE631F16E6DC009C0AF1 /* PostUpdateViewController.swift */; };
 		7E38DFDB1F15813400DEF47C /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E38DFDA1F15813400DEF47C /* Update.swift */; };
 		7E40BCAD1F39184E006BF076 /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E40BCAC1F39184E006BF076 /* InfoCell.swift */; };
+		7E40BCAF1F392165006BF076 /* CompletedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E40BCAE1F392165006BF076 /* CompletedCell.swift */; };
 		7E6B47FF1F169CE00079AC1F /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6B47FE1F169CE00079AC1F /* Goal.swift */; };
 		7E8422F71F3142F20000B9C1 /* FullMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8422F61F3142F20000B9C1 /* FullMediaViewController.swift */; };
 		7E949C081F18108800449DA0 /* PostCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E949C071F18108800449DA0 /* PostCommentViewController.swift */; };
@@ -88,6 +89,7 @@
 		7E1FCE631F16E6DC009C0AF1 /* PostUpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostUpdateViewController.swift; sourceTree = "<group>"; };
 		7E38DFDA1F15813400DEF47C /* Update.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
 		7E40BCAC1F39184E006BF076 /* InfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
+		7E40BCAE1F392165006BF076 /* CompletedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedCell.swift; sourceTree = "<group>"; };
 		7E6B47FE1F169CE00079AC1F /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		7E8422F61F3142F20000B9C1 /* FullMediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 3; lastKnownFileType = sourcecode.swift; path = FullMediaViewController.swift; sourceTree = "<group>"; };
 		7E949C071F18108800449DA0 /* PostCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCommentViewController.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				7E40BCAC1F39184E006BF076 /* InfoCell.swift */,
 				7ECD22391F26C2A900D09608 /* MediaCell.swift */,
 				7E124C941F1EA8EF00858D35 /* UpdateCell.swift */,
+				7E40BCAE1F392165006BF076 /* CompletedCell.swift */,
 			);
 			name = Timeline;
 			sourceTree = "<group>";
@@ -668,6 +671,7 @@
 				7E8422F71F3142F20000B9C1 /* FullMediaViewController.swift in Sources */,
 				B87C87EE1F156E9300F58517 /* PostGoalViewController.swift in Sources */,
 				7E1FCE621F16D6E9009C0AF1 /* FeedCell.swift in Sources */,
+				7E40BCAF1F392165006BF076 /* CompletedCell.swift in Sources */,
 				FACD85821F317DD9007A6D8A /* CategoryCell.swift in Sources */,
 				B8FB62E31F3121340065B508 /* ContainerViewController.swift in Sources */,
 				7E949C081F18108800449DA0 /* PostCommentViewController.swift in Sources */,
