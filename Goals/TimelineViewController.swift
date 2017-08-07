@@ -48,7 +48,11 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     // Return amount of cells
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return updates.count
+        if currentGoal?["isCompleted"] as! Bool {
+            return updates.count + 1
+        } else {
+            return updates.count
+        }
     }
     
     // Format tableView cells
@@ -59,6 +63,10 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             let cell = (tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! InfoCell)
             cell.data = currentGoal
             //cell.updatesMade = currentGoal?["updatesPerDay"] as! [Double]
+            return cell
+        } else if indexPath.row == updates.count {
+            let cell = (tableView.dequeueReusableCell(withIdentifier: "CompletedCell", for: indexPath) as! CompletedCell)
+            
             return cell
         } else {
             // Set up UpdateCells with update information
