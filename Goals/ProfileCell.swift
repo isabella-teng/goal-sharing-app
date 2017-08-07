@@ -29,8 +29,10 @@ class ProfileCell: SwipeTableViewCell {
     
     @IBOutlet weak var streakCount: UILabel!
     @IBOutlet weak var streakIcon: UILabel!
+    @IBOutlet weak var streakIconConstraint: NSLayoutConstraint!
     
     weak var otherDelegate: ProfileCellDelegate?
+
     
     var goal: PFObject! {
         didSet {
@@ -81,6 +83,7 @@ class ProfileCell: SwipeTableViewCell {
             if completed {
                 streakCount.isHidden = true
                 streakIcon.text = "⭐️"
+                streakIconConstraint.constant = 8
             } else {
                 //check if last update date is less than 24 hours since current time
                 if let lastUpdate = goal["lastUpdateDay"] as? Date {
@@ -91,6 +94,7 @@ class ProfileCell: SwipeTableViewCell {
                 streakCount.isHidden = false
                 streakCount.text = String(goal["streakCount"] as! Int)
                 streakIcon.text = "🔥"
+                streakIconConstraint.constant = 21
             }
         }
     }

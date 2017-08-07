@@ -194,7 +194,6 @@
 				FACD857A1F31430D007A6D8A /* Explore Cells */,
 				7EFBFC3F1F2AA4BF0052A81A /* DetailCommentCell.swift */,
 				7E1FCE611F16D6E9009C0AF1 /* FeedCell.swift */,
-				FA3E2F2B1F2AFC1D009DAF56 /* GoalCategoryCell.swift */,
 				FAD351491F1838D500998CCA /* GoalCell.swift */,
 				FAD3513D1F16D49A00998CCA /* LogCell.swift */,
 				FACF12D11F156E8C00D505FE /* ProfileCell.swift */,
@@ -264,6 +263,7 @@
 			children = (
 				FACD85811F317DD9007A6D8A /* CategoryCell.swift */,
 				FA58362E1F293F3B0023AA88 /* UserSearchCell.swift */,
+				FA3E2F2B1F2AFC1D009DAF56 /* GoalCategoryCell.swift */,
 			);
 			name = "Explore Cells";
 			sourceTree = "<group>";
@@ -869,7 +869,7 @@
 				DEVELOPMENT_TEAM = NF7K8Y2LMW;
 				INFOPLIST_FILE = Goals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Gerardo.com.Goals;
+				PRODUCT_BUNDLE_IDENTIFIER = Isabella.com.Goalsaf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -884,7 +884,7 @@
 				DEVELOPMENT_TEAM = NF7K8Y2LMW;
 				INFOPLIST_FILE = Goals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Gerardo.com.Goals;
+				PRODUCT_BUNDLE_IDENTIFIER = Isabella.com.Goalsaf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

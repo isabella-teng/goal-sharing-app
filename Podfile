@@ -8,7 +8,6 @@ target 'Goals' do
   # Pods for Goals
   pod 'Parse'
   pod 'ParseUI'
-  pod 'AlamofireImage', '~> 3.1'
   pod 'RSKPlaceholderTextView'
   pod 'SwiftyCam'
   pod 'Charts'

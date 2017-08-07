@@ -1,7 +1,4 @@
 PODS:
-  - Alamofire (4.5.0)
-  - AlamofireImage (3.2.0):
-    - Alamofire (~> 4.1)
   - Bolts/Tasks (1.8.4)
   - BubbleTransition (2.0.2)
   - Charts (3.0.2):
@@ -26,7 +23,6 @@ PODS:
   - Whisper (5.0.0)
 
 DEPENDENCIES:
-  - AlamofireImage (~> 3.1)
   - BubbleTransition (~> 2.0.0)
   - Charts
   - DateToolsSwift
@@ -51,8 +47,6 @@ CHECKOUT OPTIONS:
     :git: https://github.com/gokhanakkurt/SAConfettiView
 
 SPEC CHECKSUMS:
-  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
-  AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   BubbleTransition: 7d98ed7d56f0940e83f350a98103ad473491c769
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
@@ -68,6 +62,6 @@ SPEC CHECKSUMS:
   SwipeCellKit: 893661973276ae3512a84ac0a47055923b10731e
   Whisper: 051f25e704bf8992641ffd28b20d5682ddc5f5d3
 
-PODFILE CHECKSUM: 462f81316fe1d44c2db5fd2275fafd6dd7083ff9
+PODFILE CHECKSUM: 0b388c43592053b090c9b22814ce848839be11a7
 
 COCOAPODS: 1.2.1
