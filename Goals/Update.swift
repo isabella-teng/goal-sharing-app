@@ -117,6 +117,28 @@ class Update: NSObject {
     class func fetchUpdatesFromUserArray(userArray: [PFUser], withCompletion completion: @escaping ([PFObject]?, Error?) -> ()) {
         let query = PFQuery(className: "Update")
         
+        query.limit = 5
+//        query.skip = 5
+        query.order(byDescending: "createdAt")
+        query.includeKey("author")
+        query.whereKey("author", containedIn: userArray)
+        
+        query.findObjectsInBackground { (loadedUpdates: [PFObject]?, error:Error?) in
+            if error == nil {
+                completion(loadedUpdates, nil)
+            } else {
+                completion(nil, error)
+            }
+        }
+        
+    }
+
+    //Fetch updates from array of user ids
+    class func fetchUpdatesFromUserArray2(userArray: [PFUser], skipNumber: Int, withCompletion completion: @escaping ([PFObject]?, Error?) -> ()) {
+        let query = PFQuery(className: "Update")
+        
+        query.limit = 2
+        query.skip = skipNumber
         query.order(byDescending: "createdAt")
         query.includeKey("author")
         query.whereKey("author", containedIn: userArray)

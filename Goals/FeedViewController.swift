@@ -23,6 +23,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var allGoals: [PFObject] = []
     var usersObjectArray: [PFUser] = []
     var didPostUpdate: Bool = false
+    var fetchedData: PFObject?
     
     var completedGoal: PFObject? = nil
     
@@ -33,6 +34,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var activityIndicatorView: NVActivityIndicatorView?
     var isMoreDataLoading = false
     var loadingMoreView: InfiniteScrollActivityView!
+    var updatedSkipNumber = 0
+//    var limit = 5
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,20 +67,33 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         var insets = tableView.contentInset
         insets.bottom += InfiniteScrollActivityView.defaultHeight
         tableView.contentInset = insets
+        
     }
     
     func loadMoreData() {
         print("fetching!!!!")
-        Goal.fetchAllGoals { (loadedGoals: [PFObject]?, error: Error?) in
+        let usersArray = PFUser.current()?["following"] as! [PFUser]
+        Update.fetchUpdatesFromUserArray2(userArray: usersArray, skipNumber: updatedSkipNumber) { (loadedUpdates: [PFObject]?, error: Error?) in
             if error == nil {
-                self.allGoals = loadedGoals!
+                self.updates = loadedUpdates!
                 self.isMoreDataLoading = false
-                self.loadingMoreView!.stopAnimating()
-                self.tableView.reloadData()
+                self.loadingMoreView.stopAnimating()
+//                self.tableView.reloadData()
             } else {
                 print(error?.localizedDescription as Any)
             }
-        }
+        };//updatedSkipNumber += 2
+        tableView.reloadData()
+//        let usersArray = PFUser.current()?["following"] as! [PFUser]
+//        Update.fetchUpdatesFromUserArray(userArray: usersArray) { (fetchedData, error: Error?) in
+//            print(fetchedData)
+//            if error == nil {
+//                self.isMoreDataLoading = false
+//                self.loadingMoreView.stopAnimating()
+//                self.tableView.reloadData()
+//            }
+//        }
+//        updates.append(fetchedData!)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -85,7 +101,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             // The threshold where the data is requested
             let scrollViewContentHeight = tableView.contentSize.height
-            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height / 2
+            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
             
             // When the user has scrolled past the threshold, start requesting
             if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging){
@@ -124,17 +140,28 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //print(didPostUpdate)
         
         // Fetch feed based on followed users
+        
+
         let usersArray = PFUser.current()?["following"] as! [PFUser]
-        Update.fetchUpdatesFromUserArray(userArray: usersArray) { (loadedUpdates: [PFObject]?, error: Error?) in
+        Update.fetchUpdatesFromUserArray2(userArray: usersArray, skipNumber: updatedSkipNumber) { (loadedUpdates: [PFObject]?, error: Error?) in
             if error == nil {
                 self.updates = loadedUpdates!
                 self.tableView.reloadData()
             } else {
                 print(error?.localizedDescription as Any)
             }
-
-            
         }
+//        updatedSkipNumber += 2
+//        Update.fetchUpdatesFromUserArray(userArray: usersArray) { (loadedUpdates: [PFObject]?, error: Error?) in
+//            if error == nil {
+//                self.updates = loadedUpdates!
+//                self.tableView.reloadData()
+//            } else {
+//                print(error?.localizedDescription as Any)
+//            }
+//
+//            
+//        }
         //currently a notification you see if view appears
         if didPostUpdate {
             let message = Message(title: "Great update to your goal!", backgroundColor: UIColor(red:0.89, green:0.09, blue:0.44, alpha:1))
@@ -182,6 +209,11 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // Format tableView cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
+        
+//        if indexPath.row == limit + skip - 1 {
+//            skip = skip + 5
+//            loadMoreData()
+//        }
         
         cell.delegate = self
         cell.update = updates[indexPath.row]
