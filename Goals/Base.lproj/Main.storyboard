@@ -1578,7 +1578,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Vij-8U-ZqX">
-                        <barButtonItem key="rightBarButtonItem" title="Update" id="P2l-HA-clm"/>
+                        <barButtonItem key="rightBarButtonItem" title="Update" id="P2l-HA-clm">
+                            <connections>
+                                <action selector="didTapUpdate:" destination="TQZ-eh-Uwv" id="Ej4-kq-YcA"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
@@ -1586,6 +1590,7 @@
                         <outlet property="updateButton" destination="P2l-HA-clm" id="AHU-ub-ALq"/>
                         <segue destination="cBe-TT-v37" kind="show" identifier="timelineToDetailSegue" id="8VS-EP-q6V"/>
                         <segue destination="Lob-lL-ME8" kind="presentation" identifier="timelineToFullMediaSegue" id="b2e-3H-KtS"/>
+                        <segue destination="OtZ-Tv-MZ9" kind="presentation" identifier="timelineToUpdateSegue" id="mbE-Eb-6eS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aEb-zQ-Ws6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2200,7 +2205,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="0Zf-dD-PwB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="0Zf-dD-PwB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2615,7 +2620,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="U1N-J6-1Pu">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="U1N-J6-1Pu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2636,7 +2641,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="VI5-VU-sfF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="VI5-VU-sfF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2666,5 +2671,14 @@
         <image name="settings" width="24" height="24"/>
         <image name="user" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="ydZ-wS-uFS"/>
+        <segue reference="5S3-em-M3C"/>
+        <segue reference="b2e-3H-KtS"/>
+        <segue reference="8VS-EP-q6V"/>
+        <segue reference="mbE-Eb-6eS"/>
+        <segue reference="haI-YF-ab4"/>
+        <segue reference="rWw-4p-v87"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
