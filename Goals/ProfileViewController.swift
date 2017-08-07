@@ -345,8 +345,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func completionNotification(goal: PFObject) {
-//        let announcement = Announcement(title: "Congratulations on completing your goal!")
-//        Whisper.show(shout: announcement, to: self) { }
         //send this goal as an update back to the database, to feed view controller
         var data: [String: Any] = [:]
         let username = user?.username!

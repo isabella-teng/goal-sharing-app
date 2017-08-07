@@ -178,7 +178,6 @@ class Goal: NSObject {
         query.getObjectInBackground(withId: id) { (loadedGoal: PFObject?, error: Error?) in
             if error == nil {
                 loadedGoal?.deleteInBackground()
-                print("deleted goal?")
             } else {
                 print(error?.localizedDescription as Any)
             }

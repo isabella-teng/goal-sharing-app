@@ -119,8 +119,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidAppear(_ animated: Bool) {
         author = currentUpdate?["author"] as? PFUser
         usernameLabel.text = author?["username"] as? String
-     
-     print(goal)
         
         if author?.objectId != PFUser.current()?.objectId || goal?["isCompleted"] as! Bool {
             updateButton.image = nil
