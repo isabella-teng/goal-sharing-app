@@ -30,6 +30,9 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
     @IBOutlet weak var categoryIcon: UIImageView!
     @IBOutlet weak var descriptionBackground: UIView!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var streakCountLabel: UILabel!
+    @IBOutlet weak var completionProgressView: UIProgressView!
+    @IBOutlet weak var totalUpdatesLabel: UILabel!
     
     weak var axisFormatDelegate: IAxisValueFormatter?
     
@@ -90,8 +93,39 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
             }
             
             descriptionLabel.text = data["description"] as? String
+            
+            let updateCount = data["updatesCount"] as! Int
+            if updateCount == 1 {
+                totalUpdatesLabel.text = String(describing: updateCount) + " Update"
+            } else {
+                totalUpdatesLabel.text = String(describing: updateCount) + " Updates"
+            }
+
+            streakCountLabel.text = String(describing: data["streakCount"] as! Int) + " day streak 🔥"
+            
+            if data["isCompleted"] as! Bool == true {
+                completionProgressView.progress = 1
+            } else {
+                let startToCurrent = calculateDaysBetweenTwoDates(start: data.createdAt!, end: Date())
+                let startToCompletion = calculateDaysBetweenTwoDates(start: data.createdAt!, end: data["completionDate"] as! Date)
+                completionProgressView.progress = Float(startToCurrent) / Float(startToCompletion)
+            }
+            
         }
     }
+    
+    private func calculateDaysBetweenTwoDates(start: Date, end: Date) -> Int {
+        
+        let currentCalendar = Calendar.current
+        guard let start = currentCalendar.ordinality(of: .day, in: .era, for: start) else {
+            return 0
+        }
+        guard let end = currentCalendar.ordinality(of: .day, in: .era, for: end) else {
+            return 0
+        }
+        return end - start
+    }
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
