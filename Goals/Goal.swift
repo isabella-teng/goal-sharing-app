@@ -52,7 +52,7 @@ class Goal: NSObject {
         
         // TODO: icons, progress, video replies
         goal["icon"] = NSNull()
-        goal["updatesCount"] = 0 //the first one is not counted as an update
+        goal["updatesCount"] = -1 //the first one is not counted as an update
         goal["updatesPerDay"] = [Double](repeating: 0.0, count: 7)//keeps track of the updates and on what day they were created
         goal["updates"] = [] //stores the ids of the updates
         goal["isCompleted"] = false
