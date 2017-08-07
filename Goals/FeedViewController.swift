@@ -79,7 +79,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func loadMoreData() {
-        print("fetching!!!!")
         let usersArray = PFUser.current()?["following"] as! [PFUser]
         Update.fetchUpdatesFromUserArray2(userArray: usersArray, skipNumber: updatedSkipNumber) { (loadedUpdates: [PFObject]?, error: Error?) in
             if error == nil {
@@ -180,7 +179,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     //TODO: Fix, is not entering
     func postedUpdate(sentUpdate: Bool) {
-        print("should enter")
         didPostUpdate = sentUpdate
     }
     
