@@ -137,8 +137,8 @@ class Update: NSObject {
     class func fetchUpdatesFromUserArray2(userArray: [PFUser], skipNumber: Int, withCompletion completion: @escaping ([PFObject]?, Error?) -> ()) {
         let query = PFQuery(className: "Update")
         
-        query.limit = 2
-        query.skip = skipNumber
+//        query.limit = 2
+//        query.skip = skipNumber
         query.order(byDescending: "createdAt")
         query.includeKey("author")
         query.whereKey("author", containedIn: userArray)
