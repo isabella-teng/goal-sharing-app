@@ -459,6 +459,34 @@
             </objects>
             <point key="canvasLocation" x="2797.5999999999999" y="-648.12593703148434"/>
         </scene>
+        <!--Peek View View Controller-->
+        <scene sceneID="AgD-bN-GNw">
+            <objects>
+                <viewController storyboardIdentifier="PeekViewViewController" id="8lI-rE-L4D" customClass="PeekViewViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fTz-kc-EYQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="zUN-NL-bxh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TER-1h-3uX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xmV-FJ-4uq">
+                                <rect key="frame" x="47" y="193" width="280" height="280"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.8019107152723397" green="0.77088169233348958" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="peekImageView" destination="xmV-FJ-4uq" id="a5S-7l-hd5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HsK-yF-GzI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2733.5999999999999" y="-1343.4782608695652"/>
+        </scene>
         <!--Post Goal View Controller-->
         <scene sceneID="BvD-io-799">
             <objects>
@@ -660,16 +688,14 @@
                                                             <rect key="frame" x="15" y="89.5" width="315" height="2"/>
                                                             <color key="tintColor" red="1" green="0.93728718206798389" blue="0.47189274306408291" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </progressView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="🔥" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRF-Ao-suV">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="🔥" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRF-Ao-suV">
                                                             <rect key="frame" x="301" y="7" width="22" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLb-pH-ALw">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLb-pH-ALw">
                                                             <rect key="frame" x="315" y="8" width="22" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -682,15 +708,20 @@
                                                         <constraint firstItem="aGQ-dE-hbM" firstAttribute="top" secondItem="ZNC-Y1-rG1" secondAttribute="bottom" constant="15" id="9lJ-X3-rzm"/>
                                                         <constraint firstItem="ZNC-Y1-rG1" firstAttribute="leading" secondItem="eBR-kB-CaX" secondAttribute="leading" id="Hcf-Hj-iZI"/>
                                                         <constraint firstItem="ZNC-Y1-rG1" firstAttribute="top" secondItem="eBR-kB-CaX" secondAttribute="bottom" constant="10" id="Hr3-pc-rc1"/>
+                                                        <constraint firstItem="MRF-Ao-suV" firstAttribute="top" secondItem="H69-Hn-L0Q" secondAttribute="top" constant="8" id="HyN-sz-INR"/>
                                                         <constraint firstAttribute="bottom" secondItem="UIR-0u-r6A" secondAttribute="bottom" id="QnJ-nA-C6k"/>
                                                         <constraint firstItem="UIR-0u-r6A" firstAttribute="bottom" secondItem="aGQ-dE-hbM" secondAttribute="bottom" constant="10" id="Rep-vz-ZPw"/>
                                                         <constraint firstItem="UIR-0u-r6A" firstAttribute="top" secondItem="aGQ-dE-hbM" secondAttribute="top" id="TIB-Qu-gf9"/>
                                                         <constraint firstItem="UIR-0u-r6A" firstAttribute="leading" secondItem="aGQ-dE-hbM" secondAttribute="leading" id="Tij-4t-3JJ"/>
                                                         <constraint firstItem="eBR-kB-CaX" firstAttribute="top" secondItem="H69-Hn-L0Q" secondAttribute="top" constant="25" id="WNs-HJ-R0y"/>
                                                         <constraint firstItem="UIR-0u-r6A" firstAttribute="leading" secondItem="H69-Hn-L0Q" secondAttribute="leading" id="XeR-IO-vUF"/>
+                                                        <constraint firstItem="NLb-pH-ALw" firstAttribute="leading" secondItem="MRF-Ao-suV" secondAttribute="trailing" constant="3" id="Y10-Ni-bbe"/>
                                                         <constraint firstAttribute="trailing" secondItem="ZNC-Y1-rG1" secondAttribute="trailing" constant="15" id="bDh-Fv-kkL"/>
                                                         <constraint firstItem="eBR-kB-CaX" firstAttribute="leading" secondItem="H69-Hn-L0Q" secondAttribute="leading" constant="15" id="qf0-8B-36D"/>
                                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eBR-kB-CaX" secondAttribute="trailing" constant="15" id="ufq-2x-wiZ"/>
+                                                        <constraint firstAttribute="trailing" secondItem="MRF-Ao-suV" secondAttribute="trailing" constant="21" id="woQ-fm-SeJ"/>
+                                                        <constraint firstAttribute="trailing" secondItem="NLb-pH-ALw" secondAttribute="trailing" constant="8" id="zOj-bN-exo"/>
+                                                        <constraint firstItem="NLb-pH-ALw" firstAttribute="top" secondItem="MRF-Ao-suV" secondAttribute="top" id="zee-JD-S9E"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -710,6 +741,7 @@
                                             <outlet property="startDateToNow" destination="y6W-h4-gkW" id="Mwk-ua-9Qm"/>
                                             <outlet property="streakCount" destination="NLb-pH-ALw" id="2TZ-ep-xtc"/>
                                             <outlet property="streakIcon" destination="MRF-Ao-suV" id="8Id-GS-TLp"/>
+                                            <outlet property="streakIconConstraint" destination="woQ-fm-SeJ" id="Vb4-ZD-UZA"/>
                                             <outlet property="titleLabel" destination="eBR-kB-CaX" id="FWY-Sl-YiP"/>
                                         </connections>
                                     </tableViewCell>
@@ -2558,6 +2590,9 @@
                                             <outlet property="detailsBackground" destination="aJC-sE-9e9" id="WoD-YO-v59"/>
                                             <outlet property="goalTitle" destination="3Fe-Pg-5Ge" id="f53-B9-Ldx"/>
                                             <outlet property="profPic" destination="wAG-jn-9F0" id="S2Q-2A-Gmn"/>
+                                            <outlet property="progressBar" destination="wbC-ud-0Sy" id="zS8-9D-vnG"/>
+                                            <outlet property="remainingDaysLabel" destination="i3N-hX-2Ah" id="bLO-E0-Smi"/>
+                                            <outlet property="startingTimeLabel" destination="uc9-Xn-sw2" id="37v-xA-8aq"/>
                                             <outlet property="usernameLabel" destination="5Go-Ht-Ekc" id="tXq-bQ-gq5"/>
                                         </connections>
                                     </tableViewCell>
@@ -2642,13 +2677,13 @@
         <image name="user" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="die-PK-ZT8"/>
+        <segue reference="kNn-XA-D7B"/>
         <segue reference="ydZ-wS-uFS"/>
         <segue reference="ZpT-ic-j8z"/>
-        <segue reference="kNn-XA-D7B"/>
+        <segue reference="rWw-4p-v87"/>
+        <segue reference="die-PK-ZT8"/>
         <segue reference="5S3-em-M3C"/>
         <segue reference="b2e-3H-KtS"/>
-        <segue reference="rWw-4p-v87"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
