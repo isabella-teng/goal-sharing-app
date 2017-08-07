@@ -19,16 +19,22 @@ class FullMediaViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var authorIcon: UIImageView!
     @IBOutlet weak var authorUsername: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
-    
+    @IBOutlet weak var cancelButton: UIButton!
     
     var data: [String: Any]?
-    
+   
+    var fromForceTouch: Bool = false
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
         scrollView.minimumZoomScale = 1.0
         scrollView.maximumZoomScale = 3.0
         scrollView.delegate = self
+      
+      if fromForceTouch {
+         cancelButton.isHidden = true
+      }
     }
     
     
@@ -62,21 +68,6 @@ class FullMediaViewController: UIViewController, UIScrollViewDelegate {
                 })
             }
         }
-        //        } else if data?["type"] as! String == "video" {
-        //         let videoFile = data?["videoURL"] as? PFFile
-        //         let videoUrl = videoFile?.url
-        //         let asset = AVAsset(url: URL(string: videoUrl!)!)
-        //         let item = AVPlayerItem(asset: asset)
-        //         let player = AVPlayer(playerItem: item)
-        //         let playerController = AVPlayerViewController()
-        //         playerController.player = player
-        //         playerController.view.frame = self.mediaView.frame
-        //         playerController.view.clipsToBounds = true
-        //         playerController.view.contentMode = UIViewContentMode.scaleAspectFill
-        //         playerController.view.layer.cornerRadius = 10
-        //         //self.addSubview(playerController.view)
-        //      }
-        
         authorIcon.layer.cornerRadius = 10
     }
     

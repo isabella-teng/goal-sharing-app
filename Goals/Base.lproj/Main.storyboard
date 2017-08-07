@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F2073" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -471,8 +471,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xmV-FJ-4uq">
-                                <rect key="frame" x="47" y="193" width="280" height="280"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xmV-FJ-4uq">
+                                <rect key="frame" x="30" y="84" width="315" height="421"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.8019107152723397" green="0.77088169233348958" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </imageView>
@@ -1645,7 +1645,7 @@
             </objects>
             <point key="canvasLocation" x="1161" y="139"/>
         </scene>
-        <!--Update-->
+        <!--Details-->
         <scene sceneID="OTq-Re-cPp">
             <objects>
                 <viewController id="cBe-TT-v37" customClass="DetailViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
@@ -1973,7 +1973,7 @@
                         </connections>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Update" id="DhX-9Y-4zh">
+                    <navigationItem key="navigationItem" title="Details" id="DhX-9Y-4zh">
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title=" " id="bDh-LZ-4Lt">
                             <connections>
                                 <segue destination="OtZ-Tv-MZ9" kind="presentation" identifier="updateDetailSegue" id="Q3w-fk-ISv"/>
@@ -2010,7 +2010,7 @@
         <!--Full Media View Controller-->
         <scene sceneID="RMs-BP-tSs">
             <objects>
-                <viewController id="Lob-lL-ME8" customClass="FullMediaViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FullMediaViewController" id="Lob-lL-ME8" customClass="FullMediaViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="v0p-mL-NvN"/>
                         <viewControllerLayoutGuide type="bottom" id="Hr2-tV-BE9"/>
@@ -2103,6 +2103,7 @@
                     <connections>
                         <outlet property="authorIcon" destination="44l-Bi-Hdu" id="51s-KU-4Ig"/>
                         <outlet property="authorUsername" destination="RKT-XE-FYN" id="PsV-G8-i21"/>
+                        <outlet property="cancelButton" destination="Iwt-zO-YtS" id="qZR-8w-IRS"/>
                         <outlet property="captionLabel" destination="lFp-fN-VGc" id="cjZ-Bb-yGX"/>
                         <outlet property="mediaView" destination="mqr-5s-1Zm" id="beF-Jt-wki"/>
                         <outlet property="scrollView" destination="Yks-EE-bjF" id="qPr-RN-4xN"/>
@@ -2677,13 +2678,13 @@
         <image name="user" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ydZ-wS-uFS"/>
         <segue reference="7vN-Mr-0Qr"/>
-        <segue reference="b2e-3H-KtS"/>
-        <segue reference="kNn-XA-D7B"/>
+        <segue reference="ydZ-wS-uFS"/>
         <segue reference="ZpT-ic-j8z"/>
-        <segue reference="rWw-4p-v87"/>
-        <segue reference="die-PK-ZT8"/>
+        <segue reference="Ugs-Kx-bhx"/>
+        <segue reference="haI-YF-ab4"/>
+        <segue reference="Q3w-fk-ISv"/>
+        <segue reference="ZeU-bb-uMv"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

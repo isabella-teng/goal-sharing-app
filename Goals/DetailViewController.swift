@@ -8,8 +8,9 @@
 import UIKit
 import Parse
 import ParseUI
+import PeekPop
 
-class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, MediaCellDelegate {
+class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, MediaCellDelegate, PeekPopPreviewingDelegate {
     
     @IBOutlet weak var goalView: UIView!
     @IBOutlet weak var userIcon: UIImageView!
@@ -40,6 +41,10 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var doneItem: UIBarButtonItem? = nil
     
     @IBOutlet weak var goalTopConstraint: NSLayoutConstraint!
+    
+    //for 3d touch
+    var peekPop: PeekPop?
+    var previewingContext: PreviewingContext?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,6 +100,9 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //            //tableView.contentInset = UIEdgeInsetsMake(-50, 0, 0, 0)
 //            goalTopConstraint.constant = 60
 //        }
+        
+        peekPop = PeekPop(viewController: self)
+        peekPop?.registerForPreviewingWithDelegate(self, sourceView: collectionView)
     }
     
     func done() {
@@ -222,7 +230,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return media.count
     }
@@ -235,6 +242,36 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.onDetails = true
         
         return cell
+    }
+    
+    //for 3d touch preview
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailMediaCell", for: indexPath) as! MediaCell
+        let storyboard = UIStoryboard(name:"Main", bundle:nil)
+        if let previewViewController = storyboard.instantiateViewController(withIdentifier: "FullMediaViewController") as? FullMediaViewController {
+            self.present(previewViewController, animated: true, completion: nil)
+        }
+    }
+    
+    func previewingContext(_ previewingContext: PreviewingContext, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        
+        let storyboard = UIStoryboard(name:"Main", bundle:nil)
+        if let previewViewController = storyboard.instantiateViewController(withIdentifier: "FullMediaViewController") as? FullMediaViewController {
+            if let indexPath = collectionView!.indexPathForItem(at: location) {
+                if let layoutAttributes = collectionView!.layoutAttributesForItem(at: indexPath) {
+                    previewingContext.sourceRect = layoutAttributes.frame
+                }
+                previewViewController.data = media[indexPath.item]
+                //previewViewController.cancelButton.isHidden = true
+                previewViewController.fromForceTouch = true
+            }
+            return previewViewController
+        }
+        return nil
+    }
+    
+    func previewingContext(_ previewingContext: PreviewingContext, commitViewController viewControllerToCommit: UIViewController) {
+        self.navigationController?.pushViewController(viewControllerToCommit, animated: false)
     }
     
     func mediaCell(_ mediaCell: MediaCell, didTap data: [String: Any]) {

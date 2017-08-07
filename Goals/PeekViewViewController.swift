@@ -16,6 +16,7 @@ class PeekViewViewController: UIViewController {
     var image: UIImage? {
         didSet {
             if let image = image {
+                peekImageView.layer.cornerRadius = 15
                 peekImageView.image = image
             }
         }
@@ -23,8 +24,7 @@ class PeekViewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        //peekImageView.layer.cornerRadius = 15
     }
 
     override func didReceiveMemoryWarning() {

@@ -235,7 +235,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let storyboard = UIStoryboard(name:"Main", bundle:nil)
         if let previewViewController = storyboard.instantiateViewController(withIdentifier: "PeekViewViewController") as? PeekViewViewController {
             self.present(previewViewController, animated: true, completion: nil)
-            //PeekViewViewController.image = self.tableView[indexPath.row].updateImage
         }
     }
     
@@ -244,11 +243,15 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let storyboard = UIStoryboard(name:"Main", bundle:nil)
         if let previewViewController = storyboard.instantiateViewController(withIdentifier: "PeekViewViewController") as? PeekViewViewController {
             if let indexPath = tableView!.indexPathForRow(at: location) {
-                //let selectedImage = tableView[indexPath.row].updateImage
-//                if let layoutAttributes = tableView!.layoutAttributesForItem(at: indexPath) {
-//                    previewingContext.sourceRect = layoutAttributes.frame
-//                }
-                //previewViewController.image = selectedImage
+                if let selectedImage = updates[indexPath.row]["image"] as? PFFile {
+                    selectedImage.getDataInBackground(block: { (data: Data?, error: Error?) in
+                        if error == nil {
+                            let image = UIImage(data: data!)
+                            previewViewController.peekImageView.layer.cornerRadius = 15
+                            previewViewController.image = image
+                        }
+                    })
+                }
                 return previewViewController
             }
             
