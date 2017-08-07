@@ -56,7 +56,11 @@ class Goal: NSObject {
         goal["updatesPerDay"] = [Double](repeating: 0.0, count: 7)//keeps track of the updates and on what day they were created
         goal["updates"] = [] //stores the ids of the updates
         goal["isCompleted"] = false
-        //goal["actualCompletionDate"] = nil as! NSDate
+        goal["actualCompletionDate"] = NSNull()
+        goal["streakCount"] = 0
+        goal["firstUpdateDay"] = Date()
+        goal["lastUpdateDay"] = NSNull()
+        goal["postedUpdateToday"] = false
         
         // Save object (following function will save the object in Parse asynchronously)
         goal.saveInBackground { (success: Bool, error: Error?) in

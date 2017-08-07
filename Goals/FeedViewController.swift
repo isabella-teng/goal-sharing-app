@@ -12,8 +12,9 @@ import ParseUI
 import Whisper
 import BubbleTransition
 import NVActivityIndicatorView
+import PeekPop
 
-class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate, DidPostUpdateDelegate, UIViewControllerTransitioningDelegate, NVActivityIndicatorViewable, UIScrollViewDelegate {
+class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate, DidPostUpdateDelegate, UIViewControllerTransitioningDelegate, NVActivityIndicatorViewable, UIScrollViewDelegate, PeekPopPreviewingDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var goalMenuButton: UIBarButtonItem!
@@ -29,13 +30,16 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     let transition = BubbleTransition()
     
-    
     var refreshControl: UIRefreshControl!
     var activityIndicatorView: NVActivityIndicatorView?
     var isMoreDataLoading = false
     var loadingMoreView: InfiniteScrollActivityView!
     var updatedSkipNumber = 0
 //    var limit = 5
+    
+    //for 3d touch
+    var peekPop: PeekPop?
+    var previewingContext: PreviewingContext?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +72,10 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         insets.bottom += InfiniteScrollActivityView.defaultHeight
         tableView.contentInset = insets
         
+
+        //setup 3d touch
+        peekPop = PeekPop(viewController: self)
+        peekPop?.registerForPreviewingWithDelegate(self, sourceView: tableView)
     }
     
     func loadMoreData() {
@@ -192,15 +200,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return transition
     }
     
-    //Place completed goal at top of feed
-//    func goalComplete(goal: PFObject) {
-//        print("hallo")
-//        print(goal)
-//        updates.insert(goal, at: 0)
-//        self.tableView.reloadData()
-//    }
- 
-    
     // Return amount of tableView cells
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return updates.count
@@ -258,6 +257,42 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             vc.user = sender as? PFUser
             vc.fromFeed = true
         }
+    }
+    
+    
+    //3d touch
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
+        
+        let storyboard = UIStoryboard(name:"Main", bundle:nil)
+        if let previewViewController = storyboard.instantiateViewController(withIdentifier: "PeekViewViewController") as? PeekViewViewController {
+            self.present(previewViewController, animated: true, completion: nil)
+            //PeekViewViewController.image = self.tableView[indexPath.row].updateImage
+        }
+    }
+    
+    func previewingContext(_ previewingContext: PreviewingContext, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        
+        let storyboard = UIStoryboard(name:"Main", bundle:nil)
+        if let previewViewController = storyboard.instantiateViewController(withIdentifier: "PeekViewViewController") as? PeekViewViewController {
+            if let indexPath = tableView!.indexPathForRow(at: location) {
+                //let selectedImage = tableView[indexPath.row].updateImage
+//                if let layoutAttributes = tableView!.layoutAttributesForItem(at: indexPath) {
+//                    previewingContext.sourceRect = layoutAttributes.frame
+//                }
+                //previewViewController.image = selectedImage
+                return previewViewController
+            }
+            
+        }
+        return nil
+
+        
+    }
+    
+    func previewingContext(_ previewingContext: PreviewingContext, commitViewController viewControllerToCommit: UIViewController) {
+        self.navigationController?.pushViewController(viewControllerToCommit, animated: false)
+        
     }
     
     

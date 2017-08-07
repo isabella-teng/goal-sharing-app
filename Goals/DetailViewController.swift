@@ -35,7 +35,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var likesArray: [PFUser]? = nil
     var liked = false
-    var isFromTimeline: Bool = false
+//    var isFromTimeline: Bool = false
     
     var doneItem: UIBarButtonItem? = nil
     
@@ -79,22 +79,22 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         originalPos = tableView.frame.origin.y
         
-        if isFromTimeline {
-            let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60))
-            self.view.addSubview(navBar)
-            
-            let navItem = UINavigationItem(title: "Update");
-            doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: nil, action: #selector(done));
-            navItem.rightBarButtonItem = doneItem;
-            navBar.setItems([navItem], animated: false);
-            
-            //tableView.frame = CGRect(x: tableView.frame.origin.x, y: 60, width: tableView.frame.size.width, height: tableView.frame.size.height)
-            
-            //navBar.isTranslucent = false
-            
-            //tableView.contentInset = UIEdgeInsetsMake(-50, 0, 0, 0)
-            goalTopConstraint.constant = 60
-        }
+//        if isFromTimeline {
+//            let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60))
+//            self.view.addSubview(navBar)
+//            
+//            let navItem = UINavigationItem(title: "Update");
+//            doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: nil, action: #selector(done));
+//            navItem.rightBarButtonItem = doneItem;
+//            navBar.setItems([navItem], animated: false);
+//            
+//            //tableView.frame = CGRect(x: tableView.frame.origin.x, y: 60, width: tableView.frame.size.width, height: tableView.frame.size.height)
+//            
+//            //navBar.isTranslucent = false
+//            
+//            //tableView.contentInset = UIEdgeInsetsMake(-50, 0, 0, 0)
+//            goalTopConstraint.constant = 60
+//        }
     }
     
     func done() {
@@ -115,14 +115,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else {
             updateButton.image = #imageLiteral(resourceName: "pencil")
             updateButton.isEnabled = true
-            
-        }
-        
-        let iconUrl = author?["portrait"] as? PFFile
-        iconUrl?.getDataInBackground { (image: Data?, error: Error?) in
-            if error == nil {
-                self.userIcon.image = UIImage(data: image!)
-            }
         }
         
         updateLabel.text = currentUpdate?["text"] as? String
@@ -149,6 +141,13 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else {
             self.favoriteButton.isSelected = false
             liked = false
+        }
+        
+        let iconUrl = author?["portrait"] as? PFFile
+        iconUrl?.getDataInBackground { (image: Data?, error: Error?) in
+            if error == nil {
+                self.userIcon.image = UIImage(data: image!)
+            }
         }
     }
     
@@ -240,7 +239,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func mediaCell(_ mediaCell: MediaCell, didTap data: [String: Any]) {
         performSegue(withIdentifier: "fullMediaSegue", sender: data)
-        print(data)
     }
     
     

@@ -19,6 +19,8 @@ class AllGoalsViewController: UIViewController, UITableViewDelegate, UITableView
     var allGoals: [PFObject] = []
     let transition = BubbleTransition()
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

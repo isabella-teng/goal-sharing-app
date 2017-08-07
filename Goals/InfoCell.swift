@@ -21,18 +21,18 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
     @IBOutlet weak var infoBackground: UIView!
     @IBOutlet weak var nodeView: UIView!
     @IBOutlet weak var timestampLabel: UILabel!
+    
     @IBOutlet weak var authorLabel: UILabel!
-    
-    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var updatesCountLabel: UILabel!
-    
     @IBOutlet weak var completionDate: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
+    
     weak var axisFormatDelegate: IAxisValueFormatter?
     
     var days: [String] = []
     var updatesMade : [Double] = []
     
-    var data: PFObject! {
+    var data: PFObject! { //current goal
         didSet {
             headerLabel.text = data?["title"] as? String
             
@@ -47,7 +47,18 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
             setChart(dataPoints: days, values: updatesMade)
             
             let author = data["author"] as! PFUser
-            authorLabel.text = author.username
+            authorLabel.text = "Author: " + author.username!
+            updatesCountLabel.text = "Total Updates: " + (String(data["updatesCount"] as! Int))
+            categoryLabel.text = data["categories"] as? String
+            
+            if (data["isCompleted"] as! Bool == true) {
+                let completedString = String(dateFormat.string(from: data["actualCompletionDate"] as! Date))
+                completionDate.text = "Finished goal on " + completedString!
+            } else {
+                let completedString = String(dateFormat.string(from: data["completionDate"] as! Date))
+                completionDate.text = "Intended Completion Date: " + completedString!
+            }
+            
         }
     }
    

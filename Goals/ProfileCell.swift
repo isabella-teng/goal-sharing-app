@@ -22,7 +22,17 @@ class ProfileCell: SwipeTableViewCell {
     @IBOutlet weak var detailBackground: UIView!
     @IBOutlet weak var detailEdges: UIView!
     
+    @IBOutlet weak var startDateToNow: UILabel!
+    @IBOutlet weak var remainingDays: UILabel!
+    
+    @IBOutlet weak var progressView: UIProgressView!
+    
+    @IBOutlet weak var streakCount: UILabel!
+    @IBOutlet weak var streakIcon: UILabel!
+    @IBOutlet weak var streakIconConstraint: NSLayoutConstraint!
+    
     weak var otherDelegate: ProfileCellDelegate?
+
     
     var goal: PFObject! {
         didSet {
@@ -50,7 +60,55 @@ class ProfileCell: SwipeTableViewCell {
                 detailBackground.backgroundColor = UIColor(red: 0.35, green: 0.35, blue: 0.35, alpha: 1.0)
                 detailEdges.backgroundColor = detailBackground.backgroundColor
             }
+            
+            
+            //Calculate days in between
+            let startToCurrent = calculateDaysBetweenTwoDates(start: goal.createdAt!, end: Date())
+            startDateToNow.text = "Started " + String(startToCurrent) + "d ago"
+            
+            let currentToCompletion = calculateDaysBetweenTwoDates(start: Date(), end: goal["completionDate"] as! Date)
+            
+            
+            if goal["isCompleted"] as! Bool == true {
+                 let completedToCurrent = calculateDaysBetweenTwoDates(start: goal["actualCompletionDate"] as! Date, end: Date())
+                remainingDays.text = "Completed " + String(completedToCurrent) + "d ago"
+                progressView.progress = 1
+            } else {
+                 remainingDays.text = String(currentToCompletion) + "d remaining"
+                let startToCompletion = calculateDaysBetweenTwoDates(start: goal.createdAt!, end: goal["completionDate"] as! Date)
+                progressView.progress = Float(startToCurrent) / Float(startToCompletion)
+            }
+            
+            let completed = goal["isCompleted"] as! Bool
+            if completed {
+                streakCount.isHidden = true
+                streakIcon.text = "⭐️"
+                streakIconConstraint.constant = 8
+            } else {
+                //check if last update date is less than 24 hours since current time
+                if let lastUpdate = goal["lastUpdateDay"] as? Date {
+                    if let diff = Calendar.current.dateComponents([.hour], from: lastUpdate, to: Date()).hour, diff > 1 {
+                        goal.setValue(0, forKey: "streakCount")
+                    }
+                }
+                streakCount.isHidden = false
+                streakCount.text = String(goal["streakCount"] as! Int)
+                streakIcon.text = "🔥"
+                streakIconConstraint.constant = 21
+            }
         }
+    }
+    
+    private func calculateDaysBetweenTwoDates(start: Date, end: Date) -> Int {
+        
+        let currentCalendar = Calendar.current
+        guard let start = currentCalendar.ordinality(of: .day, in: .era, for: start) else {
+            return 0
+        }
+        guard let end = currentCalendar.ordinality(of: .day, in: .era, for: end) else {
+            return 0
+        }
+        return end - start
     }
     
     var animator: Any?

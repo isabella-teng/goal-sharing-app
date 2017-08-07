@@ -11,7 +11,7 @@ import Parse
 
 class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TimelineUpdateCellDelegate {
     
-    @IBOutlet weak var updateButton: UIButton!
+    @IBOutlet weak var updateButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     
     var currentGoal: PFObject?
@@ -36,9 +36,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidAppear(_ animated: Bool) {
         author = currentGoal?["author"] as? PFUser
         if author?.objectId != PFUser.current()?.objectId {
-            updateButton.isEnabled = false
-        } else {
             updateButton.isEnabled = true
+        } else {
+            updateButton.isEnabled = false
         }
     }
     
@@ -61,12 +61,18 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             let cell = (tableView.dequeueReusableCell(withIdentifier: "UpdateCell", for: indexPath) as! UpdateCell)
             cell.update = updates[indexPath.row - 1]
             cell.delegate = self
+            cell.parent = self
             return cell
         }
     }
     
-    func timelineUpdateCell(_ updateCell: UpdateCell, didTap update: PFObject) {
-        performSegue(withIdentifier: "timelineToDetailSegue", sender: update)
+  
+    func timelineUpdateCell(_ updateCell: UpdateCell, didTap update: PFObject, tapped: [String: Any]?) {
+        if tapped == nil {
+            performSegue(withIdentifier: "timelineToDetailSegue", sender: update)
+        } else {
+            performSegue(withIdentifier: "timelineToFullMediaSegue", sender: tapped!)
+        }
     }
     
     @IBAction func didTapUpdate(_ sender: Any) {
@@ -86,7 +92,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         if (segue.identifier == "timelineToDetailSegue") {
             let vc = segue.destination as! DetailViewController
             vc.currentUpdate = sender as? PFObject
-            vc.isFromTimeline = true
+//            vc.isFromTimeline = true
             
             let goalId = vc.currentUpdate?["goalId"] as! String
             Goal.fetchGoalWithId(id: goalId, withCompletion: { (loadedGoal: PFObject?, error: Error?) in
@@ -97,6 +103,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         } else if (segue.identifier == "timelineToUpdateSegue") {
             let vc = segue.destination as! PostUpdateViewController
             vc.currentGoal = sender as? PFObject
+        } else if (segue.identifier == "timelineToFullMediaSegue") {
+            let vc = segue.destination as! FullMediaViewController
+            vc.data = sender as? [String: Any]
         }
     }
 }

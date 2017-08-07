@@ -37,7 +37,8 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         definesPresentationContext = true
         searchController.hidesNavigationBarDuringPresentation = false
         tableView.tableHeaderView = searchController.searchBar
-        //tableView.addSubview(searchController.searchBar)
+        
+        tableView.backgroundView = UIImageView(image: #imageLiteral(resourceName: "backgroundimg"))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -91,6 +92,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else {
             cell.user = allUsers[indexPath.row]
         }
+        cell.backgroundColor = UIColor.clear
         cell.delegate = self
         return cell
     }

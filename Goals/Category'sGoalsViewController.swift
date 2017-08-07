@@ -23,7 +23,6 @@ class Category_sGoalsViewController: UIViewController, UITableViewDelegate, UITa
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -36,6 +35,8 @@ class Category_sGoalsViewController: UIViewController, UITableViewDelegate, UITa
             }
             
         }
+    
+        self.title = goalCategory
     }
     
     func goalCategoryCell(_ goalCategoryCell: GoalCategoryCell, didTap goal: PFObject) {
@@ -69,10 +70,7 @@ class Category_sGoalsViewController: UIViewController, UITableViewDelegate, UITa
             })
         }
     }
-
-
-
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
