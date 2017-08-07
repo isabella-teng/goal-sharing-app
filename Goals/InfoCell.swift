@@ -28,6 +28,8 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
     @IBOutlet weak var completionDate: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var categoryIcon: UIImageView!
+    @IBOutlet weak var descriptionBackground: UIView!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     weak var axisFormatDelegate: IAxisValueFormatter?
     
@@ -87,6 +89,7 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
                 completionDate.text = "Due " + completedString!
             }
             
+            descriptionLabel.text = data["description"] as? String
         }
     }
     
@@ -98,6 +101,7 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
         nodeView.layer.cornerRadius = nodeView.frame.height / 2
         progressBackground.layer.cornerRadius = 10
         authorIcon.layer.cornerRadius = authorIcon.frame.height / 2
+        descriptionBackground.layer.cornerRadius = 10
         
         // Set up graph
         axisFormatDelegate = self as? IAxisValueFormatter

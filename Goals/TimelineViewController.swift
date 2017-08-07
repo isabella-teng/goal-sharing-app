@@ -44,7 +44,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     // Return amount of cells
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return updates.count + 1
+        return updates.count
     }
     
     // Format tableView cells
@@ -59,7 +59,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         } else {
             // Set up UpdateCells with update information
             let cell = (tableView.dequeueReusableCell(withIdentifier: "UpdateCell", for: indexPath) as! UpdateCell)
-            cell.update = updates[indexPath.row - 1]
+            cell.update = updates[indexPath.row]
             cell.delegate = self
             cell.parent = self
             return cell
