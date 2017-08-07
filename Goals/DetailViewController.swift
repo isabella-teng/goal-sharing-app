@@ -9,8 +9,9 @@ import UIKit
 import Parse
 import ParseUI
 import PeekPop
+import BubbleTransition
 
-class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, MediaCellDelegate, PeekPopPreviewingDelegate {
+class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, MediaCellDelegate, PeekPopPreviewingDelegate, UIViewControllerTransitioningDelegate {
     
     @IBOutlet weak var goalView: UIView!
     @IBOutlet weak var userIcon: UIImageView!
@@ -45,10 +46,12 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     //for 3d touch
     var peekPop: PeekPop?
     var previewingContext: PreviewingContext?
+     
+     let transition = BubbleTransition()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+     
         // Set up tableView
         tableView.delegate = self
         tableView.dataSource = self
@@ -116,6 +119,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidAppear(_ animated: Bool) {
         author = currentUpdate?["author"] as? PFUser
         usernameLabel.text = author?["username"] as? String
+     
+     print(goal)
         
         if author?.objectId != PFUser.current()?.objectId || goal?["isCompleted"] as! Bool {
             updateButton.image = nil
@@ -124,7 +129,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             updateButton.image = #imageLiteral(resourceName: "pencil")
             updateButton.isEnabled = true
         }
-        
+     
         updateLabel.text = currentUpdate?["text"] as? String
         goalLabel.text = currentUpdate?["goalTitle"] as? String
         
@@ -278,6 +283,24 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         performSegue(withIdentifier: "fullMediaSegue", sender: data)
     }
     
+     
+     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+          transition.transitionMode = .present
+          transition.startingPoint = CGPoint(x: 175, y: 350)
+          transition.duration = 0.25
+          transition.bubbleColor = UIColor.white
+          return transition
+     }
+     
+     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+          transition.transitionMode = .dismiss
+          transition.startingPoint = CGPoint(x: 175, y: 350)
+          transition.duration = 0.25
+          transition.bubbleColor = UIColor.white
+          return transition
+     }
+     
+     
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -287,12 +310,13 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if segue.identifier == "updateDetailSegue" {
             let vc = segue.destination as! PostUpdateViewController
             vc.currentGoal = goal
+          vc.transitioningDelegate = self
+          vc.modalPresentationStyle = .custom
         } else if segue.identifier == "snapDetailSegue" {
             let vc = segue.destination as! CameraViewController
             vc.currentUpdate = currentUpdate!
         } else if segue.identifier == "fullMediaSegue" {
             let vc = segue.destination as! FullMediaViewController
-
             vc.data = sender as? [String : Any]
         }
     }

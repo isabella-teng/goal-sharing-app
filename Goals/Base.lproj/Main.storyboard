@@ -189,7 +189,7 @@
             </objects>
             <point key="canvasLocation" x="4465" y="-2040"/>
         </scene>
-        <!--Feed-->
+        <!--goalsAF-->
         <scene sceneID="cR9-dx-rtx">
             <objects>
                 <viewController id="4cB-WK-Nnu" customClass="FeedViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
@@ -437,7 +437,7 @@
                             <constraint firstAttribute="trailing" secondItem="U5Q-49-VPy" secondAttribute="trailing" id="szi-7q-DAq"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Feed" id="TXs-L2-SH2">
+                    <navigationItem key="navigationItem" title="goalsAF" id="TXs-L2-SH2">
                         <barButtonItem key="leftBarButtonItem" image="goal-ball" id="AFo-7Q-Wdj">
                             <connections>
                                 <segue destination="wh1-XR-JhU" kind="presentation" identifier="" id="GcN-JU-aZ0"/>
@@ -471,10 +471,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xmV-FJ-4uq">
-                                <rect key="frame" x="30" y="84" width="315" height="421"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xmV-FJ-4uq">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.8019107152723397" green="0.77088169233348958" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1605,7 +1605,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="uHu-1d-37X">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="uHu-1d-37X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2205,7 +2205,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="0Zf-dD-PwB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="0Zf-dD-PwB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2641,7 +2641,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="VI5-VU-sfF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="VI5-VU-sfF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2673,12 +2673,12 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ydZ-wS-uFS"/>
+        <segue reference="kNn-XA-D7B"/>
+        <segue reference="ZpT-ic-j8z"/>
+        <segue reference="rWw-4p-v87"/>
         <segue reference="5S3-em-M3C"/>
         <segue reference="b2e-3H-KtS"/>
-        <segue reference="8VS-EP-q6V"/>
         <segue reference="mbE-Eb-6eS"/>
-        <segue reference="haI-YF-ab4"/>
-        <segue reference="rWw-4p-v87"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
