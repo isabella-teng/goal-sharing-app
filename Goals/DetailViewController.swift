@@ -278,7 +278,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
      
      //for 3d touch preview
      func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailMediaCell", for: indexPath) as! MediaCell
+          _ = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailMediaCell", for: indexPath) as! MediaCell
           let storyboard = UIStoryboard(name:"Main", bundle:nil)
           if let previewViewController = storyboard.instantiateViewController(withIdentifier: "FullMediaViewController") as? FullMediaViewController {
                self.present(previewViewController, animated: true, completion: nil)

@@ -37,12 +37,11 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var isMoreDataLoading = false
     var loadingMoreView: InfiniteScrollActivityView!
     var updatedSkipNumber = 0
-//    var limit = 5
     
     //for 3d touch
     var peekPop: PeekPop?
     var previewingContext: PreviewingContext?
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,7 +74,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.contentInset = insets
         
 
-        //setup 3d touch
+        // Set up 3d touch
         peekPop = PeekPop(viewController: self)
         peekPop?.registerForPreviewingWithDelegate(self, sourceView: tableView)
         
@@ -120,6 +119,40 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //        updates.append(fetchedData!)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        //        if let presenting = self.presentedViewController as?  PostUpdateViewController {
+        //            print("entered!")
+        //            didPostUpdate = true
+        //
+        //        }
+        
+        // Fetch goals for goal menu segue
+        Goal.fetchGoalsByCompletion(user: PFUser.current()!, isCompleted: false) { (loadedGoals: [PFObject]?, error: Error?) in
+            if error == nil {
+                self.allGoals = loadedGoals!
+            }
+        }
+        
+        // Fetch feed based on followed users
+        let usersArray = PFUser.current()?["following"] as! [PFUser]
+        Update.fetchUpdatesFromUserArray2(userArray: usersArray, skipNumber: updatedSkipNumber) { (loadedUpdates: [PFObject]?, error: Error?) in
+            if error == nil {
+                self.updates = loadedUpdates!
+                self.tableView.reloadData()
+            } else {
+                print(error?.localizedDescription as Any)
+            }
+        }
+        
+        
+        // Not working
+        if didPostUpdate {
+            let message = Message(title: "Great update to your goal!", backgroundColor: UIColor(red:0.89, green:0.09, blue:0.44, alpha:1))
+            Whisper.show(whisper: message, to: navigationController!, action: .present)
+            hide(whisperFrom: navigationController!, after: 3)
+        }
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (!isMoreDataLoading) {
             
@@ -151,49 +184,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.refreshControl.endRefreshing()
         }
         viewDidAppear(true)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
-//        if let presenting = self.presentedViewController as?  PostUpdateViewController {
-//            print("entered!")
-//            didPostUpdate = true
-//            
-//        }
-        
-        //print(didPostUpdate)
-        
-        // Fetch feed based on followed users
-        
-
-        let usersArray = PFUser.current()?["following"] as! [PFUser]
-        Update.fetchUpdatesFromUserArray2(userArray: usersArray, skipNumber: updatedSkipNumber) { (loadedUpdates: [PFObject]?, error: Error?) in
-            if error == nil {
-                self.updates = loadedUpdates!
-                self.tableView.reloadData()
-            } else {
-                print(error?.localizedDescription as Any)
-            }
-        }
-//        updatedSkipNumber += 2
-//        Update.fetchUpdatesFromUserArray(userArray: usersArray) { (loadedUpdates: [PFObject]?, error: Error?) in
-//            if error == nil {
-//                self.updates = loadedUpdates!
-//                self.tableView.reloadData()
-//            } else {
-//                print(error?.localizedDescription as Any)
-//            }
-//
-//            
-//        }
-        
-        
-        //not working
-        if didPostUpdate {
-            let message = Message(title: "Great update to your goal!", backgroundColor: UIColor(red:0.89, green:0.09, blue:0.44, alpha:1))
-            Whisper.show(whisper: message, to: navigationController!, action: .present)
-            hide(whisperFrom: navigationController!, after: 3)
-        }
     }
     
     //TODO: Fix, is not entering
@@ -289,11 +279,26 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let vc = segue.destination as! AllGoalsViewController
             vc.transitioningDelegate = self.menuTransitionManager
             menuTransitionManager.delegate = self
+            vc.allGoals = allGoals
         }
     }
+//    
+//    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        
+//        // this gets a reference to the screen that we're about to transition to
+//        if segue.identifier == "barButtonSegue" {
+//            let vc = segue.destination as! AllGoalsViewController
+//            vc.transitioningDelegate = self.transitionManager
+//        }
+////        let vc = segue.destination as! AllGoalsViewController
+//        
+//        // instead of using the default transition animation, we'll ask
+//        // the segue to use our custom TransitionManager object to manage the transition animation
+////        vc.transitioningDelegate = self.transitionManager
+//        
+//    }
     
-    
-    //3d touch
+    // 3D Touch
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         _ = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
         
@@ -312,23 +317,19 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     selectedImage.getDataInBackground(block: { (data: Data?, error: Error?) in
                         if error == nil {
                             let image = UIImage(data: data!)
-                            previewViewController.peekImageView.layer.cornerRadius = 15
+//                            previewViewController.peekImageView.layer.cornerRadius = 15
                             previewViewController.image = image
                         }
                     })
                 }
                 return previewViewController
             }
-            
         }
         return nil
-
-        
     }
     
     func previewingContext(_ previewingContext: PreviewingContext, commitViewController viewControllerToCommit: UIViewController) {
         self.navigationController?.pushViewController(viewControllerToCommit, animated: false)
-        
     }
     
     
@@ -342,6 +343,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     class InfiniteScrollActivityView: UIView {
         var activityIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView()
         static let defaultHeight:CGFloat = 60.0

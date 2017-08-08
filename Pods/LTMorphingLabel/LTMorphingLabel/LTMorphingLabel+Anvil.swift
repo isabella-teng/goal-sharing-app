@@ -49,7 +49,7 @@ extension LTMorphingLabel {
                         x: centerRect.origin.x,
                         y: centerRect.origin.y + centerRect.size.height / 1.3)
                     layer.renderMode = kCAEmitterLayerSurface
-                    cell.emissionLongitude = CGFloat(M_PI / 2.0)
+                    cell.emissionLongitude = CGFloat(Double.pi / 2.0)
                     cell.scale = self.font.pointSize / 90.0
                     cell.scaleSpeed = self.font.pointSize / 130
                     cell.birthRate = 60
@@ -57,8 +57,8 @@ extension LTMorphingLabel {
                     cell.velocityRange = 100
                     cell.yAcceleration = -40
                     cell.xAcceleration = 70
-                    cell.emissionLongitude = CGFloat(-M_PI_2)
-                    cell.emissionRange = CGFloat(M_PI_4) / 5.0
+                    cell.emissionLongitude = CGFloat(-(Double.pi / 2))
+                    cell.emissionRange = CGFloat(Double.pi / 4) / 5.0
                     cell.lifetime = self.morphingDuration * 2.0
                     cell.spin = 10
                     cell.alphaSpeed = -0.5 / self.morphingDuration
@@ -74,7 +74,7 @@ extension LTMorphingLabel {
                         x: centerRect.origin.x,
                         y: centerRect.origin.y + centerRect.size.height / 1.3)
                     layer.renderMode = kCAEmitterLayerSurface
-                    cell.emissionLongitude = CGFloat(M_PI / 2.0)
+                    cell.emissionLongitude = CGFloat(Double.pi / 2.0)
                     cell.scale = self.font.pointSize / 90.0
                     cell.scaleSpeed = self.font.pointSize / 130
                     cell.birthRate = 60
@@ -82,8 +82,8 @@ extension LTMorphingLabel {
                     cell.velocityRange = 100
                     cell.yAcceleration = -40
                     cell.xAcceleration = -70
-                    cell.emissionLongitude = CGFloat(M_PI_2)
-                    cell.emissionRange = CGFloat(-M_PI_4) / 5.0
+                    cell.emissionLongitude = CGFloat(Double.pi / 2)
+                    cell.emissionRange = CGFloat(-(Double.pi / 4)) / 5.0
                     cell.lifetime = self.morphingDuration * 2.0
                     cell.spin = -10
                     cell.alphaSpeed = -0.5 / self.morphingDuration
@@ -109,8 +109,8 @@ extension LTMorphingLabel {
                     cell.velocity = 350
                     cell.yAcceleration = 0
                     cell.xAcceleration = CGFloat(10 * Int(arc4random_uniform(10)))
-                    cell.emissionLongitude = CGFloat(-M_PI_2)
-                    cell.emissionRange = CGFloat(M_PI_4) / 5.0
+                    cell.emissionLongitude = CGFloat(-(Double.pi / 2))
+                    cell.emissionRange = CGFloat(Double.pi / 4) / 5.0
                     cell.alphaSpeed = -2
                     cell.lifetime = self.morphingDuration
             }
@@ -134,8 +134,8 @@ extension LTMorphingLabel {
                     cell.velocity = 350
                     cell.yAcceleration = 0
                     cell.xAcceleration = CGFloat(-10 * Int(arc4random_uniform(10)))
-                    cell.emissionLongitude = CGFloat(M_PI_2)
-                    cell.emissionRange = CGFloat(-M_PI_4) / 5.0
+                    cell.emissionLongitude = CGFloat(Double.pi / 2)
+                    cell.emissionRange = CGFloat(-(Double.pi / 4)) / 5.0
                     cell.alphaSpeed = -2
                     cell.lifetime = self.morphingDuration
             }
@@ -160,7 +160,7 @@ extension LTMorphingLabel {
                     cell.velocityRange = CGFloat(Int(arc4random_uniform(20)) + 30)
                     cell.yAcceleration = 500
                     cell.emissionLongitude = 0
-                    cell.emissionRange = CGFloat(M_PI_2)
+                    cell.emissionRange = CGFloat(Double.pi / 2)
                     cell.alphaSpeed = -1
                     cell.lifetime = self.morphingDuration
             }

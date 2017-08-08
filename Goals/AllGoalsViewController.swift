@@ -44,16 +44,16 @@ class AllGoalsViewController: UIViewController, UITableViewDelegate, UITableView
         menuTitle.morphingEffect = .scale
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        Goal.fetchGoalsByCompletion(user: PFUser.current()!, isCompleted: false) { (loadedGoals: [PFObject]?, error: Error?) in
-            if error == nil {
-                self.allGoals = loadedGoals!
-                self.tableView.reloadData()
-            } else {
-                print(error?.localizedDescription as Any)
-            }
-        }
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        Goal.fetchGoalsByCompletion(user: PFUser.current()!, isCompleted: false) { (loadedGoals: [PFObject]?, error: Error?) in
+//            if error == nil {
+//                self.allGoals = loadedGoals!
+//                self.tableView.reloadData()
+//            } else {
+//                print(error?.localizedDescription as Any)
+//            }
+//        }
+//    }
     
     func goalCell(_ goalCell: GoalCell, didTap goal: PFObject) {
         performSegue(withIdentifier: "goalUpdateSegue", sender: goal)

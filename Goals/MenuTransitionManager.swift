@@ -21,7 +21,7 @@ class MenuTransitionManager: NSObject, UIViewControllerAnimatedTransitioning, UI
     var snapshot:UIView? {
         didSet {
             if let delegate = delegate {
-                let tapGestureRecognizer = UITapGestureRecognizer(target: delegate, action: "dismiss")
+                let tapGestureRecognizer = UITapGestureRecognizer(target: delegate, action: #selector(MenuTransitionManagerDelegate.dismiss))
                 snapshot?.addGestureRecognizer(tapGestureRecognizer)
             }
         }
