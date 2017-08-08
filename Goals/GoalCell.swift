@@ -54,5 +54,4 @@ class GoalCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
     }
-
 }

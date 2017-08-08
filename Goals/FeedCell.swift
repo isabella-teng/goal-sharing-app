@@ -87,7 +87,7 @@ class FeedCell: UITableViewCell {
             }
             
             if let picture = update["image"] as? PFFile {
-                updateImageHeight.constant = 200
+                updateImageHeight.constant = 300
                 goalCellMargin.constant = 15
                 picture.getDataInBackground(block: { (data: Data?, error: Error?) in
                     if error == nil {

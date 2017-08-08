@@ -326,6 +326,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     class InfiniteScrollActivityView: UIView {
         var activityIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView()
         static let defaultHeight:CGFloat = 60.0
