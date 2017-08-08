@@ -14,11 +14,10 @@ import BubbleTransition
 import NVActivityIndicatorView
 import PeekPop
 
-class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate, DidPostUpdateDelegate, UIViewControllerTransitioningDelegate, NVActivityIndicatorViewable, UIScrollViewDelegate, PeekPopPreviewingDelegate {
+class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate, DidPostUpdateDelegate, UIViewControllerTransitioningDelegate, NVActivityIndicatorViewable, UIScrollViewDelegate, PeekPopPreviewingDelegate, MenuTransitionManagerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var goalMenuButton: UIBarButtonItem!
-    @IBOutlet weak var barButtonView: UIView!
     
     var updates: [PFObject] = []
     var allGoals: [PFObject] = []
@@ -29,6 +28,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var completedGoal: PFObject? = nil
     
     let transition = BubbleTransition()
+    
+    //for menu pulldown
+    var menuTransitionManager = MenuTransitionManager()
     
     var refreshControl: UIRefreshControl!
     var activityIndicatorView: NVActivityIndicatorView?
@@ -169,7 +171,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //
 //            
 //        }
-        //currently a notification you see if view appears
+        
+        
+        //not working
         if didPostUpdate {
             let message = Message(title: "Great update to your goal!", backgroundColor: UIColor(red:0.89, green:0.09, blue:0.44, alpha:1))
             Whisper.show(whisper: message, to: navigationController!, action: .present)
@@ -231,6 +235,14 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    func dismiss() {
+        self.dismiss(animated: true, completion: nil)
+    }
+
+    @IBAction func onGoalMenuTap(_ sender: Any) {
+        performSegue(withIdentifier: "goalMenuButtonSegue", sender: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "detailSegue") {
             let vc = segue.destination as! DetailViewController
@@ -257,6 +269,10 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let vc = segue.destination as! ProfileViewController
             vc.user = sender as? PFUser
             vc.fromFeed = true
+        } else if (segue.identifier == "goalMenuButtonSegue") {
+            let vc = segue.destination as! AllGoalsViewController
+            vc.transitioningDelegate = self.menuTransitionManager
+            menuTransitionManager.delegate = self
         }
     }
     

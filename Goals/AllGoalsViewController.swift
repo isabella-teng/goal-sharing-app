@@ -14,7 +14,7 @@ import BubbleTransition
 class AllGoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GoalCellDelegate, UIViewControllerTransitioningDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var closeButton: UIBarButtonItem!
+    @IBOutlet weak var closeButton: UIButton!
     
     var allGoals: [PFObject] = []
     let transition = BubbleTransition()
@@ -53,6 +53,7 @@ class AllGoalsViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "GoalCell", for: indexPath) as! GoalCell
         cell.goal = allGoals[indexPath.row]
         cell.delegate = self
+        cell.backgroundColor = UIColor.clear
         return cell
         
     }

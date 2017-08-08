@@ -98,13 +98,13 @@
                         <viewControllerLayoutGuide type="bottom" id="gSo-md-pNX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1Wl-gV-Han">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="109" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wdc-uB-5Ph">
-                                <rect key="frame" x="0.0" y="38" width="375" height="565"/>
+                                <rect key="frame" x="0.0" y="78" width="375" height="589"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="GoalCell" rowHeight="109" id="JZh-gB-M42" customClass="GoalCell" customModule="Goals" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="109"/>
@@ -162,32 +162,25 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Goal to Update" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITt-lS-Gvp">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="All Active Goals" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITt-lS-Gvp">
+                                <rect key="frame" x="0.0" y="29" width="375" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="22"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="All Active Goals" id="b0f-Zu-Isf">
-                        <barButtonItem key="rightBarButtonItem" image="cross" id="RkL-TN-m1c">
-                            <connections>
-                                <action selector="onClose:" destination="fjP-gN-c68" id="zaG-oZ-gql"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="All Active Goals" id="b0f-Zu-Isf"/>
                     <connections>
-                        <outlet property="closeButton" destination="RkL-TN-m1c" id="oMy-lh-X33"/>
                         <outlet property="tableView" destination="Wdc-uB-5Ph" id="Dc4-hC-9rD"/>
                         <segue destination="OtZ-Tv-MZ9" kind="presentation" identifier="goalUpdateSegue" id="die-PK-ZT8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qYG-QU-3i9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4465" y="-2040"/>
+            <point key="canvasLocation" x="4464.8000000000002" y="-2040.6296851574214"/>
         </scene>
         <!--GoalsAF-->
         <scene sceneID="cR9-dx-rtx">
@@ -445,7 +438,8 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="menu" id="ZtU-yN-AxO">
                             <connections>
-                                <segue destination="VhF-kq-3KK" kind="presentation" identifier="barButtonSegue" modalTransitionStyle="coverVertical" id="teF-p4-Wsc"/>
+                                <action selector="onGoalMenuTap:" destination="4cB-WK-Nnu" id="Rkq-TY-9Eg"/>
+                                <segue destination="fjP-gN-c68" kind="presentation" identifier="goalMenuButtonSegue" id="fF3-wN-hdJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1942,6 +1936,7 @@
                                             <constraint firstAttribute="bottom" secondItem="oct-OS-L7z" secondAttribute="bottom" constant="5" id="yV2-Bh-15H"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="mediaButton" destination="FDK-ni-BcU" id="4cX-z9-bVz"/>
                                             <outlet property="mediaImage" destination="FRB-Aa-Ehp" id="OhA-Ae-QZw"/>
                                         </connections>
                                     </collectionViewCell>
@@ -2324,26 +2319,6 @@
                 <exit id="o2c-Mp-Iof" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5244" y="-2039.7301349325339"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="7DQ-6A-fPb">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VhF-kq-3KK" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="0Zf-dD-PwB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="fjP-gN-c68" kind="relationship" relationship="rootViewController" id="bdY-jC-cfC"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mul-XA-sxo" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3692" y="-2040"/>
         </scene>
         <!--Container View Controller-->
         <scene sceneID="aVl-aL-d8G">
@@ -2800,13 +2775,13 @@
         <image name="user" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7vN-Mr-0Qr"/>
-        <segue reference="ydZ-wS-uFS"/>
         <segue reference="kNn-XA-D7B"/>
+        <segue reference="7vN-Mr-0Qr"/>
         <segue reference="ZpT-ic-j8z"/>
+        <segue reference="ydZ-wS-uFS"/>
+        <segue reference="die-PK-ZT8"/>
+        <segue reference="Ugs-Kx-bhx"/>
         <segue reference="rWw-4p-v87"/>
-        <segue reference="mbE-Eb-6eS"/>
-        <segue reference="b2e-3H-KtS"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

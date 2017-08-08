@@ -18,8 +18,8 @@ protocol MediaCellDelegate: class {
 class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate, AVAudioPlayerDelegate {
     
     @IBOutlet weak var mediaImage: UIImageView!
+    @IBOutlet weak var mediaButton: UIButton!
     
-
     weak var delegate: MediaCellDelegate?
     var onDetails: Bool? = nil {
         didSet {
@@ -68,22 +68,15 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate, AVAudioPl
                 playerController.videoGravity = AVLayerVideoGravityResizeAspectFill
                 playerController.delegate = self
                 self.addSubview(playerController.view)
-
-                //player.play()
-                
-                
             }
         }
     }
-    
-    func playerDidFinishPlaying(note: NSNotification) {
-        print("Video Finished")
-        self.removeFromSuperview()
-    }
-    
+
     var toPass: [String: Any] = [:]
     
+    //not entering this for videos
     @IBAction func didTapImage(_ sender: Any) {
+        print("made it!")
         delegate?.mediaCell(self, didTap: toPass)
     }
     
@@ -107,4 +100,9 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate, AVAudioPl
         UIGraphicsEndImageContext()
         return newImage
     }
+    
+    override func awakeFromNib() {
+        self.bringSubview(toFront: mediaButton)
+    }
+    
 }
