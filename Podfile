@@ -20,6 +20,7 @@ target 'Goals' do
   pod 'SAConfettiView', :git => 'https://github.com/gokhanakkurt/SAConfettiView', :branch => 'swift3'
   source 'https://github.com/CocoaPods/Specs.git'
   pod 'PeekPop', '~> 1.0'
+  pod 'LTMorphingLabel', :git => 'https://github.com/lexrus/LTMorphingLabel.git', :branch => 'swift3'
 
 
   target 'GoalsTests' do

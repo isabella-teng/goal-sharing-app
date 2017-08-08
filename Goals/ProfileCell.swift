@@ -83,7 +83,7 @@ class ProfileCell: SwipeTableViewCell {
             } else {
                 //check if last update date is less than 24 hours since current time
                 if let lastUpdate = goal["lastUpdateDay"] as? Date {
-                    if let diff = Calendar.current.dateComponents([.hour], from: lastUpdate, to: Date()).hour, diff > 1 {
+                    if let diff = Calendar.current.dateComponents([.hour], from: lastUpdate, to: Date()).hour, diff > 24 {
                         goal.setValue(0, forKey: "streakCount")
                     }
                 }

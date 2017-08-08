@@ -5,6 +5,7 @@ PODS:
     - Charts/Core (= 3.0.2)
   - Charts/Core (3.0.2)
   - DateToolsSwift (2.0.3)
+  - LTMorphingLabel (0.3.0)
   - NVActivityIndicatorView (3.6.1)
   - Parse (1.14.4):
     - Bolts/Tasks (~> 1.8)
@@ -27,6 +28,7 @@ DEPENDENCIES:
   - BubbleTransition (~> 2.0.0)
   - Charts
   - DateToolsSwift
+  - LTMorphingLabel (from `https://github.com/lexrus/LTMorphingLabel.git`, branch `swift3`)
   - NVActivityIndicatorView
   - Parse
   - ParseUI
@@ -39,11 +41,17 @@ DEPENDENCIES:
   - Whisper
 
 EXTERNAL SOURCES:
+  LTMorphingLabel:
+    :branch: swift3
+    :git: https://github.com/lexrus/LTMorphingLabel.git
   SAConfettiView:
     :branch: swift3
     :git: https://github.com/gokhanakkurt/SAConfettiView
 
 CHECKOUT OPTIONS:
+  LTMorphingLabel:
+    :commit: 93c60bb1626aa96dbd5e899c82e280d7a785315d
+    :git: https://github.com/lexrus/LTMorphingLabel.git
   SAConfettiView:
     :commit: 9035108df456b02589e1bcdb16f178fcae0d31f4
     :git: https://github.com/gokhanakkurt/SAConfettiView
@@ -53,6 +61,7 @@ SPEC CHECKSUMS:
   BubbleTransition: 7d98ed7d56f0940e83f350a98103ad473491c769
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
   DateToolsSwift: bf69bf9056d9e53c5c03f06e51f219b9b8b02f9e
+  LTMorphingLabel: 2777d8d9cb699125f48dfcd95d78bd3d77c87ade
   NVActivityIndicatorView: 9f52a7f84bf5c6a798722c450fe3c198e01c56ed
   Parse: b0aa91d2c435e53d4a9af26e741e014c9b35c42e
   ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
@@ -65,6 +74,6 @@ SPEC CHECKSUMS:
   SwipeCellKit: 893661973276ae3512a84ac0a47055923b10731e
   Whisper: 051f25e704bf8992641ffd28b20d5682ddc5f5d3
 
-PODFILE CHECKSUM: 018fc99810f7a33c0b4671a496613bad9933896c
+PODFILE CHECKSUM: a757332fe71197eb547e6b5b955b02dc4d4cd31f
 
 COCOAPODS: 1.2.1

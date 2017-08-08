@@ -159,7 +159,7 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate, UIImagePic
             
             let didPostToday = currentGoal?["postedUpdateToday"] as! Bool
             
-            if let diff = Calendar.current.dateComponents([.hour], from: streakDay, to: Date()).hour, diff < 1 {
+            if let diff = Calendar.current.dateComponents([.hour], from: streakDay, to: Date()).hour, diff < 24 {
                 if !didPostToday {
                     print("Not entered?")
                     currentGoal?.incrementKey("streakCount", byAmount: 1)

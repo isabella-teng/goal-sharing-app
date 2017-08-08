@@ -10,15 +10,25 @@ import UIKit
 import Parse
 import ParseUI
 import BubbleTransition
+import LTMorphingLabel
 
-class AllGoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GoalCellDelegate, UIViewControllerTransitioningDelegate {
+
+extension AllGoalsViewController {
+    func morphingDidStart(_ label: LTMorphingLabel) {
+    }
+    func morphingDidComplete(_ label: LTMorphingLabel) {
+    }
+    func morphingOnProgress(_ label: LTMorphingLabel, progress: Float) {
+    }
+}
+
+class AllGoalsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GoalCellDelegate, UIViewControllerTransitioningDelegate, LTMorphingLabelDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var menuTitle: LTMorphingLabel!
     
     var allGoals: [PFObject] = []
     let transition = BubbleTransition()
-    
     
     
     override func viewDidLoad() {
@@ -28,6 +38,10 @@ class AllGoalsViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
+        
+        menuTitle.delegate = self
+        menuTitle.text = "All Active Goals"
+        menuTitle.morphingEffect = .scale
     }
     
     override func viewDidAppear(_ animated: Bool) {
