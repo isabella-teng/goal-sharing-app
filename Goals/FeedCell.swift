@@ -65,12 +65,12 @@ class FeedCell: UITableViewCell {
                 cellBackground.backgroundColor = UIColor(red:0.50, green:0.85, blue:0.60, alpha:1.0)
                 goalCellBg.backgroundColor = UIColor(red: 0.40, green: 0.75, blue: 0.45, alpha: 1.0)
                 goalCellEdges.backgroundColor = goalCellBg.backgroundColor
-                updateDescription.text = "posted an update!"
+                updateDescription.text = "posted an update:"
             } else if typeString == "negative" {
                 cellBackground.backgroundColor = UIColor(red:0.95, green:0.45, blue:0.45, alpha:1.0)
                 goalCellBg.backgroundColor = UIColor(red: 0.85, green: 0.30, blue: 0.30, alpha: 1.0)
                 goalCellEdges.backgroundColor = goalCellBg.backgroundColor
-                updateDescription.text = "posted an update!"
+                updateDescription.text = "posted an update:"
             } else if typeString == "Complete" {
                 cellBackground.backgroundColor = UIColor(red:0.93, green:0.71, blue:0.13, alpha:1.0)
                 goalCellBg.backgroundColor = UIColor(red:0.93, green:0.61, blue:0.12, alpha:1.0)
