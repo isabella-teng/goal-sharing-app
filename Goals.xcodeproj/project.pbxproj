@@ -455,6 +455,7 @@
 					FACF12971F15476200D505FE = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 3JE575EG34;
+						DevelopmentTeam = U253D4MY4D;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -870,6 +871,10 @@
 				INFOPLIST_FILE = Goals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = gerardo.com.goalsAf;
+				DEVELOPMENT_TEAM = U253D4MY4D;
+				INFOPLIST_FILE = Goals/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Isabella.com.Goals;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -885,6 +890,10 @@
 				INFOPLIST_FILE = Goals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = gerardo.com.goalsAf;
+				DEVELOPMENT_TEAM = U253D4MY4D;
+				INFOPLIST_FILE = Goals/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Isabella.com.Goals;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

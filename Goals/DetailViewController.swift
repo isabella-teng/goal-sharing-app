@@ -109,6 +109,10 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                })
           }
 
+          let dateFormat = DateFormatter()
+          dateFormat.dateFormat = "M/d/yy"
+          let goalDateUpdated = currentUpdate?["goalDate"] as! Date
+          self.timestampLabel.text = String(dateFormat.string(from: goalDateUpdated))
      }
      
      func done() {
