@@ -45,7 +45,9 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate, AVAudioPl
                     urlString.getDataInBackground { (imageData: Data?, error: Error?) in
                         if error == nil {
                             var profImage = UIImage(data: imageData!)
-                            profImage = self.imageRotatedByDegrees(oldImage: profImage!, deg: 90)
+                            if (self.data["rotated"] as? Bool) == nil {
+                                profImage = self.imageRotatedByDegrees(oldImage: profImage!, deg: 90)
+                            }
                             self.mediaImage.image = profImage
                         }
                     }
@@ -82,7 +84,6 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate, AVAudioPl
     var toPass: [String: Any] = [:]
     
     @IBAction func didTapImage(_ sender: Any) {
-        print("hi")
         delegate?.mediaCell(self, didTap: toPass)
     }
     

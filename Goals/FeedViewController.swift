@@ -79,7 +79,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func loadMoreData() {
-        print("fetching!!!!")
         let usersArray = PFUser.current()?["following"] as! [PFUser]
         Update.fetchUpdatesFromUserArray2(userArray: usersArray, skipNumber: updatedSkipNumber) { (loadedUpdates: [PFObject]?, error: Error?) in
             if error == nil {
@@ -180,7 +179,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     //TODO: Fix, is not entering
     func postedUpdate(sentUpdate: Bool) {
-        print("should enter")
         didPostUpdate = sentUpdate
     }
     
@@ -265,7 +263,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     //3d touch
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
+        _ = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
         
         let storyboard = UIStoryboard(name:"Main", bundle:nil)
         if let previewViewController = storyboard.instantiateViewController(withIdentifier: "PeekViewViewController") as? PeekViewViewController {

@@ -22,19 +22,19 @@ class FullMediaViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var cancelButton: UIButton!
     
     var data: [String: Any]?
-   
+    
     var fromForceTouch: Bool = false
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         scrollView.minimumZoomScale = 1.0
         scrollView.maximumZoomScale = 3.0
         scrollView.delegate = self
-      
-      if fromForceTouch {
-         cancelButton.isHidden = true
-      }
+        
+        if fromForceTouch {
+            cancelButton.isHidden = true
+        }
     }
     
     
@@ -62,7 +62,9 @@ class FullMediaViewController: UIViewController, UIScrollViewDelegate {
                 urlString.getDataInBackground(block: { (imageData: Data?, error: Error?) in
                     if error == nil {
                         var fullImg = UIImage(data: imageData!)
-                        fullImg = self.imageRotatedByDegrees(oldImage: fullImg!, deg: 90)
+                        if (self.data?["rotated"] == nil) {
+                            fullImg = self.imageRotatedByDegrees(oldImage: fullImg!, deg: 90)
+                        }
                         self.mediaView.image = fullImg
                     }
                 })

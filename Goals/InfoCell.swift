@@ -26,7 +26,6 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
     @IBOutlet weak var authorIcon: UIImageView!
     @IBOutlet weak var updatesCountLabel: UILabel!
     @IBOutlet weak var completionDate: UILabel!
-    @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var categoryIcon: UIImageView!
     @IBOutlet weak var descriptionBackground: UIView!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -39,7 +38,7 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
     var days: [String] = []
     var updatesMade : [Double] = []
     
-    var data: PFObject! { //current goal
+    var data: PFObject! {
         didSet {
             headerLabel.text = data?["title"] as? String
             
@@ -62,24 +61,23 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
                 }
             })
             updatesCountLabel.text = String(data["updatesCount"] as! Int) + " Updates"
-            categoryLabel.text = data["categories"] as? String
             
-            if categoryLabel.text! == "Education" {
+            if data["categories"]  as! String == "Education" {
                 categoryIcon.image = #imageLiteral(resourceName: "education").withRenderingMode(.alwaysTemplate)
                 categoryIcon.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
-            } else if categoryLabel.text! == "Health" {
+            } else if data["categories"]  as! String == "Health" {
                 categoryIcon.image = #imageLiteral(resourceName: "health").withRenderingMode(.alwaysTemplate)
                 categoryIcon.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
-            } else if categoryLabel.text! == "Fun" {
+            } else if data["categories"]  as! String == "Fun" {
                 categoryIcon.image = #imageLiteral(resourceName: "fun").withRenderingMode(.alwaysTemplate)
                 categoryIcon.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
-            } else if categoryLabel.text! == "Money" {
+            } else if data["categories"]  as! String == "Money" {
                 categoryIcon.image = #imageLiteral(resourceName: "money").withRenderingMode(.alwaysTemplate)
                 categoryIcon.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
-            } else if categoryLabel.text! == "Spiritual" {
+            } else if data["categories"]  as! String == "Spiritual" {
                 categoryIcon.image = #imageLiteral(resourceName: "spiritual").withRenderingMode(.alwaysTemplate)
                 categoryIcon.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
-            }else if categoryLabel.text! == "Other" {
+            }else if data["categories"]  as! String == "Other" {
                 categoryIcon.image = #imageLiteral(resourceName: "other").withRenderingMode(.alwaysTemplate)
                 categoryIcon.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
             }
@@ -101,7 +99,7 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
                 totalUpdatesLabel.text = String(describing: updateCount) + " Updates"
             }
 
-            streakCountLabel.text = String(describing: data["streakCount"] as! Int) + " day streak 🔥"
+            streakCountLabel.text = String(describing: data["streakCount"] as! Int) + " day streak"
             
             if data["isCompleted"] as! Bool == true {
                 completionProgressView.progress = 1
@@ -155,12 +153,6 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
         
         var dataEntries: [ChartDataEntry] = []
         
-        //        var intValues: [Int] = []
-        //        for i in values {
-        //            intValues.append(Int(values[i]))
-        //        }
-        
-        
         for i in 0..<dataPoints.count {
             let dataEntry = ChartDataEntry(x: Double(i), y: values[i])
             dataEntries.append(dataEntry)
@@ -169,10 +161,6 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
         let chartDataSet = LineChartDataSet(values: dataEntries, label: "Updates Made")
         let chartData = LineChartData(dataSet: chartDataSet)
         graphView.data = chartData
-        
-        //        let sum = values.reduce(0, +)
-        //        let average = sum / 7
-        //        let average1 = average - 1.02
         
         // Settings for the graph
         chartDataSet.colors = [UIColor.white]
@@ -199,26 +187,6 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
         graphView.dragEnabled = false
         graphView.rightAxis.enabled = false
         graphView.leftAxis.enabled = false
-        
-        // Updates/Average Limit Lines
-        //        let averageEstimate = ChartLimitLine(limit: average, label: "Est. Updates Per Week")
-        //        averageEstimate.valueFont = UIFont(name: "Verdana", size: 8.0)!
-        //        averageEstimate.lineColor = UIColor.gray
-        //        progressBackground.rightAxis.addLimitLine(averageEstimate)
-        //        averageEstimate.labelPosition = .leftTop
-        //
-        //        let actualAverage = ChartLimitLine(limit: average1, label: "Your average")
-        //        actualAverage.valueFont = UIFont(name: "Verdana", size: 8.0)!
-        //        if average1 > average {
-        //            actualAverage.lineColor = UIColor.green
-        //            progressBackground.rightAxis.addLimitLine(actualAverage)
-        //        } else if average1 < average {
-        //            actualAverage.lineColor = UIColor.red
-        //            progressBackground.rightAxis.addLimitLine(actualAverage)
-        //        } else if average1 == average {
-        //            actualAverage.lineColor = UIColor.green
-        //            progressBackground.rightAxis.addLimitLine(actualAverage)
-        //        }
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -62,7 +62,6 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             // Set up InfoCell with goal information
             let cell = (tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! InfoCell)
             cell.data = currentGoal
-            //cell.updatesMade = currentGoal?["updatesPerDay"] as! [Double]
             return cell
         } else if indexPath.row == updates.count {
             let cell = (tableView.dequeueReusableCell(withIdentifier: "CompletedCell", for: indexPath) as! CompletedCell)
