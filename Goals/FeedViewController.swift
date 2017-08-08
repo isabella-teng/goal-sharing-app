@@ -78,6 +78,21 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //setup 3d touch
         peekPop = PeekPop(viewController: self)
         peekPop?.registerForPreviewingWithDelegate(self, sourceView: tableView)
+        
+        goalMenuButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(tappedMenu(_:)))
+    }
+    
+    func tappedMenu(_ sender: Any) {
+        print("entered")
+        navTitle.title = "Close"
+    }
+    
+    
+    @IBOutlet weak var navTitle: UINavigationItem!
+    
+    @IBAction func onGoalMenuClick(_ sender: Any) {
+        print("entered")
+        navTitle.title = "Close"
     }
     
     func loadMoreData() {
