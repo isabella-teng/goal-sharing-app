@@ -189,7 +189,7 @@
             </objects>
             <point key="canvasLocation" x="4465" y="-2040"/>
         </scene>
-        <!--goalsAF-->
+        <!--GoalsAF-->
         <scene sceneID="cR9-dx-rtx">
             <objects>
                 <viewController id="4cB-WK-Nnu" customClass="FeedViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
@@ -437,7 +437,7 @@
                             <constraint firstAttribute="trailing" secondItem="U5Q-49-VPy" secondAttribute="trailing" id="szi-7q-DAq"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="goalsAF" id="TXs-L2-SH2">
+                    <navigationItem key="navigationItem" title="GoalsAF" id="TXs-L2-SH2">
                         <barButtonItem key="leftBarButtonItem" image="goal-ball" id="AFo-7Q-Wdj">
                             <connections>
                                 <segue destination="wh1-XR-JhU" kind="presentation" identifier="" id="GcN-JU-aZ0"/>
@@ -623,7 +623,7 @@
                         <viewControllerLayoutGuide type="bottom" id="spF-DR-v0x"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dWK-WH-8i0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="confetti" translatesAutoresizingMaskIntoConstraints="NO" id="Vhs-6U-vie">
@@ -787,7 +787,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dei-Nq-7BR">
-                                <rect key="frame" x="10" y="30" width="40" height="40"/>
+                                <rect key="frame" x="10" y="10" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Etu-Hk-M3F"/>
                                     <constraint firstAttribute="width" constant="40" id="Lrf-J8-0ng"/>
@@ -799,7 +799,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="enx-Xq-jUt">
-                                <rect key="frame" x="325" y="30" width="40" height="40"/>
+                                <rect key="frame" x="325" y="10" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="ed6-Ft-mOX"/>
                                     <constraint firstAttribute="width" constant="40" id="lDL-Pf-dJI"/>
@@ -2806,5 +2806,14 @@
         <image name="settings" width="24" height="24"/>
         <image name="user" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="haI-YF-ab4"/>
+        <segue reference="ZpT-ic-j8z"/>
+        <segue reference="7vN-Mr-0Qr"/>
+        <segue reference="ydZ-wS-uFS"/>
+        <segue reference="Ugs-Kx-bhx"/>
+        <segue reference="Q3w-fk-ISv"/>
+        <segue reference="rWw-4p-v87"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

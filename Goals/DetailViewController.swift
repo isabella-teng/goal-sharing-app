@@ -10,8 +10,10 @@ import Parse
 import ParseUI
 import PeekPop
 import BubbleTransition
+import AVKit
+import AVFoundation
 
-class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, MediaCellDelegate, PeekPopPreviewingDelegate, UIViewControllerTransitioningDelegate {
+class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, MediaCellDelegate, PeekPopPreviewingDelegate, UIViewControllerTransitioningDelegate, AVPlayerViewControllerDelegate, AVAudioPlayerDelegate {
     
     @IBOutlet weak var goalView: UIView!
     @IBOutlet weak var userIcon: UIImageView!
@@ -243,7 +245,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.delegate = self
         cell.data = media[indexPath.row]
         cell.onDetails = true
-        
+        cell.parent = self
+     
         return cell
     }
     
@@ -265,7 +268,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     previewingContext.sourceRect = layoutAttributes.frame
                 }
                 previewViewController.data = media[indexPath.item]
-                //previewViewController.cancelButton.isHidden = true
                 previewViewController.fromForceTouch = true
             }
             return previewViewController
@@ -298,8 +300,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
           return transition
      }
      
-     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

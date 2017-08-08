@@ -19,13 +19,21 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate, AVAudioPl
     
     @IBOutlet weak var mediaImage: UIImageView!
     
-    
+
     weak var delegate: MediaCellDelegate?
     var onDetails: Bool? = nil {
         didSet {
             if onDetails != nil {
                 mediaImage.layer.cornerRadius = 10
             }
+        }
+    }
+    
+    let playerController = AVPlayerViewController()
+    
+    var parent: DetailViewController? {
+        didSet{
+            parent?.addChildViewController(playerController)
         }
     }
     
@@ -49,7 +57,7 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate, AVAudioPl
                 let asset = AVAsset(url: URL(string: videoUrl!)!)
                 let item = AVPlayerItem(asset: asset)
                 let player = AVPlayer(playerItem: item)
-                let playerController = AVPlayerViewController()
+    
                 playerController.player = player
                 playerController.view.frame = self.mediaImage.frame
                 playerController.view.clipsToBounds = true
@@ -58,9 +66,17 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate, AVAudioPl
                 playerController.videoGravity = AVLayerVideoGravityResizeAspectFill
                 playerController.delegate = self
                 self.addSubview(playerController.view)
-                player.play()
+
+                //player.play()
+                
+                
             }
         }
+    }
+    
+    func playerDidFinishPlaying(note: NSNotification) {
+        print("Video Finished")
+        self.removeFromSuperview()
     }
     
     var toPass: [String: Any] = [:]
