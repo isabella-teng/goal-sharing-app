@@ -869,7 +869,7 @@
 				DEVELOPMENT_TEAM = 3JE575EG34;
 				INFOPLIST_FILE = Goals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Gerardo.com.Goals;
+				PRODUCT_BUNDLE_IDENTIFIER = gerardo.com.goalsAf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -884,7 +884,7 @@
 				DEVELOPMENT_TEAM = 3JE575EG34;
 				INFOPLIST_FILE = Goals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Gerardo.com.Goals;
+				PRODUCT_BUNDLE_IDENTIFIER = gerardo.com.goalsAf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

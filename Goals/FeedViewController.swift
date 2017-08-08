@@ -37,7 +37,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var isMoreDataLoading = false
     var loadingMoreView: InfiniteScrollActivityView!
     var updatedSkipNumber = 0
-//    var limit = 5
     
     //for 3d touch
     var peekPop: PeekPop?
@@ -75,7 +74,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.contentInset = insets
         
 
-        //setup 3d touch
+        // Set up 3d touch
         peekPop = PeekPop(viewController: self)
         peekPop?.registerForPreviewingWithDelegate(self, sourceView: tableView)
     }
@@ -103,6 +102,40 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //            }
 //        }
 //        updates.append(fetchedData!)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //        if let presenting = self.presentedViewController as?  PostUpdateViewController {
+        //            print("entered!")
+        //            didPostUpdate = true
+        //
+        //        }
+        
+        // Fetch feed based on followed users
+        let usersArray = PFUser.current()?["following"] as! [PFUser]
+        Update.fetchUpdatesFromUserArray2(userArray: usersArray, skipNumber: updatedSkipNumber) { (loadedUpdates: [PFObject]?, error: Error?) in
+            if error == nil {
+                self.updates = loadedUpdates!
+                self.tableView.reloadData()
+            } else {
+                print(error?.localizedDescription as Any)
+            }
+        }
+        
+        
+        // Not working
+        if didPostUpdate {
+            let message = Message(title: "Great update to your goal!", backgroundColor: UIColor(red:0.89, green:0.09, blue:0.44, alpha:1))
+            Whisper.show(whisper: message, to: navigationController!, action: .present)
+            hide(whisperFrom: navigationController!, after: 3)
+        }
+        
+        // Fetch goals for goal menu segue
+        Goal.fetchGoalsByCompletion(user: PFUser.current()!, isCompleted: false) { (loadedGoals: [PFObject]?, error: Error?) in
+            if error == nil {
+                self.allGoals = loadedGoals!
+            }
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -136,49 +169,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.refreshControl.endRefreshing()
         }
         viewDidAppear(true)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
-//        if let presenting = self.presentedViewController as?  PostUpdateViewController {
-//            print("entered!")
-//            didPostUpdate = true
-//            
-//        }
-        
-        //print(didPostUpdate)
-        
-        // Fetch feed based on followed users
-        
-
-        let usersArray = PFUser.current()?["following"] as! [PFUser]
-        Update.fetchUpdatesFromUserArray2(userArray: usersArray, skipNumber: updatedSkipNumber) { (loadedUpdates: [PFObject]?, error: Error?) in
-            if error == nil {
-                self.updates = loadedUpdates!
-                self.tableView.reloadData()
-            } else {
-                print(error?.localizedDescription as Any)
-            }
-        }
-//        updatedSkipNumber += 2
-//        Update.fetchUpdatesFromUserArray(userArray: usersArray) { (loadedUpdates: [PFObject]?, error: Error?) in
-//            if error == nil {
-//                self.updates = loadedUpdates!
-//                self.tableView.reloadData()
-//            } else {
-//                print(error?.localizedDescription as Any)
-//            }
-//
-//            
-//        }
-        
-        
-        //not working
-        if didPostUpdate {
-            let message = Message(title: "Great update to your goal!", backgroundColor: UIColor(red:0.89, green:0.09, blue:0.44, alpha:1))
-            Whisper.show(whisper: message, to: navigationController!, action: .present)
-            hide(whisperFrom: navigationController!, after: 3)
-        }
     }
     
     //TODO: Fix, is not entering
@@ -273,6 +263,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let vc = segue.destination as! AllGoalsViewController
             vc.transitioningDelegate = self.menuTransitionManager
             menuTransitionManager.delegate = self
+            vc.allGoals = allGoals
         }
     }
     
