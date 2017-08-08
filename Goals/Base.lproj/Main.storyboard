@@ -757,14 +757,6 @@
                                     <action selector="onSegmentedSwitch:" destination="1Dv-Of-Uq1" eventType="valueChanged" id="l3z-ys-Ilq"/>
                                 </connections>
                             </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7uQ-Ca-qhr">
-                                <rect key="frame" x="302" y="1040" width="63" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="My Week"/>
-                                <connections>
-                                    <segue destination="6dc-ye-LrG" kind="presentation" id="BV3-b2-3dH"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9S-bB-3I4">
                                 <rect key="frame" x="177.5" y="182.5" width="20" height="17"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
@@ -821,6 +813,14 @@
                                     <segue destination="lKG-hx-w8f" kind="presentation" id="J3D-83-nd3"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="shA-kJ-z3A">
+                                <rect key="frame" x="302" y="123" width="63" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="My Week"/>
+                                <connections>
+                                    <segue destination="6dc-ye-LrG" kind="presentation" id="bj4-cR-zyp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -866,7 +866,7 @@
                         <outlet property="goalSelection" destination="BTf-en-lJD" id="tJs-d3-y81"/>
                         <outlet property="iconBorder" destination="Edz-iA-umt" id="FBI-NQ-V4q"/>
                         <outlet property="logoutButton" destination="dei-Nq-7BR" id="WIx-bZ-wqr"/>
-                        <outlet property="myWeek" destination="7uQ-Ca-qhr" id="A0b-IE-spd"/>
+                        <outlet property="myWeek" destination="shA-kJ-z3A" id="cjL-Hh-GoA"/>
                         <outlet property="profileIcon" destination="UhH-ks-eog" id="ZWh-Fx-Suw"/>
                         <outlet property="tableView" destination="bce-Sn-ehU" id="XCp-h4-FhL"/>
                         <outlet property="usernameLabel" destination="Joj-Jw-deG" id="6ph-cg-m15"/>
@@ -1105,7 +1105,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cFB-ed-aqS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3692" y="945"/>
+            <point key="canvasLocation" x="3692" y="944.97751124437787"/>
         </scene>
         <!--Post Comment View Controller-->
         <scene sceneID="lNc-tP-5XZ">
@@ -1611,7 +1611,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="uHu-1d-37X">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="uHu-1d-37X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2625,7 +2625,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="U1N-J6-1Pu">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="U1N-J6-1Pu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2677,13 +2677,13 @@
         <image name="user" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="5S3-em-M3C"/>
         <segue reference="ydZ-wS-uFS"/>
-        <segue reference="7vN-Mr-0Qr"/>
-        <segue reference="b2e-3H-KtS"/>
         <segue reference="kNn-XA-D7B"/>
-        <segue reference="ZpT-ic-j8z"/>
-        <segue reference="rWw-4p-v87"/>
         <segue reference="die-PK-ZT8"/>
+        <segue reference="rWw-4p-v87"/>
+        <segue reference="b2e-3H-KtS"/>
+        <segue reference="8VS-EP-q6V"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
