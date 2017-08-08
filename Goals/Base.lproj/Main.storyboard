@@ -2789,16 +2789,12 @@
         <image name="user" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5S3-em-M3C"/>
-        <segue reference="ydZ-wS-uFS"/>
+        <segue reference="ZpT-ic-j8z"/>
+        <segue reference="gIV-TO-WAO"/>
+        <segue reference="7vN-Mr-0Qr"/>
         <segue reference="kNn-XA-D7B"/>
         <segue reference="die-PK-ZT8"/>
         <segue reference="rWw-4p-v87"/>
-        <segue reference="b2e-3H-KtS"/>
-        <segue reference="8VS-EP-q6V"/>
-        <segue reference="gIV-TO-WAO"/>
-        <segue reference="7vN-Mr-0Qr"/>
-        <segue reference="ZpT-ic-j8z"/>
         <segue reference="Ugs-Kx-bhx"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

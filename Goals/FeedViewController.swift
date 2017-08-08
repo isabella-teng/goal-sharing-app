@@ -310,7 +310,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     selectedImage.getDataInBackground(block: { (data: Data?, error: Error?) in
                         if error == nil {
                             let image = UIImage(data: data!)
-                            previewViewController.peekImageView.layer.cornerRadius = 15
+//                            previewViewController.peekImageView.layer.cornerRadius = 15
                             previewViewController.image = image
                         }
                     })
