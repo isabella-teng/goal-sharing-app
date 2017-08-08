@@ -41,7 +41,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //for 3d touch
     var peekPop: PeekPop?
     var previewingContext: PreviewingContext?
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -77,6 +77,21 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Set up 3d touch
         peekPop = PeekPop(viewController: self)
         peekPop?.registerForPreviewingWithDelegate(self, sourceView: tableView)
+        
+        goalMenuButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(tappedMenu(_:)))
+    }
+    
+    func tappedMenu(_ sender: Any) {
+        print("entered")
+        navTitle.title = "Close"
+    }
+    
+    
+    @IBOutlet weak var navTitle: UINavigationItem!
+    
+    @IBAction func onGoalMenuClick(_ sender: Any) {
+        print("entered")
+        navTitle.title = "Close"
     }
     
     func loadMoreData() {
@@ -266,7 +281,21 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             vc.allGoals = allGoals
         }
     }
-    
+//    
+//    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        
+//        // this gets a reference to the screen that we're about to transition to
+//        if segue.identifier == "barButtonSegue" {
+//            let vc = segue.destination as! AllGoalsViewController
+//            vc.transitioningDelegate = self.transitionManager
+//        }
+////        let vc = segue.destination as! AllGoalsViewController
+//        
+//        // instead of using the default transition animation, we'll ask
+//        // the segue to use our custom TransitionManager object to manage the transition animation
+////        vc.transitioningDelegate = self.transitionManager
+//        
+//    }
     
     // 3D Touch
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -287,7 +316,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     selectedImage.getDataInBackground(block: { (data: Data?, error: Error?) in
                         if error == nil {
                             let image = UIImage(data: data!)
-                            previewViewController.peekImageView.layer.cornerRadius = 15
+//                            previewViewController.peekImageView.layer.cornerRadius = 15
                             previewViewController.image = image
                         }
                     })

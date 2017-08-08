@@ -41,14 +41,34 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
     weak var axisFormatDelegate: IAxisValueFormatter?
     
     var days: [String] = []
+    var updatesMade : [Double] = []
+    
+    var data: PFObject! { //current goal
+        didSet {
+            updatesMade = data["updatesPerDay"] as! [Double]
+            setChart2(dataPoints: days, values: updatesMade)
+            print(data)
+
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        barChartView.delegate = self
-        lineChartView.delegate = self
-        axisFormatDelegate = self as? IAxisValueFormatter
-        days = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]
-        let updatesMade = [1.0, 4.0, 6.0, 3.0, 4.0, 2.0, 4.0]
+//        barChartView.delegate = self
+//        lineChartView.delegate = self
+        
+//        axisFormatDelegate = self as? IAxisValueFormatter
+//        days = ["M", "T", "W", "T", "F", "S", "S"]
+//        
+//        var data: PFObject! { //current goal
+//            didSet {
+//                updatesMade = data["updatesPerDay"] as! [Double]
+//                setChart2(dataPoints: days, values: updatesMade)
+//                print(data)
+//            }
+//        }
+        
+//        let updatesMade = [1.0, 4.0, 6.0, 3.0, 4.0, 2.0, 4.0]
         
         //Sets up X Axis labels
         let xAxis = barChartView!.xAxis
@@ -60,83 +80,84 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
         xAxis2.labelCount = xAxisValueFormatter.labelCount
         xAxis2.valueFormatter = xAxisValueFormatter()
         
-        setChart(dataPoints: days, values: updatesMade)
-        setChart2(dataPoints: days, values: updatesMade)
-        barChartView.notifyDataSetChanged()
         lineChartView.notifyDataSetChanged()
+        barChartView.notifyDataSetChanged()
+        
+//        setChart(dataPoints: days, values: updatesMade)
+//        setChart2(dataPoints: days, values: updatesMade)
         
         //Fetches the dates of a user's goals
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, yyyy"
-        Goal.fetchGoalsByUser(user: PFUser.current()!) { (objects, error) in
-            if error == nil {
-                if let returnedobjects = objects {
-                    for object in returnedobjects {
-                        let newDate = dateFormatter.string(from: object.createdAt!)
-                        print(newDate)
-                    }
-                }
-            }
-        }
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "MMM d, yyyy"
+//        Goal.fetchGoalsByUser(user: PFUser.current()!) { (objects, error) in
+//            if error == nil {
+//                if let returnedobjects = objects {
+//                    for object in returnedobjects {
+//                        let newDate = dateFormatter.string(from: object.createdAt!)
+//                        print(newDate)
+//                    }
+//                }
+//            }
+//        }
     }
     
     //Function for bar graph
-    func setChart(dataPoints: [String], values: [Double]) {
-        barChartView.noDataText = "You need to provide data for the chart."
-        barChartView.chartDescription?.text = ""
-        
-        var dataEntries: [BarChartDataEntry] = []
-        
-        for i in 0..<dataPoints.count {
-            let dataEntry = BarChartDataEntry(x: Double(i), yValues: [values[i]])
-            dataEntries.append(dataEntry)
-        }
-        
-        let chartDataSet = BarChartDataSet(values: dataEntries, label: "Updates Made")
-        let chartData = BarChartData(dataSet: chartDataSet)
-        barChartView.data = chartData
-        
-        let sum = values.reduce(0, +)
-        let average = sum / 7
-        let average1 = average - 1.02
-        
-        
-        
-        //Settings for the Bar graph
-        chartDataSet.colors = [UIColor(red: 255/255, green: 95/255, blue: 107/255, alpha: 1)]
-        barChartView.xAxis.labelPosition = .bottom
-        barChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
-        barChartView.scaleYEnabled = false
-        barChartView.scaleXEnabled = false
-        barChartView.pinchZoomEnabled = false
-        barChartView.doubleTapToZoomEnabled = false
-        barChartView.xAxis.drawGridLinesEnabled = false
-        barChartView.leftAxis.drawGridLinesEnabled = false
-        barChartView.rightAxis.drawGridLinesEnabled = false
-        barChartView.rightAxis.drawLabelsEnabled = false
-        barChartView.legend.enabled = true
-        
-        
-        // Updates/Average Limit Lines
-        let averageEstimate = ChartLimitLine(limit: average, label: "Est. Updates Per Week")
-        averageEstimate.valueFont = UIFont(name: "Verdana", size: 10.0)!
-        averageEstimate.lineColor = UIColor.gray
-        barChartView.rightAxis.addLimitLine(averageEstimate)
-        averageEstimate.labelPosition = .leftBottom
-        
-        let actualAverage = ChartLimitLine(limit: average1, label: "Your average")
-        actualAverage.valueFont = UIFont(name: "Verdana", size: 10.0)!
-        if average1 > average {
-            actualAverage.lineColor = UIColor.green
-            barChartView.rightAxis.addLimitLine(actualAverage)
-        } else if average1 < average {
-            actualAverage.lineColor = UIColor.red
-            barChartView.rightAxis.addLimitLine(actualAverage)
-        } else if average1 == average {
-            actualAverage.lineColor = UIColor.green
-            barChartView.rightAxis.addLimitLine(actualAverage)
-        }
-    }
+//    func setChart(dataPoints: [String], values: [Double]) {
+//        barChartView.noDataText = "You need to provide data for the chart."
+//        barChartView.chartDescription?.text = ""
+//        
+//        var dataEntries: [BarChartDataEntry] = []
+//        
+//        for i in 0..<dataPoints.count {
+//            let dataEntry = BarChartDataEntry(x: Double(i), yValues: [values[i]])
+//            dataEntries.append(dataEntry)
+//        }
+//        
+//        let chartDataSet = BarChartDataSet(values: dataEntries, label: "Updates Made")
+//        let chartData = BarChartData(dataSet: chartDataSet)
+//        barChartView.data = chartData
+//        
+//        let sum = values.reduce(0, +)
+//        let average = sum / 7
+//        let average1 = average - 1.02
+//        
+//        
+//        
+//        //Settings for the Bar graph
+//        chartDataSet.colors = [UIColor(red: 255/255, green: 95/255, blue: 107/255, alpha: 1)]
+//        barChartView.xAxis.labelPosition = .bottom
+//        barChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
+//        barChartView.scaleYEnabled = false
+//        barChartView.scaleXEnabled = false
+//        barChartView.pinchZoomEnabled = false
+//        barChartView.doubleTapToZoomEnabled = false
+//        barChartView.xAxis.drawGridLinesEnabled = false
+//        barChartView.leftAxis.drawGridLinesEnabled = false
+//        barChartView.rightAxis.drawGridLinesEnabled = false
+//        barChartView.rightAxis.drawLabelsEnabled = false
+//        barChartView.legend.enabled = true
+//        
+//        
+//        // Updates/Average Limit Lines
+//        let averageEstimate = ChartLimitLine(limit: average, label: "Est. Updates Per Week")
+//        averageEstimate.valueFont = UIFont(name: "Verdana", size: 10.0)!
+//        averageEstimate.lineColor = UIColor.gray
+//        barChartView.rightAxis.addLimitLine(averageEstimate)
+//        averageEstimate.labelPosition = .leftBottom
+//        
+//        let actualAverage = ChartLimitLine(limit: average1, label: "Your average")
+//        actualAverage.valueFont = UIFont(name: "Verdana", size: 10.0)!
+//        if average1 > average {
+//            actualAverage.lineColor = UIColor.green
+//            barChartView.rightAxis.addLimitLine(actualAverage)
+//        } else if average1 < average {
+//            actualAverage.lineColor = UIColor.red
+//            barChartView.rightAxis.addLimitLine(actualAverage)
+//        } else if average1 == average {
+//            actualAverage.lineColor = UIColor.green
+//            barChartView.rightAxis.addLimitLine(actualAverage)
+//        }
+//    }
     //function for line graph
     func setChart2 (dataPoints: [String], values: [Double]) {
         lineChartView.noDataText = "You need to provide data for the chart."
@@ -149,19 +170,17 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
             dataEntries.append(dataEntry)
         }
         
-        
-        
         let chartDataSet = LineChartDataSet(values: dataEntries, label: "Updates Made")
         let chartData = LineChartData(dataSet: chartDataSet)
         lineChartView.data = chartData
         
-        let sum = values.reduce(0, +)
-        let average = sum / 7
-        let average1 = average - 1.02
+//        let sum = values.reduce(0, +)
+//        let average = sum / 7
+//        let average1 = average - 1.02
         
         
         
-        //Settings for the Bar graph
+        //Settings for the Line graph
         chartDataSet.colors = [UIColor(red: 255/255, green: 95/255, blue: 107/255, alpha: 1)]
         lineChartView.xAxis.labelPosition = .bottom
         lineChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
@@ -177,24 +196,24 @@ class ProgressViewController: UIViewController, ChartViewDelegate {
         
         
         // Updates/Average Limit Lines
-        let averageEstimate = ChartLimitLine(limit: average, label: "Est. Updates Per Week")
-        averageEstimate.valueFont = UIFont(name: "Verdana", size: 10.0)!
-        averageEstimate.lineColor = UIColor.gray
-        lineChartView.rightAxis.addLimitLine(averageEstimate)
-        averageEstimate.labelPosition = .leftBottom
-        
-        let actualAverage = ChartLimitLine(limit: average1, label: "Your average")
-        actualAverage.valueFont = UIFont(name: "Verdana", size: 10.0)!
-        if average1 > average {
-            actualAverage.lineColor = UIColor.green
-            lineChartView.rightAxis.addLimitLine(actualAverage)
-        } else if average1 < average {
-            actualAverage.lineColor = UIColor.red
-            lineChartView.rightAxis.addLimitLine(actualAverage)
-        } else if average1 == average {
-            actualAverage.lineColor = UIColor.green
-            lineChartView.rightAxis.addLimitLine(actualAverage)
-        }
+//        let averageEstimate = ChartLimitLine(limit: average, label: "Est. Updates Per Week")
+//        averageEstimate.valueFont = UIFont(name: "Verdana", size: 10.0)!
+//        averageEstimate.lineColor = UIColor.gray
+//        lineChartView.rightAxis.addLimitLine(averageEstimate)
+//        averageEstimate.labelPosition = .leftBottom
+//        
+//        let actualAverage = ChartLimitLine(limit: average1, label: "Your average")
+//        actualAverage.valueFont = UIFont(name: "Verdana", size: 10.0)!
+//        if average1 > average {
+//            actualAverage.lineColor = UIColor.green
+//            lineChartView.rightAxis.addLimitLine(actualAverage)
+//        } else if average1 < average {
+//            actualAverage.lineColor = UIColor.red
+//            lineChartView.rightAxis.addLimitLine(actualAverage)
+//        } else if average1 == average {
+//            actualAverage.lineColor = UIColor.green
+//            lineChartView.rightAxis.addLimitLine(actualAverage)
+//        }
     }
     
     override func didReceiveMemoryWarning() {

@@ -102,7 +102,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="109" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wdc-uB-5Ph">
-                                <rect key="frame" x="0.0" y="72" width="375" height="395"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="508"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.15343432739999999" green="0.15343432739999999" blue="0.15343432739999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -137,7 +137,7 @@
                                                             <state key="normal" image="info"/>
                                                         </button>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.28882549169999999" green="0.71462563450000005" blue="0.37368109189999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.13710747991309771" green="0.74756629394395702" blue="0.63911721097972241" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstItem="afe-6u-eiE" firstAttribute="leading" secondItem="sBy-Xv-sSd" secondAttribute="trailing" constant="6" id="Fh1-Q3-EOE"/>
                                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="afe-6u-eiE" secondAttribute="bottom" constant="12" id="Tbs-Jj-gQU"/>
@@ -457,13 +457,14 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="menu" id="ZtU-yN-AxO">
                             <connections>
-                                <action selector="onGoalMenuTap:" destination="4cB-WK-Nnu" id="Rkq-TY-9Eg"/>
+                                <action selector="onGoalMenuClick:" destination="4cB-WK-Nnu" id="hby-K0-yA2"/>
                                 <segue destination="fjP-gN-c68" kind="presentation" identifier="goalMenuButtonSegue" id="fF3-wN-hdJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="goalMenuButton" destination="ZtU-yN-AxO" id="BsB-rV-aT2"/>
+                        <outlet property="navTitle" destination="TXs-L2-SH2" id="GAr-zg-LJ8"/>
                         <outlet property="tableView" destination="U5Q-49-VPy" id="QWD-nZ-y2D"/>
                         <segue destination="1Dv-Of-Uq1" kind="show" identifier="profileSegue" id="ydZ-wS-uFS"/>
                     </connections>
@@ -759,14 +760,6 @@
                                     <action selector="onSegmentedSwitch:" destination="1Dv-Of-Uq1" eventType="valueChanged" id="l3z-ys-Ilq"/>
                                 </connections>
                             </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7uQ-Ca-qhr">
-                                <rect key="frame" x="302" y="1040" width="63" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="My Week"/>
-                                <connections>
-                                    <segue destination="6dc-ye-LrG" kind="presentation" id="BV3-b2-3dH"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9S-bB-3I4">
                                 <rect key="frame" x="177.5" y="182.5" width="20" height="17"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
@@ -823,6 +816,14 @@
                                     <segue destination="lKG-hx-w8f" kind="presentation" id="J3D-83-nd3"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="shA-kJ-z3A">
+                                <rect key="frame" x="302" y="123" width="63" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="My Week"/>
+                                <connections>
+                                    <segue destination="6dc-ye-LrG" kind="presentation" id="bj4-cR-zyp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -868,7 +869,7 @@
                         <outlet property="goalSelection" destination="BTf-en-lJD" id="tJs-d3-y81"/>
                         <outlet property="iconBorder" destination="Edz-iA-umt" id="FBI-NQ-V4q"/>
                         <outlet property="logoutButton" destination="dei-Nq-7BR" id="WIx-bZ-wqr"/>
-                        <outlet property="myWeek" destination="7uQ-Ca-qhr" id="A0b-IE-spd"/>
+                        <outlet property="myWeek" destination="shA-kJ-z3A" id="cjL-Hh-GoA"/>
                         <outlet property="profileIcon" destination="UhH-ks-eog" id="ZWh-Fx-Suw"/>
                         <outlet property="tableView" destination="bce-Sn-ehU" id="XCp-h4-FhL"/>
                         <outlet property="usernameLabel" destination="Joj-Jw-deG" id="6ph-cg-m15"/>
@@ -1107,7 +1108,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cFB-ed-aqS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3692" y="945"/>
+            <point key="canvasLocation" x="3692" y="944.97751124437787"/>
         </scene>
         <!--Post Comment View Controller-->
         <scene sceneID="lNc-tP-5XZ">
@@ -1257,7 +1258,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="InfoCell" rowHeight="585" id="5b2-zG-vcV" customClass="InfoCell" customModule="Goals" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="InfoCell" rowHeight="585" id="5b2-zG-vcV" customClass="InfoCell" customModule="Goals" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="585"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5b2-zG-vcV" id="hvz-ll-NPI">
@@ -1402,6 +1403,10 @@
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="70k-Hb-bca">
+                                                            <rect key="frame" x="0.0" y="0.0" width="65" height="41"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.25608247519999999" green="0.52235037090000003" blue="0.84200125930000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -2795,13 +2800,13 @@
         <image name="user" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kNn-XA-D7B"/>
-        <segue reference="7vN-Mr-0Qr"/>
         <segue reference="ZpT-ic-j8z"/>
+        <segue reference="kNn-XA-D7B"/>
         <segue reference="ydZ-wS-uFS"/>
-        <segue reference="Ugs-Kx-bhx"/>
-        <segue reference="die-PK-ZT8"/>
         <segue reference="rWw-4p-v87"/>
+        <segue reference="die-PK-ZT8"/>
+        <segue reference="7vN-Mr-0Qr"/>
+        <segue reference="b2e-3H-KtS"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
