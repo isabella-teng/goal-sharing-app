@@ -29,7 +29,7 @@ class GoalCell: UITableViewCell {
             
             let dateCreated = goal.createdAt! as Date
             let dateFormat = DateFormatter()
-            dateFormat.dateFormat = "MM.dd.yy"
+            dateFormat.dateFormat = "M/d/yyyy"
             self.goalStartDateLabel.text = String("Began goal on " + dateFormat.string(from: dateCreated))
 
         }
@@ -48,6 +48,9 @@ class GoalCell: UITableViewCell {
         let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCell(_:)))
         cellBackground.addGestureRecognizer(cellTapGestureRecognizer)
         cellBackground.isUserInteractionEnabled = true
+        
+        dateImage.setImage(#imageLiteral(resourceName: "info").withRenderingMode(.alwaysTemplate), for: .normal)
+        dateImage.tintColor = UIColor.white
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

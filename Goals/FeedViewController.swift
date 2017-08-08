@@ -111,6 +111,13 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //
         //        }
         
+        // Fetch goals for goal menu segue
+        Goal.fetchGoalsByCompletion(user: PFUser.current()!, isCompleted: false) { (loadedGoals: [PFObject]?, error: Error?) in
+            if error == nil {
+                self.allGoals = loadedGoals!
+            }
+        }
+        
         // Fetch feed based on followed users
         let usersArray = PFUser.current()?["following"] as! [PFUser]
         Update.fetchUpdatesFromUserArray2(userArray: usersArray, skipNumber: updatedSkipNumber) { (loadedUpdates: [PFObject]?, error: Error?) in
@@ -128,13 +135,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let message = Message(title: "Great update to your goal!", backgroundColor: UIColor(red:0.89, green:0.09, blue:0.44, alpha:1))
             Whisper.show(whisper: message, to: navigationController!, action: .present)
             hide(whisperFrom: navigationController!, after: 3)
-        }
-        
-        // Fetch goals for goal menu segue
-        Goal.fetchGoalsByCompletion(user: PFUser.current()!, isCompleted: false) { (loadedGoals: [PFObject]?, error: Error?) in
-            if error == nil {
-                self.allGoals = loadedGoals!
-            }
         }
     }
     
@@ -268,7 +268,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     
-    //3d touch
+    // 3D Touch
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         _ = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
         
@@ -294,16 +294,12 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
                 return previewViewController
             }
-            
         }
         return nil
-
-        
     }
     
     func previewingContext(_ previewingContext: PreviewingContext, commitViewController viewControllerToCommit: UIViewController) {
         self.navigationController?.pushViewController(viewControllerToCommit, animated: false)
-        
     }
     
     
