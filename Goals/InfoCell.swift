@@ -115,6 +115,16 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
                 completionProgressView.progress = Float(startToCurrent) / Float(startToCompletion)
             }
             
+            UIView.animate(withDuration: 1, animations: {
+                self.descriptionBackground.frame.size.width += 10
+                self.descriptionBackground.frame.size.height += 10
+            }) { (true) in
+                UIView.animate(withDuration: 1, delay: 0, options: [.autoreverse, .repeat], animations: {
+                    self.descriptionBackground.frame.origin.y -= 20
+                }, completion: nil)
+            }
+            
+            
         }
     }
     
@@ -144,6 +154,15 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
         authorIcon.layer.cornerRadius = authorIcon.frame.height / 2
         descriptionBackground.layer.cornerRadius = 10
         
+//        UIView.animate(withDuration: 1, animations: { 
+//            self.descriptionBackground.frame.size.width += 10
+//            self.descriptionBackground.frame.size.height += 10
+//        }) { (true) in
+//            UIView.animate(withDuration: 1, delay: 0, options: [.autoreverse, .repeat], animations: {
+//                self.descriptionBackground.frame.origin.y -= 20
+//            }, completion: nil)
+//        }
+        
         // Set up graph
         axisFormatDelegate = self as? IAxisValueFormatter
         days = ["M", "T", "W", "T", "F", "S", "S"]
@@ -153,7 +172,6 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
         xAxis.valueFormatter = xAxisValueFormatter()
         
         graphView.notifyDataSetChanged()
-        
         
         let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapGoal(_:)))
         descriptionBackground.addGestureRecognizer(cellTapGestureRecognizer)
