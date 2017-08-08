@@ -91,7 +91,21 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
           peekPop?.registerForPreviewingWithDelegate(self, sourceView: collectionView)
           
           
-          
+          let dateFormat = DateFormatter()
+          dateFormat.dateFormat = "M/d/yy"
+          let goalDateUpdated = currentUpdate?["goalDate"] as! Date
+          self.timestampLabel.text = String(dateFormat.string(from: goalDateUpdated))
+     }
+     
+     func done() {
+          self.dismiss(animated: true, completion: nil)
+     }
+     
+     @IBAction func onClose(_ sender: Any) {
+          self.dismiss(animated: true, completion: nil)
+     }
+     
+     override func viewDidAppear(_ animated: Bool) {
           if isFromTimelineGoal {
                let goalUpdateID = (goal?["updates"] as! [String])[0] as! String
                
@@ -109,21 +123,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                })
           }
 
-          let dateFormat = DateFormatter()
-          dateFormat.dateFormat = "M/d/yy"
-          let goalDateUpdated = currentUpdate?["goalDate"] as! Date
-          self.timestampLabel.text = String(dateFormat.string(from: goalDateUpdated))
-     }
-     
-     func done() {
-          self.dismiss(animated: true, completion: nil)
-     }
-     
-     @IBAction func onClose(_ sender: Any) {
-          self.dismiss(animated: true, completion: nil)
-     }
-     
-     override func viewDidAppear(_ animated: Bool) {
+          
           let typeString = currentUpdate?["type"] as! String
           if typeString == "positive" {
                goalView.backgroundColor = UIColor(red:0.50, green:0.85, blue:0.60, alpha:1.0)

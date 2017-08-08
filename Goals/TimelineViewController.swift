@@ -124,14 +124,6 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             
             let vc = segue.destination as! DetailViewController
             vc.currentUpdate = sender as? PFObject
-//            vc.isFromTimeline = true
-            
-//            let goalId = vc.currentUpdate?["goalId"] as! String
-//            Goal.fetchGoalWithId(id: goalId, withCompletion: { (loadedGoal: PFObject?, error: Error?) in
-//                if error == nil {
-//                    vc.goal = loadedGoal
-//                }
-//            })
         } else if (segue.identifier == "timelineToUpdateSegue") {
             let vc = segue.destination as! PostUpdateViewController
             vc.currentGoal = sender as? PFObject
@@ -144,13 +136,6 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             let vc = segue.destination as! DetailViewController
             vc.goal = currentGoal
             vc.isFromTimelineGoal = true
-//            let goalUpdateID = (currentGoal?["updates"] as! [String])[0] as! String
-//            
-//            Update.fetchUpdateById(updateId: goalUpdateID, withCompletion: { (update: PFObject?, error:Error?) in
-//                if error == nil {
-//                    vc.currentUpdate = update
-//                }
-//            })
         }
     }
 }

@@ -2796,4 +2796,13 @@
         <image name="settings" width="24" height="24"/>
         <image name="user" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="7vN-Mr-0Qr"/>
+        <segue reference="mbE-Eb-6eS"/>
+        <segue reference="b2e-3H-KtS"/>
+        <segue reference="kNn-XA-D7B"/>
+        <segue reference="ZpT-ic-j8z"/>
+        <segue reference="ydZ-wS-uFS"/>
+        <segue reference="rWw-4p-v87"/>
+    </inferredMetricsTieBreakers>
 </document>
