@@ -1747,7 +1747,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="uHu-1d-37X">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="uHu-1d-37X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2743,7 +2743,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="U1N-J6-1Pu">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="U1N-J6-1Pu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2764,7 +2764,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="VI5-VU-sfF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="VI5-VU-sfF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2796,5 +2796,14 @@
         <image name="settings" width="24" height="24"/>
         <image name="user" width="25" height="25"/>
     </resources>
-        <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+    <inferredMetricsTieBreakers>
+        <segue reference="7vN-Mr-0Qr"/>
+        <segue reference="b2e-3H-KtS"/>
+        <segue reference="mbE-Eb-6eS"/>
+        <segue reference="kNn-XA-D7B"/>
+        <segue reference="ydZ-wS-uFS"/>
+        <segue reference="ZpT-ic-j8z"/>
+        <segue reference="rWw-4p-v87"/>
+    </inferredMetricsTieBreakers>
+    <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
