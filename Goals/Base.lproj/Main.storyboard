@@ -132,7 +132,7 @@
                                                             <rect key="frame" x="15" y="61" width="22" height="22"/>
                                                         </button>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.28882549169999999" green="0.71462563450000005" blue="0.37368109189999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.13710747991309771" green="0.74756629394395702" blue="0.63911721097972241" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstItem="afe-6u-eiE" firstAttribute="leading" secondItem="sBy-Xv-sSd" secondAttribute="trailing" constant="6" id="Fh1-Q3-EOE"/>
                                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="afe-6u-eiE" secondAttribute="bottom" constant="12" id="Tbs-Jj-gQU"/>
@@ -452,13 +452,14 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="menu" id="ZtU-yN-AxO">
                             <connections>
-                                <action selector="onGoalMenuTap:" destination="4cB-WK-Nnu" id="Rkq-TY-9Eg"/>
+                                <action selector="onGoalMenuClick:" destination="4cB-WK-Nnu" id="hby-K0-yA2"/>
                                 <segue destination="fjP-gN-c68" kind="presentation" identifier="goalMenuButtonSegue" id="fF3-wN-hdJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="goalMenuButton" destination="ZtU-yN-AxO" id="BsB-rV-aT2"/>
+                        <outlet property="navTitle" destination="TXs-L2-SH2" id="GAr-zg-LJ8"/>
                         <outlet property="tableView" destination="U5Q-49-VPy" id="QWD-nZ-y2D"/>
                         <segue destination="1Dv-Of-Uq1" kind="show" identifier="profileSegue" id="ydZ-wS-uFS"/>
                     </connections>
@@ -1252,7 +1253,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="InfoCell" rowHeight="585" id="5b2-zG-vcV" customClass="InfoCell" customModule="Goals" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="InfoCell" rowHeight="585" id="5b2-zG-vcV" customClass="InfoCell" customModule="Goals" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="585"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5b2-zG-vcV" id="hvz-ll-NPI">
@@ -1397,6 +1398,10 @@
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="70k-Hb-bca">
+                                                            <rect key="frame" x="0.0" y="0.0" width="65" height="41"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.25608247519999999" green="0.52235037090000003" blue="0.84200125930000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -1783,11 +1788,11 @@
                         <viewControllerLayoutGuide type="bottom" id="410-mz-I4m"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="9nr-ED-ICG">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PC4-VB-t5c">
-                                <rect key="frame" x="0.0" y="144" width="375" height="257.5"/>
+                                <rect key="frame" x="0.0" y="144" width="375" height="208.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LogCell" rowHeight="77" id="usr-CH-lhy" customClass="LogCell" customModule="Goals" customModuleProvider="target">
@@ -1900,7 +1905,7 @@
                                 </prototypes>
                             </tableView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yZf-IU-b2l">
-                                <rect key="frame" x="70" y="431" width="305" height="120"/>
+                                <rect key="frame" x="70" y="382" width="305" height="120"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="Tv0-cz-19m"/>
@@ -2034,7 +2039,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Media" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayA-XU-xI8">
-                                <rect key="frame" x="85" y="411.5" width="91.5" height="14.5"/>
+                                <rect key="frame" x="85" y="362.5" width="91.5" height="14.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="91.5" id="UGE-9c-kZb"/>
                                 </constraints>
@@ -2043,7 +2048,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v2K-Fb-txE">
-                                <rect key="frame" x="10" y="431.5" width="50" height="50"/>
+                                <rect key="frame" x="10" y="382.5" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="qPH-ey-EsM"/>
                                     <constraint firstAttribute="width" constant="50" id="yyi-QB-2lt"/>
@@ -2055,7 +2060,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MqF-W0-GMW">
-                                <rect key="frame" x="10" y="501" width="50" height="50"/>
+                                <rect key="frame" x="10" y="452" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="AoR-kV-HiY"/>
                                 </constraints>
@@ -2065,7 +2070,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQC-DY-4lv">
-                                <rect key="frame" x="31" y="469.5" width="9" height="18"/>
+                                <rect key="frame" x="31" y="420.5" width="9" height="18"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2796,6 +2801,10 @@
         <segue reference="die-PK-ZT8"/>
         <segue reference="rWw-4p-v87"/>
         <segue reference="Ugs-Kx-bhx"/>
+        <segue reference="ydZ-wS-uFS"/>
+        <segue reference="b2e-3H-KtS"/>
+        <segue reference="8VS-EP-q6V"/>
+        <segue reference="mbE-Eb-6eS"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
