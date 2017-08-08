@@ -40,8 +40,6 @@ class xAxisValueFormatter: NSObject, IAxisValueFormatter {
 
         if index < 0 || index >= xAxisValueFormatter.days.count
         { return "" }
-        //print(index)
-        //print(xAxisValueFormatter.days[ index ])
         return xAxisValueFormatter.days[ index ]
     }
 }

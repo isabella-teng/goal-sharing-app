@@ -9,13 +9,6 @@
 import UIKit
 import Parse
 
-//    * Likes
-//    * Comments
-//    * Categories
-//    * Progress
-//
-
-
 class Update: NSObject {
     
     // Update types

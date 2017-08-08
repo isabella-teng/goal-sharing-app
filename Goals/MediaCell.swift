@@ -18,7 +18,7 @@ protocol MediaCellDelegate: class {
 class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate, AVAudioPlayerDelegate {
     
     @IBOutlet weak var mediaImage: UIImageView!
-    
+    @IBOutlet weak var mediaButton: UIButton!
     
     weak var delegate: MediaCellDelegate?
     var onDetails: Bool? = nil {
@@ -26,6 +26,14 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate, AVAudioPl
             if onDetails != nil {
                 mediaImage.layer.cornerRadius = 10
             }
+        }
+    }
+    
+    let playerController = AVPlayerViewController()
+    
+    var parent: DetailViewController? {
+        didSet{
+            parent?.addChildViewController(playerController)
         }
     }
     
@@ -37,7 +45,9 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate, AVAudioPl
                     urlString.getDataInBackground { (imageData: Data?, error: Error?) in
                         if error == nil {
                             var profImage = UIImage(data: imageData!)
-                            profImage = self.imageRotatedByDegrees(oldImage: profImage!, deg: 90)
+                            if (self.data["rotated"] as? Bool) == nil {
+                                profImage = self.imageRotatedByDegrees(oldImage: profImage!, deg: 90)
+                            }
                             self.mediaImage.image = profImage
                         }
                     }
@@ -49,7 +59,7 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate, AVAudioPl
                 let asset = AVAsset(url: URL(string: videoUrl!)!)
                 let item = AVPlayerItem(asset: asset)
                 let player = AVPlayer(playerItem: item)
-                let playerController = AVPlayerViewController()
+    
                 playerController.player = player
                 playerController.view.frame = self.mediaImage.frame
                 playerController.view.clipsToBounds = true
@@ -58,15 +68,15 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate, AVAudioPl
                 playerController.videoGravity = AVLayerVideoGravityResizeAspectFill
                 playerController.delegate = self
                 self.addSubview(playerController.view)
-                player.play()
             }
         }
     }
-    
+
     var toPass: [String: Any] = [:]
     
+    //not entering this for videos
     @IBAction func didTapImage(_ sender: Any) {
-        print("hi")
+        print("made it!")
         delegate?.mediaCell(self, didTap: toPass)
     }
     
@@ -90,4 +100,9 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate, AVAudioPl
         UIGraphicsEndImageContext()
         return newImage
     }
+    
+    override func awakeFromNib() {
+        self.bringSubview(toFront: mediaButton)
+    }
+    
 }

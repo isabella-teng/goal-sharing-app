@@ -10,11 +10,12 @@
 		15A2C043446242E87172231A /* Pods_GoalsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E339925FD6B14DCCACECDAC9 /* Pods_GoalsTests.framework */; };
 		55FD199C341B1A7428EE3609 /* Pods_GoalsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A37E25EFEFAC2CCC5DABED /* Pods_GoalsUITests.framework */; };
 		770E9622CD194284E248B22C /* Pods_Goals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFBA34B6999BBB6E2B553F30 /* Pods_Goals.framework */; };
-		7E1238AD1F22A79000DAF688 /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1238AC1F22A79000DAF688 /* InfoCell.swift */; };
 		7E124C951F1EA8EF00858D35 /* UpdateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E124C941F1EA8EF00858D35 /* UpdateCell.swift */; };
 		7E1FCE621F16D6E9009C0AF1 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1FCE611F16D6E9009C0AF1 /* FeedCell.swift */; };
 		7E1FCE641F16E6DC009C0AF1 /* PostUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1FCE631F16E6DC009C0AF1 /* PostUpdateViewController.swift */; };
 		7E38DFDB1F15813400DEF47C /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E38DFDA1F15813400DEF47C /* Update.swift */; };
+		7E40BCAD1F39184E006BF076 /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E40BCAC1F39184E006BF076 /* InfoCell.swift */; };
+		7E40BCAF1F392165006BF076 /* CompletedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E40BCAE1F392165006BF076 /* CompletedCell.swift */; };
 		7E6B47FF1F169CE00079AC1F /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6B47FE1F169CE00079AC1F /* Goal.swift */; };
 		7E8422F71F3142F20000B9C1 /* FullMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8422F61F3142F20000B9C1 /* FullMediaViewController.swift */; };
 		7E949C081F18108800449DA0 /* PostCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E949C071F18108800449DA0 /* PostCommentViewController.swift */; };
@@ -30,7 +31,6 @@
 		B8FB62E31F3121340065B508 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FB62E21F3121340065B508 /* ContainerViewController.swift */; };
 		B8FB62EF1F312EE70065B508 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FB62EE1F312EE70065B508 /* UserViewController.swift */; };
 		FA3E2F2C1F2AFC1D009DAF56 /* GoalCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3E2F2B1F2AFC1D009DAF56 /* GoalCategoryCell.swift */; };
-		FA58362D1F2936730023AA88 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA58362C1F2936730023AA88 /* ExploreViewController.swift */; };
 		FA58362F1F293F3B0023AA88 /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA58362E1F293F3B0023AA88 /* UserSearchCell.swift */; };
 		FA5F55071F37FE260059ED5D /* PeekViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5F55061F37FE260059ED5D /* PeekViewViewController.swift */; };
 		FA91CC791F33C854008C4ACC /* SwiftyCamButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA91CC781F33C854008C4ACC /* SwiftyCamButton.swift */; };
@@ -39,6 +39,7 @@
 		FAA6C8C81F1EB97E00FB8F26 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6C8C71F1EB97E00FB8F26 /* PhotoViewController.swift */; };
 		FAA6C8CA1F1EC24300FB8F26 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6C8C91F1EC24300FB8F26 /* VideoViewController.swift */; };
 		FAA6C8CC1F1ED64800FB8F26 /* AddCaptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA6C8CB1F1ED64800FB8F26 /* AddCaptionViewController.swift */; };
+		FAAEE7081F3994E700CA2800 /* MenuTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAEE7071F3994E700CA2800 /* MenuTransitionManager.swift */; };
 		FACD857C1F314D7B007A6D8A /* AllCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACD857B1F314D7B007A6D8A /* AllCategoriesViewController.swift */; };
 		FACD85821F317DD9007A6D8A /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACD85811F317DD9007A6D8A /* CategoryCell.swift */; };
 		FACD85841F318819007A6D8A /* Category'sGoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACD85831F318819007A6D8A /* Category'sGoalsViewController.swift */; };
@@ -84,11 +85,12 @@
 /* Begin PBXFileReference section */
 		1FCD39C47ED1A6703B4F8F14 /* Pods-Goals.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Goals.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Goals/Pods-Goals.debug.xcconfig"; sourceTree = "<group>"; };
 		7D58FA351BA108AA49E998F0 /* Pods-GoalsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoalsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GoalsUITests/Pods-GoalsUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		7E1238AC1F22A79000DAF688 /* InfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
 		7E124C941F1EA8EF00858D35 /* UpdateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateCell.swift; sourceTree = "<group>"; };
 		7E1FCE611F16D6E9009C0AF1 /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		7E1FCE631F16E6DC009C0AF1 /* PostUpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostUpdateViewController.swift; sourceTree = "<group>"; };
 		7E38DFDA1F15813400DEF47C /* Update.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
+		7E40BCAC1F39184E006BF076 /* InfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
+		7E40BCAE1F392165006BF076 /* CompletedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedCell.swift; sourceTree = "<group>"; };
 		7E6B47FE1F169CE00079AC1F /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		7E8422F61F3142F20000B9C1 /* FullMediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 3; lastKnownFileType = sourcecode.swift; path = FullMediaViewController.swift; sourceTree = "<group>"; };
 		7E949C071F18108800449DA0 /* PostCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCommentViewController.swift; sourceTree = "<group>"; };
@@ -102,7 +104,7 @@
 		B84B22781F1EDB6F00E9482E /* ProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		B84B227C1F2019BE00E9482E /* xAxisValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = xAxisValueFormatter.swift; sourceTree = "<group>"; };
 		B87C87ED1F156E9300F58517 /* PostGoalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostGoalViewController.swift; sourceTree = "<group>"; };
-		B87C87EF1F159AE100F58517 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		B87C87EF1F159AE100F58517 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 5; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B87C87F11F169B5500F58517 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		B8FB62E21F3121340065B508 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		B8FB62EE1F312EE70065B508 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
@@ -110,7 +112,6 @@
 		CF3584AB59D862ECDED6FA78 /* Pods-Goals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Goals.release.xcconfig"; path = "Pods/Target Support Files/Pods-Goals/Pods-Goals.release.xcconfig"; sourceTree = "<group>"; };
 		E339925FD6B14DCCACECDAC9 /* Pods_GoalsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoalsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA3E2F2B1F2AFC1D009DAF56 /* GoalCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalCategoryCell.swift; sourceTree = "<group>"; };
-		FA58362C1F2936730023AA88 /* ExploreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 		FA58362E1F293F3B0023AA88 /* UserSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
 		FA5F55061F37FE260059ED5D /* PeekViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeekViewViewController.swift; sourceTree = "<group>"; };
 		FA91CC781F33C854008C4ACC /* SwiftyCamButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyCamButton.swift; sourceTree = "<group>"; };
@@ -120,6 +121,7 @@
 		FAA6C8C91F1EC24300FB8F26 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		FAA6C8CB1F1ED64800FB8F26 /* AddCaptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCaptionViewController.swift; sourceTree = "<group>"; };
 		FAA6C8CD1F200EE900FB8F26 /* Goals.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Goals.entitlements; sourceTree = "<group>"; };
+		FAAEE7071F3994E700CA2800 /* MenuTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTransitionManager.swift; sourceTree = "<group>"; };
 		FACD857B1F314D7B007A6D8A /* AllCategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCategoriesViewController.swift; sourceTree = "<group>"; };
 		FACD85811F317DD9007A6D8A /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		FACD85831F318819007A6D8A /* Category'sGoalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Category'sGoalsViewController.swift"; sourceTree = "<group>"; };
@@ -183,9 +185,10 @@
 		7E4EE3411F1FDB4900BCFEA4 /* Timeline */ = {
 			isa = PBXGroup;
 			children = (
-				7E1238AC1F22A79000DAF688 /* InfoCell.swift */,
+				7E40BCAC1F39184E006BF076 /* InfoCell.swift */,
 				7ECD22391F26C2A900D09608 /* MediaCell.swift */,
 				7E124C941F1EA8EF00858D35 /* UpdateCell.swift */,
+				7E40BCAE1F392165006BF076 /* CompletedCell.swift */,
 			);
 			name = Timeline;
 			sourceTree = "<group>";
@@ -270,14 +273,6 @@
 			name = "Explore Cells";
 			sourceTree = "<group>";
 		};
-		FACD85891F318EE0007A6D8A /* Dead Old Explore Stuff */ = {
-			isa = PBXGroup;
-			children = (
-				FA58362C1F2936730023AA88 /* ExploreViewController.swift */,
-			);
-			name = "Dead Old Explore Stuff";
-			sourceTree = "<group>";
-		};
 		FACD858A1F323169007A6D8A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -324,7 +319,6 @@
 				FACF12D31F156F3F00D505FE /* Models */,
 				FACF12CB1F154A4600D505FE /* View Controllers */,
 				7E8642021F156FCA00EE968A /* Views */,
-				FACD85891F318EE0007A6D8A /* Dead Old Explore Stuff */,
 				FACF12A41F15476200D505FE /* LaunchScreen.storyboard */,
 				FACF12A71F15476200D505FE /* Info.plist */,
 				FAD3513B1F16A8CC00998CCA /* Assets.xcassets */,
@@ -354,10 +348,10 @@
 			isa = PBXGroup;
 			children = (
 				FA5F55061F37FE260059ED5D /* PeekViewViewController.swift */,
-				FAD351411F182FC500998CCA /* AllGoalsViewController.swift */,
-				B87C87EF1F159AE100F58517 /* DetailViewController.swift */,
 				7EEEFB161F158A6E004A29EC /* FeedViewController.swift */,
 				7E8422F61F3142F20000B9C1 /* FullMediaViewController.swift */,
+				FAD351411F182FC500998CCA /* AllGoalsViewController.swift */,
+				B87C87EF1F159AE100F58517 /* DetailViewController.swift */,
 				FACF12C91F154A3D00D505FE /* LoginViewController.swift */,
 				7E949C071F18108800449DA0 /* PostCommentViewController.swift */,
 				B87C87ED1F156E9300F58517 /* PostGoalViewController.swift */,
@@ -378,6 +372,7 @@
 				7E38DFDA1F15813400DEF47C /* Update.swift */,
 				FAD351391F1597FE00998CCA /* User.swift */,
 				B84B227C1F2019BE00E9482E /* xAxisValueFormatter.swift */,
+				FAAEE7071F3994E700CA2800 /* MenuTransitionManager.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -679,16 +674,17 @@
 				7E8422F71F3142F20000B9C1 /* FullMediaViewController.swift in Sources */,
 				B87C87EE1F156E9300F58517 /* PostGoalViewController.swift in Sources */,
 				7E1FCE621F16D6E9009C0AF1 /* FeedCell.swift in Sources */,
+				7E40BCAF1F392165006BF076 /* CompletedCell.swift in Sources */,
 				FACD85821F317DD9007A6D8A /* CategoryCell.swift in Sources */,
 				B8FB62E31F3121340065B508 /* ContainerViewController.swift in Sources */,
 				7E949C081F18108800449DA0 /* PostCommentViewController.swift in Sources */,
 				FACF12CA1F154A3D00D505FE /* LoginViewController.swift in Sources */,
 				7EEEFB171F158A6E004A29EC /* FeedViewController.swift in Sources */,
 				7E6B47FF1F169CE00079AC1F /* Goal.swift in Sources */,
-				FA58362D1F2936730023AA88 /* ExploreViewController.swift in Sources */,
 				FAA6C8CA1F1EC24300FB8F26 /* VideoViewController.swift in Sources */,
 				FAA6C8CC1F1ED64800FB8F26 /* AddCaptionViewController.swift in Sources */,
 				FACD85841F318819007A6D8A /* Category'sGoalsViewController.swift in Sources */,
+				FAAEE7081F3994E700CA2800 /* MenuTransitionManager.swift in Sources */,
 				FAD351421F182FC500998CCA /* AllGoalsViewController.swift in Sources */,
 				FA58362F1F293F3B0023AA88 /* UserSearchCell.swift in Sources */,
 				7E124C951F1EA8EF00858D35 /* UpdateCell.swift in Sources */,
@@ -707,12 +703,12 @@
 				FAD3513A1F1597FE00998CCA /* User.swift in Sources */,
 				7ECD223A1F26C2A900D09608 /* MediaCell.swift in Sources */,
 				7EFBFC401F2AA4BF0052A81A /* DetailCommentCell.swift in Sources */,
-				7E1238AD1F22A79000DAF688 /* InfoCell.swift in Sources */,
 				FA3E2F2C1F2AFC1D009DAF56 /* GoalCategoryCell.swift in Sources */,
 				B84B227D1F2019BE00E9482E /* xAxisValueFormatter.swift in Sources */,
 				FA91CC791F33C854008C4ACC /* SwiftyCamButton.swift in Sources */,
 				FACF12D21F156E8C00D505FE /* ProfileCell.swift in Sources */,
 				FAA6C8C31F1EA79900FB8F26 /* CameraViewController.swift in Sources */,
+				7E40BCAD1F39184E006BF076 /* InfoCell.swift in Sources */,
 				B84B22791F1EDB6F00E9482E /* ProgressViewController.swift in Sources */,
 				FAD3513E1F16D49A00998CCA /* LogCell.swift in Sources */,
 				7E1FCE641F16E6DC009C0AF1 /* PostUpdateViewController.swift in Sources */,

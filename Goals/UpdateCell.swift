@@ -24,9 +24,12 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var nodeView: UIView!
+    @IBOutlet weak var updateImage: UIImageView!
+    @IBOutlet weak var updateImageBackground: UIView!
     
     @IBOutlet weak var mediaHeight: NSLayoutConstraint!
     @IBOutlet weak var mediaPosition: NSLayoutConstraint!
+    @IBOutlet weak var imageHeight: NSLayoutConstraint!
     
     weak var delegate: TimelineUpdateCellDelegate?
     
@@ -44,6 +47,7 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
             } else {
                 updateBackground.backgroundColor = UIColor(red: 0.45, green: 0.50, blue: 0.90, alpha: 1.0)
             }
+            updateImageBackground.backgroundColor = updateBackground.backgroundColor
             
             updateLabel.text = update?["text"] as? String
             
@@ -82,6 +86,17 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
                 })
             }
             
+            if let picture = update?["image"] as? PFFile {
+                imageHeight.constant = 200
+                picture.getDataInBackground(block: { (data: Data?, error: Error?) in
+                    if error == nil {
+                        self.updateImage.image = UIImage(data: data!)
+                    }
+                })
+            } else {
+                imageHeight.constant = 0
+            }
+            
             let activityMedia = update?["activity"] as! [[String: Any]]
             if activityMedia.count == 0 {
                 collectionView.isHidden = true
@@ -92,26 +107,40 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
                     mediaPosition.constant = 0
                 }
             } else {
-                let count = UIView(frame: CGRect(x: 150, y: 66, width: 25, height: 20))
-                count.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
-                count.layer.cornerRadius = count.frame.height / 2
-                
-                let countLabel = UILabel(frame: CGRect(x: 0, y: 0, width: count.frame.width, height: count.frame.height))
-                countLabel.textColor = UIColor.white
-                countLabel.font = UIFont(name: "HelveticaNeue", size: 14)
-                countLabel.textAlignment = NSTextAlignment.center
-                countLabel.text = String(activityMedia.count)
-                
-                count.addSubview(countLabel)
-                self.addSubview(count)
-                
+                media = activityMedia
+                collectionView.reloadData()
                 collectionView.isHidden = false
                 mediaHeight.constant = 294
-                media = activityMedia
                 if comments.count == 0 {
                     mediaPosition.constant = -71.5
+                    
+//                    let count = UIView(frame: CGRect(x: 150, y: 66, width: 25, height: 20))
+//                    count.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
+//                    count.layer.cornerRadius = count.frame.height / 2
+//                    
+//                    let countLabel = UILabel(frame: CGRect(x: 0, y: 0, width: count.frame.width, height: count.frame.height))
+//                    countLabel.textColor = UIColor.white
+//                    countLabel.font = UIFont(name: "HelveticaNeue", size: 14)
+//                    countLabel.textAlignment = NSTextAlignment.center
+//                    countLabel.text = String(activityMedia.count)
+//                    
+//                    count.addSubview(countLabel)
+//                    self.addSubview(count)
                 } else {
                     mediaPosition.constant = 15
+                    
+//                    let count = UIView(frame: CGRect(x: 150, y: 100 + ((comments[comments.count - 1]["text"] as! String).characters.count % 25 * 10), width: 25, height: 20))
+//                    count.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
+//                    count.layer.cornerRadius = count.frame.height / 2
+//                    
+//                    let countLabel = UILabel(frame: CGRect(x: 0, y: 0, width: count.frame.width, height: count.frame.height))
+//                    countLabel.textColor = UIColor.white
+//                    countLabel.font = UIFont(name: "HelveticaNeue", size: 14)
+//                    countLabel.textAlignment = NSTextAlignment.center
+//                    countLabel.text = String(activityMedia.count)
+//                    
+//                    count.addSubview(countLabel)
+//                    self.addSubview(count)
                 }
             }
         }
@@ -122,7 +151,6 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
     }
     
     func mediaCell(_ mediaCell: MediaCell, didTap data: [String : Any]) {
-        print(data)
         delegate?.timelineUpdateCell(self, didTap: update!, tapped: data)
     }
 
@@ -140,6 +168,8 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
         commentBackground.layer.cornerRadius = 10
         nodeView.layer.cornerRadius = nodeView.frame.height / 2
         commenterIcon.layer.cornerRadius = commenterIcon.frame.height / 2
+        updateImageBackground.layer.cornerRadius = 10
+        updateImage.layer.cornerRadius = 10
         
         let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapUpdate(_:)))
         updateBackground.addGestureRecognizer(cellTapGestureRecognizer)

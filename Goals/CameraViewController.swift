@@ -22,7 +22,6 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         cameraDelegate = self
-        //defaultCamera = .front
         maximumVideoDuration = 10.0
         shouldUseDeviceOrientation = true
         allowAutoRotate = true

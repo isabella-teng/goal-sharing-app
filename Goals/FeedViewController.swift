@@ -14,11 +14,10 @@ import BubbleTransition
 import NVActivityIndicatorView
 import PeekPop
 
-class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate, DidPostUpdateDelegate, UIViewControllerTransitioningDelegate, NVActivityIndicatorViewable, UIScrollViewDelegate, PeekPopPreviewingDelegate {
+class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FeedCellDelegate, DidPostUpdateDelegate, UIViewControllerTransitioningDelegate, NVActivityIndicatorViewable, UIScrollViewDelegate, PeekPopPreviewingDelegate, MenuTransitionManagerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var goalMenuButton: UIBarButtonItem!
-    @IBOutlet weak var barButtonView: UIView!
     
     var updates: [PFObject] = []
     var allGoals: [PFObject] = []
@@ -29,6 +28,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var completedGoal: PFObject? = nil
     
     let transition = BubbleTransition()
+    
+    //for menu pulldown
+    var menuTransitionManager = MenuTransitionManager()
     
     var refreshControl: UIRefreshControl!
     var activityIndicatorView: NVActivityIndicatorView?
@@ -79,7 +81,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func loadMoreData() {
-        print("fetching!!!!")
         let usersArray = PFUser.current()?["following"] as! [PFUser]
         Update.fetchUpdatesFromUserArray2(userArray: usersArray, skipNumber: updatedSkipNumber) { (loadedUpdates: [PFObject]?, error: Error?) in
             if error == nil {
@@ -170,7 +171,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //
 //            
 //        }
-        //currently a notification you see if view appears
+        
+        
+        //not working
         if didPostUpdate {
             let message = Message(title: "Great update to your goal!", backgroundColor: UIColor(red:0.89, green:0.09, blue:0.44, alpha:1))
             Whisper.show(whisper: message, to: navigationController!, action: .present)
@@ -180,7 +183,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     //TODO: Fix, is not entering
     func postedUpdate(sentUpdate: Bool) {
-        print("should enter")
         didPostUpdate = sentUpdate
     }
     
@@ -233,17 +235,28 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    func dismiss() {
+        self.dismiss(animated: true, completion: nil)
+    }
+
+    @IBAction func onGoalMenuTap(_ sender: Any) {
+        performSegue(withIdentifier: "goalMenuButtonSegue", sender: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "detailSegue") {
             let vc = segue.destination as! DetailViewController
             vc.currentUpdate = sender as? PFObject
             
             let goalId = vc.currentUpdate?["goalId"] as! String
-            Goal.fetchGoalWithId(id: goalId) { (loadedGoal: PFObject?, error: Error?) in
+            Goal.fetchGoalWithId(id: goalId, withCompletion: { (loadedGoal: PFObject?, error: Error?) in
                 if error == nil {
-                    vc.goal = loadedGoal
+                    vc.goal = loadedGoal!
+                } else {
+                    print(error?.localizedDescription as Any)
                 }
-            }
+            })
+            
         } else if (segue.identifier == "commentSegue") {
             let vc = segue.destination as! PostCommentViewController
             vc.currentUpdate = sender as? PFObject
@@ -256,6 +269,10 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let vc = segue.destination as! ProfileViewController
             vc.user = sender as? PFUser
             vc.fromFeed = true
+        } else if (segue.identifier == "goalMenuButtonSegue") {
+            let vc = segue.destination as! AllGoalsViewController
+            vc.transitioningDelegate = self.menuTransitionManager
+            menuTransitionManager.delegate = self
         }
     }
 //    
@@ -276,12 +293,11 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     //3d touch
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
+        _ = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
         
         let storyboard = UIStoryboard(name:"Main", bundle:nil)
         if let previewViewController = storyboard.instantiateViewController(withIdentifier: "PeekViewViewController") as? PeekViewViewController {
             self.present(previewViewController, animated: true, completion: nil)
-            //PeekViewViewController.image = self.tableView[indexPath.row].updateImage
         }
     }
     
@@ -290,11 +306,15 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let storyboard = UIStoryboard(name:"Main", bundle:nil)
         if let previewViewController = storyboard.instantiateViewController(withIdentifier: "PeekViewViewController") as? PeekViewViewController {
             if let indexPath = tableView!.indexPathForRow(at: location) {
-                //let selectedImage = tableView[indexPath.row].updateImage
-//                if let layoutAttributes = tableView!.layoutAttributesForItem(at: indexPath) {
-//                    previewingContext.sourceRect = layoutAttributes.frame
-//                }
-                //previewViewController.image = selectedImage
+                if let selectedImage = updates[indexPath.row]["image"] as? PFFile {
+                    selectedImage.getDataInBackground(block: { (data: Data?, error: Error?) in
+                        if error == nil {
+                            let image = UIImage(data: data!)
+                            previewViewController.peekImageView.layer.cornerRadius = 15
+                            previewViewController.image = image
+                        }
+                    })
+                }
                 return previewViewController
             }
             

@@ -151,23 +151,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
         
-        Goal.fetchGoalsByCompletion(user: user!, isCompleted: false, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
-            if error == nil {
-                self.activeGoals = loadedGoals!
-                self.allUserPosts = self.activeGoals
-                self.tableView.reloadData()
-            } else {
-                print(error?.localizedDescription as Any)
-            }
-        })
-        
-        Goal.fetchGoalsByCompletion(user: user!, isCompleted: true, withCompletion: { (loadedGoals: [PFObject]?, error: Error?) in
-            if error == nil {
-                self.completedGoals = loadedGoals!
-            } else {
-                print(error?.localizedDescription as Any)
-            }
-        })
+        onSegmentedSwitch(self)
     }
     
     // Light status bar colors
@@ -345,8 +329,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func completionNotification(goal: PFObject) {
-        let announcement = Announcement(title: "Congratulations on completing your goal!")
-        Whisper.show(shout: announcement, to: self) { }
         //send this goal as an update back to the database, to feed view controller
         var data: [String: Any] = [:]
         let username = user?.username!
