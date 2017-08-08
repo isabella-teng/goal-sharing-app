@@ -160,6 +160,11 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.userIcon.image = UIImage(data: image!)
             }
         }
+        
+        if let updateImage = currentUpdate?["image"] as? PFFile {
+            media.append(["type": "photo", "image": updateImage, "sender": PFUser.current()!, "caption": updateLabel.text!, "rotated": true])
+            collectionView.reloadData()
+        }
     }
     
     

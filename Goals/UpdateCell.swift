@@ -107,39 +107,40 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
                     mediaPosition.constant = 0
                 }
             } else {
+                media = activityMedia
+                collectionView.reloadData()
                 collectionView.isHidden = false
                 mediaHeight.constant = 294
-                media = activityMedia
                 if comments.count == 0 {
                     mediaPosition.constant = -71.5
                     
-                    let count = UIView(frame: CGRect(x: 150, y: 66, width: 25, height: 20))
-                    count.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
-                    count.layer.cornerRadius = count.frame.height / 2
-                    
-                    let countLabel = UILabel(frame: CGRect(x: 0, y: 0, width: count.frame.width, height: count.frame.height))
-                    countLabel.textColor = UIColor.white
-                    countLabel.font = UIFont(name: "HelveticaNeue", size: 14)
-                    countLabel.textAlignment = NSTextAlignment.center
-                    countLabel.text = String(activityMedia.count)
-                    
-                    count.addSubview(countLabel)
-                    self.addSubview(count)
+//                    let count = UIView(frame: CGRect(x: 150, y: 66, width: 25, height: 20))
+//                    count.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
+//                    count.layer.cornerRadius = count.frame.height / 2
+//                    
+//                    let countLabel = UILabel(frame: CGRect(x: 0, y: 0, width: count.frame.width, height: count.frame.height))
+//                    countLabel.textColor = UIColor.white
+//                    countLabel.font = UIFont(name: "HelveticaNeue", size: 14)
+//                    countLabel.textAlignment = NSTextAlignment.center
+//                    countLabel.text = String(activityMedia.count)
+//                    
+//                    count.addSubview(countLabel)
+//                    self.addSubview(count)
                 } else {
                     mediaPosition.constant = 15
                     
-                    let count = UIView(frame: CGRect(x: 150, y: 100 + ((comments[comments.count - 1]["text"] as! String).characters.count % 25 * 10), width: 25, height: 20))
-                    count.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
-                    count.layer.cornerRadius = count.frame.height / 2
-                    
-                    let countLabel = UILabel(frame: CGRect(x: 0, y: 0, width: count.frame.width, height: count.frame.height))
-                    countLabel.textColor = UIColor.white
-                    countLabel.font = UIFont(name: "HelveticaNeue", size: 14)
-                    countLabel.textAlignment = NSTextAlignment.center
-                    countLabel.text = String(activityMedia.count)
-                    
-                    count.addSubview(countLabel)
-                    self.addSubview(count)
+//                    let count = UIView(frame: CGRect(x: 150, y: 100 + ((comments[comments.count - 1]["text"] as! String).characters.count % 25 * 10), width: 25, height: 20))
+//                    count.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
+//                    count.layer.cornerRadius = count.frame.height / 2
+//                    
+//                    let countLabel = UILabel(frame: CGRect(x: 0, y: 0, width: count.frame.width, height: count.frame.height))
+//                    countLabel.textColor = UIColor.white
+//                    countLabel.font = UIFont(name: "HelveticaNeue", size: 14)
+//                    countLabel.textAlignment = NSTextAlignment.center
+//                    countLabel.text = String(activityMedia.count)
+//                    
+//                    count.addSubview(countLabel)
+//                    self.addSubview(count)
                 }
             }
         }
@@ -150,7 +151,6 @@ class UpdateCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDat
     }
     
     func mediaCell(_ mediaCell: MediaCell, didTap data: [String : Any]) {
-        print(data)
         delegate?.timelineUpdateCell(self, didTap: update!, tapped: data)
     }
 
