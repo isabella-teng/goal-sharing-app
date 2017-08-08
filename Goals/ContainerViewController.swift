@@ -54,8 +54,8 @@ class ContainerViewController: UIViewController {
 
 extension UISegmentedControl {
     func removeBorders() {
-        setBackgroundImage(imageWithColor(color: self.backgroundColor!), for: .normal, barMetrics: .default)
-        setBackgroundImage(imageWithColor(color: self.backgroundColor!), for: .selected, barMetrics: .default)
+        setBackgroundImage(imageWithColor(color: UIColor.clear), for: .normal, barMetrics: .default)
+        setBackgroundImage(imageWithColor(color: UIColor.clear), for: .selected, barMetrics: .default)
         setTitleTextAttributes([NSForegroundColorAttributeName: self.tintColor!], for: .selected)
         setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.lightGray, NSFontAttributeName: UIFont(name: "HelveticaNeue-Medium", size: 15)!], for: .normal)
         setDividerImage(imageWithColor(color: UIColor.clear), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)

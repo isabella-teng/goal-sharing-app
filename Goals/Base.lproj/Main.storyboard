@@ -201,7 +201,7 @@
             </objects>
             <point key="canvasLocation" x="4464.8000000000002" y="-2040.6296851574214"/>
         </scene>
-        <!--GoalsAF-->
+        <!--Home-->
         <scene sceneID="cR9-dx-rtx">
             <objects>
                 <viewController id="4cB-WK-Nnu" customClass="FeedViewController" customModule="Goals" customModuleProvider="target" sceneMemberID="viewController">
@@ -449,7 +449,7 @@
                             <constraint firstAttribute="trailing" secondItem="U5Q-49-VPy" secondAttribute="trailing" id="szi-7q-DAq"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="GoalsAF" id="TXs-L2-SH2">
+                    <navigationItem key="navigationItem" title="Home" id="TXs-L2-SH2">
                         <barButtonItem key="leftBarButtonItem" image="goal-ball" id="AFo-7Q-Wdj">
                             <connections>
                                 <segue destination="wh1-XR-JhU" kind="presentation" identifier="" id="GcN-JU-aZ0"/>
@@ -637,7 +637,7 @@
                         <viewControllerLayoutGuide type="bottom" id="spF-DR-v0x"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dWK-WH-8i0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="confetti" translatesAutoresizingMaskIntoConstraints="NO" id="Vhs-6U-vie">
@@ -1747,7 +1747,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="uHu-1d-37X">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="uHu-1d-37X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1774,6 +1774,7 @@
                     <connections>
                         <segue destination="HqN-zQ-mFw" kind="relationship" relationship="viewControllers" id="oHb-iE-P4S"/>
                         <segue destination="rd3-vK-OHv" kind="relationship" relationship="viewControllers" id="PH8-Og-2oJ"/>
+                        <segue destination="5ma-NE-PXr" kind="relationship" relationship="viewControllers" id="Maj-Pg-Vx2"/>
                         <segue destination="XDN-cH-4wQ" kind="relationship" relationship="viewControllers" id="yqQ-IM-bYA"/>
                     </connections>
                 </tabBarController>
@@ -2739,6 +2740,25 @@
             </objects>
             <point key="canvasLocation" x="1961" y="1587"/>
         </scene>
+        <!--Partners-->
+        <scene sceneID="Iut-cw-Y9q">
+            <objects>
+                <viewController id="mMW-Md-8LZ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="h1D-00-1a4"/>
+                        <viewControllerLayoutGuide type="bottom" id="l72-Sg-zu0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uyx-18-dpY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Partners" id="YjR-HA-NtM"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7o5-QK-QWF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4465" y="1609"/>
+        </scene>
         <!--Explore-->
         <scene sceneID="AQY-Ep-ldT">
             <objects>
@@ -2747,7 +2767,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="U1N-J6-1Pu">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="U1N-J6-1Pu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2768,7 +2788,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="VI5-VU-sfF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="VI5-VU-sfF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2781,8 +2801,28 @@
             </objects>
             <point key="canvasLocation" x="1960.8" y="138.98050974512745"/>
         </scene>
+        <!--Partners-->
+        <scene sceneID="wgC-bc-oBk">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5ma-NE-PXr" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Partners" image="added" id="TCm-sL-XvA"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="6zI-Jq-eJt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="mMW-Md-8LZ" kind="relationship" relationship="rootViewController" id="Ij1-LB-aWy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8YD-VB-tgO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3692" y="1608.8455772113944"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="added" width="25" height="25"/>
         <image name="comment" width="25" height="25"/>
         <image name="completed" width="1250" height="550"/>
         <image name="confetti" width="1920" height="1080"/>
@@ -2802,12 +2842,12 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ZpT-ic-j8z"/>
-        <segue reference="Q3w-fk-ISv"/>
+        <segue reference="ydZ-wS-uFS"/>
+        <segue reference="kNn-XA-D7B"/>
         <segue reference="Ugs-Kx-bhx"/>
-        <segue reference="haI-YF-ab4"/>
+        <segue reference="Q3w-fk-ISv"/>
         <segue reference="rWw-4p-v87"/>
         <segue reference="7vN-Mr-0Qr"/>
-        <segue reference="0HV-eo-Kbd"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
