@@ -1745,7 +1745,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="uHu-1d-37X">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="uHu-1d-37X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1788,11 +1788,11 @@
                         <viewControllerLayoutGuide type="bottom" id="410-mz-I4m"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="9nr-ED-ICG">
-                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PC4-VB-t5c">
-                                <rect key="frame" x="0.0" y="144" width="375" height="208.5"/>
+                                <rect key="frame" x="0.0" y="144" width="375" height="257.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LogCell" rowHeight="77" id="usr-CH-lhy" customClass="LogCell" customModule="Goals" customModuleProvider="target">
@@ -1905,7 +1905,7 @@
                                 </prototypes>
                             </tableView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yZf-IU-b2l">
-                                <rect key="frame" x="70" y="382" width="305" height="120"/>
+                                <rect key="frame" x="70" y="431" width="305" height="120"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="Tv0-cz-19m"/>
@@ -2039,7 +2039,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Media" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayA-XU-xI8">
-                                <rect key="frame" x="85" y="362.5" width="91.5" height="14.5"/>
+                                <rect key="frame" x="85" y="411.5" width="91.5" height="14.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="91.5" id="UGE-9c-kZb"/>
                                 </constraints>
@@ -2048,7 +2048,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v2K-Fb-txE">
-                                <rect key="frame" x="10" y="382.5" width="50" height="50"/>
+                                <rect key="frame" x="10" y="431.5" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="qPH-ey-EsM"/>
                                     <constraint firstAttribute="width" constant="50" id="yyi-QB-2lt"/>
@@ -2060,7 +2060,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MqF-W0-GMW">
-                                <rect key="frame" x="10" y="452" width="50" height="50"/>
+                                <rect key="frame" x="10" y="501" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="AoR-kV-HiY"/>
                                 </constraints>
@@ -2070,7 +2070,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQC-DY-4lv">
-                                <rect key="frame" x="31" y="420.5" width="9" height="18"/>
+                                <rect key="frame" x="31" y="469.5" width="9" height="18"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2741,7 +2741,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="U1N-J6-1Pu">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="U1N-J6-1Pu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2762,7 +2762,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="VI5-VU-sfF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="VI5-VU-sfF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2794,17 +2794,13 @@
         <image name="user" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="haI-YF-ab4"/>
         <segue reference="ZpT-ic-j8z"/>
-        <segue reference="gIV-TO-WAO"/>
-        <segue reference="7vN-Mr-0Qr"/>
-        <segue reference="kNn-XA-D7B"/>
-        <segue reference="die-PK-ZT8"/>
-        <segue reference="rWw-4p-v87"/>
-        <segue reference="Ugs-Kx-bhx"/>
         <segue reference="ydZ-wS-uFS"/>
-        <segue reference="b2e-3H-KtS"/>
-        <segue reference="8VS-EP-q6V"/>
-        <segue reference="mbE-Eb-6eS"/>
+        <segue reference="5S3-em-M3C"/>
+        <segue reference="Q3w-fk-ISv"/>
+        <segue reference="Ugs-Kx-bhx"/>
+        <segue reference="rWw-4p-v87"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
