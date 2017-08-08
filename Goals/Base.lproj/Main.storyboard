@@ -637,7 +637,7 @@
                         <viewControllerLayoutGuide type="bottom" id="spF-DR-v0x"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dWK-WH-8i0">
-                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="confetti" translatesAutoresizingMaskIntoConstraints="NO" id="Vhs-6U-vie">
@@ -2421,7 +2421,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nRu-EV-Ded">
-                                                    <rect key="frame" x="8" y="8" width="359" height="69"/>
+                                                    <rect key="frame" x="8" y="4" width="359" height="69"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ny2-4x-80X">
                                                             <rect key="frame" x="65" y="10" width="88.5" height="22"/>
@@ -2471,8 +2471,8 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="nRu-EV-Ded" secondAttribute="trailing" constant="8" id="3wB-9N-vkH"/>
                                                 <constraint firstItem="nRu-EV-Ded" firstAttribute="leading" secondItem="WbI-2d-cfU" secondAttribute="leading" constant="8" id="ckS-FR-vfh"/>
-                                                <constraint firstAttribute="bottom" secondItem="nRu-EV-Ded" secondAttribute="bottom" id="jFV-pT-YfV"/>
-                                                <constraint firstItem="nRu-EV-Ded" firstAttribute="top" secondItem="WbI-2d-cfU" secondAttribute="top" constant="8" id="xaA-Cf-RFm"/>
+                                                <constraint firstAttribute="bottom" secondItem="nRu-EV-Ded" secondAttribute="bottom" constant="4" id="jFV-pT-YfV"/>
+                                                <constraint firstItem="nRu-EV-Ded" firstAttribute="top" secondItem="WbI-2d-cfU" secondAttribute="top" constant="4" id="xaA-Cf-RFm"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -2801,12 +2801,12 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ZpT-ic-j8z"/>
-        <segue reference="kNn-XA-D7B"/>
-        <segue reference="ydZ-wS-uFS"/>
+        <segue reference="Q3w-fk-ISv"/>
+        <segue reference="Ugs-Kx-bhx"/>
+        <segue reference="haI-YF-ab4"/>
         <segue reference="rWw-4p-v87"/>
-        <segue reference="die-PK-ZT8"/>
         <segue reference="7vN-Mr-0Qr"/>
-        <segue reference="b2e-3H-KtS"/>
+        <segue reference="0HV-eo-Kbd"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
