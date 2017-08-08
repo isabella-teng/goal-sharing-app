@@ -26,7 +26,6 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
     @IBOutlet weak var authorIcon: UIImageView!
     @IBOutlet weak var updatesCountLabel: UILabel!
     @IBOutlet weak var completionDate: UILabel!
-    @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var categoryIcon: UIImageView!
     @IBOutlet weak var descriptionBackground: UIView!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -62,24 +61,23 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
                 }
             })
             updatesCountLabel.text = String(data["updatesCount"] as! Int) + " Updates"
-            categoryLabel.text = data["categories"] as? String
             
-            if categoryLabel.text! == "Education" {
+            if data["categories"]  as! String == "Education" {
                 categoryIcon.image = #imageLiteral(resourceName: "education").withRenderingMode(.alwaysTemplate)
                 categoryIcon.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
-            } else if categoryLabel.text! == "Health" {
+            } else if data["categories"]  as! String == "Health" {
                 categoryIcon.image = #imageLiteral(resourceName: "health").withRenderingMode(.alwaysTemplate)
                 categoryIcon.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
-            } else if categoryLabel.text! == "Fun" {
+            } else if data["categories"]  as! String == "Fun" {
                 categoryIcon.image = #imageLiteral(resourceName: "fun").withRenderingMode(.alwaysTemplate)
                 categoryIcon.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
-            } else if categoryLabel.text! == "Money" {
+            } else if data["categories"]  as! String == "Money" {
                 categoryIcon.image = #imageLiteral(resourceName: "money").withRenderingMode(.alwaysTemplate)
                 categoryIcon.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
-            } else if categoryLabel.text! == "Spiritual" {
+            } else if data["categories"]  as! String == "Spiritual" {
                 categoryIcon.image = #imageLiteral(resourceName: "spiritual").withRenderingMode(.alwaysTemplate)
                 categoryIcon.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
-            }else if categoryLabel.text! == "Other" {
+            }else if data["categories"]  as! String == "Other" {
                 categoryIcon.image = #imageLiteral(resourceName: "other").withRenderingMode(.alwaysTemplate)
                 categoryIcon.tintColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
             }

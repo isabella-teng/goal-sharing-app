@@ -263,7 +263,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     //3d touch
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
+        _ = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
         
         let storyboard = UIStoryboard(name:"Main", bundle:nil)
         if let previewViewController = storyboard.instantiateViewController(withIdentifier: "PeekViewViewController") as? PeekViewViewController {
