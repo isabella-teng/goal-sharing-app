@@ -21,7 +21,7 @@ class ContainerViewController: UIViewController {
         
         segmentedControl.removeBorders()
         
-        border = UIView(frame: CGRect(x: -10, y: 29, width: self.view.frame.width / 2, height: 8))
+        border = UIView(frame: CGRect(x: -8, y: 29, width: self.view.frame.width / 2, height: 8))
         border?.backgroundColor = segmentedControl.tintColor
         segmentedControl.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 29)
         segmentedControl.insertSubview(border!, at: 0)
@@ -35,14 +35,14 @@ class ContainerViewController: UIViewController {
                 self.containerViewA.alpha = 1
                 self.containerViewB.alpha = 0
             
-                self.border?.frame = CGRect(x: -10, y: 29, width: self.view.frame.width / 2, height: 8)
+                self.border?.frame = CGRect(x: -8, y: 29, width: self.view.frame.width / 2, height: 8)
             })
         } else {
             UIView.animate(withDuration: 0.5, animations: { 
                 self.containerViewA.alpha = 0
                 self.containerViewB.alpha = 1
                 
-                self.border?.frame = CGRect(x: self.view.frame.width / 2 - 10, y: 29, width: self.view.frame.width / 2, height: 8)
+                self.border?.frame = CGRect(x: self.view.frame.width / 2 - 8, y: 29, width: self.view.frame.width / 2, height: 8)
             })
         }
     }
@@ -57,7 +57,7 @@ extension UISegmentedControl {
         setBackgroundImage(imageWithColor(color: self.backgroundColor!), for: .normal, barMetrics: .default)
         setBackgroundImage(imageWithColor(color: self.backgroundColor!), for: .selected, barMetrics: .default)
         setTitleTextAttributes([NSForegroundColorAttributeName: self.tintColor!], for: .selected)
-        setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.lightGray, NSFontAttributeName: UIFont(name: "HelveticaNeue-Bold", size: 15)!], for: .normal)
+        setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.lightGray, NSFontAttributeName: UIFont(name: "HelveticaNeue-Medium", size: 15)!], for: .normal)
         setDividerImage(imageWithColor(color: UIColor.clear), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
     }
     
