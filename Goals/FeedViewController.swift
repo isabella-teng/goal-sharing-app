@@ -237,6 +237,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
+    
     // Control segues
     func feedCell(_ feedCell: FeedCell, didTap update: PFObject, tappedComment: Bool, tappedCamera: Bool, tappedUser: PFUser?) {
         if tappedComment {
@@ -263,14 +264,14 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let vc = segue.destination as! DetailViewController
             vc.currentUpdate = sender as? PFObject
             
-            let goalId = vc.currentUpdate?["goalId"] as! String
-            Goal.fetchGoalWithId(id: goalId, withCompletion: { (loadedGoal: PFObject?, error: Error?) in
-                if error == nil {
-                    vc.goal = loadedGoal!
-                } else {
-                    print(error?.localizedDescription as Any)
-                }
-            })
+//            let goalId = vc.currentUpdate?["goalId"] as! String
+//            Goal.fetchGoalWithId(id: goalId, withCompletion: { (loadedGoal: PFObject?, error: Error?) in
+//                if error == nil {
+//                    vc.goal = loadedGoal!
+//                } else {
+//                    print(error?.localizedDescription as Any)
+//                }
+//            })
             
         } else if (segue.identifier == "commentSegue") {
             let vc = segue.destination as! PostCommentViewController

@@ -36,6 +36,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
      var goal: PFObject?
      var originalPos: CGFloat? = nil
      var author: PFUser? = nil
+     var isFromTimelineGoal: Bool = false
      
      var likesArray: [PFUser]? = nil
      var liked = false
@@ -67,26 +68,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
           goalCellBg.layer.cornerRadius = 10
           userIcon.layer.cornerRadius = userIcon.frame.height / 2
           
-          let typeString = currentUpdate?["type"] as! String
-          if typeString == "positive" {
-               goalView.backgroundColor = UIColor(red:0.50, green:0.85, blue:0.60, alpha:1.0)
-               goalCellBg.backgroundColor = UIColor(red: 0.40, green: 0.75, blue: 0.45, alpha: 1.0)
-               goalCellEdges.backgroundColor = goalCellBg.backgroundColor
-          } else if typeString == "negative" {
-               goalView.backgroundColor = UIColor(red:0.95, green:0.45, blue:0.45, alpha:1.0)
-               goalCellBg.backgroundColor = UIColor(red: 0.85, green: 0.30, blue: 0.30, alpha: 1.0)
-               goalCellEdges.backgroundColor = goalCellBg.backgroundColor
-          } else if typeString == "Complete" {
-               goalView.backgroundColor = UIColor(red:0.93, green:0.71, blue:0.13, alpha:1.0)
-               goalCellBg.backgroundColor = UIColor(red:0.93, green:0.61, blue:0.12, alpha:1.0)
-               goalCellEdges.backgroundColor = goalCellBg.backgroundColor
-               
-          } else {
-               goalView.backgroundColor = UIColor(red: 0.45, green: 0.50, blue: 0.90, alpha: 1.0)
-               goalCellBg.backgroundColor = UIColor(red: 0.35, green: 0.40, blue: 0.70, alpha: 1.0)
-               goalCellEdges.backgroundColor = goalCellBg.backgroundColor
-          }
-          
           originalPos = tableView.frame.origin.y
           
           //        if isFromTimeline {
@@ -108,6 +89,26 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
           
           peekPop = PeekPop(viewController: self)
           peekPop?.registerForPreviewingWithDelegate(self, sourceView: collectionView)
+          
+          
+          
+          if isFromTimelineGoal {
+               let goalUpdateID = (goal?["updates"] as! [String])[0] as! String
+               
+               Update.fetchUpdateById(updateId: goalUpdateID, withCompletion: { (update: PFObject?, error:Error?) in
+                    if error == nil {
+                         self.currentUpdate = update
+                    }
+               })
+          } else {
+               let goalId = currentUpdate?["goalId"] as! String
+               Goal.fetchGoalWithId(id: goalId, withCompletion: { (loadedGoal: PFObject?, error: Error?) in
+                    if error == nil {
+                         self.goal = loadedGoal!
+                    }
+               })
+          }
+
      }
      
      func done() {
@@ -119,6 +120,26 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
      }
      
      override func viewDidAppear(_ animated: Bool) {
+          let typeString = currentUpdate?["type"] as! String
+          if typeString == "positive" {
+               goalView.backgroundColor = UIColor(red:0.50, green:0.85, blue:0.60, alpha:1.0)
+               goalCellBg.backgroundColor = UIColor(red: 0.40, green: 0.75, blue: 0.45, alpha: 1.0)
+               goalCellEdges.backgroundColor = goalCellBg.backgroundColor
+          } else if typeString == "negative" {
+               goalView.backgroundColor = UIColor(red:0.95, green:0.45, blue:0.45, alpha:1.0)
+               goalCellBg.backgroundColor = UIColor(red: 0.85, green: 0.30, blue: 0.30, alpha: 1.0)
+               goalCellEdges.backgroundColor = goalCellBg.backgroundColor
+          } else if typeString == "Complete" {
+               goalView.backgroundColor = UIColor(red:0.93, green:0.71, blue:0.13, alpha:1.0)
+               goalCellBg.backgroundColor = UIColor(red:0.93, green:0.61, blue:0.12, alpha:1.0)
+               goalCellEdges.backgroundColor = goalCellBg.backgroundColor
+               
+          } else {
+               goalView.backgroundColor = UIColor(red: 0.45, green: 0.50, blue: 0.90, alpha: 1.0)
+               goalCellBg.backgroundColor = UIColor(red: 0.35, green: 0.40, blue: 0.70, alpha: 1.0)
+               goalCellEdges.backgroundColor = goalCellBg.backgroundColor
+          }
+
           author = currentUpdate?["author"] as? PFUser
           usernameLabel.text = author?["username"] as? String
           

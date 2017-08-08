@@ -12,8 +12,14 @@ import Charts
 import RealmSwift
 import ParseUI
 
+protocol InfoCellGoalDelegate: class {
+    func infoCellGoal(_ infoCell: InfoCell, didTap goal: PFObject)
+}
+
 class InfoCell: UITableViewCell, ChartViewDelegate {
     //graph goes here
+    
+    weak var delegate: InfoCellGoalDelegate?
     
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var progressBackground: UIView!
@@ -124,6 +130,9 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
         return end - start
     }
 
+    func didTapGoal(_ sender: UITapGestureRecognizer) {
+        delegate?.infoCellGoal(self, didTap: data)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -144,6 +153,11 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
         xAxis.valueFormatter = xAxisValueFormatter()
         
         graphView.notifyDataSetChanged()
+        
+        
+        let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapGoal(_:)))
+        descriptionBackground.addGestureRecognizer(cellTapGestureRecognizer)
+        descriptionBackground.isUserInteractionEnabled = true
     }
     
     func setChart(dataPoints: [String], values: [Double]) {

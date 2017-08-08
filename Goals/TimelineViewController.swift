@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import BubbleTransition
 
-class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TimelineUpdateCellDelegate, UIViewControllerTransitioningDelegate {
+class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TimelineUpdateCellDelegate, UIViewControllerTransitioningDelegate, InfoCellGoalDelegate {
     
     @IBOutlet weak var updateButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
@@ -62,6 +62,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             // Set up InfoCell with goal information
             let cell = (tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! InfoCell)
             cell.data = currentGoal
+            cell.delegate = self
             return cell
         } else if indexPath.row == updates.count {
             let cell = (tableView.dequeueReusableCell(withIdentifier: "CompletedCell", for: indexPath) as! CompletedCell)
@@ -77,6 +78,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    func infoCellGoal(_ infoCell: InfoCell, didTap goal: PFObject) {
+        performSegue(withIdentifier: "timelineGoalToDetailSegue", sender: goal)
+    }
   
     func timelineUpdateCell(_ updateCell: UpdateCell, didTap update: PFObject, tapped: [String: Any]?) {
         if tapped == nil {
@@ -117,16 +121,17 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "timelineToDetailSegue") {
+            
             let vc = segue.destination as! DetailViewController
             vc.currentUpdate = sender as? PFObject
 //            vc.isFromTimeline = true
             
-            let goalId = vc.currentUpdate?["goalId"] as! String
-            Goal.fetchGoalWithId(id: goalId, withCompletion: { (loadedGoal: PFObject?, error: Error?) in
-                if error == nil {
-                    vc.goal = loadedGoal
-                }
-            })
+//            let goalId = vc.currentUpdate?["goalId"] as! String
+//            Goal.fetchGoalWithId(id: goalId, withCompletion: { (loadedGoal: PFObject?, error: Error?) in
+//                if error == nil {
+//                    vc.goal = loadedGoal
+//                }
+//            })
         } else if (segue.identifier == "timelineToUpdateSegue") {
             let vc = segue.destination as! PostUpdateViewController
             vc.currentGoal = sender as? PFObject
@@ -135,6 +140,17 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         } else if (segue.identifier == "timelineToFullMediaSegue") {
             let vc = segue.destination as! FullMediaViewController
             vc.data = sender as? [String: Any]
+        } else if (segue.identifier == "timelineGoalToDetailSegue") {
+            let vc = segue.destination as! DetailViewController
+            vc.goal = currentGoal
+            vc.isFromTimelineGoal = true
+//            let goalUpdateID = (currentGoal?["updates"] as! [String])[0] as! String
+//            
+//            Update.fetchUpdateById(updateId: goalUpdateID, withCompletion: { (update: PFObject?, error:Error?) in
+//                if error == nil {
+//                    vc.currentUpdate = update
+//                }
+//            })
         }
     }
 }
