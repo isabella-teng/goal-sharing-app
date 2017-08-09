@@ -25,6 +25,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 180
         
+        messageTextField.delegate = self
+        
         sendButton.layer.cornerRadius = sendButton.frame.height / 2
         
         messages = [ ["text": "hello", "source": "partner"], ["text": "hey", "source": "self"] ]
@@ -55,12 +57,33 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.25) {
-            self.messageContainer.frame = CGRect(x: 0, y: 100, width: self.view.frame.width, height: self.messageContainer.frame.height)
+            self.messageContainer.frame = CGRect(x: 0, y: 295, width: self.view.frame.width, height: self.messageContainer.frame.height)
         }
     }
 
     @IBAction func didTapScreen(_ sender: Any) {
         self.view.endEditing(true)
+        UIView.animate(withDuration: 0.25) {
+            self.messageContainer.frame = CGRect(x: 0, y: 504, width: self.view.frame.width, height: self.messageContainer.frame.height)
+        }
+    }
+    
+    @IBAction func didTapSend(_ sender: Any) {
+        _ = textFieldShouldReturn(messageTextField)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        
+        UIView.animate(withDuration: 0.25) {
+            self.messageContainer.frame = CGRect(x: 0, y: 504, width: self.view.frame.width, height: self.messageContainer.frame.height)
+        }
+        
+        messages.append(["text": messageTextField.text!, "source": "self"])
+        tableView.reloadData()
+        messageTextField.text = ""
+        
+        return true
     }
 
     override func didReceiveMemoryWarning() {
