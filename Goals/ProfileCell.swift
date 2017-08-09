@@ -85,9 +85,9 @@ class ProfileCell: SwipeTableViewCell {
                 if currentToCompletion <= 30 && currentToCompletion > 0 {
                     remainingDays.text = String(currentToCompletion) + "d remaining"
                 } else if currentToCompletion > 30 && currentToCompletion < 365 {
-                    remainingDays.text = String(currentToCompletion / 30) + "m remaining"
+                    remainingDays.text = String(currentToCompletion / 30) + " mo remaining"
                 } else if currentToCompletion >= 365 {
-                    remainingDays.text = String(currentToCompletion / 365) + "y remaining"
+                    remainingDays.text = String(currentToCompletion / 365) + " yr remaining"
                 } else {
                     remainingDays.text = "Overdue"
                 }
