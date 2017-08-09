@@ -88,7 +88,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
           //        }
           
           peekPop = PeekPop(viewController: self)
-          peekPop?.registerForPreviewingWithDelegate(self, sourceView: collectionView)
+          _ = peekPop?.registerForPreviewingWithDelegate(self, sourceView: collectionView)
           
           
           
