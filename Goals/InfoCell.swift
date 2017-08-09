@@ -17,7 +17,6 @@ protocol InfoCellGoalDelegate: class {
 }
 
 class InfoCell: UITableViewCell, ChartViewDelegate {
-    //graph goes here
     
     weak var delegate: InfoCellGoalDelegate?
     
