@@ -22,6 +22,8 @@
 		7EC746351F3A7348005E7C4B /* PartnersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC746341F3A7348005E7C4B /* PartnersViewController.swift */; };
 		7EC746371F3A790E005E7C4B /* PartnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC746361F3A790E005E7C4B /* PartnerCell.swift */; };
 		7ECD223A1F26C2A900D09608 /* MediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ECD22391F26C2A900D09608 /* MediaCell.swift */; };
+		7EE0FBF91F3A959B002560B2 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE0FBF81F3A959B002560B2 /* ChatViewController.swift */; };
+		7EE0FBFB1F3A977A002560B2 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE0FBFA1F3A977A002560B2 /* MessageCell.swift */; };
 		7EEEFB171F158A6E004A29EC /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEEFB161F158A6E004A29EC /* FeedViewController.swift */; };
 		7EF1FFD51F158598000DA708 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF1FFD41F158598000DA708 /* TimelineViewController.swift */; };
 		7EFBFC401F2AA4BF0052A81A /* DetailCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFBFC3F1F2AA4BF0052A81A /* DetailCommentCell.swift */; };
@@ -99,6 +101,8 @@
 		7EC746341F3A7348005E7C4B /* PartnersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnersViewController.swift; sourceTree = "<group>"; };
 		7EC746361F3A790E005E7C4B /* PartnerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerCell.swift; sourceTree = "<group>"; };
 		7ECD22391F26C2A900D09608 /* MediaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCell.swift; sourceTree = "<group>"; };
+		7EE0FBF81F3A959B002560B2 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		7EE0FBFA1F3A977A002560B2 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		7EEEFB161F158A6E004A29EC /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		7EF1FFD41F158598000DA708 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		7EFBFC3F1F2AA4BF0052A81A /* DetailCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCommentCell.swift; sourceTree = "<group>"; };
@@ -205,6 +209,7 @@
 				7E1FCE611F16D6E9009C0AF1 /* FeedCell.swift */,
 				FAD351491F1838D500998CCA /* GoalCell.swift */,
 				FAD3513D1F16D49A00998CCA /* LogCell.swift */,
+				7EE0FBFA1F3A977A002560B2 /* MessageCell.swift */,
 				7EC746361F3A790E005E7C4B /* PartnerCell.swift */,
 				FACF12D11F156E8C00D505FE /* ProfileCell.swift */,
 				FAA6C8C41F1EB62D00FB8F26 /* SwiftyCamRecordButton.swift */,
@@ -353,6 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				FAD351411F182FC500998CCA /* AllGoalsViewController.swift */,
+				7EE0FBF81F3A959B002560B2 /* ChatViewController.swift */,
 				B87C87EF1F159AE100F58517 /* DetailViewController.swift */,
 				7EEEFB161F158A6E004A29EC /* FeedViewController.swift */,
 				7E8422F61F3142F20000B9C1 /* FullMediaViewController.swift */,
@@ -679,6 +685,7 @@
 			files = (
 				7E8422F71F3142F20000B9C1 /* FullMediaViewController.swift in Sources */,
 				B87C87EE1F156E9300F58517 /* PostGoalViewController.swift in Sources */,
+				7EE0FBF91F3A959B002560B2 /* ChatViewController.swift in Sources */,
 				7E1FCE621F16D6E9009C0AF1 /* FeedCell.swift in Sources */,
 				7E40BCAF1F392165006BF076 /* CompletedCell.swift in Sources */,
 				FACD85821F317DD9007A6D8A /* CategoryCell.swift in Sources */,
@@ -702,6 +709,7 @@
 				FAD3514A1F1838D500998CCA /* GoalCell.swift in Sources */,
 				FAA6C8C81F1EB97E00FB8F26 /* PhotoViewController.swift in Sources */,
 				FA5F55071F37FE260059ED5D /* PeekViewViewController.swift in Sources */,
+				7EE0FBFB1F3A977A002560B2 /* MessageCell.swift in Sources */,
 				B87C87F01F159AE100F58517 /* DetailViewController.swift in Sources */,
 				FAA6C8C51F1EB62D00FB8F26 /* SwiftyCamRecordButton.swift in Sources */,
 				B8FB62EF1F312EE70065B508 /* UserViewController.swift in Sources */,
