@@ -38,7 +38,6 @@ class PartnersViewController: UIViewController, UITableViewDataSource, UITableVi
         
         return cell
     }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

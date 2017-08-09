@@ -74,7 +74,7 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate, AVAudioPl
 
     var toPass: [String: Any] = [:]
     
-    //not entering this for videos
+    // Not entering this for videos
     @IBAction func didTapImage(_ sender: Any) {
         print("made it!")
         delegate?.mediaCell(self, didTap: toPass)
@@ -101,8 +101,8 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate, AVAudioPl
         return newImage
     }
     
-    override func awakeFromNib() {
-        self.bringSubview(toFront: mediaButton)
-    }
+//    override func awakeFromNib() {
+//        self.bringSubview(toFront: mediaButton)
+//    }
     
 }

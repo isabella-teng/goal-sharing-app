@@ -2955,7 +2955,7 @@
                                                 <constraint firstItem="d1o-Gg-hWB" firstAttribute="leading" secondItem="JwJ-pP-17Q" secondAttribute="trailing" constant="10" id="4PB-aU-AP0"/>
                                                 <constraint firstItem="JwJ-pP-17Q" firstAttribute="top" secondItem="L3H-Vc-sN4" secondAttribute="top" constant="10" id="7Py-43-6S4"/>
                                                 <constraint firstItem="d1o-Gg-hWB" firstAttribute="centerY" secondItem="JwJ-pP-17Q" secondAttribute="centerY" id="D6D-oU-xjy"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="d1o-Gg-hWB" secondAttribute="trailing" constant="110" id="FaW-jO-CVJ"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="d1o-Gg-hWB" secondAttribute="trailing" constant="100" id="FaW-jO-CVJ"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="JwJ-pP-17Q" secondAttribute="bottom" constant="10" id="oog-Qz-VJh"/>
                                                 <constraint firstItem="JwJ-pP-17Q" firstAttribute="leading" secondItem="L3H-Vc-sN4" secondAttribute="leading" constant="10" id="pBf-PO-qTc"/>
                                             </constraints>
@@ -3005,7 +3005,7 @@
                                                 <constraint firstItem="yjW-Nb-XXo" firstAttribute="centerY" secondItem="JmO-dh-ZxD" secondAttribute="centerY" id="9ML-ee-24V"/>
                                                 <constraint firstItem="yjW-Nb-XXo" firstAttribute="leading" secondItem="JmO-dh-ZxD" secondAttribute="trailing" constant="10" id="JTg-NK-uaS"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="yjW-Nb-XXo" secondAttribute="bottom" constant="10" id="Zrv-RB-fQQ"/>
-                                                <constraint firstItem="JmO-dh-ZxD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="WJY-RU-9nG" secondAttribute="leading" constant="110" id="aol-Eh-0dW"/>
+                                                <constraint firstItem="JmO-dh-ZxD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="WJY-RU-9nG" secondAttribute="leading" constant="100" id="aol-Eh-0dW"/>
                                                 <constraint firstItem="yjW-Nb-XXo" firstAttribute="top" secondItem="WJY-RU-9nG" secondAttribute="top" constant="10" id="n2R-aC-bvX"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -3162,13 +3162,13 @@
         <image name="user" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="7vN-Mr-0Qr"/>
         <segue reference="ZpT-ic-j8z"/>
-        <segue reference="kNn-XA-D7B"/>
+        <segue reference="haI-YF-ab4"/>
+        <segue reference="Ugs-Kx-bhx"/>
+        <segue reference="Q3w-fk-ISv"/>
         <segue reference="rWw-4p-v87"/>
         <segue reference="0HV-eo-Kbd"/>
-        <segue reference="7vN-Mr-0Qr"/>
-        <segue reference="mbE-Eb-6eS"/>
-        <segue reference="b2e-3H-KtS"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

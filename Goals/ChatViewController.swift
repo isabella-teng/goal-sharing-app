@@ -29,7 +29,13 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         sendButton.layer.cornerRadius = sendButton.frame.height / 2
         
-        messages = [ ["text": "hello", "source": "partner"], ["text": "hey", "source": "self"] ]
+        messages = [ ["date": "Aug 1", "source": "zuck", "text": "hey man glad to have gotten you as a partner!"],
+                     ["date": "Aug 1", "source": "self", "text": "you too! really excited to turn my life around"],
+                     ["date": "Aug 1", "source": "self", "text": "so what made you use this app?"],
+                     ["date": "Aug 1", "source": "zuck", "text": "probably same as you. I always have a lot of things I wanna do but I rarely end up doing them"] ]
+        
+        let indexPath = IndexPath(row: messages.count - 1, section: 0)
+        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
     
     
@@ -58,14 +64,22 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func textFieldDidBeginEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.25) {
             self.messageContainer.frame = CGRect(x: 0, y: 295, width: self.view.frame.width, height: self.messageContainer.frame.height)
+            self.tableView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.tableView.frame.height - 196)
         }
+        
+        let indexPath = IndexPath(row: messages.count - 1, section: 0)
+        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
 
     @IBAction func didTapScreen(_ sender: Any) {
         self.view.endEditing(true)
         UIView.animate(withDuration: 0.25) {
             self.messageContainer.frame = CGRect(x: 0, y: 504, width: self.view.frame.width, height: self.messageContainer.frame.height)
+            self.tableView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.tableView.frame.height + 196)
         }
+        
+        let indexPath = IndexPath(row: messages.count - 1, section: 0)
+        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
     
     @IBAction func didTapSend(_ sender: Any) {
@@ -78,10 +92,14 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         UIView.animate(withDuration: 0.25) {
             self.messageContainer.frame = CGRect(x: 0, y: 504, width: self.view.frame.width, height: self.messageContainer.frame.height)
         }
+        self.tableView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.tableView.frame.height + 196)
         
         messages.append(["text": messageTextField.text!, "source": "self"])
         tableView.reloadData()
         messageTextField.text = ""
+        
+        let indexPath = IndexPath(row: messages.count - 1, section: 0)
+        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         
         return true
     }
