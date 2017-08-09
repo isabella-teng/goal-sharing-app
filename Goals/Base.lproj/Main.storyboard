@@ -2923,8 +2923,24 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aug 8" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d1o-Gg-hWB">
+                                                    <rect key="frame" x="164" y="21" width="40" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="mvt-wX-JpC"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="auggie" translatesAutoresizingMaskIntoConstraints="NO" id="VZp-uP-nUM">
+                                                    <rect key="frame" x="10" y="10" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="1Hd-66-4aN"/>
+                                                        <constraint firstAttribute="width" constant="40" id="Hc8-fX-jmg"/>
+                                                    </constraints>
+                                                </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JwJ-pP-17Q">
-                                                    <rect key="frame" x="10" y="10" width="94" height="41"/>
+                                                    <rect key="frame" x="60" y="10" width="94" height="41"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OHH-Pa-AtY">
                                                             <rect key="frame" x="10" y="10" width="74" height="21"/>
@@ -2941,28 +2957,22 @@
                                                         <constraint firstItem="OHH-Pa-AtY" firstAttribute="leading" secondItem="JwJ-pP-17Q" secondAttribute="leading" constant="10" id="r6H-Rq-TGX"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aug 8" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d1o-Gg-hWB">
-                                                    <rect key="frame" x="114" y="21" width="40" height="18"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="40" id="mvt-wX-JpC"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="d1o-Gg-hWB" firstAttribute="leading" secondItem="JwJ-pP-17Q" secondAttribute="trailing" constant="10" id="4PB-aU-AP0"/>
                                                 <constraint firstItem="JwJ-pP-17Q" firstAttribute="top" secondItem="L3H-Vc-sN4" secondAttribute="top" constant="10" id="7Py-43-6S4"/>
                                                 <constraint firstItem="d1o-Gg-hWB" firstAttribute="centerY" secondItem="JwJ-pP-17Q" secondAttribute="centerY" id="D6D-oU-xjy"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="d1o-Gg-hWB" secondAttribute="trailing" constant="100" id="FaW-jO-CVJ"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="d1o-Gg-hWB" secondAttribute="trailing" constant="50" id="FaW-jO-CVJ"/>
+                                                <constraint firstItem="JwJ-pP-17Q" firstAttribute="leading" secondItem="VZp-uP-nUM" secondAttribute="trailing" constant="10" id="KHR-rn-YkZ"/>
+                                                <constraint firstItem="VZp-uP-nUM" firstAttribute="leading" secondItem="L3H-Vc-sN4" secondAttribute="leading" constant="10" id="l7b-4c-57R"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="JwJ-pP-17Q" secondAttribute="bottom" constant="10" id="oog-Qz-VJh"/>
-                                                <constraint firstItem="JwJ-pP-17Q" firstAttribute="leading" secondItem="L3H-Vc-sN4" secondAttribute="leading" constant="10" id="pBf-PO-qTc"/>
+                                                <constraint firstItem="VZp-uP-nUM" firstAttribute="top" secondItem="L3H-Vc-sN4" secondAttribute="top" constant="10" id="sNi-An-rNw"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="messageBackground" destination="JwJ-pP-17Q" id="V5A-ih-jzx"/>
                                             <outlet property="messageLabel" destination="OHH-Pa-AtY" id="JBQ-4s-Q9T"/>
+                                            <outlet property="senderIcon" destination="VZp-uP-nUM" id="art-zx-EDD"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OwnMessage" rowHeight="60" id="bKo-9G-aWM" customClass="MessageCell" customModule="Goals" customModuleProvider="target">
@@ -3143,6 +3153,7 @@
     </scenes>
     <resources>
         <image name="added" width="25" height="25"/>
+        <image name="auggie" width="346" height="346"/>
         <image name="comment" width="25" height="25"/>
         <image name="completed" width="1250" height="550"/>
         <image name="confetti" width="1920" height="1080"/>
