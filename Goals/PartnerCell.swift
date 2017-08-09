@@ -24,6 +24,7 @@ class PartnerCell: UITableViewCell {
     var partnerInfo: [String: Any] = [:] {
         didSet {
             usernameLabel.text = partnerInfo["username"] as? String
+            userIcon.image = partnerInfo["icon"] as? UIImage
             goalTitleLabel.text = partnerInfo["goalTitle"] as? String
             streakLabel.text = "🔥" + String(partnerInfo["streak"] as! Int)
             alertButton.setTitle(String(partnerInfo["alerts"] as! Int), for: .normal)
@@ -95,8 +96,8 @@ class PartnerCell: UITableViewCell {
         chartDataSet.circleRadius = CGFloat(3)
         chartDataSet.drawValuesEnabled = false
         
-        graphView.xAxis.labelTextColor = UIColor.clear
-        graphView.xAxis.axisLineColor = UIColor.clear
+        graphView.xAxis.labelTextColor = UIColor.lightGray
+        graphView.xAxis.axisLineColor = UIColor.lightGray
         graphView.tintColor = UIColor.white
         graphView.xAxis.labelPosition = .bottom
         graphView.animate(xAxisDuration: 0.5, yAxisDuration: 0.5, easingOption: .easeInBounce)

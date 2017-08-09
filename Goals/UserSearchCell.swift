@@ -34,6 +34,8 @@ class UserSearchCell: UITableViewCell {
                         self.userProfPic.image = profImage
                     }
                 }
+            } else {
+                userProfPic.image = #imageLiteral(resourceName: "default")
             }
             
             activeCount.text = "Active Goals: " + String(user["activeGoalCount"] as? Int ?? 0)

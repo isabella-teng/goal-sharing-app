@@ -39,7 +39,7 @@ extension LTMorphingLabel {
             
             let centerRect = self.newRects[Int(self.newRects.count / 2)]
 
-            self.emitterView.createEmitter(
+            _ = self.emitterView.createEmitter(
                 "leftSmoke",
                 particleName: "Smoke",
                 duration: 0.6
@@ -64,7 +64,7 @@ extension LTMorphingLabel {
                     cell.alphaSpeed = -0.5 / self.morphingDuration
             }
             
-            self.emitterView.createEmitter(
+            _ = self.emitterView.createEmitter(
                 "rightSmoke",
                 particleName: "Smoke",
                 duration: 0.6
@@ -89,7 +89,7 @@ extension LTMorphingLabel {
                     cell.alphaSpeed = -0.5 / self.morphingDuration
             }
             
-            self.emitterView.createEmitter(
+            _ = self.emitterView.createEmitter(
                 "leftFragments",
                 particleName: "Fragment",
                 duration: 0.6
@@ -115,7 +115,7 @@ extension LTMorphingLabel {
                     cell.lifetime = self.morphingDuration
             }
             
-            self.emitterView.createEmitter(
+            _ = self.emitterView.createEmitter(
                 "rightFragments",
                 particleName: "Fragment",
                 duration: 0.6
@@ -140,7 +140,7 @@ extension LTMorphingLabel {
                     cell.lifetime = self.morphingDuration
             }
             
-            self.emitterView.createEmitter(
+            _ = self.emitterView.createEmitter(
                 "fragments",
                 particleName: "Fragment",
                 duration: 0.6

@@ -76,7 +76,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         // Set up 3d touch
         peekPop = PeekPop(viewController: self)
-        peekPop?.registerForPreviewingWithDelegate(self, sourceView: tableView)
+        _ = peekPop?.registerForPreviewingWithDelegate(self, sourceView: tableView)
         
         goalMenuButton = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(tappedMenu(_:)))
     }
