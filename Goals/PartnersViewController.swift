@@ -22,9 +22,9 @@ class PartnersViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 180
         
-        partners = [ [ "username": "zuck", "goalTitle": "Connect the world", "streak": 1, "trend": "negative", "chartData": [5, 4, 5, 3, 2, 0, 0] ],
-                    [ "username": "anthonyrodari", "goalTitle": "Meet Zuck", "streak": 0, "trend": "neutral", "chartData": [2, 3, 5, 4, 3, 6, 5] ],
-                    [ "username": "nataliavillarman", "goalTitle": "Get a return offer", "streak": 10, "trend": "positive", "chartData": [2, 1, 3, 3, 5, 4, 7] ] ]
+        partners = [ [ "username": "zuck", "goalTitle": "Connect the world", "streak": 1, "alerts": 0, "trend": "negative", "chartData": [5, 4, 5, 3, 2, 0, 0] ],
+                    [ "username": "anthonyrodari", "goalTitle": "Meet Zuck", "streak": 0, "alerts": 2, "trend": "neutral", "chartData": [2, 3, 5, 4, 3, 6, 5] ],
+                    [ "username": "nataliavillarman", "goalTitle": "Get a return offer", "streak": 10, "alerts": 4, "trend": "positive", "chartData": [2, 1, 3, 3, 5, 4, 7] ] ]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
