@@ -19,12 +19,14 @@ class PartnerCell: UITableViewCell {
     @IBOutlet weak var userIcon: UIImageView!
     @IBOutlet weak var streakLabel: UILabel!
     @IBOutlet weak var graphView: LineChartView!
+    @IBOutlet weak var alertButton: UIButton!
     
     var partnerInfo: [String: Any] = [:] {
         didSet {
             usernameLabel.text = partnerInfo["username"] as? String
             goalTitleLabel.text = partnerInfo["goalTitle"] as? String
             streakLabel.text = "🔥" + String(partnerInfo["streak"] as! Int)
+            alertButton.setTitle(String(partnerInfo["alerts"] as! Int), for: .normal)
             
             let trend = partnerInfo["trend"] as! String
             if trend == "positive" {
@@ -63,6 +65,7 @@ class PartnerCell: UITableViewCell {
         cellBackground.layer.cornerRadius = 10
         goalBackground.layer.cornerRadius = 10
         userIcon.layer.cornerRadius = userIcon.frame.height / 2
+        alertButton.layer.cornerRadius = alertButton.frame.height / 2
         
         axisFormatDelegate = self as? IAxisValueFormatter
         let xAxis = graphView.xAxis
@@ -93,7 +96,7 @@ class PartnerCell: UITableViewCell {
         chartDataSet.drawValuesEnabled = false
         
         graphView.xAxis.labelTextColor = UIColor.clear
-        graphView.xAxis.axisLineColor = UIColor.white
+        graphView.xAxis.axisLineColor = UIColor.clear
         graphView.tintColor = UIColor.white
         graphView.xAxis.labelPosition = .bottom
         graphView.animate(xAxisDuration: 0.5, yAxisDuration: 0.5, easingOption: .easeInBounce)
