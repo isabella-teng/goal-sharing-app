@@ -90,21 +90,21 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.transitionMode = .present
-        transition.startingPoint = CGPoint(x: 175, y: 350)
-        transition.duration = 0.25
-        transition.bubbleColor = UIColor.white
-        return transition
-    }
-    
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.transitionMode = .dismiss
-        transition.startingPoint = CGPoint(x: 175, y: 350)
-        transition.duration = 0.25
-        transition.bubbleColor = UIColor.white
-        return transition
-    }
+//    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        transition.transitionMode = .present
+//        transition.startingPoint = CGPoint(x: 175, y: 350)
+//        transition.duration = 0.25
+//        transition.bubbleColor = UIColor.white
+//        return transition
+//    }
+//    
+//    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        transition.transitionMode = .dismiss
+//        transition.startingPoint = CGPoint(x: 175, y: 350)
+//        transition.duration = 0.25
+//        transition.bubbleColor = UIColor.white
+//        return transition
+//    }
     
     @IBAction func didTapUpdate(_ sender: Any) {
         performSegue(withIdentifier: "timelineToUpdateSegue", sender: currentGoal)

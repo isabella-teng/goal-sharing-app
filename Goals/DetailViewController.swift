@@ -93,7 +93,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
           
           
           if isFromTimelineGoal {
-               let goalUpdateID = (goal?["updates"] as! [String])[0] as! String
+               let goalUpdateID = (goal?["updates"] as! [String])[0] 
                
                Update.fetchUpdateById(updateId: goalUpdateID, withCompletion: { (update: PFObject?, error:Error?) in
                     if error == nil {
