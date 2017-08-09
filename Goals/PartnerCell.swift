@@ -13,6 +13,7 @@ class PartnerCell: UITableViewCell {
 
     @IBOutlet weak var cellBackground: UIView!
     @IBOutlet weak var goalBackground: UIView!
+    @IBOutlet weak var goalEdges: UIView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var goalTitleLabel: UILabel!
     @IBOutlet weak var userIcon: UIImageView!
@@ -24,6 +25,23 @@ class PartnerCell: UITableViewCell {
             usernameLabel.text = partnerInfo["username"] as? String
             goalTitleLabel.text = partnerInfo["goalTitle"] as? String
             streakLabel.text = "🔥" + String(partnerInfo["streak"] as! Int)
+            
+            let trend = partnerInfo["trend"] as! String
+            if trend == "positive" {
+                cellBackground.backgroundColor = UIColor(red: 0.40, green: 0.75, blue: 0.45, alpha: 1.0)
+                goalBackground.backgroundColor = UIColor(red:0.50, green:0.85, blue:0.60, alpha:1.0)
+                goalEdges.backgroundColor = goalBackground.backgroundColor
+            } else if trend == "negative" {
+                cellBackground.backgroundColor = UIColor(red: 0.85, green: 0.30, blue: 0.30, alpha: 1.0)
+                goalBackground.backgroundColor = UIColor(red:0.95, green:0.45, blue:0.45, alpha:1.0)
+                goalEdges.backgroundColor = goalBackground.backgroundColor
+            } else {
+                cellBackground.backgroundColor = UIColor(red: 0.35, green: 0.40, blue: 0.70, alpha: 1.0)
+                goalBackground.backgroundColor = UIColor(red: 0.45, green: 0.50, blue: 0.90, alpha: 1.0)
+                goalEdges.backgroundColor = goalBackground.backgroundColor
+            }
+            graphView.backgroundColor = cellBackground.backgroundColor
+            
             
             updatesMade = partnerInfo["chartData"] as! [Int]
             var chartData: [Double] = []
@@ -47,11 +65,9 @@ class PartnerCell: UITableViewCell {
         userIcon.layer.cornerRadius = userIcon.frame.height / 2
         
         axisFormatDelegate = self as? IAxisValueFormatter
-        
         let xAxis = graphView.xAxis
         xAxis.labelCount = xAxisValueFormatter.labelCount
         xAxis.valueFormatter = xAxisValueFormatter()
-        
         graphView.notifyDataSetChanged()
     }
     
@@ -77,7 +93,7 @@ class PartnerCell: UITableViewCell {
         chartDataSet.drawValuesEnabled = false
         
         graphView.xAxis.labelTextColor = UIColor.clear
-        graphView.xAxis.axisLineColor = UIColor.clear
+        graphView.xAxis.axisLineColor = UIColor.white
         graphView.tintColor = UIColor.white
         graphView.xAxis.labelPosition = .bottom
         graphView.animate(xAxisDuration: 0.5, yAxisDuration: 0.5, easingOption: .easeInBounce)
