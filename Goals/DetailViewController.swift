@@ -90,14 +90,15 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
           peekPop = PeekPop(viewController: self)
           peekPop?.registerForPreviewingWithDelegate(self, sourceView: collectionView)
           
-          
-          
           if isFromTimelineGoal {
-               let goalUpdateID = (goal?["updates"] as! [String])[0] as! String
+               print("entered")
+               let goalUpdateID = (goal?["updates"] as! [String])[0]
                
-               Update.fetchUpdateById(updateId: goalUpdateID, withCompletion: { (update: PFObject?, error:Error?) in
+               Update.fetchUpdateById(updateId: goalUpdateID, withCompletion: { (update: PFObject?, error: Error?) in
                     if error == nil {
-                         self.currentUpdate = update
+                         self.currentUpdate = update!
+                    } else {
+                         print(error?.localizedDescription)
                     }
                })
           } else {
@@ -111,6 +112,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
           let dateFormat = DateFormatter()
           dateFormat.dateFormat = "M/d/yy"
+          print(currentUpdate)
           let goalDateUpdated = currentUpdate?["goalDate"] as! Date
           self.timestampLabel.text = String(dateFormat.string(from: goalDateUpdated))
      }

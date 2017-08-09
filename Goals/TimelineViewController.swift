@@ -79,7 +79,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func infoCellGoal(_ infoCell: InfoCell, didTap goal: PFObject) {
-        performSegue(withIdentifier: "timelineGoalToDetailSegue", sender: goal)
+        //performSegue(withIdentifier: "timelineGoalToDetailSegue", sender: goal)
     }
   
     func timelineUpdateCell(_ updateCell: UpdateCell, didTap update: PFObject, tapped: [String: Any]?) {

@@ -76,7 +76,7 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate, AVAudioPl
     
     //not entering this for videos
     @IBAction func didTapImage(_ sender: Any) {
-        print("made it!")
+        print("hi")
         delegate?.mediaCell(self, didTap: toPass)
     }
     
@@ -102,7 +102,9 @@ class MediaCell: UICollectionViewCell, AVPlayerViewControllerDelegate, AVAudioPl
     }
     
     override func awakeFromNib() {
-        self.bringSubview(toFront: mediaButton)
+        //self.bringSubview(toFront: mediaButton)
+        print("here first?")
+        playerController.contentOverlayView?.addSubview(mediaButton)
     }
     
 }
