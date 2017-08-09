@@ -278,6 +278,7 @@
 			children = (
 				FACD85811F317DD9007A6D8A /* CategoryCell.swift */,
 				FA58362E1F293F3B0023AA88 /* UserSearchCell.swift */,
+				7EF1FFD41F158598000DA708 /* TimelineViewController.swift */,
 				FA3E2F2B1F2AFC1D009DAF56 /* GoalCategoryCell.swift */,
 			);
 			name = "Explore Cells";
@@ -369,7 +370,6 @@
 				B87C87ED1F156E9300F58517 /* PostGoalViewController.swift */,
 				7E1FCE631F16E6DC009C0AF1 /* PostUpdateViewController.swift */,
 				B84B22781F1EDB6F00E9482E /* ProgressViewController.swift */,
-				7EF1FFD41F158598000DA708 /* TimelineViewController.swift */,
 				FACD85791F3142F2007A6D8A /* Explore VCs */,
 				FAA6C8C61F1EB94D00FB8F26 /* Camera VCs  */,
 				FA2258511F27B286008CDBCC /* Profile VCs */,

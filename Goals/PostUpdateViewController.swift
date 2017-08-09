@@ -161,7 +161,6 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate, UIImagePic
             
             if let diff = Calendar.current.dateComponents([.hour], from: streakDay, to: Date()).hour, diff < 24 {
                 if !didPostToday {
-                    print("Not entered?")
                     currentGoal?.incrementKey("streakCount", byAmount: 1)
                 }
             } else {
@@ -170,7 +169,6 @@ class PostUpdateViewController: UIViewController, UITextViewDelegate, UIImagePic
             }
             
             if Calendar.current.isDate(streakDay, inSameDayAs: Date()) {
-                print("entered")
                 currentGoal?["postedUpdateToday"] = true
             } else {
                 currentGoal?["postedUpdateToday"] = false

@@ -39,8 +39,8 @@ class FullMediaViewController: UIViewController, UIScrollViewDelegate, AVPlayerV
    
    
    override func viewDidAppear(_ animated: Bool) {
-      print("heyo")
       let author = data?["sender"] as! PFUser
+      
       author.fetchIfNeededInBackground { (authorObject: PFObject?, error: Error?) in
          if error == nil {
             let loadedAuthor = authorObject as! PFUser

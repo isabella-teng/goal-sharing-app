@@ -189,7 +189,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
           }
           
           if let updateImage = currentUpdate?["image"] as? PFFile {
-               media.append(["type": "photo", "image": updateImage, "sender": PFUser.current()!, "caption": updateLabel.text!, "rotated": true])
+               media.append(["type": "photo", "image": updateImage, "sender": currentUpdate?["author"]!, "caption": updateLabel.text!, "rotated": true])
                collectionView.reloadData()
           }
      }
