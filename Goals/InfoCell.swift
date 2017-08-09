@@ -114,14 +114,14 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
                 completionProgressView.progress = Float(startToCurrent) / Float(startToCompletion)
             }
             
-            UIView.animate(withDuration: 1, animations: {
-                self.descriptionBackground.frame.size.width += 10
-                self.descriptionBackground.frame.size.height += 10
-            }) { (true) in
-                UIView.animate(withDuration: 1, delay: 0, options: [.autoreverse, .repeat, .allowUserInteraction], animations: {
-                    self.descriptionBackground.frame.origin.y -= 20
-                }, completion: nil)
-            }
+//            UIView.animate(withDuration: 1, animations: {
+//                self.descriptionBackground.frame.size.width += 10
+//                self.descriptionBackground.frame.size.height += 10
+//            }) { (true) in
+//                UIView.animate(withDuration: 1, delay: 0, options: [.autoreverse, .repeat, .allowUserInteraction], animations: {
+//                    self.descriptionBackground.frame.origin.y -= 20
+//                }, completion: nil)
+//            }
             
             
         }
