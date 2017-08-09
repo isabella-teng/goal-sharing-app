@@ -16,7 +16,7 @@ protocol ProfileCellDelegate: class {
 }
 
 class ProfileCell: SwipeTableViewCell {
-
+    
     @IBOutlet weak var cellBackground: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailBackground: UIView!
@@ -30,7 +30,7 @@ class ProfileCell: SwipeTableViewCell {
     @IBOutlet weak var streakCount: UILabel!
     
     weak var otherDelegate: ProfileCellDelegate?
-
+    
     
     var goal: PFObject! {
         didSet {
@@ -60,19 +60,38 @@ class ProfileCell: SwipeTableViewCell {
             }
             
             
-            //Calculate days in between
+            // Calculate days in between
             let startToCurrent = calculateDaysBetweenTwoDates(start: goal.createdAt!, end: Date())
-            startDateToNow.text = "Started " + String(startToCurrent) + "d ago"
+            
+            if startToCurrent == 0 {
+                startDateToNow.text = "Began today"
+            } else {
+                startDateToNow.text = "Began " + String(startToCurrent) + "d ago"
+            }
             
             let currentToCompletion = calculateDaysBetweenTwoDates(start: Date(), end: goal["completionDate"] as! Date)
             
             
             if goal["isCompleted"] as! Bool == true {
-                 let completedToCurrent = calculateDaysBetweenTwoDates(start: goal["actualCompletionDate"] as! Date, end: Date())
-                remainingDays.text = "Completed " + String(completedToCurrent) + "d ago"
+                let completedToCurrent = calculateDaysBetweenTwoDates(start: goal["actualCompletionDate"] as! Date, end: Date())
+                
+                if completedToCurrent == 0 {
+                    remainingDays.text = "Completed today"
+                } else {
+                    remainingDays.text = "Completed " + String(completedToCurrent) + "d ago"
+                }
                 progressView.progress = 1
             } else {
-                 remainingDays.text = String(currentToCompletion) + "d remaining"
+                if currentToCompletion <= 30 && currentToCompletion > 0 {
+                    remainingDays.text = String(currentToCompletion) + "d remaining"
+                } else if currentToCompletion > 30 && currentToCompletion < 365 {
+                    remainingDays.text = String(currentToCompletion / 30) + "m remaining"
+                } else if currentToCompletion >= 365 {
+                    remainingDays.text = String(currentToCompletion / 365) + "y remaining"
+                } else {
+                    remainingDays.text = "Overdue"
+                }
+                
                 let startToCompletion = calculateDaysBetweenTwoDates(start: goal.createdAt!, end: goal["completionDate"] as! Date)
                 progressView.progress = Float(startToCurrent) / Float(startToCompletion)
             }
@@ -113,7 +132,7 @@ class ProfileCell: SwipeTableViewCell {
             indicatorView.transform = unread ? CGAffineTransform.identity : CGAffineTransform.init(scaleX: 0.001, y: 0.001)
         }
     }
-
+    
     
     func didTapCell(_ sender: UITapGestureRecognizer) {
         // Call method on delegate
@@ -127,7 +146,7 @@ class ProfileCell: SwipeTableViewCell {
         cellBackground.layer.cornerRadius = 10
         detailBackground.layer.cornerRadius = 10
         let cellTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapCell(_:)))
-
+        
         cellBackground.addGestureRecognizer(cellTapGestureRecognizer)
         cellBackground.isUserInteractionEnabled = true
     }
@@ -144,11 +163,11 @@ class ProfileCell: SwipeTableViewCell {
         indicatorView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 12).isActive = true
         indicatorView.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor).isActive = true
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
+    
 }
 
 class IndicatorView: UIView {
@@ -156,8 +175,8 @@ class IndicatorView: UIView {
         didSet { setNeedsDisplay() }
     }
     
-//    override func draw(_ rect: CGRect) {
-//        color.set()
-//        UIBezierPath(ovalIn: rect).fill()
-//    }
+    //    override func draw(_ rect: CGRect) {
+    //        color.set()
+    //        UIBezierPath(ovalIn: rect).fill()
+    //    }
 }
