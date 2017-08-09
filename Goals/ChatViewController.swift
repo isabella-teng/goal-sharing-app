@@ -29,10 +29,15 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         sendButton.layer.cornerRadius = sendButton.frame.height / 2
         
-        messages = [ ["date": "Aug 1", "source": "zuck", "text": "hey man glad to have gotten you as a partner!"],
+        messages = [ ["date": "Aug 1", "source": "auggie", "text": "hey man glad to have gotten you as a partner!"],
                      ["date": "Aug 1", "source": "self", "text": "you too! really excited to turn my life around"],
                      ["date": "Aug 1", "source": "self", "text": "so what made you use this app?"],
-                     ["date": "Aug 1", "source": "zuck", "text": "probably same as you. I always have a lot of things I wanna do but I rarely end up doing them"] ]
+                     ["date": "Aug 1", "source": "auggie", "text": "probably same as you. I always have a lot of things I wanna do but I rarely end up doing them"],
+                     ["date": "Aug 3", "source": "self", "text": "Right. How have your first couple of days with your goals gone?"],
+                     ["date": "Aug 4", "source": "auggie", "text": "Pretty good so far! Really pumped to see where my goals take me"],
+                     ["date": "Aug 4", "source": "self", "text": "That's great! Let's check in on each other again in a couple of days"],
+                     ["date": "Aug 4", "source": "auggie", "text": "Alright, hopefully I'll post a couple of updates tomorrow"],
+                     ["date": "Aug 4", "source": "auggie", "text": "Good luck with your goals!"] ]
         
         let indexPath = IndexPath(row: messages.count - 1, section: 0)
         self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
@@ -94,7 +99,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         self.tableView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.tableView.frame.height + 196)
         
-        messages.append(["text": messageTextField.text!, "source": "self"])
+        messages.append(["text": messageTextField.text!, "source": "self", "date": "Aug 9"])
         tableView.reloadData()
         messageTextField.text = ""
         

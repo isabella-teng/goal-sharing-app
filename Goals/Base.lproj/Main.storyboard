@@ -2912,7 +2912,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wl6-jh-3oF">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="491"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="504"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -2924,11 +2924,11 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aug 8" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d1o-Gg-hWB">
-                                                    <rect key="frame" x="164" y="21" width="40" height="18"/>
+                                                    <rect key="frame" x="164" y="22.5" width="40" height="15.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="mvt-wX-JpC"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -2970,6 +2970,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="dateLabel" destination="d1o-Gg-hWB" id="oYy-Wa-Y9F"/>
                                             <outlet property="messageBackground" destination="JwJ-pP-17Q" id="V5A-ih-jzx"/>
                                             <outlet property="messageLabel" destination="OHH-Pa-AtY" id="JBQ-4s-Q9T"/>
                                             <outlet property="senderIcon" destination="VZp-uP-nUM" id="art-zx-EDD"/>
@@ -3001,11 +3002,11 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aug 8" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JmO-dh-ZxD">
-                                                    <rect key="frame" x="219" y="21.5" width="40" height="18"/>
+                                                    <rect key="frame" x="219" y="23" width="40" height="15.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="vSH-VP-ifk"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -3020,6 +3021,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="dateLabel" destination="JmO-dh-ZxD" id="jde-bH-EiV"/>
                                             <outlet property="messageBackground" destination="yjW-Nb-XXo" id="Dx8-Ma-Rn0"/>
                                             <outlet property="messageLabel" destination="oD5-lM-gxG" id="l8m-mn-alZ"/>
                                         </connections>

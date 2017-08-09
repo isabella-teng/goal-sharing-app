@@ -13,10 +13,12 @@ class MessageCell: UITableViewCell {
     @IBOutlet weak var messageBackground: UIView!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var senderIcon: UIImageView!
+    @IBOutlet weak var dateLabel: UILabel!
     
     var message: [String: Any] = [:] {
         didSet {
             messageLabel.text = message["text"] as? String
+            dateLabel.text = message["date"] as? String
             
             if message["source"] as! String != "self" {
                 senderIcon.layer.cornerRadius = senderIcon.frame.height / 2
