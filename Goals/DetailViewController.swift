@@ -90,6 +90,22 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
           peekPop = PeekPop(viewController: self)
           peekPop?.registerForPreviewingWithDelegate(self, sourceView: collectionView)
           
+          
+          let dateFormat = DateFormatter()
+          dateFormat.dateFormat = "M/d/yy"
+          let goalDateUpdated = currentUpdate?["goalDate"] as! Date
+          self.timestampLabel.text = String(dateFormat.string(from: goalDateUpdated))
+     }
+     
+     func done() {
+          self.dismiss(animated: true, completion: nil)
+     }
+     
+     @IBAction func onClose(_ sender: Any) {
+          self.dismiss(animated: true, completion: nil)
+     }
+     
+     override func viewDidAppear(_ animated: Bool) {
           if isFromTimelineGoal {
                print("entered")
                let goalUpdateID = (goal?["updates"] as! [String])[0]
@@ -109,7 +125,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     }
                })
           }
-
           let dateFormat = DateFormatter()
           dateFormat.dateFormat = "M/d/yy"
           print(currentUpdate)

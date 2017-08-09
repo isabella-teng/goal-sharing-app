@@ -2800,14 +2800,4 @@
         <image name="settings" width="24" height="24"/>
         <image name="user" width="25" height="25"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="ZpT-ic-j8z"/>
-        <segue reference="Q3w-fk-ISv"/>
-        <segue reference="Ugs-Kx-bhx"/>
-        <segue reference="haI-YF-ab4"/>
-        <segue reference="rWw-4p-v87"/>
-        <segue reference="7vN-Mr-0Qr"/>
-        <segue reference="0HV-eo-Kbd"/>
-    </inferredMetricsTieBreakers>
-    <color key="tintColor" red="1" green="0.37080722999999999" blue="0.42151759599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
