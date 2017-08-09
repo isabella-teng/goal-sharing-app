@@ -7,11 +7,24 @@
 //
 
 import UIKit
+import Parse
 
 class CompletedCell: UITableViewCell {
 
     @IBOutlet weak var nodeView: UIView!
     @IBOutlet weak var labelBackground: UIView!
+    @IBOutlet weak var timestampLabel: UILabel!
+    
+    var goal: PFObject? = nil {
+        didSet {
+            // Set timestamp
+            let date = goal?["actualCompletionDate"] as! Date
+            let dateFormat = DateFormatter()
+            dateFormat.dateFormat = "MMM d, yyyy"
+            let timestampString = String(dateFormat.string(from: date))
+            timestampLabel.text = String("Completed " + timestampString!)
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,11 +32,4 @@ class CompletedCell: UITableViewCell {
         nodeView.layer.cornerRadius = nodeView.frame.height / 2
         labelBackground.layer.cornerRadius = 10
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

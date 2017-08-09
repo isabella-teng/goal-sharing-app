@@ -67,6 +67,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         } else if indexPath.row == updates.count {
             let cell = (tableView.dequeueReusableCell(withIdentifier: "CompletedCell", for: indexPath) as! CompletedCell)
             
+            cell.goal = currentGoal
+            
             return cell
         } else {
             // Set up UpdateCells with update information
@@ -89,22 +91,6 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             performSegue(withIdentifier: "timelineToFullMediaSegue", sender: tapped!)
         }
     }
-    
-//    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-//        transition.transitionMode = .present
-//        transition.startingPoint = CGPoint(x: 175, y: 350)
-//        transition.duration = 0.25
-//        transition.bubbleColor = UIColor.white
-//        return transition
-//    }
-//    
-//    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-//        transition.transitionMode = .dismiss
-//        transition.startingPoint = CGPoint(x: 175, y: 350)
-//        transition.duration = 0.25
-//        transition.bubbleColor = UIColor.white
-//        return transition
-//    }
     
     @IBAction func didTapUpdate(_ sender: Any) {
         performSegue(withIdentifier: "timelineToUpdateSegue", sender: currentGoal)

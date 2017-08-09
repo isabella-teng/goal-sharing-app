@@ -113,17 +113,6 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
                 let startToCompletion = calculateDaysBetweenTwoDates(start: data.createdAt!, end: data["completionDate"] as! Date)
                 completionProgressView.progress = Float(startToCurrent) / Float(startToCompletion)
             }
-            
-//            UIView.animate(withDuration: 1, animations: {
-//                self.descriptionBackground.frame.size.width += 10
-//                self.descriptionBackground.frame.size.height += 10
-//            }) { (true) in
-//                UIView.animate(withDuration: 1, delay: 0, options: [.autoreverse, .repeat, .allowUserInteraction], animations: {
-//                    self.descriptionBackground.frame.origin.y -= 20
-//                }, completion: nil)
-//            }
-            
-            
         }
     }
     
@@ -152,15 +141,6 @@ class InfoCell: UITableViewCell, ChartViewDelegate {
         progressBackground.layer.cornerRadius = 10
         authorIcon.layer.cornerRadius = authorIcon.frame.height / 2
         descriptionBackground.layer.cornerRadius = 10
-        
-//        UIView.animate(withDuration: 1, animations: { 
-//            self.descriptionBackground.frame.size.width += 10
-//            self.descriptionBackground.frame.size.height += 10
-//        }) { (true) in
-//            UIView.animate(withDuration: 1, delay: 0, options: [.autoreverse, .repeat], animations: {
-//                self.descriptionBackground.frame.origin.y -= 20
-//            }, completion: nil)
-//        }
         
         // Set up graph
         axisFormatDelegate = self as? IAxisValueFormatter
